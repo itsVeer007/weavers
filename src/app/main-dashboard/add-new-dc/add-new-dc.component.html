@@ -1,0 +1,80 @@
+<div class="row formModal">
+  <div class="col-lg-6 col-md-6"></div>
+
+  <div class="col-lg-6 col-md-6 add-form" id="user" @inOutPaneAnimation>
+    <div>
+      <a class="close-main pointer" (click)="closeIndent()"><img src="assets/icons/close_form.svg" /></a>
+      <span class="form-heading">add</span>
+    </div>
+
+    <!-- Form -->
+    <div>
+      <form autocomplete="off" [formGroup]="UserForm">
+        <div>
+          <div class="row">
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Product Name</mat-label>
+                <mat-select [(ngModel)]="inventoryBody.itemCode">
+                  <mat-option *ngFor="let item of frList" [value]="item?.userId">{{item?.firstName}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1"> name is required</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Color</mat-label>
+                <mat-select [(ngModel)]="inventoryBody.address">
+                  <mat-option *ngFor="let item of filteredFrList" [value]="item?.address_line1">{{item?.address_line1}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1">Address is required</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>ColorCode</mat-label>
+                <mat-select [(ngModel)]="inventoryBody.state">
+                  <mat-option *ngFor="let item of filteredFrList" [value]="item?.state">{{item?.state}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1">state is required</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Quality</mat-label>
+                <mat-select  [(ngModel)]="inventoryBody.code">
+                  <mat-option *ngFor="let item of filteredFrList" [value]="item?.pin">{{item?.pin}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1"> code is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Cost</mat-label>
+                <mat-select  [(ngModel)]="inventoryBody.code">
+                  <mat-option *ngFor="let item of filteredFrList" [value]="item?.pin">{{item?.pin}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1"> code is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Price</mat-label>
+                <mat-select [(ngModel)]="inventoryBody.code">
+                  <mat-option *ngFor="let item of filteredFrList" [value]="item?.pin">{{item?.pin}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1"> code is required</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="text-center my-3">
+          <button type="submit" class="btn add-btn" (click)="submit()">ADD</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

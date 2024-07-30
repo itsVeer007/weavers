@@ -1,0 +1,133 @@
+<!-- BS -->
+<div >
+  <div class="row added-device w-100">
+    <div class="col-lg-12 d-flex mb-3">
+      <p class="device-title m-0">Site Id</p>
+      <p class="device-sub m-0">: {{ data[0].siteId ? data[0].siteId : '--' }}</p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3">
+      <p class="device-title m-0">Device Id</p>
+      <p class="device-sub m-0">: {{ data[0].deviceId ? data[0].deviceId : '--' }}</p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3">
+      <p class="device-title m-0">Device Type</p>
+      <p class="device-sub m-0">: {{ data[0].deviceTypeId == 1 ? 'Audio' : data[0].deviceTypeId == 2 ? 'Video' : '--' }}</p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3">
+      <p class="device-title m-0">Device Mode</p>
+      <p class="device-sub m-0">: {{ data[0].deviceModeId == 1 ? 'BS' : data[0].deviceModeId == 2 ? 'BSR' : data[0].deviceModeId == 3 ? 'ODR' : '--' }}</p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3">
+      <p class="device-title m-0">Ad hours</p>
+      <p class="device-sub m-0">: {{ data[0].adsHours ? data[0].adsHours : '--' }}</p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3">
+      <p class="device-title m-0">Working Days</p>
+      <p class="device-sub m-0">
+        : {{ data[0].workingDays}}
+      </p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3">
+      <p class="device-title m-0">Description</p>
+      <p class="device-sub m-0">: {{ data[0].deviceDescription ? data[0].deviceDescription : '--' }}</p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3">
+      <p class="device-title m-0">Device Call Frequency</p>
+      <p class="device-sub m-0">: {{ data[0].deviceCallFreq ? data[0].deviceCallFreq : '--' }}</p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3">
+      <p class="device-title m-0">Status</p>
+      <p class="device-sub m-0">
+        <!-- : {{ data[0].status == 1 ? 'Planned' : data[0].status == 2 ? 'In Progress' : data[0].status == 3 ? 'Installed' : data[0].status == 4 ? 'On Hold' : data[0].status == 5 ? 'Removed' : '--' }} -->
+        <!-- {{devStatus(data[0].status)}} -->
+      </p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3">
+      <p class="device-title m-0">Remarks</p>
+      <p class="device-sub m-0">: {{ data[0].remarks ? data[0].remarks : '--' }}</p>
+    </div>
+    <!-- /BS -->
+
+    <!-- BSR -->
+    <div class="col-lg-12 d-flex mb-3" *ngIf="data[0].deviceModeId == 2">
+      <p class="device-title m-0">Weather Interval</p>
+      <p class="device-sub m-0">: {{ data[0].weatherInterval ? data[0].weatherInterval : '--' }}</p>
+    </div>
+    <!-- /BSR -->
+
+    <!-- ODR -->
+    <div class="col-lg-12 d-flex mb-3" *ngIf="data[0].deviceModeId == 3">
+      <p class="device-title m-0">Camera Id</p>
+      <p class="device-sub m-0">: {{ data[0].cameraId ? data[0].cameraId : '--' }}</p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3" *ngIf="data[0].deviceModeId == 3">
+      <p class="device-title m-0">Logger Frequency</p>
+      <p class="device-sub m-0">: {{ data[0].loggerFreq ? data[0].loggerFreq : '--' }}</p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3" *ngIf="data[0].deviceModeId == 3">
+      <p class="device-title m-0">Model Name</p>
+      <p class="device-sub m-0">: {{ data[0].modelName ? data[0].modelName : '--' }}</p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3" *ngIf="data[0].deviceModeId == 3">
+      <p class="device-title m-0">Model Object Type</p>
+      <p class="device-sub m-0">: {{ data[0].modelObjectTypeId == 1 ? 'Person' : '--' }}</p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3" *ngIf="data[0].deviceModeId == 3">
+      <p class="device-title m-0">Model Height</p>
+      <p class="device-sub m-0">: {{ data[0].modelHeight ? data[0].modelHeight : '--' }}</p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3" *ngIf="data[0].deviceModeId == 3">
+      <p class="device-title m-0">Model Width</p>
+      <p class="device-sub m-0">: {{ data[0].modelWidth ? data[0].modelWidth : '--' }}</p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3" *ngIf="data[0].deviceModeId == 3">
+      <p class="device-title m-0">Threshold</p>
+      <p class="device-sub m-0">: {{ data[0].modelThreshold ? data[0].modelThreshold : '--' }}</p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3" *ngIf="data[0].deviceModeId == 3">
+      <p class="device-title m-0">Max Results</p>
+      <p class="device-sub m-0">: {{ data[0].modelMaxResults ? data[0].modelMaxResults : '--' }}</p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3" *ngIf="data[0].deviceModeId == 3">
+      <p class="device-title m-0">Debug On</p>
+      <p class="device-sub m-0">: {{ data[0].debugOn == 0 ? 'False' : data[0].debugOn == 1 ? 'True' : 'False'}}</p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3" *ngIf="data[0].deviceModeId == 3">
+      <p class="device-title m-0">Debug Logs</p>
+      <p class="device-sub m-0">: {{ data[0].debugLogs == 0 ? 'False' : data[0].debugLogs == 1 ? 'True' : 'False'}}</p>
+    </div>
+
+    <div class="col-lg-12 d-flex mb-3" *ngIf="data[0].deviceModeId == 3">
+      <p class="device-title m-0">Debug Logs</p>
+      <p class="device-sub m-0">: {{ data[0].refreshRules == 0 ? 'False' : data[0].refreshRules == 1 ? 'True' : 'False'}}</p>
+    </div>
+    <!-- /ODR -->
+
+    <!-- <div class="col-lg-12 d-flex justify-content-start align-data[0]s-center mb-3">
+      <p class="device-title m-0" style="font-weight: 500;">adInfos(Ads/QR Code and Etc)</p>
+
+      <div class="on-off-toggle mx-5">
+        <input class="on-off-toggle__input" type="checkbox" id="pre" (click)="toggleShowOnOff()" />
+        <label for="pre" class="on-off-toggle__slider"></label>
+      </div>
+    </div> -->
+  </div>
+</div>

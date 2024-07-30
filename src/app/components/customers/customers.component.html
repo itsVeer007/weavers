@@ -1,0 +1,351 @@
+<app-loader *ngIf="showLoader"></app-loader>
+<div class="container-fluid sites" id="top">
+
+    <!-- header starts -->
+    <div class="d-flex justify-content-between">
+        <div class="sites-header">
+            <p>List of all Customers - <span>5000</span></p>
+        </div>
+        <div style="position: relative;">
+            <!-- <div (click)="icons1=!icons1" class="icons-site" id="icons-site" *ngIf="icons1">
+                <div class="lists" *ngIf="showIconVertical" style="margin-left: -25px;">Business Vertical</div>
+                <div class="lists" *ngIf="showIconCustomer" style="margin-left: 23px;">Customer</div>
+                <div class="lists" *ngIf="showIconSite" style="margin-left: 67px;">Site</div>
+                <div class="lists" *ngIf="showIconCamera" style="margin-left: 88px;">Camera</div>
+                <div class="lists" *ngIf="showIconAnalytic" style="margin-left: 120px;">Analytic</div>
+                <div class="lists" *ngIf="showIconUser" style="margin-left: 160px;">User</div>
+
+                <div class="d-flex flex-row justify-content icons pointer">
+                    <a (click)="iconsnew1();showAddBusinessVertical=!showAddBusinessVertical">
+                        <img src="assets/icons/vertical.svg" class="mx-2" width="15" height="15"
+                            (mouseenter)="showIconVertical = true" (mouseleave)="showIconVertical = false" />
+                    </a>
+
+                    <a (click)="iconsnew1();showAddCustomer=!showAddCustomer">
+                        <img src="assets/icons/customer.svg" class="mx-2" width="15" height="15"
+                            (mouseenter)="showIconCustomer = true" (mouseleave)="showIconCustomer = false" />
+                    </a>
+
+                    <a (click)="iconsnew1();showAddSite=!showAddSite">
+                        <img src="assets/icons/sites.svg" class="mx-2" width="15" height="15"
+                            (mouseenter)="showIconSite = true" (mouseleave)="showIconSite = false" />
+                    </a>
+
+                    <a (click)="iconsnew1();showAddCamera=!showAddCamera">
+                        <img src="assets/icons/cam.svg" class="mx-2" width="15" height="15"
+                            (mouseenter)="showIconCamera = true" (mouseleave)="showIconCamera = false" />
+                    </a>
+
+                    <a>
+                        <img src="assets/icons/analytic.svg" class="mx-2" width="15" height="15"
+                            (mouseenter)="showIconAnalytic = true" (mouseleave)="showIconAnalytic = false" />
+                    </a>
+
+                    <a (click)="iconsnew1();showAddUser=!showAddUser">
+                        <img src="assets/icons/user-white.svg" class="mx-2" width="15" height="15"
+                            (mouseenter)="showIconUser = true" (mouseleave)="showIconUser = false" />
+                    </a>
+                </div>
+            </div> -->
+            <a (click)="show('cust')"><img src="assets/icons/add.svg" alt="" /></a>
+            <a><img src="assets/icons/sites-img.svg" alt=""
+                    style="border-radius: 24px; box-shadow: 7px 7px 7px 0px #f3f3f3; margin-top: -9px;" /></a>
+        </div>
+    </div>
+    <!-- header ends -->
+
+    <!-- count starts -->
+    <div class="row">
+        <div class="col-lg-1 col-md-1 d-flex justify-content-start">
+            <div class="vl-green"></div>
+            <div class="mx-2">
+                <div class="status">Active</div>
+                <div class="count">4000</div>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-1 d-flex justify-content-start">
+            <div class="vl-red"></div>
+            <div class="mx-2">
+                <div class="status">Inactive</div>
+                <div class="count">200</div>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-1 d-flex justify-content-start">
+            <div class="vl-yellow"></div>
+            <div class="mx-2">
+                <div class="status">Onhold</div>
+                <div class="count">800</div>
+            </div>
+        </div>
+    </div>
+    <!-- count ends -->
+
+    <!-- form starts -->
+    <div class="row my-3">
+        <div class="col-lg-10 col-md-10">
+            <form class="row p-0">
+                <div class="col-lg-4 col-md-4 select">
+                    <select class="form-select">
+                        <option selected>All Verticals</option>
+                        <option></option>
+                    </select>
+                </div>
+                <div class="col-lg-4 col-md-4 search">
+                    <input type="text" placeholder="Search" name="search2" [(ngModel)]="searchText">
+                    <button type="submit"><a><img src="assets/icons/search.svg" /></a></button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-2 col-md-2" style="position: relative;">
+
+            <a class="mx-2" (click)="viewBySelectedOne()"><img src="assets/icons/view.svg"/></a>
+            <a class="mx-2" (click)="editBySelectedOne()"><img src="assets/icons/edit.svg" /></a>
+            <a class="mx-2" (click)="deleteSelected()"><img src="assets/icons/delete.svg"/></a>
+        </div>
+    </div>
+    <!-- form ends -->
+
+    <!-- table starts -->
+    <div class="table-resp">
+        <table class="table" id="mytable">
+            <tbody>
+                <tr class="form1">
+                    <th><input type="checkbox" class="form-check-input" [(ngModel)]="selectedAll"
+                            (change)="selectAll(); " id="allcheck"
+                            style="background-color: #00000000; border-color:#fff; margin-left:10px;" />
+                    </th>
+                    <!-- <th><input type="checkbox" class="form-check-input" id="allchecked" (click)="allchecked($event)"
+                            style="background-color: #00000000; border-color:#fff;margin-left:10px;" /></th> -->
+                    <th (click)="sort('siteId')">Cust. ID
+                      <!-- <img src="assets/icons/sorticon.svg" style="height: 15px; margin:0 5px"> -->
+                    </th>
+                    <th (click)="sort('customerName')">Customer Name
+                      <!-- <img src="assets/icons/sorticon.svg" style="height: 15px; margin:0 5px"> -->
+                    </th>
+                    <th (click)="sort('custType')">Cust. Type
+                      <!-- <img src="assets/icons/sorticon.svg" style="height: 15px; margin:0 5px"> -->
+                    </th>
+                    <th (click)="sort('contactNumber')">Contact Number
+                      <!-- <img src="assets/icons/sorticon.svg" style="height: 15px; margin:0 5px"> -->
+                    </th>
+                    <th (click)="sort('emailId')">Email id
+                      <!-- <img src="assets/icons/sorticon.svg" style="height: 15px; margin:0 5px"> -->
+                    </th>
+                    <th (click)="sort('contactPerson')">Contact Person
+                      <!-- <img src="assets/icons/sorticon.svg" style="height: 15px; margin:0 5px"> -->
+                    </th>
+                    <th (click)="sort('address')">Address
+                      <!-- <img src="assets/icons/sorticon.svg" style="height: 15px; margin:0 5px"> -->
+                    </th>
+                    <th (click)="sort('status')">Status
+                      <!-- <img src="assets/icons/sorticon.svg" style="height: 15px; margin:0 5px"> -->
+                    </th>
+                    <th></th>
+                </tr>
+
+                <tr *ngFor="let cust of CustomerTable | search : searchText; let i=index">
+                    <td><input type="checkbox" name="foo" class="form-check-input" [(ngModel)]="cust.selected"
+                            (change)="checkIfAllSelected();deleteMultiRecords(cust, i, $event);ViewByCheckbox(cust, i, $event);EditByCheckbox(cust, i, $event)" id="singleCheck" /></td>
+                    <!-- <td><input type="checkbox" class="form-check-input" [checked]="masterSelected" /></td> -->
+                    <td>
+                        <p>{{cust.siteId}}</p>
+                    </td>
+                    <td>
+                        <p>{{cust.customerName}}</p>
+                    </td>
+                    <td>
+                        <p>{{cust.custType}}</p>
+                    </td>
+                    <td>
+                        <p>{{cust.contactNumber}}</p>
+                    </td>
+                    <td>
+                        <p>{{cust.emailId}}</p>
+                    </td>
+                    <td>
+                        <p>{{cust.contactPerson}}</p>
+                    </td>
+                    <td><a style="color: #084982;">{{cust.address}}</a></td>
+                    <td>
+                        <p [style.color]="cust.status == 'Active' ? '#00A44C' :
+                                          cust.status == 'Onhold' ? '#F5B400' :
+                                          cust.status == 'Inactive' ? '#fa500f' :
+                                          '#00A44C'">{{cust.status}}</p>
+                    </td>
+                    <td style="position: relative;">
+                        <a (click)="closeDot($event,i)"><img src="assets/icons/dotlist.svg" width="30"
+                                height="12" /></a>
+                        <!-- -------------------------------- Popup for view, edit, delete --------- START     -->
+                        <div class="plus-img1" id="plus-img{{i}}" style="display: none;">
+
+                            <!-- ---------------------------- Hover for view, edit, delete ---------------------START -->
+
+                            <!-- ---------------------------- Hover for view, edit, delete ---------------------END -->
+
+                            <a class="mx-2" (click)="openViewPopup(cust, i)"><img src="assets/icons/view.svg"/></a>
+                            <a class="mx-2" (click)="openEditPopup(cust, i)"><img src="assets/icons/edit.svg" /></a>
+                            <a class="mx-2" value="Delete" (click)="openDeletePopup(cust, i)"><img src="assets/icons/delete.svg"/></a>
+                        </div>
+                        <!-- ----------------------------- Popup for view, edit, delete --------- END     -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- table ends -->
+
+
+
+
+<div class="modalitem max-center" [hidden]="deletePopup">
+    <!-- <div  class="deletePopup" > -->
+    <div class="card">
+        <div class="card-header d-flex justify-content-between">
+            <p>Delete Row</p><img src="assets/icons/close_form.svg" width="40" height="40"
+                (click)="closeDeletePopup()" />
+        </div>
+        <div class="card-body text-center">Do you want to delete this item?</div>
+        <div class="card-footer">
+            <button type="button" class="btn btn-primary mx-2" (click)="confirmDeleteRow()">OK</button>
+            <button type="button" class="btn btn-danger" (click)="closeDeletePopup()">Close</button>
+        </div>
+    </div>
+    <!-- </div> -->
+</div>
+
+
+<div class="modalitem max-center" [hidden]="editPopup">
+    <!-- <div  class="deletePopup" > -->
+    <div class="card">
+        <div class="card-header d-flex justify-content-between">
+            <p>Edit</p><img src="assets/icons/close_form.svg" width="40" height="40" (click)="closeEditPopup()" />
+        </div>
+        <div class="card-body text-center">
+            <ul *ngIf="currentItem">
+                <li>
+                    <h6 style="width: 110px;">Site Id </h6>: <div><input type="text" class="form-control my-1"
+                            [(ngModel)]="currentItem.siteId" /></div>
+                </li>
+                <li>
+                    <h6 style="width: 110px;">Customer Name </h6>: <div><input type="text" class="form-control my-1"
+                            [(ngModel)]="currentItem.customerName" /></div>
+                </li>
+                <li>
+                    <h6 style="width: 110px;">Cust Type </h6>: <div><input type="text" class="form-control my-1"
+                            [(ngModel)]="currentItem.custType" /></div>
+                </li>
+                <li>
+                    <h6 style="width: 110px;">Contact Number </h6>: <div><input type="text" class="form-control my-1"
+                            [(ngModel)]="currentItem.contactNumber" /></div>
+                </li>
+                <li>
+                    <h6 style="width: 110px;">Email Id </h6>: <div><input type="text" class="form-control my-1"
+                            [(ngModel)]="currentItem.emailId" /></div>
+                </li>
+                <li>
+                    <h6 style="width: 110px;">Contact Person </h6>: <div><input type="text" class="form-control my-1"
+                            [(ngModel)]="currentItem.contactPerson" /></div>
+                </li>
+                <li>
+                    <h6 style="width: 110px;">Address </h6>: <div><input type="text" class="form-control my-1"
+                            [(ngModel)]="currentItem.address" /></div>
+                </li>
+                <li>
+                    <h6 style="width: 110px;">Status </h6>: <div><input type="text" class="form-control my-1"
+                            [(ngModel)]="currentItem.status" /></div>
+                </li>
+            </ul>
+        </div>
+        <div class="card-footer">
+            <button type="button" class="btn btn-primary mx-2" (click)="confirmEditRow()">Update</button>
+            <button type="button" class="btn btn-danger" (click)="closeEditPopup()">Close</button>
+        </div>
+    </div>
+    <!-- </div>   -->
+</div>
+
+<div class="modalitem max-center" [hidden]="viewPopup">
+    <!-- <div  class="deletePopup" > -->
+    <div class="card">
+        <div class="card-header d-flex justify-content-between">
+            <p>Customers</p><img src="assets/icons/close_form.svg" width="40" height="40" (click)="closeViewPopup()" />
+        </div>
+        <div class="card-body text-center">
+            <ul *ngIf="currentItem">
+                <li>
+                    <h6 style="width: 110px;">Site Id </h6>: {{currentItem?.siteId}}
+                </li>
+                <li>
+                    <h6 style="width: 110px;">Customer Name </h6>: {{currentItem?.customerName}}
+                </li>
+                <li>
+                    <h6 style="width: 110px;">Cust Type </h6>: {{currentItem?.custType}}
+                </li>
+                <li>
+                    <h6 style="width: 110px;">Contact Number </h6>: {{currentItem?.contactNumber}}
+                </li>
+                <li>
+                    <h6 style="width: 110px;">Email Id </h6>: {{currentItem?.emailId}}
+                </li>
+                <li>
+                    <h6 style="width: 110px;">Contact Person </h6>: {{currentItem?.contactPerson}}
+                </li>
+                <li>
+                    <h6 style="width: 110px;">Address </h6>: {{currentItem?.address}}
+                </li>
+                <li>
+                    <h6 style="width: 110px;">Status </h6>: {{currentItem?.status}}
+                </li>
+            </ul>
+        </div>
+        <div class="card-footer">
+            <!-- <button type="button" class="btn btn-primary" (click)="confirmViewRow()">OK</button> -->
+            <button type="button" class="btn btn-danger" (click)="closeViewPopup()">Close</button>
+        </div>
+    </div>
+    <!-- </div> -->
+</div>
+
+<!-- 
+<div style="position: fixed; top:0;" *ngIf="showAddCustomer">
+    <app-add-new-customer [show]="showAddCustomer" (newItemEvent)="closenow($event, 'cust')"></app-add-new-customer>
+</div> -->
+
+<!-- <div style="position: fixed; top:0;" *ngIf="showAddSite">
+    <app-add-new-site [show]="showAddSite" (newItemEvent)="closenow($event)"></app-add-new-site>
+</div>
+
+<div style="position: fixed; top:0;" *ngIf="showAddCamera">
+    <app-add-new-camera [show]="showAddCamera" (newItemEvent)="closenow1($event)"></app-add-new-camera>
+</div>
+
+<div style="position: fixed; top:0;" *ngIf="showAddUser">
+    <app-add-new-user [show]="showAddUser" (newItemEvent)="closenow3($event)"></app-add-new-user>
+</div>
+
+<div style="position: fixed; top:0;" *ngIf="showAddBusinessVertical">
+    <app-add-new-business-vertical [show]="showAddBusinessVertical" (newItemEvent)="closenow4($event)">
+    </app-add-new-business-vertical>
+</div> -->
+
+<!-- <div style="position: fixed; top:0;" *ngIf="showAddSite">
+    <app-add-new-site [show]="showAddSite" (newItemEvent)="closenow($event, 'site')"></app-add-new-site>
+</div>
+
+<div style="position: fixed; top:0;" *ngIf="showAddCamera">
+    <app-add-new-camera [show]="showAddCamera" (newItemEvent)="closenow($event, 'camr')"></app-add-new-camera>
+</div>
+
+<div style="position: fixed; top:0;" *ngIf="showAddCustomer">
+    <app-add-new-customer [show]="showAddCustomer" (newItemEvent)="closenow($event, 'cust')"></app-add-new-customer>
+</div>
+
+<div style="position: fixed; top:0;" *ngIf="showAddUser">
+    <app-add-new-user [show]="showAddUser" (newItemEvent)="closenow($event, 'user')"></app-add-new-user>
+</div>
+
+<div style="position: fixed; top:0;" *ngIf="showAddBusinessVertical">
+    <app-add-new-business-vertical [show]="showAddBusinessVertical" (newItemEvent)="closenow($event, 'vert')">
+    </app-add-new-business-vertical>
+</div> -->

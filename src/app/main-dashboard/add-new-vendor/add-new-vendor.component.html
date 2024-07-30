@@ -1,0 +1,273 @@
+<div class="row formModal">
+  <div class="col-lg-6 col-md-6"></div>
+
+  <div class="col-lg-6 col-md-6 add-form" id="user" @inOutPaneAnimation>
+    <div class="d-flex flex-row justify-content-between">
+      <div class="d-flex flex-row justify-content-start">
+        <a class="close-main pointer" (click)="closeAddUser()"><img src="assets/icons/close_form.svg" /></a>
+        <span class="form-heading">Create Vendor</span>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div>
+      <form autocomplete="off" [formGroup]="vendorForm" #addUserForm="ngForm">
+        <div class="row">
+          <!-- <div class="col-lg-6 col-md-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Product Name</mat-label>
+            <input matInput formControlName="productName" [(ngModel)]="x.inv.productName">
+            <mat-error class="mt-1">Product is required</mat-error>
+          </mat-form-field>
+        </div> -->
+
+          <!-- <div class="col-lg-6 col-md-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="productCategory" [(ngModel)]="x.inv.productCategory">
+              <mat-option value="Modules">Modules</mat-option>
+              <mat-option value="Server">Server</mat-option>
+              <mat-option value="Camera">Camera</mat-option>
+            </mat-select>
+            <mat-error class="mt-1">Category is required</mat-error>
+          </mat-form-field>
+        </div> -->
+
+          <!-- <div class="col-lg-6 my-2">
+          <mat-radio-group name="radioOpt1" style="font-size: 12px;">
+            <mat-label>Cost Details</mat-label>
+            <mat-radio-button class="ms-3" name="Cost" value="USD">USD</mat-radio-button>
+            <mat-radio-button class="ms-3" name="Cost" value="INR" checked>INR</mat-radio-button>
+          </mat-radio-group>
+        </div> -->
+
+          <!-- <div class="col-lg-6 col-md-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput [matDatepicker]="picker1" placeholder="Start Date" formControlName="warrantyStartDate" [(ngModel)]="x.warr.warrantyStartDate">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+            <mat-error class="mt-1">Start Date is required</mat-error>
+          </mat-form-field>
+        </div> -->
+
+          <div class="col-lg-6 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Vendor Name</mat-label>
+              <input matInput formControlName="name" [(ngModel)]="vendorBody.vendorName">
+              <mat-error class="mt-1">Name is required</mat-error>
+            </mat-form-field>
+          </div>
+          <!-- <div class="col-lg-6 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Vendor Gstin</mat-label>
+              <input matInput formControlName="name" [(ngModel)]="vendorBody.vendorGstin">
+              <mat-error class="mt-1">Name is required</mat-error>
+            </mat-form-field>
+          </div> -->
+          <div class="col-lg-6 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>vendorGstin</mat-label>
+              <input matInput
+                type="text"
+                formControlName="vendorGstin"
+                [(ngModel)]="vendorBody.vendorGstin"
+                appUppercaseOnly 
+                style="text-transform: uppercase;"
+              />
+              <mat-error class="mt-1">vendorGstin is required</mat-error>
+            </mat-form-field>
+          </div>
+          
+          <div class="col-lg-6 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Address Line</mat-label>
+              <input matInput formControlName="addressLine1" [(ngModel)]="vendorBody.addressLine1">
+              <mat-error class="mt-1">Address Line1 is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Select Country</mat-label>
+              <mat-select formControlName="country" [(ngModel)]="vendorBody.country">
+                <mat-option *ngFor="let country of countryList" [value]="country.countryName"
+                  (click)="filterState(country.countryName)">{{ country.countryName }}</mat-option>
+              </mat-select>
+              <mat-error class="mt-1">Country is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Select State</mat-label>
+              <mat-select formControlName="state" [(ngModel)]="vendorBody.state">
+                <mat-option *ngFor="let state of stateList" [value]="state.stateName"
+                  (click)="filterCity(state.stateName)">{{ state.stateName }}</mat-option>
+              </mat-select>
+              <mat-error class="mt-1">State is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Select City</mat-label>
+              <mat-select formControlName="city" [(ngModel)]="vendorBody.city">
+                <mat-option *ngFor="let city of cityList" [value]="city">{{ city }}</mat-option>
+              </mat-select>
+              <mat-error class="mt-1">City is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Postcode</mat-label>
+              <input matInput type="" formControlName="postCode" [(ngModel)]="vendorBody.postCode" maxlength="6">
+              <mat-error class="mt-1">Postcode is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Proprietor Name</mat-label>
+              <input matInput formControlName="proprietorName1" [(ngModel)]="vendorBody.proprietorName1">
+              <mat-error class="mt-1">Proprietor Name1 is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="emailId1" [(ngModel)]="vendorBody.emailId1" (input)="updateEmail()">
+              <mat-error class="mt-1">Email1 is required</mat-error>
+            </mat-form-field>
+          </div>
+          <!-- <div class="col-lg-6 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Mobile Number</mat-label>
+              <input matInput type="number" formControlName="mobileNumber1" [(ngModel)]="vendorBody.mobileNumber1" >
+              <mat-error *ngIf="mobileNumber1Control.hasError('required')">Mobile number is required</mat-error>
+              <mat-error *ngIf="mobileNumber1Control.hasError('maxlength')">Mobile number cannot exceed 6 digits</mat-error>
+              <mat-error *ngIf="mobileNumber1Control.hasError('pattern')">Only numbers are allowed</mat-error>
+            </mat-form-field>
+          </div> -->
+          <div class="col-lg-6 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Mobile Number</mat-label>
+              <input
+                matInput
+                type="number"
+                formControlName="mobileNumber1"
+                appOnlyNumbers 
+                (input)="onNumberInput('mobileNumber1', $event)"
+              />
+              <mat-error class="mt-1">Mobile Number is required</mat-error>
+              <!-- <mat-error *ngIf="mobileNumber1Control.hasError('required')">Mobile number is required</mat-error>
+              <mat-error *ngIf="mobileNumber1Control.hasError('maxlength')">Mobile number cannot exceed 10 digits</mat-error> -->
+            </mat-form-field>
+          </div>
+          <!-- <div class="col-lg-6"></div> -->
+          <div class="col-lg-6 col-md-6 d-flex justify-content-start align-items-center my-2">
+            <p class="m-0">Proprietor 2</p>
+            <div class="on-off-toggle mx-5">
+              <input class="on-off-toggle__input" type="checkbox" id="proparatorTwo" (change)="activeTwo()">
+              <label for="proparatorTwo" class="on-off-toggle__slider"></label>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 d-flex justify-content-start align-items-center my-2">
+            <p class="m-0">Proprietor 3</p>
+            <div class="on-off-toggle mx-5">
+              <input class="on-off-toggle__input" type="checkbox" id="proparatorThree" (change)="activeThree()">
+              <label for="proparatorThree" class="on-off-toggle__slider"></label>
+            </div>
+          </div>
+          <div class="row col-lg-12" *ngIf="proparatorTwo">
+            <div class="col-lg-4 col-md-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Proprietor Name2</mat-label>
+                <input matInput formControlName="proprietorName2" [(ngModel)]="vendorBody.proprietorName2">
+                <mat-error class="mt-1">Proprietor Name2 is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Email2</mat-label>
+                <input matInput formControlName="emailId2" [(ngModel)]="vendorBody.emailId2">
+                <mat-error class="mt-1">Email2 is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Mobile Number</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  formControlName="mobileNumber2"
+                  appOnlyNumbers 
+                  (input)="onNumberInput('mobileNumber2' ,$event)"
+                />
+                <mat-error class="mt-1">Mobile Number is required</mat-error>
+                <!-- <mat-error *ngIf="mobileNumber1Control.hasError('required')">Mobile number is required</mat-error>
+                <mat-error *ngIf="mobileNumber1Control.hasError('maxlength')">Mobile number cannot exceed 10 digits</mat-error> -->
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row col-lg-12" *ngIf="proparatorThree">
+            <div class="col-lg-4 col-md-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Proprietor Name3</mat-label>
+                <input matInput formControlName="proprietorName3" [(ngModel)]="vendorBody.proprietorName3"  maxlength="10">
+                <mat-error class="mt-1">Proprietor Name3 is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Email3</mat-label>
+                <input matInput formControlName="emailId3" [(ngModel)]="vendorBody.emailId3">
+                <mat-error class="mt-1">Email3 is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Mobile Number</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  formControlName="mobileNumber3"
+                
+                  appOnlyNumbers 
+                  (input)="onNumberInput('mobileNumber3', $event)"
+                />
+                <mat-error class="mt-1">Mobile Number3 is required</mat-error>
+                <!-- <mat-error *ngIf="mobileNumber1Control.hasError('required')">Mobile number is required</mat-error>
+                <mat-error *ngIf="mobileNumber1Control.hasError('maxlength')">Mobile number cannot exceed 10 digits</mat-error> -->
+              </mat-form-field>
+            </div>
+          </div>
+          <!-- <div class="col-lg-6 col-md-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput [matDatepicker]="picker1" placeholder="Start Date" formControlName="serviceStartDate" [(ngModel)]="vendorBody.serviceStartDate">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+            <mat-error class="mt-1">Start Date is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6 col-md-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput [matDatepicker]="picker2" placeholder="End Date" formControlName="serviceEndDate" [(ngModel)]="vendorBody.serviceEndDate">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+            <mat-error class="mt-1">End Date is required</mat-error>
+          </mat-form-field>
+        </div> -->
+
+          <div class="col-lg-12 col-md-12">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Remarks</mat-label>
+              <input matInput formControlName="remarks" [(ngModel)]="vendorBody.remarks">
+              <mat-error class="mt-1">Remarks is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="text-center my-3">
+            <button type="submit" class="btn add-btn" (click)="submit()">ADD</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- /Form -->
+
+  </div>
+</div>

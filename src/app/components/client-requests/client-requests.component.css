@@ -1,0 +1,42 @@
+.assign-button {
+    background-color: darkgreen;
+    color: white;
+    border-radius: 8px;
+    padding: 6px;
+    border-style: none;
+    width:66px
+}
+
+.row-disabled {
+    background-color: rgba(233, 25, 10, 0.774);
+    pointer-events: none;
+    /* width: 100%; */
+ }
+ tr.disabled {
+    background-color: grey;
+}
+
+
+/* .assign {
+    background-color: rgb(105, 180, 111) ; 
+    color: rgb(8, 80, 8); 
+    
+    width: 76px; 
+    border-radius: 6px;
+    padding: 6px;
+  } */
+  button.assigned-button {
+    background-color: rgb(196, 60, 60);
+    color: rgb(241, 230, 230);
+    /* width: 60px;  */
+    border-radius: 6px;
+    padding: 3px;
+  }
+  button.partially-assigned-button {
+    background-color: rgb(47, 207, 133);
+    color: #eee9e9;
+    width: 66px;
+    border-radius: 6px;
+    padding: 3px;
+  }
+

@@ -1,0 +1,54 @@
+<div class="container-fluid" id="top">
+  <!-- header -->
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <div class="users-header">
+      <!-- <p class=" heading m-0">Client Requests </p> -->
+    </div>
+
+
+    <div class="d-flex">
+      <!-- <div class="mx-2">
+        <button mat-flat-button color="primary" class="py-0" (click)="openSitesDialog()">Site Entry</button>
+      </div>
+      <div class="mx-2">
+        <button mat-flat-button color="primary" class="py-0" (click)="openTasksDialog()">View Tasks</button>
+      </div> -->
+      <div class="mx-2">
+        <button class="create-btn" (click)="show('frKit')">Order</button>
+      </div>
+      <div class="mx-2">
+        <button class="create-btn" (click)="show('add')">My Cart</button>
+      </div>
+    </div>
+  </div>
+  <!-- /header -->
+
+  <!-- <div class="container"> -->
+
+    <div class="row">
+      <div class="col-md-3"  *ngFor=" let item of filteredProducts" [style.display]="item.itemType == 2 ? 'block' : 'none' ">
+      <mat-card  class="tile p-2 my-2 text-center" >
+          <img [src]="'http://usstaging.ivisecurity.com:8080/common/downloadFile_1_0?assetName=' + item.image + '&requestName=av_assets'" alt="" >
+        <p class="mt-3">{{item.itemName}}</p>
+        <p>Price: {{item.price}}</p>
+        <p>Stock: {{item.inStock}}</p>
+        <button type="button" class="btn btn-outline-success" (click)="buyNow(item)" >Buy Now</button>
+        <button type="button" class="btn btn-outline-success mx-2" (click)="addToCart(item)">Add To Cart</button>
+      </mat-card>
+    </div>
+    </div>
+  <!-- </div> -->
+
+
+
+</div>
+
+
+
+<div *ngIf="showFrkit">
+  <app-add-new-frkit  (newItemEvent)="closenow('frKit'); listAssignment()"></app-add-new-frkit>
+</div>
+
+<div *ngIf="cart">
+  <app-add-new-asset [cartData]="toBeAddedCart" (newItemEvent)="close('add')"></app-add-new-asset>
+</div>

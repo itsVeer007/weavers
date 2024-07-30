@@ -1,0 +1,319 @@
+<div class="row formModal">
+  <div class="col-lg-6"></div>
+  <div class="col-lg-6 col-md-6 add-form p-0" id="additionalSite" @inOutPaneAnimation>
+
+    <div class="d-flex justify-content-between align-content-center">
+      <div class="d-flex justify-content-start mx-2 mt-4">
+        <div>
+          <a class="close-main pointer" (click)="close()"><img src="assets/icons/close_form.svg" /></a>
+          <span class="form-heading">Create Sale</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-12 mb-2" style="padding: 0 46px;">
+      <mat-radio-group [(ngModel)]="saleType" (change)="onSaleTypeChange()">
+        <mat-radio-button class="me-3" [value]="1">Client Sale</mat-radio-button>
+        <mat-radio-button [value]="2">Walkin Sale</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    
+    <form autocomplete="off" [formGroup]="userForm1">
+      <div class="row">
+        <div class="col-lg-6" *ngIf="saleType == 1">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Customer Name</mat-label>
+            <mat-select formControlName="clientRequestId" (selectionChange)="onClientRequestChange($event.value)">
+              <mat-option *ngFor="let item of listClientRequestsData | removeDuplicates:'clientName'; let i = index"
+                [value]="item.id" (click)="listClientRequestsSecond(item, i)">{{item.clientName}}</mat-option>
+              <!-- <mat-option value="other">Sale For New Customer</mat-option> -->
+            </mat-select>
+            <mat-error class="mt-1">Customer is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-2">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>SGST(%)</mat-label>
+            <input matInput formControlName="sgstPercent" type="number" (keyup)="updateVal()" [(ngModel)]="sgst">
+            <mat-error class="mt-1">sgst is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-2">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>CGST(%)</mat-label>
+            <input matInput formControlName="cgstPercent" type="number" (keyup)="updateVal()" [(ngModel)]="sgst">
+            <mat-error class="mt-1">cgst is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-2">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>IGST(%)</mat-label>
+            <input matInput formControlName="igstPercent" type="number" (keyup)="updateVal()">
+            <mat-error class="mt-1">igst is required</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+        <!-- <div class="col-lg-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Customer Name</mat-label>
+            <input matInput #siteIdInput [matAutocomplete]="site" [(ngModel)]="siteId" (keyup)="searchSites($event)"  >
+            <button matSuffix mat-icon-button>
+              <mat-icon>arrow_drop_down</mat-icon>
+            </button>
+            <mat-autocomplete #site="matAutocomplete" formControlName="clientRequestId">
+              <mat-option *ngFor="let item of listClientRequestsData | search: siteSearch ; let i = index" [value]="item.id" (click)="listClientRequestsSecond(item, i)"> {{item.clientName}}</mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div> -->
+
+      <div class="row">
+        <!-- <div class="col-lg-3 col-md-3 d-flex justify-content-start align-items-center mb-2">
+          <div class="on-off-toggleSecond mx-2">
+            <input class="on-off-toggle__inputSecond" type="checkbox" id="proparatorTwoForSale"
+              (change)="activeTwoForSale()">
+            <label for="proparatorTwoForSale" class="on-off-toggle__sliderSecond"></label>
+          </div>
+        </div> -->
+
+        <!-- <mat-radio-group [(ngModel)]="saleType">
+          <mat-radio-button class="me-3" [value]="1">Client Sale</mat-radio-button>
+          <mat-radio-button [value]="2">Walkin Sale</mat-radio-button>
+        </mat-radio-group> -->
+
+
+      </div>
+    </form>
+
+
+    <div class="mx-5">
+      <mat-card *ngIf="saleType == 2">
+        <form autocomplete="off" [formGroup]="userForm3">
+          <div class="row">
+            <div class="col-md-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Customer Name</mat-label>
+                <input matInput formControlName="customerName">
+                <mat-error class="mt-1">Customer is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Select Country</mat-label>
+                <mat-select formControlName="country">
+                  <mat-option *ngFor="let item of countryList;" [value]="item.countryName"
+                    (click)="filterSites(item.countryName)">{{item.countryName}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1">Country is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Select State</mat-label>
+                <mat-select formControlName="state">
+                  <mat-option *ngFor="let item of statesList;" [value]="item.stateName"
+                    (click)="filterCites(item.stateName)">{{item.stateName}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1">State is required</mat-error>
+              </mat-form-field>
+            </div>
+            <!-- <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Select City</mat-label>
+                <mat-select formControlName="city">
+                  <mat-option *ngFor="let city of citiesList;" [value]="city">{{city}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1">Country is required</mat-error>
+              </mat-form-field>
+            </div> -->
+            <!-- <div class="col-md-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>pinCode</mat-label>
+                <input matInput type="number" formControlName="pinCode">
+                <mat-error class="mt-1">pinCode is required</mat-error>
+              </mat-form-field>
+            </div> -->
+            <div class="col-md-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Mobile Number</mat-label>
+                <input matInput formControlName="mobileNumber">
+                <mat-error class="mt-1">Mobile Number is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>emailId</mat-label>
+                <input matInput formControlName="emailId">
+                <mat-error class="mt-1">emailId is required</mat-error>
+              </mat-form-field>
+            </div>
+            <!-- <div class="col-md-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="address">
+                <mat-error class="mt-1">Address is required</mat-error>
+              </mat-form-field>
+            </div> -->
+          </div>
+        </form>
+      </mat-card>
+    </div>
+
+
+
+    <!-- Form -->
+    <mat-card class="mx-5 mt-2">
+      <div>
+        <form autocomplete="off" [formGroup]="userForm2">
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Product Name</mat-label>
+                <mat-select formControlName="itemCode">
+                  <mat-option *ngFor="let item of productMaster" [value]="item.suggestedItemCode"
+                    [hidden]="item.itemType != 2" (click)="openStatusItems(item)">{{item.itemName}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1"> name is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Color</mat-label>
+                <mat-select formControlName="color" [disabled]="userForm2.value.itemCode == ''">
+                  <mat-option *ngFor="let item of statusItems  | removeDuplicates:'color'" [value]="item.color"
+                    (click)="openStatusItems(item)">{{item.color}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1">Color is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>ColorCode</mat-label>
+                <mat-select formControlName="colorCode" [disabled]="userForm2.value.color == ''">
+                  <mat-option *ngFor="let item of statusItems | removeDuplicates:'colorCode' " [value]="item.colorCode"
+                    (click)="openStatusItems(item)">{{item.colorCode}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1">ColorCode is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Quality</mat-label>
+                <mat-select formControlName="quality" [disabled]="userForm2.value.colorCode == ''">
+                  <mat-option *ngFor="let item of statusItems | removeDuplicates:'quality' " [value]="item.quality"
+                    (click)="openStatusItems(item)">{{item.quality}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1"> Quality is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Price</mat-label>
+                <mat-select formControlName="cost" [disabled]="userForm2.value.quality == ''">
+                  <mat-option *ngFor="let item of statusItems | removeDuplicates:'cost' " [value]="item.cost"
+                    (click)="openStatusItems(item)">{{item.cost}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1"> Price is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Quantity</mat-label>
+                <input matInput type="number" formControlName="quantity" [(ngModel)]="sendingQuantity">
+                <mat-error class="mt-1">quantity is required</mat-error>
+                <mat-hint class="mt-1"
+                  *ngIf="statusItems.length !== 0 && userForm2.value.cost">Stock:{{currentItem?.instock}}</mat-hint>
+              </mat-form-field>
+            </div>
+            <!-- <div class="col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>sellingPrice</mat-label>
+                <input matInput formControlName="sellingPrice">
+                <mat-error class="mt-1">sellingPrice is required</mat-error>
+              </mat-form-field>
+            </div> -->
+
+
+          </div>
+        </form>
+      </div>
+      <div class="d-flex justify-content-end">
+        <button class="create-btn" (click)="add(userForm2.value)">Add Items</button>
+      </div>
+    </mat-card>
+    <div class="table-task mt-2 mx-5">
+      <table class="table" *ngIf="tasks.length > 0">
+        <thead>
+          <tr>
+            <th>No</th>
+            <!-- <th>Item Name</th> -->
+            <th>ItemCode</th>
+            <th>Quality</th>
+            <th>Color</th>
+            <th>ColorCode</th>
+            <th>Quantity</th>
+            <th>price</th>
+            <th>Total</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks; let j=index">
+            <th>{{ j + 1 }}</th>
+            <!-- <th>{{task.itemName}}</th> -->
+            <td>{{ task.itemCode }}</td>
+            <td>{{ task.quality }}</td>
+            <td>{{ task.color }}</td>
+            <td>{{ task.colorCode }}</td>
+            <td>{{ task.quantity }}</td>
+            <td>{{ task.cost }}</td>
+            <td>{{ task?.cost * task?.quantity }}</td>
+            <td (click)="delete(j)"><img src="assets/icons/delete.svg" alt=""></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <p class="fw-bold">GrandTotal</p>
+          </td>
+          <td>
+            <input type="number" [(ngModel)]="grandTotalWithCGSTSGST" style="width: 100px;" class="mt-1">
+          </td>
+        </tfoot>
+        <tfoot>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <p class="fw-bold">subTotal</p>
+          </td>
+          <td>
+            <p class="fw-bold">{{totalCost}}</p>
+          </td>
+        </tfoot>
+      </table>
+    </div>
+
+    
+    <!-- <div>
+      <p>GrandTotal</p>
+      <input type="number" [(ngModel)]="grandTotalWithCGSTSGST">
+    </div> -->
+
+    <div class="d-flex justify-content-center mt-2 mx-5">
+      <button type="submit" class="create-btn" (click)="submit()">Submit</button>
+    </div>
+  </div>
+</div>

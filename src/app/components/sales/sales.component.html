@@ -1,0 +1,306 @@
+<div class="mx-4">
+    <div class="d-flex justify-content-between align-items-center">
+    <div class="users-header">
+        <p class="m-0 mt-2">Total Sales - <span>{{ siteData?.length }}</span></p>
+    </div>
+    
+    <div style="position: relative;">
+        <!-- <a class="pointer" (click)="show('device')"><img src="assets/icons/add.svg" alt="" /></a> -->
+        <!-- <button mat-flat-button color="primary" class="py-0" (click)="show('device')">Create Device</button> -->
+        <button class="create-btn" (click)="show('device')">Create Sale</button>
+        <!-- <button class="create-btn" (click)="opens()">Invoices</button> -->
+    </div>
+    </div>
+    
+    <div class="row">
+    <div class="col-lg-3 col-md-3">
+        <mat-form-field class="example-form-field" appearance="outline" class="w-100">
+        <mat-label>Search</mat-label>
+        <input matInput type="text"  [(ngModel)]="searchText">
+        <button matSuffix mat-icon-button>
+            <mat-icon>search</mat-icon>
+        </button>
+        </mat-form-field>
+    </div>
+    <div class="col-lg-3 from-date">
+        <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="rangePicker">
+            <input matStartDate placeholder="Created from" [(ngModel)]="filterBody.startDate">
+            <input matEndDate placeholder="Created to" [(ngModel)]="filterBody.endDate">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+        <mat-date-range-picker #rangePicker>
+            <mat-date-range-picker-actions>
+            <button mat-button matDateRangePickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDateRangePickerApply (click)="filter()">Apply</button>
+            <!-- <button mat-raised-button color="primary" matDateRangePickerApply (click)="filterForRaw()">RawMaterial</button> -->
+            </mat-date-range-picker-actions>
+        </mat-date-range-picker>
+        </mat-form-field>
+    </div>
+    </div>
+    
+    <div class="table-resp">
+    <table class="table table-hover" id="mytable">
+        <thead>
+        <tr class="form1">
+            <!-- <th>
+            <p>
+                <span>Id</span>
+                <img (click)="sort('id')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+            </th> -->
+            <th>
+            <span>Recipient Name</span>
+            <img (click)="sort('recipientName')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+            <th>
+            <p class="d-inline-flex">
+                <span>Address</span>
+                <img (click)="sort('address')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+            </th>
+            <th>
+            <p class="d-inline-flex">
+                <span>PAN-No</span>
+                <img (click)="sort('panNo')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+            </th>
+            <th><p>PO-No</p>
+                <img (click)="sort('poNo')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px"></th>
+            <th>
+            <p class="d-inline-flex">
+                <span>PO-Date</span>
+                <img (click)="sort('poDate')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+            </th>
+            <th><p>Invoice No</p>
+                <img (click)="sort('invoiceNo')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px"></th>
+            <th><p>Invoice Date</p>
+                <img (click)="sort('invoiceDate')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px"></th>
+            <th><p>GSTIN</p>
+                <img (click)="sort('gstin')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px"></th>
+            <th><p>SGST</p>
+                <img (click)="sort('sgst')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px"></th>
+            <th><p>CGST</p>
+                <img (click)="sort('cgst')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px"></th>
+            <th><p>IGST</p>
+                <img (click)="sort('igst')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px"></th>
+            <th><p>SubTotal</p>
+                <img (click)="sort('subTotal')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px"></th>
+            <th><p>GrandTotal</p>
+                <img (click)="sort('grandTotal')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px"></th>
+                <th>Details</th>
+                <th>Return Details</th>
+                <th>Tax Form</th>
+        </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let item of newSiteData | removeDuplicates:'invoiceNo' | search:searchText; let i = index">
+            <!-- <td>
+            <p>{{ item.id }}</p>
+            </td> -->
+            <td>
+            <p>{{ item.clientName }}</p>
+            </td>
+            <td>
+            <p>{{ item.address ? item.address : item.state}}</p>
+            </td>
+            <td>
+            <p>{{ item.panNo ? item.panNo : '-' }}</p>
+            </td>
+            <!-- <td>
+            <p>{{ item.colorCode }}</p>
+            </td> -->
+            <td >
+            <p>{{ item.poNo ? item.poNo : '-' }}</p>
+            </td>
+            <td>
+            <p>{{ item.poDate ? item.poDate : '-'}}</p>
+            </td>
+            <td>
+                <p>{{item.invoiceNo}}</p>
+            </td>
+            <td>
+                <p>{{item.invoiceDate | date:'mediumDate'}}</p>
+            </td>
+            <td>{{item.gstin}}</td>
+            <td>{{item.sgst}}</td>
+            <td>{{item.cgst}}</td>
+            <td>{{item.igst}}</td>
+            <td><p>{{item.subTotal}}</p></td>
+            <td><p>{{item.grandTotal}}</p></td>
+            <td class="pointer"  (click)="open(item)" style="color: #053d1c;" matTooltip="view">view</td>
+            <td (click)="openReturnItems(item)" style="color: #053d1c;" matTooltip="view">View</td>
+            <td ><button class="assign-button" (click)="openInvoice(item)">open</button></td>
+        </tbody>
+    </table>
+    </div>
+    <!-- <div *ngIf="showAddDevice">
+    <app-add-device (newItemEvent)="closenow('device'); listSales();"></app-add-device>
+    </div> -->
+    
+    <!-- <div *ngIf="showDeviceInfo">
+    <app-device-info (newItemEvent)="closenow('device-info')"></app-device-info>
+    </div> -->
+    
+    <div class="d-flex align-items-center justify-content-center" style="height: 50vh;" *ngIf="newSiteData.length == 0 && !showLoader">
+        <h1 class="text-secondary">No Data</h1>
+    </div>
+    
+    <!-- Loader -->
+    <div *ngIf="showLoader">
+        <app-loader class="d-flex justify-content-center align-items-center" style="height: 50vh;"></app-loader>
+    </div>
+      <div *ngIf="showSales">
+        <app-add-new-customer (newItemEvent)="close('device'); listInvoices();"></app-add-new-customer>
+    </div>
+    
+</div>
+
+<ng-template #ItemsDialog>
+    <!-- <div style="background-color: #053d1c;">
+    <p class="dialog-title">GRN</p>
+    </div> -->
+    <div class="dialog-content">
+    <div class="table-res mx-2 mt-3">
+        <table class="table" id="mytable">
+        <thead>
+            <tr>
+            <th>
+                <input type="checkbox" class="form-check-input" [(ngModel)]="selectedAll" (change)="selectAll()"
+                    style="
+                    background-color: #00000000;
+                    border-color: #fff;
+                ">
+                </th>
+            <th>ItemCode
+                <img (click)="sort('itemCode')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+            <th>
+                Color
+                <img (click)="sort('color')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px"></th>
+            <th>
+                ColorCode
+                <img (click)="sort('colorCode')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+            <th>
+                price
+                <img (click)="sort('price')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+            <th>
+                Quality
+                <img (click)="sort('quality')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+            <th>
+                Quantity
+                <img (click)="sort('grandTotal')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+            <th>
+               Return Quantity
+                <img (click)="sort('grandTotal')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+            <th>Return</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let task of note; let i = index">
+            <td>
+                <input type="checkbox" class="form-check-input" [(ngModel)]="task.selected" (change)="checkIfAllSelected(); addChecked(task, i, $event)"/>
+            </td>
+            <td>
+                <p>{{ task.itemCode }}</p>
+            </td>
+            <td>
+                <p>{{ task.color }}</p>
+            </td>
+            <td><p>{{task.colorCode}}</p></td>
+            <td>
+                <p>{{ task.cost }}</p>
+            </td>
+            <td><p>{{task.quality}}</p></td>
+            <td>
+                <p>{{ task.quantity}}</p>
+            </td>
+            <td>
+                <p>{{ task.returnQuantity}}</p>
+            </td>
+            <td><input type="number" placeholder="Quantity" [(ngModel)]="task.qty"></td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+    <button class="dialog-close-btn" mat-dialog-close>Close</button>
+    <button class="dialog-update-btn" (click)="updateOrder()">Return</button>
+    </div>
+</ng-template>
+
+<ng-template #usedItemsDialog>
+    <div style="background-color: #053d1c;">
+    <p class="dialog-title">GRN</p>
+    </div>
+    <div class="dialog-content">
+    <div class="table-res mx-2">
+        <table class="table" id="mytable">
+        <thead>
+            <tr class="task-table">
+            <th>itemCode</th>
+            <th>
+                Color
+            </th>
+            <th>
+                Color code
+            </th>
+            <th>
+                price
+            </th>
+            <th>
+                Quality
+            </th>
+            <!-- <th>
+                Quantity
+            </th> -->
+            <th>
+                Cash Return
+            </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let task of return; let i = index">
+            <td>
+                <p>{{ task.itemCode }}</p>
+            </td>
+            <td>
+                <p>{{ task.color }}</p>
+            </td>
+            <td>
+                <p>{{ task.colorCode }}</p>
+            </td>
+            <td>
+                <p>{{ task.cost}}</p>
+            </td>
+            <td>{{task.quality}}</td>
+            <!-- <td>{{task.quantity}}</td> -->
+            <td>{{task.cashReturn}}</td>
+           
+            <!-- <td><button (click)="taxData(task)">open</button></td> -->
+            </tr>
+        </tbody>
+        </table>
+    </div>
+    </div>
+    <div class="d-flex justify-content-end">
+    <button class="dialog-close-btn" mat-dialog-close>Close</button>
+    </div>
+</ng-template>
+
+
+<!-- <ng-template #taxInvoiceDialog>
+    <div class=" p-2" style="height: 100vh; overflow-y: auto;">
+    <app-tax-invoice></app-tax-invoice>
+    </div>
+</ng-template> -->

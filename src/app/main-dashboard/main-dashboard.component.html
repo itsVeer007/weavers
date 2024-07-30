@@ -1,0 +1,85 @@
+<div class="container-fluid main-dashboard">
+  <h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size:26px;" class="top-heading mt-1">Operations Dashboard For Weavers</h1>
+
+  <div class="row search-form">
+    <!-- <div class="col-lg-3 col-md-3">
+        <mat-form-field class="example-form-field" appearance="outline" class="w-100">
+        <mat-label>Search</mat-label>
+        <input matInput type="text"  [(ngModel)]="searchText">
+        <button matSuffix mat-icon-button>
+            <mat-icon>search</mat-icon>
+        </button>
+        </mat-form-field>
+    </div> -->
+    <!-- <div class="col-lg-3 from-date">
+        <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="rangePicker">
+            <input matStartDate placeholder="Created from" [(ngModel)]="filterBody.startDate">
+            <input matEndDate placeholder="Created to"  [(ngModel)]="filterBody.endDate">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+        <mat-date-range-picker #rangePicker>
+            <mat-date-range-picker-actions>
+            <button mat-button matDateRangePickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDateRangePickerApply (click)="filterDash()">Apply</button>
+         
+            </mat-date-range-picker-actions>
+        </mat-date-range-picker>
+        </mat-form-field>
+    </div> -->
+</div>
+
+<div class="row">
+  <div class=" col-md-12" >
+    <mat-card class="title-card">
+      <div class="row">
+      <div class="col-md-4 col-lg-4 mt-1"  *ngFor=" let item of dashdata" (click)="open(item)">
+        <div class="card">
+          <div class="card-body text-center">
+            <h1 class="card-title" style="font-size: 17px;  font-weight: bold;">{{item.itemName}}</h1>
+            <p class="card-text  pointer mt-4" style=" font-size: 22px;font-weight: bold;"><a>{{item.totalQuantity}} </a></p>
+            <!-- <p>{{item.itemUom == 1 ? : 'jhbj' : 0}}</p> -->
+          </div>
+        </div>
+      </div>  
+    </div>
+    </mat-card>
+  </div>
+  <!-- <div class="col-md-2">
+    <mat-card class="small-card">
+      <div class="card-body">
+        <p class="card-title" style="font-size: 17px; color: rgb(32, 8, 78); font-weight: bold;"></p>
+        <p class="card-text mt-4" style=" font-size: 22px;font-weight: bold;"></p>
+      </div>
+    </mat-card>
+    <mat-card class="small-card mt-4">
+      <div class="card-body">
+        <p class="card-title" style="font-size: 17px; color: rgb(32, 8, 78); font-weight: bold;">fhf</p>
+        <p class="card-text mt-4" style=" font-size: 22px;font-weight: bold;">fgh</p>
+      </div>
+  
+    </mat-card>
+    <mat-card class="small-card mt-4">
+      <div class="card-body">
+        <p class="card-title" style="font-size: 17px; color: rgb(32, 8, 78); font-weight: bold;"></p>
+        <p class="card-text mt-4" style=" font-size: 22px;font-weight: bold;"></p>
+      </div>
+    </mat-card>
+  </div>
+</div> -->
+
+  <!-- <mat-card class="title-card mt-4">
+    <div class="row">
+      <div class=" col-md-4 col-lg-4 mt-2"  *ngFor=" let item of inventoryTable  | mypipe:'itemCode'" >
+        <div class="card p-5">
+          <div class="card-body text-center">
+            <p class="card-title" style="font-size: 17px; color: rgb(32, 8, 78); font-weight: bold;">{{item.itemName}}</p>
+            <h1 class="card-text mt-4" style="font-size: 22px; font-weight: bold;">{{item.inStock}} </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card> -->
+
+</div>

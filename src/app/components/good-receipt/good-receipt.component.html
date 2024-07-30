@@ -1,0 +1,172 @@
+<div style="height: 100vh; width: 40vw; position: relative;">
+
+    <div style="position: absolute; top: 10%; left: 50%; transform: translate(-50%, 0); z-index: 1; opacity: 0.2;">
+        <img src="assets/icons/Mangalagiri Weavers Development Logo_2.jpg" alt="">
+    </div>
+
+    <div style="position: absolute; z-index: 99;" #table>
+        <!-- <div class="col-md-12"> -->
+            <div class=" mt-2 address-container d-flex justify-content-between align-items-center">
+                <!-- <div class="d-flex justify-content-start align-items-center"> -->
+                    <img src="assets\icons\Mangalagiri Weavers Development Logo_2.jpg" alt="" width="124px" class="text-start">
+                <!-- </div> -->
+                <div class="text-center" style="margin-right: 180px;">
+                <p class="secondHeading">Goods Receipt Note</p>
+                <p class="secondHeading">Mangalagiri Handlooms Development Center Pvt Ltd</p>
+                <p class="secondHeading">Mangalagiri</p>
+                </div>
+            </div>
+            <div class="mt-2">
+                <div class="d-flex justify-content-between align-self-start" style="border-top: 1px solid #000;">
+                    <div style="border: 1px solid #000;">
+                        <p class="p-2 heading">Location: {{note[0]?.state}}</p>
+                    </div>
+                    <!-- <div>
+                        <p style="border: 1px solid #000;">GRN NO:{{note[0]?.grnNo}}</p>
+                        <p style="border: 1px solid #000;">GRN Date: {{note[0]?.grnDate}}</p>
+                    </div> -->
+                    <div class="w-25">
+                        <div class="d-flex justify-content-between border border-secondary">
+                            <div class="w-100" style="border-right: 1px solid #000;">
+                                <p class="mt-2 heading" style="border-bottom: 1px solid #000;">GRN NO</p>
+                                <p class="mt-2 heading">GRN Date</p>
+                            </div>
+                            <div class="w-100">
+                                <p class="mt-2 heading" style="border-bottom: 1px solid #000; font-size: 12px;">{{note[0]?.grnNo}}</p>
+                                <p class="mt-2 heading">{{note[0]?.grnDate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="my-3" style="height: 120px;">
+                <div class="d-flex justify-content-between border w-50 border-secondary">
+                    <div class="w-100" style="border-right: 1px solid #000;">
+                        <p  class="heading text-start">MHDC Po No & Date</p>
+                        <p  style="border-top: 1px solid #000;" class="heading text-start">Supplier Invoice No</p>
+                        <p  style="border-top: 1px solid #000;" class="heading text-start">Project Name</p>
+                        <p  style="border-top: 1px solid #000;" class="heading text-start">Name of the Supplier</p>
+                    </div>
+                    <div class="w-100">
+                        <p  style="font-size: 12px; font-size: 12px;height: 20px; " class="heading">{{note[0]?.purchaseRef}}<span>{{note[0]?.documentDate}}</span></p>
+                        <p  style="border-top: 1px solid #000;" class="heading"> {{note[0]?.invoiceNumber}} <span style="border-left: 1px solid #000;"><span style="border-right: 1px solid #000;"> Date:&nbsp;</span> {{note[0]?.grnDate}}</span></p>
+                        <p  style="border-top: 1px solid #000;" class="heading">{{'Null'}}</p>
+                        <p  style="border-top: 1px solid #000;" class="heading">{{note[0]?.vendorName}}</p>
+                    </div>
+                </div>
+                <div class="d-flex border-secondary border">
+                    <p class="my-3" class="heading">Address:&nbsp;</p>
+                    <p class="my-3" class="heading">{{note[0]?.country}}, {{note[0]?.state}}, {{note[0]?.city}},{{note[0]?.postCode}}</p>
+                </div>
+            </div>
+            <div class="bottom-table mt-2">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="secondHeading">
+                                <p> ItemCode.</p>
+                            </th>
+                            <th scope="col" class="secondHeading">Description</th>
+                            <th scope="col" class="secondHeading"> Qty.</th>
+                            <th scope="col" class="secondHeading"> Unit price</th>
+                            <th scope="col" class="secondHeading">Uom</th>
+                            <th scope="col" class="secondHeading text-end"> Amount(INR)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of note; let i = index">
+                            <td class="heading">{{item.itemCode}}</td>
+                            <td class="heading">{{item.itemName}}</td>
+                            <td class="heading">{{item.quantity}}</td>
+                            <td class="heading">{{item.cost}}</td>
+                            <td class="heading">{{item.itemUom}}</td>
+                            <td class="text-end heading">{{item.cost * item.quantity}}</td>
+                        </tr>
+                    </tbody>
+                    <!-- <tfoot class="mt-2">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>IGST</td>
+                            <td class="text-end">{{note[0]?.igst}}</td>
+                        </tr>
+                        <tr class="mt-2">
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                            <td></td>
+                            <td >SGST</td>
+                            <td class="text-end">{{note[0]?.sgst}}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>CGST</td>
+                            <td class="text-end">{{note[0]?.cgst}}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="secondHeading">Total</td>
+                            <td class="text-end ">INR {{ getTotalAmount()}}</td>
+                        </tr>
+                    </tfoot> -->
+                </table>
+            </div>
+
+            <div class="address-container mt-3">
+               <div class="d-flex justify-content-between align-items-center">
+                <div class="p-0 " style="width: 550px; border-right: 1px solid black;">
+                    <p style="border-bottom: 1px solid black;" class="text-end heading">IGST</p>
+                    <p style="border-bottom: 1px solid black;" class="text-end heading">SGST</p>
+                    <p style="border-bottom: 1px solid black;" class="text-end heading">CGST</p>
+                    <p class="text-end heading">Total</p>
+                    </div>
+
+                    <div  class="p-0 " style="width: 210px; ">
+                        <p style="border-bottom: 1px solid black; height: 20px;" class="text-end heading">{{note[0]?.igst}}</p>
+                        <p style="border-bottom: 1px solid black; height: 20px;" class="text-end heading">{{note[0]?.sgst}}</p>
+                        <p style="border-bottom: 1px solid black; height: 20px;" class="text-end heading">{{note[0]?.cgst}}</p>
+                        <p class="text-end heading">{{ note[0]?.grandTotal}}fg</p>
+                    </div>
+               </div>
+            </div>
+
+            <div class="mt-2">
+                <p><span class="secondHeading">Amount in Words:&nbsp;</span>{{ note[0]?.grandTotal | numberToWords}}</p>
+            </div>
+            <div class="footer">
+                <div class=" footer d-flex justify-content-between align-items-center ">
+                  <div>
+                    <h3 class="mt-2 heading"> Signature 1</h3>
+                    <h3 class="mt-2 heading"> Signature 2</h3>
+                  </div>
+                    <div>
+                        <h3 class="mt-2 heading">Date</h3>
+                        <h3 class="mt-2 heading"> Date</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-one">
+                <hr class="line">
+                <p class=" secondHeading text-center">Mangalagiri Handlooms Development Center</p>
+                <p class="text-center my-2 heading">Regd.Off:Flat No.508,Kosanam,Roy Heights,APNRT Tech Park,Mangalagiri,Guntur District-522503,Andhra Pradesh</p>
+                <p class="text-center heading"><span>Mfg. Address:</span>S.No.49,p.No.133,Autonagar,Mangalagiri,Guntur District-522503,Andhra Pradesh</p>
+            </div>
+        <!-- </div> -->
+        <div class="d-flex justify-content-end align-items-center mt-1" id="buttons">
+            <button class="btn btn-secondary btn-sm mx-2" (click)="generatePDF()"
+                [ngClass]="{'hidden-for-pdf': !showSaveButton}">Save Invoice</button>
+            <button class="btn btn-secondary btn-sm" mat-dialog-close
+                [ngClass]="{'hidden-for-pdf': !showSaveButton}">Close</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,217 @@
+<div class="">
+  <!-- header -->
+  <div class="header d-flex justify-content-between align-items-center">
+    <!-- <a class="logo pointer ms-2"><img src="assets/icons/Logo.svg"></a> -->
+    <a class="logo pointer ms-2"><img src="https://weaversdirect.in/cdn/shop/files/Weavers_Direct_logo_Png_4.png?v=1683286760&width=120" alt=""></a>
+    <a class="user-pic pointer me-2" [matMenuTriggerFor]="menu">
+      <img src="assets/icons/profile.svg" width="35">
+    </a>
+    <a class="menu-icon pointer" [matMenuTriggerFor]="menu1">
+      <img src="assets/icons/menu.svg">
+    </a>
+  </div>
+
+  <div class="row m-0">
+    <!-- desktop menu -->
+    <div class="left-content col-lg-2 ">
+      <nav class="sidebar" id="navbarToggleExternalContent">
+        <div class="list-group m-3">
+          <a class="list-group-item active " [routerLink]="['./main-dashboard']" routerLinkActive="routeactive" *ngIf="isManager">
+            <img src="assets/icons/dashboard.svg">
+            <span>Dashboard</span>
+          </a>
+          <a class="list-group-item active" [routerLink]="['./product-master']" routerLinkActive="routeactive" *ngIf="isManager">
+              <img src="assets/icons/vertical.svg" width="20">
+              <span>Product Master</span>
+          </a>
+            <!-- <a class="list-group-item " [routerLink]="['./tax']" routerLinkActive="routeactive" *ngIf="isManager">
+                <img src="assets/icons/inventory.svg" width="20">
+                <span>tax</span>
+            </a> -->
+            <!-- <a class="list-group-item active" [routerLink]="['./receipt']" routerLinkActive="routeactive" *ngIf="isManager">
+              <img src="assets/icons/inventory.svg" width="20">
+              <span>Good Receipt</span>
+          </a> -->
+          <a class="list-group-item active" [routerLink]="['./vendors']" routerLinkActive="routeactive" *ngIf="isManager">
+              <img src="assets/icons/receipt.svg" width="20">
+              <span>Vendors</span>
+          </a>
+          <a class="list-group-item active" [routerLink]="['./weaver-works']" routerLinkActive="routeactive" *ngIf="isManager">
+            <img src="assets/icons/Union 29@2x.png" width="20">
+            <span>Weavers Dashboard</span>
+          </a>
+          <a class="list-group-item active" [routerLink]="['./client-requests']" routerLinkActive="routeactive" *ngIf="isManager">
+            <img src="assets/icons/person_add.svg" width="20">
+            <span>Client Order</span>
+          </a>
+
+          <!-- <a class="list-group-item " [routerLink]="['./fr-kit']" routerLinkActive="routeactive">
+            <img src="assets/icons/user-white.svg" width="20">
+            <span>Client Screen</span>
+          </a> -->
+          <a class="list-group-item active" [routerLink]="['./sales-sales']" routerLinkActive="routeactive" *ngIf="isManager">
+            <img src="assets/icons/trending_up.svg" width="20">
+            <span>Sales</span>
+          </a>
+      
+
+          <div class="navigation list-group-item active">
+            <ul>
+              <li class="m-2 has-sub">
+                <a class="d-inline-flex align-items-center">
+                  <img src="assets/icons/inventory.svg">
+                  <span>Inventory</span>
+                  <img src="assets/icons/arrow_right.svg" alt="">
+                </a>
+                <ul>
+                  <li>
+                    <a [routerLink]="['./raw-Materials']" routerLinkActive="routeactive">Raw Materials</a>
+                  </li>
+                  <li>
+                    <a [routerLink]="['./inventory']" routerLinkActive="routeactive">Finished Products</a>
+                  </li>
+                  <!-- <li>
+                    <a [routerLink]="['./fr-kit']" routerLinkActive="routeactive">FR Kit</a>
+                  </li> -->
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+              <a class="list-group-item " [routerLink]="['./orders']" routerLinkActive="routeactive" *ngIf="isManager">
+            <img src="assets/icons/trending_up.svg" width="20">
+            <span>Purchase Order</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+
+    <div class="right-content" [ngClass]="isSales ? 'col-lg-12' : 'col-lg-10'">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+
+  <!-- profile details -->
+  <mat-menu #menu="matMenu">
+    <div class="profile-card">
+      <div class="card-header d-flex flex-column justify-content">
+        <div class="text-center">
+          <img src="assets/icons/Ellipse 25@2x.png" width="100">
+        </div>
+
+        <div class="d-flex justify-content-center text-white my-2">
+          <div class="d-flex flex-column">
+            <span>Name</span>
+            <span>Mobile</span>
+            <span>Email</span>
+          </div>
+
+          <div class="d-flex flex-column ms-3" *ngIf="user">
+            <span style="font-weight: 600;">:&nbsp;{{ user?.UserName }}</span>
+            <span style="font-weight: 600;">:&nbsp;{{ user?.contact }}</span>
+            <span style="font-weight: 600;">:&nbsp;{{ user?.email }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-bdy">
+        <div>
+          <a class="mx-2 pointer"><img src="assets/icons/edit-line@2x.png" width="15" height="15" /> <span class="mx-2">Edit Profile</span></a>
+        </div>
+        <div>
+          <a class="mx-2 pointer"><img src="assets/icons/Union 48@2x.png" width="15" height="15" /> <span class="mx-2">Change Password</span></a>
+        </div>
+        <div>
+          <a class="mx-2 pointer"><img src="assets/icons/info-outline.svg" width="15" height="15" /> <span class="mx-2">Terms & Conditions</span></a>
+        </div>
+      </div>
+      <div>
+        <button class="logout-btn" (click)="logout()">LOG OUT</button>
+      </div>
+    </div>
+  </mat-menu>
+
+  <!-- Mobile View Menu -->
+  <mat-menu #menu1="matMenu">
+    <div class="col-sm-12 col-xs-12 mobile-sidebar">
+      <nav class="d-sm-xs-block">
+        <div class="list-group text-white text-center">
+          <a class="list-group-item my-2 active " [routerLink]="['./main-dashboard']" routerLinkActive="routeactive">
+              <img src="assets/icons/dashboard.svg" /><span> Dashboard</span>
+          </a>
+
+          <!-- <a class="list-group-item my-2" >
+              <img src="assets/icons/vertical.svg" /><span> Verticals</span>
+          </a> -->
+
+          <!-- <a class="list-group-item my-2" [routerLink]="['/customers']" routerLinkActive="routeactive">
+              <img src="assets/icons/customer.svg" /><span> Customers</span>
+          </a> -->
+
+          <a routerLink="" class="list-group-item my-2" [routerLink]="['./sites']" routerLinkActive="routeactive">
+              <img src="assets/icons/sites.svg" /><span> Sites</span>
+          </a>
+
+          <!-- <a class="list-group-item my-2">
+              <img src="assets/icons/cam.svg" /><span> Cameras</span>
+          </a> -->
+
+          <!-- <a class="list-group-item my-2">
+              <img src="assets/icons/analytic.svg" /><span> Analytics</span>
+          </a> -->
+
+          <a class="list-group-item my-2" [routerLink]="['./users']" routerLinkActive="routeactive">
+              <img src="assets/icons/user-white.svg" /><span>Users</span>
+          </a>
+
+          <a class="list-group-item " [routerLink]="['./indents']" routerLinkActive="routeactive">
+            <img src="assets/icons/inventory.svg">
+            <span>Indents</span>
+          </a>
+
+          <a class="list-group-item " [routerLink]="['./inventory']" routerLinkActive="routeactive">
+            <img src="assets/icons/inventory.svg">
+            <span>Inventory</span>
+          </a>
+
+          <a class="list-group-item " [routerLink]="['./product-master']" routerLinkActive="routeactive">
+            <img src="assets/icons/inventory.svg">
+            <span>Product Master</span>
+          </a>
+
+          <a class="list-group-item my-2" [routerLink]="['./devices']" routerLinkActive="routeactive">
+            <img src="assets/icons/devices.svg" /><span>Devices</span>
+          </a>
+
+          <a class="list-group-item my-2" [routerLink]="['./advertisements']" routerLinkActive="routeactive">
+              <img src="assets/icons/asset.svg" /><span>Advertisements</span>
+          </a>
+
+          <a class="list-group-item my-2" [routerLink]="['./tickets']" routerLinkActive="routeactive">
+            <img src="assets/icons/ticket.svg" /><span>Tickets/Jobs</span>
+          </a>
+
+          <a class="list-group-item my-2" [routerLink]="['./tickets']" routerLinkActive="routeactive">
+            <img src="assets/icons/ticket.svg" /><span>Tickets</span>
+          </a>
+
+          <a class="list-group-item my-2" [routerLink]="['./fr']" routerLinkActive="routeactive">
+            <img src="assets/icons/ticket.svg" /><span>FR</span>
+          </a>
+
+          <a class="list-group-item my-2" [routerLink]="['./meta']" routerLinkActive="routeactive">
+            <img src="assets/icons/storage.svg" /><span>Metadata</span>
+          </a>
+
+          <!-- <a class="list-group-item my-2" [routerLink]="['/reports']" routerLinkActive="routeactive">
+            <img src="assets/icons/report.svg" /><span>Reports</span>
+          </a> -->
+        </div>
+      </nav>
+    </div>
+  </mat-menu>
+</div>
+
+
+

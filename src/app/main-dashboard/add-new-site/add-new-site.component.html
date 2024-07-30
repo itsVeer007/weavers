@@ -1,0 +1,540 @@
+<div class="row formModal">
+  <div class="col-lg-4"></div>
+
+  <div class="col-lg-8 add-form" id="sites" @inOutPaneAnimation>
+
+    <div>
+      <a class="close-main pointer" (click)="closeAddSite()"><img src="assets/icons/close_form.svg" /></a>
+      <span class="form-heading">add site</span>
+    </div>
+
+    <div>
+      <form autocomplete="off">
+        <div class="row">
+          <div class="row col-lg-12">
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Select Vertical</mat-label>
+                <mat-select>
+                  <mat-option value="1">1</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Select Customer</mat-label>
+                <mat-select>
+                  <mat-option value="1">1</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Site Name</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Contact Number</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Email Id</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Website</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row col-lg-12">
+            <div class="col-lg-12 col-md-12">
+              <p class="mb-1">ADDRESS</p>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Select Country</mat-label>
+                <mat-select>
+                  <mat-option value="1">1</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Select State</mat-label>
+                <mat-select>
+                  <mat-option value="1">1</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Select District</mat-label>
+                <mat-select>
+                  <mat-option value="1">1</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Pincode</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-8">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Area/Street</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>{{latitude ? latitude : "Latitude"}}</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>{{longitude ? longitude : "Longitude"}}</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4 d-flex align-items-center">
+              <button class="filter-btn" (click)="getLocation()">Get Lat Long</button>
+            </div>
+          </div>
+
+          <div class="row col-lg-12">
+            <div class="col-lg-12 col-md-12">
+              <p class="mb-1">ESCALATION DETAILS <span style="color: red;">*</span>
+                <small id="emailHelp" class="form-text" style="color:#000;"> (Please select atleast One Escalation)</small>
+              </p>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Enter Name</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Contact Number</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Email Id</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row col-lg-12">
+            <div class="col-lg-12 col-md-12">
+              <p class="mb-1">ENGINEER DETAILS <span style="color: red;">*</span> <small id="emailHelp"
+                  class="form-text" style="color:#000;"> (Please select atleast One Engineer)</small></p>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Enter Name</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Contact Number</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Email Id</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row col-lg-12 service">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-lg-12">
+              <p class="mb-1">SERVICES</p>
+            </div>
+
+            <div class="d-flex justify-content-between checklist my-2">
+              <div><input type="checkbox" /> Guard</div>
+              <div><input type="checkbox" (click)="toggleShowMonit()" /> Monitoring</div>
+              <div><input type="checkbox" (click)="toggleShowBusiness()" /> Business Intelligence</div>
+              <div><input type="checkbox" /> Safety Escort</div>
+              <div><input type="checkbox" /> Proximity Ads</div>
+            </div>
+
+            <div class="mb-2" *ngIf="Monitoring">
+              <mat-card>
+                <p class="m-0">Monitoring Hours</p>
+                <mat-form-field appearance="outline" class="w-50">
+                  <mat-label>Enter</mat-label>
+                  <input matInput>
+                </mat-form-field>
+              </mat-card>
+            </div>
+
+            <div class="mb-2" *ngIf="Business">
+              <mat-card>
+                <p class="m-0">Business Intelligence</p>
+                <mat-form-field appearance="outline" class="w-50">
+                  <mat-label>Select</mat-label>
+                  <mat-select>
+                    <mat-option value="1">1</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </mat-card>
+            </div>
+          </div>
+
+          <div class="col-lg-12 col-md-12 d-flex justify-content-start align-items-center my-2">
+            <p class="m-0">RF ID</p>
+
+            <div class="on-off-toggle mx-5">
+              <input class="on-off-toggle__input" type="checkbox" id="rf">
+              <label for="rf" class="on-off-toggle__slider"></label>
+            </div>
+          </div>
+
+          <div class="row col-lg-12">
+            <div class="col-lg-12 col-md-12">
+              <p class="mb-1">RF READER</p>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Enter Number</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Select Type</mat-label>
+                <mat-select>
+                  <mat-option value="1">1</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Scan Tag Id</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="col-lg-12 col-md-12 d-flex justify-content-start align-items-center mb-2">
+            <p class="m-0" style="font-weight: 700;">QR CODE</p>
+
+            <div class="on-off-toggle mx-5">
+              <input class="on-off-toggle__input" type="checkbox" id="qr">
+              <label for="qr" class="on-off-toggle__slider"></label>
+            </div>
+          </div>
+
+          <div class="row col-lg-12">
+            <div class="col-lg-8">
+              <mat-form-field class="example-form-field" appearance="outline" class="w-100">
+                <mat-label>File Upload</mat-label>
+                <input matInput type="text">
+                <button matSuffix mat-icon-button aria-label="Clear">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>URL</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row col-lg-12">
+            <p class="m-0" style="font-weight: 700;">Documents</p>
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Document Type</mat-label>
+                <mat-select>
+                  <mat-option value="1">1</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <!-- File Upload -->
+            <div class="col-lg-8 mb-2">
+              <div class="file">
+                <div>Drag and drop or <a (click)="fileInput.click()" class="pointer">Browse</a> your file</div>
+              </div>
+
+              <div>
+                <input hidden (change)="onFileSelected($event)" #fileInput type="file">
+                <div class="file-name" *ngFor="let item of selectedFiles">
+                  <div class="d-flex align-items-center justify-content-between mt-2">
+                    <span style="width: 130px;">{{item.name}}</span>
+                    <mat-progress-bar *ngIf="selectedFile" class="w-50" mode="determinate" value="100"></mat-progress-bar>
+                    <a *ngIf="selectedFile" class="pointer text-end" (click)="deleteFile()">
+                      <img style="color: #bdb8b8;" src="assets/icons/close.svg" width="20" height="20">
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /File Upload -->
+          </div>
+
+          <div class="row col-lg-12 pre-install">
+            <div class="col-lg-12 col-md-12 d-flex justify-content-start align-items-center my-2">
+              <p class="m-0">PRE INSTALLATION FORM</p>
+
+              <div class="on-off-toggle mx-5">
+                <input class="on-off-toggle__input" type="checkbox" id="pre" (click)="toggleShowOnOff()" />
+                <label for="pre" class="on-off-toggle__slider"></label>
+              </div>
+            </div>
+
+            <div class="preinstBody" *ngIf="isShown">
+              <div class="mb-2">
+                <mat-card>
+                  <div class="d-flex justify-content-start">
+                    <div class="col-lg-3 col-md-3">
+                      <p class="mt-2">Electrician</p>
+                    </div>
+                    <div class="col-lg-9 col-md-9">
+                      <fieldset class="d-flex justify-content-start">
+                        <input type="radio" id="radio1" name="Electrician">
+                        <label for="" class="m-2">YES</label><br />
+
+                        <input class="ms-2" type="radio" id="radio1" name="Electrician" checked>
+                        <label for="" class="m-2">NO</label><br />
+                      </fieldset>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+
+              <div class="mb-2">
+                <mat-card>
+                  <div class="d-flex justify-content-start">
+                    <div class="col-lg-3 col-md-3">
+                      <p class="mt-2">Power Available</p>
+                    </div>
+                    <div class="col-lg-9 col-md-9">
+                      <fieldset class="d-flex justify-content-start">
+                        <input type="radio" id="radio1" name="powerAvailable">
+                        <label for="" class="m-2">YES</label><br />
+
+                        <input class="ms-2" type="radio" id="radio1" name="powerAvailable" checked (click)="toggleShowInternet('off','internet')">
+                        <label for="" class="m-2">NO</label><br />
+                      </fieldset>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+
+              <div class="mb-2">
+                <mat-card>
+                  <div class="d-flex justify-content-start">
+                    <div class="col-lg-3 col-md-3">
+                      <p class="mt-2">Internet</p>
+                    </div>
+                    <div class="col-lg-9 col-md-9">
+                      <fieldset class="d-flex justify-content-start">
+                        <input type="radio" id="radio1" name="Internet" (click)="toggleShowInternet('on','internet')">
+                        <label for="" class="m-2">YES</label><br />
+
+                        <input class="ms-2" type="radio" id="radio1" name="Internet" checked (click)="toggleShowInternet('off','internet')">
+                        <label for="" class="m-2">NO</label><br />
+                      </fieldset>
+                    </div>
+                  </div>
+
+                  <div class="row" *ngIf="internet">
+                    <div class="form-group col-lg-4">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Internet Service Provider</mat-label>
+                        <input matInput id="exampleInputEmail1">
+                      </mat-form-field>
+                    </div>
+                    <div class="form-group col-lg-4">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Preferred Installer</mat-label>
+                        <input matInput id="exampleInputEmail1">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+
+              <div class="mb-2">
+                <mat-card>
+                  <div class="d-flex justify-content-start">
+                    <div class="col-lg-3 col-md-3">
+                      <p class="mt-2">Existing Security System</p>
+                    </div>
+                    <div class="col-lg-9 col-md-9">
+                      <fieldset class="d-flex justify-content-start">
+                        <input type="radio" id="radio1" name="Security" (click)="toggleShowExistSecuity('on','security')">
+                        <label for="" class="m-2">YES</label><br />
+
+                        <input class="ms-2" type="radio" id="radio1" name="Security" checked (click)="toggleShowExistSecuity('off','security')">
+                        <label for="" class="m-2">NO</label><br />
+                      </fieldset>
+                    </div>
+                  </div>
+
+                  <div class="row" *ngIf="existSecuity">
+                    <div class="col-lg-4">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Camera URL</mat-label>
+                        <input matInput>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Native App Name</mat-label>
+                        <input matInput>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>No. of NVR's at Client Location</mat-label>
+                        <input matInput id="exampleInputEmail1">
+                      </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-5 col-md-5">
+                        <hr>
+                      </div>
+                      <div class="col-lg-2 col-md-2 text-center"
+                        style="display: flex; align-items: center; justify-content: center;">
+                        <p class="m-0" style="color: #084982;">NVR - 1</p>
+                      </div>
+                      <div class="col-lg-5 col-md-5">
+                        <hr>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>NVR IP Address</mat-label>
+                        <input matInput>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>NVR Model</mat-label>
+                        <input matInput>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>NVR Type</mat-label>
+                        <mat-select>
+                          <mat-option value="1">1</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>NVR User Name</mat-label>
+                        <input matInput>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>NVR Password</mat-label>
+                        <input matInput>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>No. of Cameras on NVR</mat-label>
+                        <input matInput id="exampleInputEmail1">
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>NVR URL</mat-label>
+                        <input matInput>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>NVR Serial Number</mat-label>
+                        <input matInput>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Camera Serial Number</mat-label>
+                        <input matInput id="exampleInputEmail1">
+                      </mat-form-field>
+                    </div>
+
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Note</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+
+            <!-- submit btn -->
+            <div class="col-lg-12 text-center my-4">
+              <button class="btn add-btn">ADD</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

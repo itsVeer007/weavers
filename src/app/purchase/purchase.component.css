@@ -1,0 +1,123 @@
+.address-container {
+  border-radius: 1px;
+  border-width: 1px;
+  border-style: solid;
+  padding: 2px;
+  width: 100%;
+}
+
+tbody, td, tfoot, th, thead, tr {
+    border-width: 0 1px;
+  }
+  
+  .table>:not(caption)>*>* {
+    padding: 0;
+  }
+  
+  .table {
+    border: 1px solid #000;
+  }
+  
+  .table tbody tr td {
+    font-weight: 500;
+    padding: 5px;
+  }
+  
+  thead tr th {
+    color: #000;
+  }
+  
+  tfoot tr {
+    border: 1px solid #000;
+  }
+  
+  .heading {
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 240px;
+  }
+  
+  .secondHeading {
+    font-weight: bold;
+    font-size: 12px;
+    /* text-align: center; */
+  }
+  
+  .taxContentSize {
+    font-size: 12px;
+    /* text-align: center; */
+  }
+  .taxContent {
+    font-size: 10px;
+  }
+
+  @media print {
+    .hidden-for-pdf {
+        display: none !important;
+    }
+}
+
+.heading {
+  font-weight: bold;
+  font-size: 26px;
+  text-align: center;
+}
+
+.sub-heading{
+  font-weight: 500;
+  font-size:14px;
+}
+
+  .paargraph-head {
+    width: 150px;
+    font-size:14px;
+    font-weight: 500;
+  }
+  .paargraph{
+    width: 770px;
+    font-size:14px;
+    font-weight: 500;
+  }
+
+  .footer {
+    margin-top: auto;
+    padding-top: 70px;
+  }
+  
+  .footer-one {
+    margin-top: auto;
+    padding-top: 80px;
+  }
+  .line {
+    width: 100%;
+  }
+
+
+h3::after {
+    display: inline-block;
+    content: "";
+    border-top: .1rem solid black;
+    width: 12rem;
+    margin: 0 1rem;
+    transform: translateY(.05rem);
+
+}
+
+@media print { 
+  .header { 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      right: 0; 
+      height: 50px; 
+  } 
+
+  footer { 
+      position: fixed; 
+      bottom: 0; 
+      left: 0; 
+      right: 0; 
+      height: 50px; 
+  } 
+}

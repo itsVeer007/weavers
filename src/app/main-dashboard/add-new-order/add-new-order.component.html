@@ -1,0 +1,168 @@
+<div class="row formModal">
+  <div class="col-lg-6 col-md-6"></div>
+
+  <div class="col-lg-6 col-md-6 add-form" id="user" @inOutPaneAnimation>
+  <div class="d-flex flex-row justify-content-between">
+    <div class="d-flex flex-row justify-content-start">
+      <a class="close-main pointer" (click)="closeAddUser()"><img src="assets/icons/close_form.svg" /></a>
+      <span class="form-heading">Create  Purchase Order</span>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div>
+      <form autocomplete="off" [formGroup]="UserForm1">
+       <div class="row">
+        <div class="col-lg-4 col-md-4">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Vendor Name</mat-label>
+            <mat-select formControlName="vendorId">
+              <mat-option *ngFor="let item of vendorDetail" [value]="item.id">{{ item.vendorName }}</mat-option>
+            </mat-select>
+            <mat-error class="mt-1">Vendor Id is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-3 col-md-3 d-flex justify-content-start align-items-center mb-2">
+          <!-- <p class="m-0">Proprietor 2</p> -->
+          <div class="on-off-toggle mx-4">
+            <input class="on-off-toggle__input" type="checkbox" id="proparatorTwo" (change)="activeTwo()">
+            <label for="proparatorTwo" class="on-off-toggle__slider"></label>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-2" *ngIf="!proparatorTwo">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>SGST</mat-label>
+            <input matInput formControlName="sgstPercent" type="number" [(ngModel)]="sgst">
+            <mat-error class="mt-1">sgst is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-2 col-md-2" *ngIf="!proparatorTwo">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>CGST</mat-label>
+            <input matInput formControlName="cgstPercent" type="number"  [(ngModel)]="sgst">
+            <mat-error class="mt-1">cgst is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-2 col-md-2" *ngIf="proparatorTwo">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>IGST</mat-label>
+            <input matInput formControlName="igstPercent" type="number">
+            <mat-error class="mt-1">igst is required</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      </form>
+
+      <mat-card class="mt-5 mx-3">
+        <form autocomplete="off" [formGroup]="UserForm" #addUserForm="ngForm">
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Item Name</mat-label>
+                <mat-select formControlName="itemCode">
+                  <mat-option *ngFor="let item of productMaster" [value]="item.suggestedItemCode" [hidden]="item.itemType != 1">{{ item.itemName}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1">Item Name is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Color</mat-label>
+                <input matInput formControlName="color">
+                <mat-error class="mt-1">color is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Color Code</mat-label>
+                <input matInput formControlName="colorCode">
+                <mat-error class="mt-1">colorCode is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-3 col-md-3">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Quantity in</mat-label>
+                <mat-select formControlName="quantityIn">
+                  <mat-option *ngFor="let item of Weavers_Item_Uom"
+                  [value]="item.keyId">{{ item.value}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1">Quantity in is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-3 col-md-3">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Quantity</mat-label>
+                <input matInput type="number" formControlName="orderQuantity">
+                <mat-error class="mt-1">orderQuantity is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Cost</mat-label>
+                <input matInput formControlName="cost">
+                <mat-error class="mt-1">cost is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Quality</mat-label>
+                <mat-select formControlName="quality">
+                  <mat-option *ngFor="let item of Weavers_Quality" [value]="item.value">{{ item.value}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1">quality is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="text-end my-3">
+              <button type="submit" class="btn btn-success" (click)="addPurchaseOrder(UserForm.value)">ADD</button>
+            </div>
+          </div>
+        </form>
+  
+      </mat-card>
+
+    <div class="table-task mt-2 mx-5" *ngIf="purchaseOrders.length > 0">
+      <table class="table">
+        <thead>
+          <tr>
+            <!-- <th>ItemName</th> -->
+            <th>ItemCode</th>
+            <th>Color</th>
+            <th>Quality</th>
+            <th>Cost</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of purchaseOrders; let j=index">
+            <th>{{ task.itemname }}</th>
+            <!-- <td>{{ getItemNameByCode(task) }}</td> -->
+            <td>{{ task.color }}</td>
+            <td>{{ task.quality }}</td>
+            <td>{{task.cost}}</td>
+            <td>{{ task.orderQuantity }}</td>
+            <td>{{task?.cost * task?.orderQuantity}}</td>
+            <td><img src="assets/icons/delete_black.svg" alt="" (click)="deleteTableItem(j)"></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>sub Total</td>
+          <td>{{totalCost}}</td>
+        </tfoot>
+      </table>
+    </div>
+    
+    <div class="text-center my-3">
+      <button type="submit" class="add-task-btn" (click)="submit1()">Submit</button>
+    </div>
+  </div>
+  <!-- /Form -->
+
+  </div>
+</div>

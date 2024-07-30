@@ -1,0 +1,132 @@
+.add-btn {
+  background-color: #084982;
+  color: #fff;
+  width: 150px;
+  padding: 10px 0;
+  border-radius: 25px;
+  border-width: 0;
+  font-size: 12px;
+}
+
+.add-btn:hover {
+  opacity: 0.8;
+}
+
+.added-device {
+  padding: 0 0 30px 50px;
+}
+
+.device-title{
+  font-size: 14px;
+  font-weight: 400;
+  width: 200px;
+}
+
+.device-sub {
+  font-size: 15px;
+  color: #084982;
+  font-weight: 500;
+}
+
+.device-detail {
+  margin: 0 0 0 -45px;
+}
+
+.close {
+  position: relative;
+  right: 38px;
+  bottom: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  /* .close {
+    left: 300px;
+    top: 0;
+    margin: 0 !important;
+  } */
+}
+
+.dialog-title {
+  padding: 10px;
+  font-weight: 600;
+  color: #fff;
+}
+
+
+/* ng-deep */
+
+::ng-deep .mat-tab-group.mat-primary.mat-background-primary>.mat-tab-header .mat-ink-bar {
+  background-color: #dc3545;
+  height: 48px;
+  z-index: -1;
+}
+
+::ng-deep .mat-tab-group.mat-background-primary>.mat-tab-header {
+  background-color: #084982;
+}
+
+.mat-form-field-appearance-outline ::ng-deep .mat-form-field-subscript-wrapper {
+  padding: 0 5px;
+}
+
+::ng-deep .mat-form-field label {
+  width: 100px;
+}
+
+
+/* common mat-dialog */
+
+::ng-deep .mat-dialog-content {
+  margin: 0 !important;
+  padding: 0 20px !important;
+  max-height: 450px !important;
+}
+
+::ng-deep .mat-dialog-container {
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+/* common mat disable color */
+
+::ng-deep .mat-input-element:disabled, .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+  color: #000;
+}
+
+::ng-deep .mat-select-disabled .mat-select-value {
+  color: #000000;
+}
+
+
+/* common mat-form */
+
+.mat-form-field-appearance-outline ::ng-deep .mat-form-field-outline {
+  top: 5px;
+  bottom: 5px;
+}
+
+.mat-form-field-appearance-outline ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0.5em;
+}
+
+::ng-deep .mat-select-value {
+  position: relative;
+  bottom: 4px;
+}
+
+::ng-deep input.mat-input-element {
+  position: relative;
+  bottom: 4px;
+}
+
+::ng-deep .mat-tab-body-content {
+  overflow-x: hidden !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #084982!important;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-disabled .mat-form-field-label {
+  color: #000000 !important;
+}

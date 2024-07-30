@@ -1,0 +1,85 @@
+<div #table>
+  <div class="text-center my-3">
+    <img src="assets/icons/IVISsecurity_logo_black.png" alt="" width="200px">
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mx-3">
+    <div>
+      <p>Serial no:&nbsp;<span style="font-weight: 500;">{{dcItems[0]?.dcNumber}}</span></p>
+      <p>Date of challan:&nbsp;<span style="font-weight: 500;">{{dcItems[0]?.dateOfChallan}}</span></p>
+    </div>
+
+    <div>
+      <p>Name:&nbsp;<span style="font-weight: 500;">{{dcItems[0]?.name}}</span></p>
+      <p>Addres:&nbsp;<span style="font-weight: 500;">{{dcItems[0]?.address}}</span></p>
+      <p>State:&nbsp;<span style="font-weight: 500;">{{dcItems[0]?.state}}</span></p>
+      <p>Code:&nbsp;<span style="font-weight: 500;">{{dcItems[0]?.code}}</span></p>
+    </div>
+  </div>
+
+  <div class="dialog-content mt-2">
+    <div class="text-center">
+      <h1 style="font-weight: bold; margin-bottom: 3px;">Delivery Challan</h1>
+    </div>
+    <div class="table-res">
+      <table class="table" id="mytable">
+        <thead>
+          <tr class="task-table">
+            <th>
+              <p class="d-inline-flex">
+                <span>S.No</span>
+              </p>
+            </th>
+
+            <th>
+              <p class="d-inline-flex">
+                <span>descriptionOfGoods</span>
+              </p>
+            </th>
+
+            <th>
+              <p class="d-inline-flex">
+                <span>itemCode</span>
+              </p>
+            </th>
+
+            <th>
+              <p class="d-inline-flex">
+                <span>quantity</span>
+              </p>
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let cust of dcItems; let i = index">
+            <td>
+              <p>{{ i+1}}</p>
+            </td>
+
+            <td>
+              <p>{{ cust.descriptionOfGoods }}</p>
+            </td>
+
+            <td>
+              <p>{{ cust.itemCode }}</p>
+            </td>
+
+            <td>
+              <p>{{ cust.quantity }}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-end mb-2">
+  <div>
+    <button type="submit" class="add-task-btn mx-2" mat-dialog-close (click)="generatePDF()">Print</button>
+  </div>
+  <div>
+    <button type="submit" class="add-task-btn mx-2" mat-dialog-close>Close</button>
+  </div>
+</div>

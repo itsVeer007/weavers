@@ -1,0 +1,51 @@
+<div class="row formModal">
+  <div class="col-lg-6 col-md-6"></div>
+
+  <div class="col-lg-6 col-md-6 add-form" id="camera" @inOutPaneAnimation>
+    <div>
+      <a class="close-main pointer" (click)="closeForm()"><img src="assets/icons/close_form.svg" /></a>
+      <span class="form-heading">Cart Items</span>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-md-6" *ngFor="let item of groupedItems">
+        <mat-card class="tile text-center mt-3">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <img [src]="'http://usstaging.ivisecurity.com:8080/common/downloadFile_1_0?assetName=' + item.image + '&requestName=av_assets'" alt="">
+            <div>
+              <p>{{item.itemName}}</p>
+              <p>Rs:{{item.totalPrice}}</p>
+              <!-- <p>Color:{{item.color}}</p>
+            <p>Stock:{{item.inStock}}</p> -->
+            </div>
+          </div>
+
+          <mat-card class=" card-container mt-3">
+            <div class="d-flex justify-content-between ">
+              <div class="d-flex justify-content-end">
+                <div class="increment">
+                  <p (click)="decrement()">-</p>
+                </div>
+                <div class="decrement  mx-1">
+                  <p>{{item.quantity}}</p>
+                </div>
+                <div class="increment">
+                  <p (click)="increment()">+</p>
+                </div>
+              </div>
+              <div class="d-flex justify-content-end mx-2">
+                <p>Remove</p>
+              </div>
+            </div>
+          </mat-card>
+        </mat-card>
+      </div>
+    </div>
+    <div class="text-center" *ngIf="localCartData.length !== 0">
+      <button type="button" class="btn btn-secondary mt-3" (click)="buyNow()">Place order</button>
+    </div>
+  </div>
+
+</div>

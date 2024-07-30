@@ -1,0 +1,106 @@
+<div class="row formModal">
+  <div class="col-lg-6 col-md-6"></div>
+  <div class="col-lg-6 col-md-6 add-form" id="additionalSite" @inOutPaneAnimation>
+
+      <div class="d-flex flex-row justify-content-between">
+        <div class="d-flex">
+          <a class="mt-3 close pointer" (click)="closeAddAdditionalSite()"><img src="assets/icons/close_form.svg" /></a>
+          <div class="site-detail">
+            <h5 class="m-0" style="font-size: 18px; font-weight: 600;">User Name - 6</h5>
+            <h5 class="m-0 text-secondary" style="font-size: 18px;">US00010</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-2">
+          <form autocomplete="off" [formGroup]="addSiteForm" #addAdditionalSiteForm="ngForm">
+            <div class="row">
+              <div class="col-lg-6 col-xl-6">
+                <!-- <select class="form-select m-1" id="verticals" formControlName="verticals" required>
+                  <option value="" selected>All Verticals</option>
+                  <option value="count" name="count">count</option>
+                </select> -->
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Select Camera Id</mat-label>
+                  <mat-select formControlName="verticals">
+                    <mat-option value="01">01</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 col-xl-6">
+                <!-- <select class="form-select m-1" id="customers" formControlName="customers" required>
+                  <option value="" selected>All Customers</option>
+                  <option value="count" name="count">count</option>
+                </select> -->
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Select Camera Id</mat-label>
+                  <mat-select formControlName="customers">
+                    <mat-option value="01">01</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-lg-12 col-xl-12">
+                <mat-form-field class="w-100 m-1" appearance="outline">
+                  <mat-select placeholder="Select Site (Multi-Site)" [formControl]="selectFormControl" multiple>
+                    <div class="select-container">
+                      <mat-optgroup>
+                        <mat-form-field style="width:100%;">
+                          <input #search autocomplete="off" placeholder="Search" aria-label="Search" matInput [formControl]="searchTextboxControl">
+                        </mat-form-field>
+                      </mat-optgroup>
+                      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                        {{option}}
+                      </mat-option>
+                    </div>
+                  </mat-select>
+                </mat-form-field>
+                <!-- <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Site Id" [matAutocomplete]="auto" formControlName="customers" [(ngModel)]="searchText">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let item of siteIdList | search : searchText; let i=index" [value]="item">
+                      {{ item }}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field> -->
+              </div>
+
+              <div class="col-lg-12 col-xl-12 my-3">
+                <h6 class="m-0" style="font-weight: 500; font-size: 16px;">No.of Sites Added - 3</h6>
+              </div>
+
+              <div class="col-lg-12 mb-2">
+                <mat-card>
+                  <mat-card-header>
+                    <mat-card-title>Site Name - 3</mat-card-title>
+                    <mat-card-subtitle>Vertical Name, Customer Name</mat-card-subtitle>
+                  </mat-card-header>
+                </mat-card>
+              </div>
+
+              <div class="col-lg-12 mb-2">
+                <mat-card>
+                  <mat-card-header>
+                    <mat-card-title>Site Name - 2</mat-card-title>
+                    <mat-card-subtitle>Vertical Name, Customer Name</mat-card-subtitle>
+                  </mat-card-header>
+                </mat-card>
+              </div>
+
+              <div class="col-lg-12">
+                <mat-card>
+                  <mat-card-header>
+                    <mat-card-title>Site Name - 1</mat-card-title>
+                    <mat-card-subtitle>Vertical Name, Customer Name</mat-card-subtitle>
+                  </mat-card-header>
+                </mat-card>
+              </div>
+
+              <div class="text-center my-3">
+                <button type="submit" class="btn add-btn">ADD</button>
+              </div>
+            </div>
+          </form>
+      </div>
+
+  </div>
+</div>

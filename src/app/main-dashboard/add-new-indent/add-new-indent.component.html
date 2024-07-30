@@ -1,0 +1,244 @@
+<div class="row formModal">
+  <div class="col-lg-6 col-md-6"></div>
+
+  <div class="col-lg-6 col-md-6 add-form" id="user" @inOutPaneAnimation>
+    <div>
+      <a class="close-main pointer" (click)="closeIndent()"><img src="assets/icons/close_form.svg" /></a>
+      <span class="form-heading">Add Machines And Items</span>
+    </div>
+
+    <!-- Form -->
+
+
+    <form autocomplete="off" [formGroup]="UserForm1">
+      <div class="row mt-3">
+        <!-- <div class="col-lg-6 col-md-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>WeaverId</mat-label>
+            <mat-select formControlName="weaverId">
+                <mat-option *ngFor="let item of indentTable | removeDuplicates:'weaverId' " [value]="item.weaverId"   (click)="listMachineAssignment(item)">{{item.weaverId}}</mat-option>
+            </mat-select>
+            <mat-error class="mt-1">Item Name is required</mat-error>
+          </mat-form-field>
+        </div> -->
+        <!-- <div class="col-lg-4">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>WeaverId</mat-label>
+            <input matInput type="text" formControlName="weaverId" 
+              [matAutocomplete]="weaverId" placeholder="Create new Customer">
+            <button matSuffix mat-icon-button>
+              <mat-icon>arrow_drop_down</mat-icon>
+            </button>
+            <mat-autocomplete #weaverId="matAutocomplete">
+            <mat-option *ngFor="let item of indentTable | removeDuplicates:'weaverId' ; " [value]="item.weaverId" (click)="listMachineAssignment(item)">{{item.weaverId}}</mat-option>
+            </mat-autocomplete>
+            <mat-error class="mt-1">Customer Name is required</mat-error>
+          </mat-form-field>
+        </div> -->
+        <!-- (keyup)="indentTable = []" -->
+
+        <div class="col-lg-4">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Weaver Name</mat-label>
+            <input matInput type="text" formControlName="weaverName" [matAutocomplete]="weaverName" (keydown)="searchFunction($event)">
+            <button matSuffix mat-icon-button>
+              <mat-icon>arrow_drop_down</mat-icon>
+            </button>
+            <mat-autocomplete #weaverName="matAutocomplete">
+              <mat-option *ngFor="let item of invenData | search:searchText | removeDuplicates:'weaverName'; let i = index;" [value]="item.weaverName" (click)="listMachineAssignment(item)">
+                {{item.weaverName}}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error class="mt-1">Weaver Name is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-4" >
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>weaverId</mat-label>
+            <input matInput formControlName="weaverId" type="text" [(ngModel)]="machine.weaverId">
+            <mat-error class="mt-1">weaverId required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4" >
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>machineNoAliasInventoryId</mat-label>
+            <input matInput formControlName="machineNoAliasInventoryId" type="text" [(ngModel)]="machine.machineNoAliasInventoryId">
+            <mat-error class="mt-1">machineNoAliasInventoryId is required</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- <div class="col-lg-6 col-md-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Weaver Name</mat-label>
+            <mat-select formControlName="weaverName">
+                <mat-option *ngFor="let item of indentTable | removeDuplicates:'weaverName'" [value]="item.weaverName"   (click)="listMachineAssignment(item)">{{item.weaverName}}</mat-option>
+            </mat-select>
+            <mat-error class="mt-1">Weaver Nameis required</mat-error>
+          </mat-form-field>
+        </div> -->
+
+        <!-- <div class="col-lg-4">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>machineNoAliasInventoryId</mat-label>
+            <input matInput type="text" formControlName="machineNoAliasInventoryId" 
+              [matAutocomplete]="machineNoAliasInventoryId" placeholder="Create new Customer">
+            <button matSuffix mat-icon-button>
+              <mat-icon>arrow_drop_down</mat-icon>
+            </button>
+            <mat-autocomplete #machineNoAliasInventoryId="matAutocomplete">
+            <mat-option *ngFor="let item of indentTable | removeDuplicates:'machineNoAliasInventoryId'; let i = index;" [value]="item.machineNoAliasInventoryId" (click)="listMachineAssignment(item)">{{item.machineNoAliasInventoryId}}</mat-option>
+            <mat-option value="">other</mat-option>
+            </mat-autocomplete>
+            <mat-error class="mt-1">Customer Name is required</mat-error>
+          </mat-form-field>
+        </div> -->
+
+        <!-- <div class="col-lg-6 col-md-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>machineNoAliasInventoryId</mat-label>
+            <mat-select formControlName="machineNoAliasInventoryId">
+                <mat-option *ngFor="let item of indentTable | removeDuplicates:'machineNoAliasInventoryId'" [value]="item.machineNoAliasInventoryId"   (click)="listMachineAssignment(item)">{{item.machineNoAliasInventoryId}}</mat-option>
+            </mat-select>
+            <mat-error class="mt-1">Item Name is required</mat-error>
+          </mat-form-field>
+        </div> -->
+
+        <div class="col-lg-4">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Saree Count</mat-label>
+            <input matInput formControlName="sareeCount" type="number">
+            <mat-error class="mt-1">sareeCount is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-4">
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput [matDatepicker]="picker2" placeholder="Deadline" formControlName="expectedDate">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </form>
+
+    
+    <div>
+      <form autocomplete="off" [formGroup]="UserForm2">
+        <mat-card>
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Item Name</mat-label>
+                <mat-select formControlName="itemCode">
+                  <ng-container *ngFor="let item of productMaster">
+                    <mat-option [value]="item.suggestedItemCode" *ngIf="item.itemType == 1"
+                      (click)="ViewInvRawMaterials(item)">{{item.itemName}}</mat-option>
+                  </ng-container>
+                </mat-select>
+                <mat-error class="mt-1">Item Name is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Color</mat-label>
+                <mat-select formControlName="color">
+                  <mat-option *ngFor="let item of statusItemsForRaw | removeDuplicates:'color' " [value]="item.color"
+                    (click)="ViewInvRawMaterials(item)">{{item.color}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1">Color is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>ColorCode</mat-label>
+                <mat-select formControlName="colorCode">
+                  <mat-option *ngFor="let item of statusItemsForRaw | removeDuplicates:'colorCode' "
+                    [value]="item.colorCode" (click)="ViewInvRawMaterials(item)">{{item.colorCode}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1">ColorCode is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Quality</mat-label>
+                <mat-select formControlName="quality" #quality>
+                  <mat-option *ngFor="let item of statusItemsForRaw | removeDuplicates:'quality' "
+                    [value]="item.quality" (click)="ViewInvRawMaterials(item)">{{item.quality}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1">Quality is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Cost</mat-label>
+                <mat-select formControlName="cost">
+                  <mat-option *ngFor="let item of statusItemsForRaw | removeDuplicates:'cost' " [value]="item.cost"
+                    (click)="ViewInvRawMaterials(item)">{{item.cost}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1">Cost is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <input matInput [matDatepicker]="picker1" placeholder="Isssued date" formControlName="issuedDate">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Quantity</mat-label>
+                <input matInput formControlName="quantity" type="number" [(ngModel)]="sendingQuantity">
+                <mat-error class="mt-1">Quantity is required</mat-error>
+              </mat-form-field>
+              <mat-hint
+                *ngIf="statusItemsForRaw.length !== 0 && UserForm2.value.cost">Stock:{{total_quantity_after_issue}}</mat-hint>
+              <!-- <mat-hint *ngIf=" statusItemsForRaw?.length !== 0">Stock:{{total_quantity_after_issue}}</mat-hint> -->
+            </div>
+
+          </div>
+          <div class="d-flex justify-content-end">
+            <a class="add-task-btn" type="submit" (click)="add(UserForm2.value)">Add Item</a>
+          </div>
+        </mat-card>
+      </form>
+
+      <div class="table-resp  col-lg-11 col-md-11 mt-2 mx-5">
+        <div class="">
+          <table class="table" *ngIf="tasks.length > 0">
+            <thead>
+              <tr>
+                <th>No</th>
+                <!-- <th>Item Name</th> -->
+                <th>ItemCode</th>
+                <th>Quality</th>
+                <th>Color</th>
+                <!-- <th>ColorCode</th> -->
+                <th>Quantity</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let task of tasks; let j=index">
+                <th>{{ j + 1 }}</th>
+                <!-- <th>{{task.itemName}}</th> -->
+                <td>{{ task.itemCode }}</td>
+                <td>{{ task.quality }}</td>
+                <td>{{ task.color }}</td>
+                <!-- <td>{{ task.colorCode }}</td> -->
+                <td>
+                  <p *ngIf="statusItemsForRaw[0]?.itemUom === 4">{{ task.quantity/1000 }}</p>
+                  <p *ngIf="statusItemsForRaw[0]?.itemUom !== 4">{{ task.quantity }}</p>
+                </td>
+                <td><img src="assets/icons/delete_black.svg" alt="" (click)="deleteTableItem(j)"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+      <button class="add-task-btn" type="submit" (click)="submit()">Assign</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,663 @@
+<div class="container-fluid" id="top">
+
+  <!-- header -->
+  <div class="users-header row">
+
+    <!-- count -->
+    <div class="col-lg-6">
+      <p>Total Data - <span>{{ newQrData.length }}</span></p>
+      <div class="row">
+        <div class="col-lg-3 d-flex justify-content-start">
+          <div class="vl-yellow"></div>
+          <div class="mx-2">
+            <div class="status">Total-Scans</div>
+            <div class="count">{{ numberOfScans }}</div>
+          </div>
+        </div>
+
+        <!-- <div class="col-lg-3 d-flex justify-content-start">
+          <div class="vl-green"></div>
+          <div class="mx-2">
+            <div class="status">Total-QR-Codes</div>
+            <div class="count">{{ installed.length }}</div>
+          </div>
+        </div> -->
+
+        <div class="col-lg-3 d-flex justify-content-start">
+          <div class="vl-red"></div>
+          <div class="mx-2">
+            <div class="status">Total-Ads</div>
+            <div class="count">{{ numberOfAds }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /count -->
+
+    <!-- <div class="col-lg-2 text-end inve-add" style="position: relative">
+      <a class="pointer" (click)="show('inventory')">
+        <img src="assets/icons/add.svg" alt="">
+      </a>
+      <a class="pointer">
+        <img src="assets/icons/sites-img.svg" alt=""
+          style="border-radius: 24px; box-shadow: 7px 7px 7px 0px #f3f3f3; margin-top: -9px;">
+      </a>
+    </div> -->
+
+  </div>
+  <!-- /header -->
+
+  <!-- form -->
+  <div class="search-form">
+      <!-- <div class="col-lg-2 col-sm-12">
+        <mat-form-field class="example-form-field" appearance="outline" class="w-100">
+          <mat-label>Product Name</mat-label>
+          <input matInput type="text" [(ngModel)]="searchTx">
+          <button matSuffix mat-icon-button>
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </div> -->
+
+      <!-- <div class="col-lg-2 col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Product Brand</mat-label>
+          <mat-select (focus)="removeDuplicates()">
+            <mat-option (click)="filterBrand('none')">none</mat-option>
+            <mat-option *ngFor="let item of brandNames" [value]="item.productBrand" (click)="filterBrand(item.productBrand)">{{ item.productBrand }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-2 col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Product Category</mat-label>
+          <mat-select (focus)="removeDuplicates()">
+            <mat-option (click)="filterBrand('none')">none</mat-option>
+            <mat-option *ngFor="let item of categoryTypes" [value]="item.productCategory" (click)="filterCategory(item.productCategory)">{{ item.productCategory }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-2 col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Status</mat-label>
+          <mat-select (focus)="removeDuplicates()">
+            <mat-option (click)="filterBrand('none')">none</mat-option>
+            <mat-option *ngFor="let item of statusVal" [value]="item.status" (click)="filterStatus(item.status)">{{ item.status }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+
+      <div class="col-lg-2 col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>SiteId</mat-label>
+          <mat-select (focus)="removeDuplicates()" [(ngModel)]="filterBody.siteId">
+            <mat-option value="">All</mat-option>
+            <mat-option *ngFor="let item of siteIds" [value]="item.siteId">{{ item.siteId }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-2 col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>DeviceId</mat-label>
+          <mat-select (focus)="removeDuplicates()" [(ngModel)]="filterBody.deviceId">
+            <mat-option value="">All</mat-option>
+            <mat-option *ngFor="let item of deviceIds" [value]="item.deviceId">{{ item.deviceId }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-2 col-md-2 col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput [matDatepicker]="picker1" placeholder="Created from" [(ngModel)]="filterBody.fromDate">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-2 col-md-2 col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput [matDatepicker]="picker2" placeholder="Created to" [(ngModel)]="filterBody.toDate">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <!-- <div class="col-lg-2 col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Select Location</mat-label>
+          <mat-select (focus)="removeDuplicates()" [(ngModel)]="productStatusId">
+            <mat-option value="">All</mat-option>
+            <mat-option *ngFor="let item of statusVal" [value]="item.productStatusId">{{ item.productStatusId }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+
+      <!-- <div class="col-lg-2 col-sm-12">
+        <mat-form-field class="example-form-field" appearance="outline" class="w-100">
+          <mat-label>Search</mat-label>
+          <input matInput type="text"  [(ngModel)]="searchText">
+          <button matSuffix mat-icon-button>
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </div> -->
+
+      <div class="  col-lg-2 col-sm-12">
+        <button (click)="filterQrAds()">Submit</button>
+      </div>
+  </div>
+  <!-- /form -->
+
+  <!-- table starts -->
+  <div class="table-resp">
+    <table class="table table-hover" id="mytable">
+      <thead>
+        <tr class="form1" style="background-image: linear-gradient(to right, #084982, #D34124);">
+          <!-- <th>
+            <input type="checkbox" class="form-check-input" [(ngModel)]="selectedAll" (change)="selectAll()"
+              id="allcheck" style="
+                background-color: #00000000;
+                border-color: #fff;
+                margin-left: 10px;
+              " />
+          </th> -->
+
+          <th>
+            <span>Site id</span>
+            <img (click)="sort('url')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+          </th>
+
+          <th>
+            <span>Device id</span>
+            <img (click)="sort('mode')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+          </th>
+
+          <th>
+            <span>No of scans</span>
+            <img (click)="sort('user_device')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+          </th>
+
+          <th>
+            <span>No of ads</span>
+            <img (click)="sort('chrome_data')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+          </th>
+
+
+          <th></th>
+          <!-- <th></th>
+          <th></th>
+          <th></th>
+          <th></th> -->
+
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let cust of fun | search : searchText; let i = index" (dblclick)="openViewPopup(cust)">
+          <!-- <td>
+            <input type="checkbox" name="foo" class="form-check-input" [(ngModel)]="cust.selected" (change)="
+                checkIfAllSelected();
+                deleteMultiRecords(cust, i, $event);
+                ViewByCheckbox(cust, i, $event);
+                EditByCheckbox(cust, i, $event)
+              " id="singleCheck" />
+          </td> -->
+
+          <td>
+            <p>{{ cust.siteId }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.deviceId }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.no_of_scans }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.no_of_ads}}</p>
+          </td>
+
+          <td style="width: 500px;">
+            <img *ngFor="let cust of fun1" class="mx-1" [src]="cust.url" alt="" width="50" height="50">
+          </td>
+          <!-- <td>
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/a41d8529540325.5732a809bcc1b.png" alt="" width="50">
+          </td>
+          <td>
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/a41d8529540325.5732a809bcc1b.png" alt="" width="50">
+          </td>
+          <td>
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/a41d8529540325.5732a809bcc1b.png" alt="" width="50">
+          </td>
+          <td>
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/a41d8529540325.5732a809bcc1b.png" alt="" width="50">
+          </td> -->
+
+          <!-- <td style="width: 120px;">
+            <p>{{ cust.qrcodeUrl }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.validFromdate }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.deviceId }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.status }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.createDate }}</p>
+          </td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="table-resp mt-3">
+    <table class="table table-hover" id="mytable">
+      <thead>
+        <tr class="form1" style="background-image: linear-gradient(to right, #084982, #D34124);">
+          <!-- <th>
+            <input type="checkbox" class="form-check-input" [(ngModel)]="selectedAll" (change)="selectAll()"
+              id="allcheck" style="
+                background-color: #00000000;
+                border-color: #fff;
+                margin-left: 10px;
+              " />
+          </th> -->
+
+          <th>
+            <p>
+              <span>Site id</span>
+              <img (click)="sort('url')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+
+          <th>
+            <p>
+              <span>Device id</span>
+              <img (click)="sort('mode')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+
+          <th>
+            <p>
+              <span>Qr code</span>
+              <img (click)="sort('user_device')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+
+          <th>
+            <p>
+              <span>Url</span>
+              <img (click)="sort('chrome_data')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+
+
+          <th>
+            <p>
+              <span>User Device</span>
+              <img (click)="sort('ip_address')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+
+          <th>
+            <p>
+              <span>Browser data</span>
+              <img (click)="sort('user_location')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+
+          <th>
+            <p>
+              <span>Ip address</span>
+              <img (click)="sort('scan_time')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+
+          <th>
+            <p>
+              <span>User location</span>
+              <img (click)="sort('scan_time')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+
+          <th>
+            <p>
+              <span>Scan time</span>
+              <img (click)="sort('scan_time')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+
+          <th>
+            <p>
+              <span>Visit count</span>
+              <img (click)="sort('scan_time')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+
+          <th>
+            <p>
+              <span>Mode</span>
+              <img (click)="sort('scan_time')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let cust of qrData | search : searchText; let i = index" (dblclick)="openViewPopup(cust)">
+          <!-- <td>
+            <input type="checkbox" name="foo" class="form-check-input" [(ngModel)]="cust.selected" (change)="
+                checkIfAllSelected();
+                deleteMultiRecords(cust, i, $event);
+                ViewByCheckbox(cust, i, $event);
+                EditByCheckbox(cust, i, $event)
+              " id="singleCheck" />
+          </td> -->
+
+          <td>
+            <p>{{ cust.siteId }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.deviceId }}</p>
+          </td>
+<!--
+          <td style="width: 120px;">
+            <p>{{ cust.qrcodeUrl }}</p>
+          </td> -->
+
+          <td>
+            <p>{{ cust.qr_code }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.url }}</p>
+          </td>
+
+          <td style="width: 200px;">
+            <p>{{ cust.user_device }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.browser_data }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.ip_address }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.user_location }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.scan_time }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.visit_count }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.mode }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- table ends -->
+
+
+<!-- view Popup -->
+<ng-template #viewInventoryDialog>
+  <div *ngIf="currentItem">
+    <div>
+      <mat-list>
+        <mat-list-item>
+          <span style="width: 130px; color: #ABABAB;">Product Id: </span>{{ currentItem.productId ? currentItem.productId : '--' }}
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+          <span style="width: 130px; color: #ABABAB;">Product Name: </span>{{ currentItem?.productName }}
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+          <span style="width: 130px; color: #ABABAB;">Serial No: </span>{{ currentItem.productSerialNo ? currentItem.productSerialNo : '--' }}
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+          <span style="width: 130px; color: #ABABAB;">Product Brand: </span>{{ currentItem.productBrand ? currentItem.productBrand : '--' }}
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+          <span style="width: 130px; color: #ABABAB;">Product Category: </span>{{ currentItem.productCategory ? currentItem.productCategory : '--' }}
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+          <span style="width: 130px; color: #ABABAB;">Status: </span>{{ currentItem.status}}
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div  >
+      <button class="dialog-close-btn" mat-dialog-close>Close</button>
+    </div>
+  </div>
+</ng-template>
+<!-- view Popup -->
+
+<!-- edit Popup -->
+<ng-template #editInventoryDialog>
+  <div>
+    <p style="font-weight: 600; color: #ABABAB;">MODIFY PRODUCT</p>
+  </div>
+
+  <div class="row" *ngIf="currentItem">
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Id</mat-label>
+        <input matInput [(ngModel)]="currentItem.id" disabled>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Category Id</mat-label>
+        <mat-select [(ngModel)]="currentItem.productCategoryId">
+          <mat-option [value]="55">55</mat-option>
+          <mat-option [value]="33">33</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="currentItem.name">
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Description</mat-label>
+        <input matInput [(ngModel)]="currentItem.description">
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Uom Id</mat-label>
+        <mat-select [(ngModel)]="currentItem.uomId">
+          <mat-option [value]="11">11</mat-option>
+          <mat-option [value]="21">21</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Model Id</mat-label>
+        <mat-select [(ngModel)]="currentItem.productModelId">
+          <mat-option [value]="2">2</mat-option>
+          <mat-option [value]="13">13</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Type Id</mat-label>
+        <mat-select [(ngModel)]="currentItem.productTypeId">
+          <mat-option [value]="2">2</mat-option>
+          <mat-option [value]="13">13</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Cost</mat-label>
+        <input matInput [(ngModel)]="currentItem.cost">
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Vendor Id</mat-label>
+        <mat-select [(ngModel)]="currentItem.purchaseVendorId">
+          <mat-option [value]="1">1</mat-option>
+          <mat-option [value]="2">2</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Purchase Link</mat-label>
+        <input matInput [(ngModel)]="currentItem.purchaseLink">
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6 mt-2" style="font-size: 10px; font-weight: 700;">
+      <mat-radio-group name="debugOn" class="w-50" [(ngModel)]="currentItem.returnable">
+        <mat-label>Returnable</mat-label>
+        <mat-radio-button class="ms-3" name="return" value="Y">Yes</mat-radio-button>
+        <mat-radio-button class="ms-3" name="return" value="N" checked>No</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="col-lg-6 mt-2" style="font-size: 10px; font-weight: 700;">
+      <mat-radio-group name="debugLogs" class="w-50" [(ngModel)]="currentItem.maintenanceRequired">
+        <mat-label>Maintenance Required</mat-label>
+        <mat-radio-button class="ms-3" name="maintenance" value='Y'>Yes</mat-radio-button>
+        <mat-radio-button class="ms-3" name="maintenance" value='N' checked>No</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="currentItem.status">
+          <mat-option value="Installed">Active</mat-option>
+          <mat-option value="In-Stock">Inactive</mat-option>
+          <mat-option value="Scrap">Removed</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- <div>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Cost</mat-label>
+        <input matInput [(ngModel)]="currentItem.cost">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Price</mat-label>
+        <input matInput [(ngModel)]="currentItem.price">
+      </mat-form-field>
+    </div> -->
+
+    <!-- <div>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Product Category</mat-label>
+        <mat-select [(ngModel)]="currentItem.vendor">
+          <mat-option></mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Product Name</mat-label>
+        <input matInput [(ngModel)]="currentItem.remarks">
+      </mat-form-field>
+    </div> -->
+  </div>
+
+  <div class="d-flex align-items-center justify-content-end">
+<div>
+      <button class="dialog-close-btn" mat-dialog-close>Close</button>
+    </div>
+    <div  >
+      <button class="dialog-update-btn" mat-dialog-close (click)="editInventory()">Update</button>
+    </div>
+  </div>
+</ng-template>
+<!-- edit Popup -->
+
+<!-- Delete Popup -->
+<ng-template #deleteInventoryDialog>
+  <div class="d-flex justify-content-between">
+    <p>Delete Row</p>
+  </div>
+  <div class="text-center">Do you want to delete this item?</div>
+
+  <div class="d-flex align-items-center justify-content-end">
+<div>
+      <button class="dialog-close-btn" mat-dialog-close>Close</button>
+    </div>
+    <div  >
+      <button class="dialog-update-btn" mat-dialog-close (click)="deleteInventory()">OK</button>
+    </div>
+  </div>
+</ng-template>
+<!-- /Delete Popup -->
+
+
+<!-- Detai View Popup -->
+<!-- <div *ngIf="showDetail" style="position: absolute; top: 150px; left: 500px;">
+  <mat-list class="bg-info">
+    <mat-list-item>Item 1</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Item 2</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Item 3</mat-list-item>
+  </mat-list>
+</div> -->
+<!-- /Detai View Popup -->
+
+
+<div  *ngIf="showInventory">
+  <app-add-product-master [show]="showInventory" (newItemEvent)="closenow($event, 'inventory')"></app-add-product-master>
+</div>
+

@@ -1,0 +1,139 @@
+.address-container{
+    border-radius: 1px;
+    border-width: 1px;
+    color: rgb(19, 20, 20);
+    border-style: solid;
+    padding: 2px;
+}
+
+
+
+
+
+  .heading{
+    text-align: center;
+  }
+  .top-container {
+    overflow-y: auto;
+  }
+
+
+
+  .taxContentSize {
+    font-size: 12px;
+  }
+
+  .heading{
+    /* text-align: center; */
+    font-weight: 500;
+    font-size:14px;
+  }
+
+  .secondHeading {
+    font-weight: bold;
+    font-size:16px;
+    color: black;
+  }
+  .scrollable-content {
+    max-height: 80vh; /* Adjust to fit your design */
+    overflow: auto;
+  }
+  .top {
+    height: 80vh;
+    /* width: 100vh; */
+  }
+  
+  /* @media print {
+    button {
+        display: none;
+    }
+} */
+
+.hidden-for-pdf {
+  display: none !important;
+}
+
+hr{
+  background-color: #080808;
+  border-width: 0;
+  width: 152%;
+  /*change your size in this place*/
+  padding-top: 1px;
+}
+
+h3 {
+  display: flex;
+  flex-direction: row;
+}
+h3:after{
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid;
+  margin: auto;
+  width: 150px;
+}
+
+h3:after {
+  margin-left: 10px
+}
+
+
+
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.col-md-12 {
+  flex-grow: 1;
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 70px;
+}
+
+.footer-one {
+  margin-top: auto;
+  padding-top: 80px;
+}
+.line {
+  width: 100%;
+}
+
+
+
+
+
+ tbody, td, tfoot, th, thead, tr {
+  border-width: 0 1px;
+}
+
+ .table>:not(caption)>*>* {
+  padding: 0;
+}
+
+ .table {
+  border: 1px solid #000;
+}
+
+ .table tbody tr td {
+  padding: 0;
+}
+
+ thead tr th {
+  color: #000;
+}
+
+ tfoot tr {
+  border: 1px solid #000;
+}
+

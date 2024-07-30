@@ -1,0 +1,139 @@
+<!-- <app-loader *ngIf="showLoader"></app-loader> -->
+<div class="container-fluid" id="top">
+    <!-- header -->
+    <div class="d-flex justify-content-start">
+        <div class="users-header mt-2">
+            <p>Total Devices - <span>{{WifiData[0]?.devices_today_count}}</span></p>
+        </div>
+        <!-- <div>
+        <button class="create-btn" (click)="generatePDF()">Download Report</button>
+        </div> -->
+    </div>
+    <!-- /header -->
+
+        <!-- count -->
+    <div class="row mb-2 mt-2">
+        <div class="col-lg-1 col-md-1 d-flex justify-content-start">
+        <div class="vl-green"></div>
+            <div class="mx-2">
+        <div class="status">Active</div>
+        <div class="count">{{ WifiData[0]?.active_devices_count }}</div>
+        </div>
+        </div>
+    <div class="col-lg-1 col-md-1 d-flex justify-content-start">
+        <div class="vl-yellow"></div>
+        <div class="mx-2">
+        <div class="status">In Active</div>
+        <div class="count">{{ WifiData[0]?.inactive_devices_today_count }}</div>
+        </div>
+    </div>
+    <!-- <div class="col-lg-1 col-md-1 d-flex justify-content-start">
+    <div class="vl-red"></div>
+    <div class="mx-2">
+        <div class="status">Closed</div>
+        <div class="count">{{ ticketClose?.length }}</div>
+    </div>
+    </div> -->
+</div>
+<!-- /count -->
+
+    <div class="row mt-2">
+        <div class="col-lg-2 col-md-2">
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label> Name</mat-label>
+            <mat-select [(ngModel)]="frFilterBody.p_frId">
+                <mat-option [value]="user?.UserId" (click)="listFRReports()">{{user?.UserName}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        </div>
+
+        <div class="col-lg-3 from-date">
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="rangePicker">
+            <input matStartDate placeholder="Created from" [(ngModel)]="frFilterBody.p_startdate">
+            <input matEndDate placeholder="Created to" [(ngModel)]="frFilterBody.p_enddate">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+
+            <mat-date-range-picker #rangePicker>
+            <mat-date-range-picker-actions>
+                <button mat-button matDateRangePickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDateRangePickerApply (click)="listFRReports()">Apply</button>
+            </mat-date-range-picker-actions>
+            </mat-date-range-picker>
+        </mat-form-field>
+        </div>
+    </div>
+
+    <div class="table-resp">
+        <table class="table table-hover" id="mytable" #table>
+        <thead>
+            <tr class="form1">
+                <th>
+                    <span>Id</span>
+                </th>
+                <th>
+                <span>Device Name</span>
+            </th>
+            <th>
+                <span>Active Devices</span>
+                <img (click)="sort('ticketId')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+
+            <th>
+                <span>In Active Devices</span>
+                <img (click)="sort('siteId')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+            <th>
+                <span>Total count</span>
+                <img (click)="sort('siteId')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+
+            <th>
+                <span>Average Time</span>
+                <img (click)="sort('createdTime')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+            <th>
+              <span>PeakHour</span>
+              <img (click)="sort('createdTime')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+          </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let cust of WifiData | search : searchText; let i = index">
+                <td>
+                    <p>{{i+1}}</p>
+                </td>
+                <td>
+                  <p>Device</p>
+              </td>
+                <td>
+                    <p>{{ cust.active_devices_count }}</p>
+                </td>
+                <td>
+                    <p>{{ cust.inactive_devices_today_count }}</p>
+                </td>
+
+                <td>
+                    <p>{{ cust.devices_today_count }}</p>
+                </td>
+
+                <td>
+                    <p>{{ cust.average_time_per_device_str }}</p>
+                </td>
+                <td>
+                  <p>{{ cust.peak_hours_data }}</p>
+              </td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+
+    <!-- loader -->
+    <div>
+      <app-loader *ngIf="showLoader" class="d-flex justify-content-center align-items-center"style="height: 50vh;"></app-loader>
+    </div>
+</div>
+

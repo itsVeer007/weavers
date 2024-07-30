@@ -1,0 +1,176 @@
+<div class="container-fluid">
+  <!-- header starts -->
+  <div class="d-flex justify-content-between">
+    <div class="users-header">
+      <p>List of all Users - <span>4</span></p>
+    </div>
+    <div>
+      <button class="create-btn" (click)="show('user')">Create User</button>
+    </div>
+  </div>
+  <!-- header ends -->
+
+  <!-- count starts -->
+  <div class="row">
+    <div class="col-lg-1 col-md-1 col-sm-1 d-flex justify-content-start">
+      <div class="vl-green"></div>
+      <div class="mx-2">
+        <div class="status">Active</div>
+        <div class="count">0</div>
+      </div>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 d-flex justify-content-start">
+      <div class="vl-red"></div>
+      <div class="mx-2">
+        <div class="status">Inactive</div>
+        <div class="count">0</div>
+      </div>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 d-flex justify-content-start">
+      <div class="vl-yellow"></div>
+      <div class="mx-2">
+        <div class="status">Onhold</div>
+        <div class="count">0</div>
+      </div>
+    </div>
+  </div>
+  <!-- count ends -->
+
+  <!-- form starts -->
+  <div class="search-form">
+    <!-- <div class="col-lg-10 col-md-10">
+      <form class="row p-0">
+        <div class="col-lg-4 col-md-4 col-sm-4 select">
+          <select class="form-select">
+            <option selected>All</option>
+            <option></option>
+          </select>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 search">
+          <input type="text" placeholder="Search" name="search2" [(ngModel)]="searchText" />
+          <button type="submit">
+            <a><img src="assets/icons/search.svg" /></a>
+          </button>
+        </div>
+      </form>
+    </div> -->
+
+    <div class="row col-lg-10 col-md-10">
+      <div class="col-lg-3 col-md-3 col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>User Name</mat-label>
+          <mat-select>
+            <!-- <mat-option (click)="sort('siteID')">Filter by A-Z</mat-option> -->
+            <mat-option *ngFor="let cust of CustomerTable">{{ cust.username }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-12">
+        <mat-form-field class="example-form-field" appearance="outline" class="w-100">
+          <mat-label>Search</mat-label>
+          <input matInput type="text"  [(ngModel)]="searchText">
+          <button matSuffix mat-icon-button>
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <!-- form ends -->
+
+  <!-- table starts -->
+  <div class="table-resp">
+    <table class="table" id="mytable">
+      <thead>
+        <tr class="form1">
+          <!-- <th>
+              <input type="checkbox" class="form-check-input" [(ngModel)]="selectedAll" (change)="selectAll()"
+              id="allcheck" style="
+              background-color: #00000000;
+              border-color: #fff;
+              margin-left: 10px;
+              " />
+            </th> -->
+            <th (click)="sort('siteId')">User ID</th>
+            <th (click)="sort('customerName')">User Name</th>
+            <th (click)="sort('custType')">Role</th>
+            <th (click)="sort('address')">Address</th>
+            <th (click)="sort('contactNumber')">Contact Number</th>
+            <th (click)="sort('emailId')">Email id</th>
+            <th (click)="sort('contactPerson')">#Sites</th>
+            <th (click)="sort('contactPerson')">Safety Escort</th>
+            <th (click)="sort('status')">Status</th>
+            <th class="text-center">Actions</th>
+          </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let cust of CustomerTable | search : searchText; let i = index">
+        <!-- <td>
+          <input type="checkbox" name="foo" class="form-check-input" [(ngModel)]="cust.selected" (change)="
+          checkIfAllSelected();
+          deleteMultiRecords(cust, i, $event);
+          ViewByCheckbox(cust, i, $event);
+              EditByCheckbox(cust, i, $event)
+            " id="singleCheck" />
+        </td> -->
+        <td>
+          <p>{{ cust.employeeId }}</p>
+        </td>
+        <td>
+          <p>{{ cust.username }}</p>
+        </td>
+        <td>
+          <p>{{ cust.roleList }}</p>
+        </td>
+        <td>
+          <p class="text-primary pointer">View</p>
+        </td>
+        <td>
+          <p>{{ cust.contactNumber1 }}</p>
+        </td>
+        <td>
+          <p>{{ cust.email }}</p>
+        </td>
+        <td>
+          <a class="pointer" (click)="show('additionalSite')">
+            <img src="assets/icons/add.svg" width="40">
+          </a>
+        </td>
+        <td>
+          <p>{{ cust.safetyEscort }}</p>
+        </td>
+        <td>
+          <p [style.color]="cust.status == 'Active' ? '#00A44C' : cust.status == 'Onhold' ? '#F5B400' : cust.status == 'Inactive' ? '#fa500f' : '#00A44C'">
+            {{ cust.status }}
+          </p>
+        </td>
+
+        <td class="text-center">
+          <a class="mx-1" matTooltip="View">
+            <img src="assets/icons/view.svg">
+          </a>
+          <a class="mx-1" matTooltip="Edit">
+            <img src="assets/icons/edit.svg">
+          </a>
+          <a class="mx-1" value="Delete" matTooltip="Delete">
+            <img src="assets/icons/delete.svg">
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+<div  *ngIf="showAddUser">
+  <app-add-new-user (newItemEvent)="closenow($event, 'user')"></app-add-new-user>
+</div>
+
+
+<div  *ngIf="showAddSite">
+  <app-add-additional-site (newItemEvent)="closenow($event, 'additionalSite')"></app-add-additional-site>
+</div>

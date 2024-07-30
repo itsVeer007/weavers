@@ -1,0 +1,133 @@
+<!-- <app-loader *ngIf="showLoader"></app-loader> -->
+<div class="container-fluid" id="top">
+    <!-- header -->
+    <div class="d-flex justify-content-between">
+        <div class="users-header">
+            <p>FR-Reports</p>
+        </div>
+        <div>
+          <button class="create-btn" (click)="generatePDF()">Download Report</button>
+        </div>
+    </div>
+    <!-- /header -->
+
+    <div class="row">
+      <div class="col-lg-2 col-md-2">
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Fr Name</mat-label>
+            <mat-select [(ngModel)]="frFilterBody.p_frId">
+              <mat-option *ngFor="let item of frList" [value]="item?.userId" (click)="listFRReports()">{{item?.firstName}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-3 from-date">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [rangePicker]="rangePicker">
+            <input matStartDate placeholder="Created from" [(ngModel)]="frFilterBody.p_startdate">
+            <input matEndDate placeholder="Created to" [(ngModel)]="frFilterBody.p_enddate">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+
+          <mat-date-range-picker #rangePicker>
+            <mat-date-range-picker-actions>
+              <button mat-button matDateRangePickerCancel>Cancel</button>
+              <button mat-raised-button color="primary" matDateRangePickerApply (click)="listFRReports()">Apply</button>
+            </mat-date-range-picker-actions>
+          </mat-date-range-picker>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- table starts -->
+    <div class="table-resp">
+      <table class="table table-hover" id="mytable" #table>
+        <thead>
+          <tr class="form1">
+            <th>
+                <span>Fr Name</span>
+                <img (click)="sort('ticketId')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+
+            <th>
+                <span>date</span>
+                <img (click)="sort('siteId')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+            <th>
+                <span>day</span>
+                <img (click)="sort('siteId')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+
+            <th>
+                <span>inTime</span>
+                <img (click)="sort('createdTime')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+
+            <th>
+                <span>outTime</span>
+                <img (click)="sort('priorityId')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+
+            <th>
+                <span>hoursWorked</span>
+                <img (click)="sort('requestedBy')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+
+            <th>
+                <span>totalHoursWorked</span>
+                <img (click)="sort('assignedTo')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+
+            <th>
+                <span>cost</span>
+                <img (click)="sort('sourceOfRequestId')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let cust of reportsData | search : searchText; let i = index">
+              <td>
+                  <p>{{ cust.frId }}</p>
+              </td>
+              <td>
+                  <p>{{ cust.date }}</p>
+              </td>
+
+              <td>
+                  <p>{{ cust.day }}</p>
+              </td>
+
+              <td>
+                  <p>{{ cust.inTime }}</p>
+              </td>
+
+              <td>
+                  <p>{{ cust.outTime }}</p>
+              </td>
+
+              <td>
+                  <p>{{ cust.hoursWorked}}</p>
+              </td>
+
+              <td>
+                  <p>{{ cust.totalHoursWorked}}</p>
+              </td>
+              <td>
+                  <p>{{ cust.cost}}</p>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-center" style="height: 50vh;" *ngIf="reportsData.length == 0">
+        <h1 class="text-secondary">No Data</h1>
+    </div>
+
+    <!-- loader -->
+    <div>
+      <app-loader *ngIf="showLoader" class="d-flex justify-content-center align-items-center"style="height: 50vh;"></app-loader>
+    </div>
+</div>

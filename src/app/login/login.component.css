@@ -1,0 +1,73 @@
+.login-logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.login {
+  /* background: url('../../assets/icons/bgimg.png'); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(to right, #fff,#00573c);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form .btn {
+  color: #fff;
+  background-color: #00573c;
+  width: 200px;
+  text-align: center;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 25px;
+}
+
+form .btn:hover {
+  color: #fff;
+  background-color: #00573c;
+}
+
+/* ng-deep */
+.login ::ng-deep .mat-card {
+  width: 500px !important;
+  margin: 10px !important;
+}
+
+::ng-deep .snackbar-container {
+  width: 1000px !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+
+/* ng-deep forms */
+.mat-form-field-appearance-outline ::ng-deep .mat-form-field-outline {
+  top: 5px;
+  bottom: 5px;
+}
+
+.mat-form-field-appearance-outline ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0.5em;
+}
+
+::ng-deep .mat-select-value {
+  position: relative;
+  bottom: 4px;
+}
+
+::ng-deep input.mat-input-element {
+  position: relative;
+  bottom: 4px;
+}
+
+::ng-deep .mat-tab-body-content {
+  overflow-x: hidden !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #00573c !important;
+}

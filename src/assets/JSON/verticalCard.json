@@ -1,0 +1,75 @@
+[
+    {
+        "src":"assets/icons/cust-icon-form.svg",
+        "vertical": "Clients",
+        "customersCount": "2",
+        "sitesCount": "3",
+        "cameraCount": "20",
+        "analyticCount": "18",
+        "id":1
+    },
+    {
+        "src":"assets/icons/site-icon.svg",
+        "vertical": "Sites",
+        "customersCount": "1",
+        "sitesCount": "2",
+        "cameraCount": "15",
+        "analyticCount": "10",
+        "id":2
+    },
+    {
+        "src":"assets/icons/cam-icon.svg",
+        "vertical": "Cameras",
+        "customersCount": "1",
+        "sitesCount": "1",
+        "cameraCount": "7",
+        "analyticCount": "7",
+        "id":3
+    },
+    {
+        "src":"assets/icons/user-icon-form.svg",
+        "vertical": "Users",
+        "customersCount": "1",
+        "sitesCount": "1",
+        "cameraCount": "7",
+        "analyticCount": "7",
+        "id":4
+    },
+    {
+        "src":"assets/icons/cust-icon-form.svg",
+        "vertical": "Clients",
+        "customersCount": "2",
+        "sitesCount": "3",
+        "cameraCount": "20",
+        "analyticCount": "18",
+        "id":1
+    },
+    {
+        "src":"assets/icons/site-icon.svg",
+        "vertical": "Sites",
+        "customersCount": "1",
+        "sitesCount": "2",
+        "cameraCount": "15",
+        "analyticCount": "10",
+        "id":2
+    },
+    {
+        "src":"assets/icons/cam-icon.svg",
+        "vertical": "Cameras",
+        "customersCount": "1",
+        "sitesCount": "1",
+        "cameraCount": "7",
+        "analyticCount": "7",
+        "id":3
+    },
+    {
+        "src":"assets/icons/user-icon-form.svg",
+        "vertical": "Users",
+        "customersCount": "1",
+        "sitesCount": "1",
+        "cameraCount": "7",
+        "analyticCount": "7",
+        "id":4
+    }
+
+]

@@ -1,0 +1,372 @@
+<!-- <app-loader *ngIf="showLoader"></app-loader> -->
+<div class="container-fluid" id="top">
+  <!-- header -->
+  <div class="d-flex justify-content-between">
+    <div class="users-header">
+      <p>Tickets Reports - <span>{{ newTicketData?.length }}</span></p>
+    </div>
+    <div>
+      <button class="create-btn" (click)="generatePDF()">Download Report</button>
+    </div>
+  </div>
+  <!-- /header -->
+
+  <!-- count -->
+  <div class="row mb-2">
+    <div class="col-lg-1 col-md-1 d-flex justify-content-start">
+      <div class="vl-green"></div>
+      <div class="mx-2">
+        <div class="status">New</div>
+        <div class="count">{{ ticketOpen?.length }}</div>
+      </div>
+    </div>
+    <!-- <div class="col-lg-1 col-md-1 d-flex justify-content-start">
+      <div class="vl-red"></div>
+      <div class="mx-2">
+        <div class="status">Analysis</div>
+        <div class="count">{{ ticketOpen?.length }}</div>
+      </div>
+    </div> -->
+    <div class="col-lg-1 col-md-1 d-flex justify-content-start">
+      <div class="vl-yellow"></div>
+      <div class="mx-2">
+        <div class="status">InProgress</div>
+        <div class="count">{{ ticketProgress?.length }}</div>
+      </div>
+    </div>
+    <div class="col-lg-1 col-md-1 d-flex justify-content-start">
+      <div class="vl-orange"></div>
+      <div class="mx-2">
+        <div class="status">Rejected</div>
+        <div class="count">{{ ticketRejected?.length }}</div>
+      </div>
+    </div>
+    <div class="col-lg-1 col-md-1 d-flex justify-content-start">
+      <div class="vl-red"></div>
+      <div class="mx-2">
+        <div class="status">Closed</div>
+        <div class="count">{{ ticketClose?.length }}</div>
+      </div>
+    </div>
+  </div>
+  <!-- /count -->
+
+  <!-- table starts -->
+  <div class="table-resp">
+    <table class="table table-hover" id="mytable" #table>
+      <thead>
+        <tr class="form1">
+          <!-- <th>
+            <input type="checkbox" class="form-check-input" [(ngModel)]="selectedAll" (change)="selectAll()"
+              id="allcheck" style="
+                background-color: #00000000;
+                border-color: #fff;
+                margin-left: 10px;
+              " />
+          </th> -->
+
+          <th>
+            <span>id</span>
+            <img (click)="sort('ticketId')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+          </th>
+
+          <th>
+            <span>siteName</span>
+            <img (click)="sort('siteId')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+          </th>
+
+          <th>
+            <span>ticketType</span>
+            <img (click)="sort('createdTime')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+          </th>
+
+          <th>
+            <span>ticketAttendedBy</span>
+            <img (click)="sort('priorityId')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+          </th>
+
+          <th>
+            <span>ticketStatus</span>
+            <img (click)="sort('requestedBy')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+          </th>
+
+          <th>
+            <span>ticketClosedDate</span>
+            <img (click)="sort('assignedTo')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+          </th>
+
+          <th>
+            <span>ticketAttendedDate</span>
+            <img (click)="sort('sourceOfRequestId')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
+          </th>
+
+          <!-- <th class="text-center">Actions</th> -->
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let cust of newTicketData | search : searchText; let i = index" (dblclick)="openViewPopup(cust)">
+          <!-- <td>
+            <input type="checkbox" name="foo" class="form-check-input" [(ngModel)]="cust.selected" (change)="
+                checkIfAllSelected();
+                deleteMultiRecords(cust, i, $event);
+                ViewByCheckbox(cust, i, $event);
+                EditByCheckbox(cust, i, $event)
+              " id="singleCheck" />
+          </td> -->
+          <td>
+            <p>{{ cust.ticketId }}</p>
+          </td>
+          <td>
+            <p>{{ cust.siteName }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.ticketType }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.ticketAttendedBy }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.ticketStatus }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.ticketClosedDate  | date: 'dd-MM-yyyy' }}</p>
+          </td>
+
+          <td>
+            <p>{{ cust.ticketAttendedDate  | date: 'dd-MM-yyyy' }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-flex align-items-center justify-content-center" style="height: 50vh;" *ngIf="newTicketData.length == 0 && !showLoader">
+    <h1 class="text-secondary">No Data</h1>
+  </div>
+
+  <!-- Loader -->
+  <div >
+    <app-loader *ngIf="showLoader" class="d-flex justify-content-center align-items-center" style="height: 50vh;"></app-loader>
+  </div>
+  <!-- /Loader -->
+</div>
+<!-- /table -->
+
+
+<!-- view popup -->
+<ng-template #viewTicketDialog>
+  <div class="row">
+    <div class="col-lg-6" *ngIf="currentItem">
+      <div>
+        <p style="font-weight: 600; color: #ABABAB;">TICKET DETAIL</p>
+      </div>
+      <div>
+        <div>
+          <div>
+            <span style="width: 130px; color: #ABABAB;">Ticket Id: </span>{{ currentItem.ticketId }}
+          </div>
+
+          <div>
+            <span style="width: 130px; color: #ABABAB;">ticketType: </span>{{ currentItem.ticketTypeId == 1 ? 'Maintaince' : currentItem.ticketTypeId == 2 ? 'Installation' : '--' }}
+          </div>
+
+          <div>
+            <span style="width: 130px; color: #ABABAB;">sourceOfRequest: </span>{{ currentItem.sourceOfRequestId == 1 ? 'Phone': currentItem.sourceOfRequestId == 2 ? 'Email' : currentItem.sourceOfRequestId == 3 ? 'Self' : '--' }}
+          </div>
+
+          <div>
+            <span style="width: 130px; color: #ABABAB;">assignedTo: </span>{{ currentItem?.assignedTo }}
+          </div>
+
+          <div>
+            <span style="width: 130px; color: #ABABAB;">createdTime: </span>{{ currentItem?.createdTime }}
+          </div>
+
+          <div>
+            <span style="width: 130px; color: #ABABAB;">Description: </span>{{ currentItem.description }}
+          </div>
+
+          <div>
+            <span style="width: 130px; color: #ABABAB;">Priority: </span>{{ currentItem.priorityId == 1 ? 'Low' : currentItem.priorityId == 2 ? 'Medium' : currentItem.priorityId == 3 ? 'High' : '--' }}
+          </div>
+
+          <div>
+            <span style="width: 130px; color: #ABABAB;">Status: </span>{{ currentItem.statusId == 1 ? 'Open' : currentItem.statusId == 2 ? 'In-Progress' : currentItem.statusId == 3 ? 'Closed' : currentItem.statusId == 4 ? 'Rejected' : '--' }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6" style="max-height: 200px; overflow-y: scroll;">
+      <div>
+        <p style="font-weight: 600; color: #ABABAB;">COMMENTS</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-7 col-md-7">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Enter Text</mat-label>
+            <input matInput [(ngModel)]="cmtValue">
+          </mat-form-field>
+        </div>
+
+        <div   class="col-lg-4 col-md-4">
+          <button mat-stroked-button style="color: #084982; border: 1px solid #084982; padding: 0 5px;" (click)=" createComment()">Create Comment</button>
+        </div>
+      </div>
+      <!-- <div >
+        <div>
+          <div>
+            <span style="width: 130px; color: #ABABAB;"></span>{{ item.message ? item.message : '--' }}
+          </div>
+        </div>
+      </div> -->
+      <div class="container" *ngFor="let item of ticketComments">
+        <img src="assets/gif/user.png" alt="Avatar" width="20">
+        <p>{{ item.message }}</p>
+        <span class="time-right">{{ item.createdTime | date:'short' }}</span>
+      </div>
+
+      <div class="container" *ngFor="let item of newComment">
+        <img src="assets/gif/user.png" alt="Avatar" width="20">
+        <p>{{ item }}</p>
+        <span class="time-right">{{ todayDate | date:'short' }}</span>
+      </div>
+
+      <!-- <div class="container darker">
+        <img src="assets/gif/user.png" alt="Avatar" width="20" class="right">
+        <p>Hey! I'm fine. Thanks for asking!</p>
+        <span class="time-left">11:01</span>
+      </div> -->
+    </div>
+
+    <hr class="mt-4">
+
+    <div class="col-lg-12">
+      <div>
+        <p style="font-weight: 600; color: #ABABAB;">TASKS</p>
+      </div>
+
+      <div class="table-res">
+        <table class="table" id="mytable">
+          <thead>
+            <tr class="task-table">
+              <th>taskId</th>
+
+              <th>categoryId</th>
+
+              <th>subCategoryId</th>
+
+              <th>description</th>
+
+              <th>status</th>
+
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let cust of ticketTasks; let i = index">
+              <td>
+                <p>{{ cust.taskId }}</p>
+              </td>
+
+              <td>
+                <p>{{ cust.categoryId == 1 ? 'Camera' : cust.categoryId == 2 ? 'Assets' : '' }}</p>
+              </td>
+
+              <td>
+                <p>{{ cust.subCategoryId == 1 ? 'Site Down' : cust.subCategoryId == 2 ? 'Footage Required' : cust.subCategoryId == 3 ? 'Blank Screen' : ''  }}</p>
+              </td>
+
+              <td>
+                <p>{{ cust.description }}</p>
+              </td>
+
+              <td>
+                <p>{{ cust.statusId == 1 ? 'Open' : cust.statusId == 2 ? 'In-Progress' : cust.statusId == 3 ? 'Closed' : cust.statusId == 4 ? 'Rejected' : '' }}</p>
+              </td>
+
+              <td>
+                <div class="plus-img1">
+
+
+                  <a class="mx-2" (click)="openViewPopup(cust)"><img src="assets/icons/view.svg" /></a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="col-lg-12">
+      <div>
+        <p style="font-weight: 600; color: #ABABAB;">TICKET VISITS</p>
+      </div>
+
+      <div class="table-res">
+        <table class="table" id="mytable">
+          <thead>
+            <tr class="task-table">
+              <th>Id</th>
+
+              <th>Reason</th>
+
+              <th>Start Date</th>
+
+              <th>End Date</th>
+
+              <th>Remarks</th>
+
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let cust of ticketVisits; let i = index">
+              <td>
+                <p>{{ cust.id }}</p>
+              </td>
+
+              <td>
+                <p>{{ cust.reasonId }}</p>
+              </td>
+
+              <td>
+                <p>{{ cust.startDate }}</p>
+              </td>
+
+              <td>
+                <p>{{ cust.endDate }}</p>
+              </td>
+
+              <td>
+                <p>{{ cust.remarks }}</p>
+              </td>
+
+              <td>
+                <a class="pointer" (click)="closeDot($event, i)"><img src="assets/icons/dotlist.svg" width="30" height="12" /></a>
+                <div class="plus-img1" id="plus-img{{ i }}" style="display: none">
+
+                  <a class="mx-2" (click)="openViewPopup(cust)"><img src="assets/icons/view.svg"/></a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div  >
+    <button class="dialog-close-btn" mat-dialog-close>Close</button>
+  </div>
+</ng-template>
+<!--/ view popup -->

@@ -1,0 +1,592 @@
+<div class="container-fluid" id="top">
+
+  <!-- header -->
+  <div class="d-flex justify-content-between">
+    <div class="users-header mt-2">
+      <p>WeaverWorks </p>
+    </div>
+    <!-- <span>{{ indentTable?.length }}</span>  -->
+    <div *ngIf="notFr">
+      <!-- <a class="pointer" (click)="show('user')"><img src="assets/icons/add.svg" alt="" /></a> -->
+      <!-- <button class="create-btn" (click)="show('indent', {type: 'main', data:null})">Allocate Machine</button> -->
+    </div>
+  </div>
+
+  <!-- count -->
+  <!-- <div class="row mb-2">
+    <div class="col-lg-1 col-md-1 col-sm-1 d-flex justify-content-start">
+      <div class="vl-green"></div>
+      <div class="mx-2">
+        <div class="status">Requested</div>
+        <div class="count">{{ requested?.length }}</div>
+      </div>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 d-flex justify-content-start">
+      <div class="vl-red"></div>
+      <div class="mx-2">
+        <div class="status">Dispatched</div>
+        <div class="count">{{ dispatched?.length }}</div>
+      </div>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 d-flex justify-content-start">
+      <div class="vl-red"></div>
+      <div class="mx-2">
+        <div class="status">Received</div>
+        <div class="count">{{ received?.length }}</div>
+      </div>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 d-flex justify-content-start">
+      <div class="vl-red"></div>
+      <div class="mx-2">
+        <div class="status">Installed</div>
+        <div class="count">{{ installed?.length }}</div>
+      </div>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 d-flex justify-content-start">
+      <div class="vl-red"></div>
+      <div class="mx-2">
+        <div class="status">Returned</div>
+        <div class="count">{{ returned?.length }}</div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- form -->
+  <div class="search-form row mt-2">
+    <div class="col-lg-3 col-sm-12">
+      <mat-form-field class="example-form-field" appearance="outline" class="w-100">
+        <mat-label>Search</mat-label>
+        <input matInput type="text"  [(ngModel)]="searchText">
+        <button matSuffix mat-icon-button>
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <!-- <div class="col-lg-2 col-md-2">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Ticket Id</mat-label>
+        <mat-select [(ngModel)]="ojobOrTicketId">
+          <mat-option *ngFor="let item of newIndentTable" [value]="item.jobOrTicketId">{{ item.jobOrTicketId }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-2 col-md-2">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Product</mat-label>
+        <mat-select [(ngModel)]="oproductId">
+          <mat-option *ngFor="let item of newIndentTable" [value]="item.productId">{{ item.productName }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-2 col-md-2">
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput [matDatepicker]="picker1" placeholder="Created from" [(ngModel)]="ostartDate">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-2 col-md-2">
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput [matDatepicker]="picker2" placeholder="Created to" [(ngModel)]="oendDate">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-2 col-md-2">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="ostatus">
+          <mat-option *ngFor="let item of indentStatus" [value]="item.keyId">{{ item.value }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="  col-lg-1 col-md-1">
+      <button (click)="applyFilter()">Submit</button>
+    </div> -->
+  </div>
+
+  <!-- table -->
+  <div class="table-resp">
+    <table class="table table-hover" id="mytable">
+      <thead>
+        <tr class="form1">
+          <!-- <th>
+            <input type="checkbox" class="form-check-input" [(ngModel)]="selectedAll" (change)="selectAll()"
+              id="allcheck" style="
+                background-color: #00000000;
+                border-color: #fff;
+                margin-left: 10px;
+              " />
+          </th> -->
+          <th>
+            <p>
+              <span>Weaver Id</span>
+              <!-- <img (click)="sort('countOfIndents')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px"> -->
+            </p>
+          </th>
+          <th>
+            <p>
+            <span>Weaver Name</span>
+            <!-- <img (click)="sort('siteId')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px"> -->
+            </p>
+          </th>
+          <th>
+            <p>
+              <span>Machine Number</span>
+            <!-- <img (click)="sort('siteName')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px"> -->
+            </p>
+          </th>
+          <th><p>Expected Date</p></th>
+          <th><p>Details</p></th>
+        </tr>
+      </thead>
+      <tbody *ngIf="!showLoader">
+        <tr *ngFor="let cust of indentTable | removeDuplicates : 'weaverName'; let i = index ">
+          <!-- <td>
+            <input type="checkbox" name="foo" class="form-check-input" [(ngModel)]="cust.selected" (change)="
+                checkIfAllSelected();
+                deleteMultiRecords(cust, i, $event);
+                ViewByCheckbox(cust, i, $event);
+                EditByCheckbox(cust, i, $event)
+              " id="singleCheck" />
+          </td> -->
+          <td>
+            <p>{{ cust.weaverId }}</p>
+          </td>
+          <td>
+            <p>{{ cust.weaverName }}</p>
+          </td>
+          <td>
+            <p>{{ cust.machineNoAliasInventoryId }}</p>
+          </td>
+          <td>
+            <p>{{cust.expectedDate}}</p>
+          </td>
+          <td class="pointer" ><p style="color: darkgreen;" (click)="openviewDetailsDialog(cust)">View</p></td>
+          <!-- <td>
+            <p class="text-primary pointer" (click)="openviewDetailsDialog(cust)">View</p>
+          </td> -->
+          <!-- <td>
+            <p style="color: darkgreen;" (click)="openMachine(cust)">view</p>
+          </td> -->
+          <!-- <td class="pointer">
+            <p style="color: darkgreen;" (click)="openViewPopup(cust)">Assign</p>
+          </td> -->
+          <!-- <td>
+            <a class="pointer" (click)="show('indent', {type: 'sub', data:cust} )">
+              <img src="assets/icons/add.svg" width="40">
+            </a>
+          </td> -->
+          <!-- <td>
+            <a class="pointer" (click)="openCreateOrder()"><img src="assets/icons/add.svg" width="40"></a>
+          </td> -->
+          <!-- <td>
+            <p>{{ cust.statusId == 1 ? "Requested" : cust.statusId == 2 ? "Dispatched" : cust.statusId == 3 ? "Received" : cust.statusId == 4 ? "Installed" : cust.statusId == 5 ? "Returned" : '' }}</p>
+          </td> -->
+          <!-- <td class="table-icons">
+            <a class="mx-1 pointer" (click)="openViewPopup(cust)">
+              <img src="assets/icons/view.svg"/>
+            </a>
+            <a class="mx-1 pointer" (click)="openEditPopup(cust)">
+              <img src="assets/icons/edit.svg"  />
+            </a>
+            <a class="mx-1 pointer" value="Delete" (click)="openDeletePopup(cust)">
+              <img src="assets/icons/delete.svg"/>
+            </a>
+          </td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- err msg-->
+  <div class="d-flex align-items-center justify-content-center" style="height: 50vh;" *ngIf="indentTable.length == 0 && !showLoader">
+    <h1 class="text-secondary">No Data</h1>
+  </div>
+
+  <!-- loader -->
+  <div >
+    <app-loader *ngIf="showLoader" class="d-flex justify-content-center align-items-center" style="height: 50vh;"></app-loader>
+  </div>
+</div>
+
+
+<ng-template #viewInventoryDialog>
+  <div style="background-color: #084982;">
+    <p class="dialog-title">VIEW INDENT</p>
+  </div>
+
+  <div class="dialog-content">
+    <mat-list>
+      <div class="row">
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Id</mat-label>
+            <input matInput [(ngModel)]="currentItem.id" disabled>
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>jobOrTicketId</mat-label>
+            <input matInput [(ngModel)]="currentItem.jobOrTicketId" disabled>
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-6 col-md-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput [matDatepicker]="picker1" placeholder="indentedDate" [(ngModel)]="currentItem.indentedDate" disabled>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>productName</mat-label>
+            <input matInput [(ngModel)]="currentItem.productName" disabled>
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>inventoryId</mat-label>
+            <mat-select [(ngModel)]="currentItem.statusId" disabled>
+              <mat-option *ngFor="let item of indentStatus" [value]="item.keyId">{{ item.value }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-list>
+  </div>
+
+  <div class="d-flex justify-content-end"  >
+    <button class="dialog-close-btn" mat-dialog-close>Close</button>
+  </div>
+</ng-template>
+
+<!-- <ng-template #editInventoryDialog>
+  <div style="background-color: #084982;">
+    <p class="dialog-title">MODIFY INDENT</p>
+  </div>
+
+  <div class="row dialog-content">
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Id</mat-label>
+        <input matInput [(ngModel)]="currentItem.id" disabled>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>inventoryId</mat-label>
+        <mat-select [(ngModel)]="updateInventoryId">
+          <mat-option *ngFor="let item of inventorySerial" [value]="item.id">{{ item.id }} - {{ item.serialNo }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="currentItem.statusId">
+          <mat-option *ngFor="let item of indentStatus" [value]="item.keyId">{{ item.value }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Remarks</mat-label>
+        <input matInput [(ngModel)]="currentItem.remarks">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="d-flex align-items-center justify-content-end">
+    <div>
+      <button class="dialog-close-btn" mat-dialog-close>Close</button>
+    </div>
+    <div  >
+      <button class="dialog-update-btn" mat-dialog-close (click)="updateIndent()">Update</button>
+    </div>
+  </div>
+</ng-template> -->
+<ng-template #deleteInventoryDialog >
+  <div style="background-color: #084982;">
+    <p class="dialog-title">View</p>
+  </div>
+  <div class="table-res dialog-content">
+    <table class="table table-hover" id="mytable">
+      <thead>
+        <tr class="task-table">
+          <th>
+            <p>
+              <span>Weaver Id</span>
+              <img (click)="sort('id')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+
+          <th>
+            <p>
+              <span>Weaver Name</span>
+              <img (click)="sort('productCategoryId')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+
+          <th>
+            <p>
+              <span>SubComponent</span>
+              <img (click)="sort('productModelId')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+        </tr>
+      </thead>
+      <tbody *ngIf="!showLoader">
+        <tr *ngFor="let cust of newIndentTable | search : searchText; let i = index">
+          <td>
+            <p>{{ cust.weaverId}}</p>
+          </td>
+          <td>
+            <p>{{ cust.weaverName}}</p>
+          </td>
+          <td>
+            <p>{{ cust.machineSubcomponentsAliasInventoryId}}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+
+<ng-template #createOrderDialog>
+  <div style="background-color: #084982;">
+    <p class="dialog-title">CREATE CENTRALBOX</p>
+  </div>
+
+  <mat-dialog-content>
+    <div class="row">
+      <div class="col-lg-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>centralBoxId</mat-label>
+          <input matInput [(ngModel)]="centralboxBody.centralBoxId">
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>inventoryId</mat-label>
+          <mat-select [(ngModel)]="centralboxBody.inventoryId">
+            <mat-option *ngFor="let item of inventoryDetail" [value]="item.id">{{ item.id }} - {{ item.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <div  >
+    <button class="dialog-update-btn" (click)="openReplaceComponent()">Replace</button>
+  </div>
+
+  <div class="d-flex align-items-center justify-content-end">
+<div>
+      <button class="dialog-close-btn" mat-dialog-close>Close</button>
+    </div>
+    <div  >
+      <button class="dialog-update-btn" mat-dialog-close (click)="addComponent()">Create</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #replaceComponentDialog>
+  <div style="background-color: #084982;">
+    <p class="dialog-title">CREATE CENTRALBOX</p>
+  </div>
+
+
+  <mat-dialog-content>
+    <div class="row">
+      <div class="col-lg-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>oldInventoryId</mat-label>
+          <mat-select [(ngModel)]="body.oldInventoryId">
+            <mat-option *ngFor="let item of inventoryDetail" [value]="item.id">{{ item.id }} - {{ item.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>newInventoryId</mat-label>
+          <mat-select [(ngModel)]="body.newInventoryId">
+            <mat-option *ngFor="let item of inventoryDetail" [value]="item.id">{{ item.id }} - {{ item.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <div class="d-flex align-items-center justify-content-end">
+<div>
+      <button class="dialog-close-btn" mat-dialog-close>Close</button>
+    </div>
+    <div  >
+      <button class="dialog-update-btn" mat-dialog-close (click)="replaceComponent()">Update</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #viewDetailsDialog>
+  <div style="background-color: #125a2e;">
+    <p class="dialog-title">View items</p>
+  </div>
+  <button type="button" class="btn btn-light mx-4 mb-3">Inputs:</button>
+  <div class="dialog-content">
+    <div class="table-res ">
+      <table class=" table table-hover" id="mytable">
+        <thead>
+          <tr>
+            <th>
+              <p>id</p>
+            </th>
+            <th>
+              <p>ItemCode</p>
+            </th>
+            <th>
+              <p>Color</p>
+            </th>
+            <th>
+              <p>ColorCode</p>
+            </th>
+            <th>
+              <p>Quality</p>
+            </th>
+            <th>
+              <p>Cost</p>
+            </th>
+            <th>
+              <p>Quantity</p>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cust of inventoryItems; let i = index">
+            <td>
+              <p>{{ i+1 }}</p>
+            </td>
+            <td>{{cust.itemCode}}</td>
+            <td>
+              <p>{{cust.color}}</p>
+            </td>
+            <td>
+              <p>{{cust.colorCode}}</p>
+            </td>
+            <td>
+              <p>{{cust.quality}}</p>
+            </td>
+            <td>
+              <p>{{cust.cost}}</p>
+            </td>
+            <td>
+              <p>{{cust.quantity}}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-light mx-4 mb-3">OutPuts:</button>
+  <!-- <div class="table-res">
+    <div class="dialog-content">
+      <table class=" table table-hover" id="mytable">
+        <thead>
+          <tr>
+            <th>
+              <p>id</p>
+            </th>
+            <th>
+              <p>ItemCode</p>
+            </th>
+            <th>
+              <p>Color</p>
+            </th>
+            <th>
+              <p>ColorCode</p>
+            </th>
+            <th>
+              <p>Quality</p>
+            </th>
+            <th>
+              <p>Cost</p>
+            </th>
+            <th>
+              <p>Quantity</p>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cust of inventoryItems; let i = index">
+            <td>
+              <p>{{ i+1 }}</p>
+            </td>
+            <td>{{cust.itemCode}}</td>
+            <td>
+              <p>{{cust.color}}</p>
+            </td>
+            <td>
+              <p>{{cust.colorCode}}</p>
+            </td>
+            <td>
+              <p>{{cust.quality}}</p>
+            </td>
+            <td>
+              <p>{{cust.cost}}</p>
+            </td>
+            <td>
+              <p>{{cust.quantity}}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div> -->
+
+  <div class="row mx-2">
+    <div class="col-lg-4">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>input</mat-label>
+        <input matInput [(ngModel)]="centralboxBody.centralBoxId">
+      </mat-form-field>
+    </div>
+    <div class="col-lg-4 col-md-4">
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput [matDatepicker]="picker1" placeholder="date" [(ngModel)]="ostartDate">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-lg-4 mt-3">
+      <button>update</button>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-end mt-2">
+    <button class="dialog-close-btn" mat-dialog-close>Close</button>
+  </div>
+</ng-template>
+
+
+<div  *ngIf="showIndent">
+  <app-add-new-indent [show]="fromParent" (newItemEvent)="closenow(); listMachineAssignment()"></app-add-new-indent>
+</div>
+
+

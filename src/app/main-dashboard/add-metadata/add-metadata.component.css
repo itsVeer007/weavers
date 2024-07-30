@@ -1,0 +1,67 @@
+.addListBtn {
+  position: relative;
+  top: 17px;
+  right: 7px;
+  font-weight: 600;
+  color: #084982 !important;
+  border: 1px solid #084982;
+  border-radius: 5px;
+  padding: 12px;
+  cursor: pointer;
+}
+
+
+/* ng-deep */
+::ng-deep .device-title{
+  font-size: 14px;
+  color: black;
+  font-weight: 600;
+}
+
+::ng-deep .device-sub {
+  font-size: 15px;
+  color: #383838;
+}
+
+/* common mat-button */
+::ng-deep .mat-flat-button.mat-primary {
+  background-color: #084982;
+}
+
+/* mat disable color */
+::ng-deep .mat-input-element:disabled, .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+  color: #000;
+}
+
+::ng-deep .mat-select-disabled .mat-select-value {
+  color: #000000;
+}
+
+/* common mat-form */
+.mat-form-field-appearance-outline ::ng-deep .mat-form-field-outline {
+  top: 5px;
+  bottom: 5px;
+  background: #F8F8F8;
+}
+
+.mat-form-field-appearance-outline ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0.5em;
+}
+
+::ng-deep .mat-select-value {
+  position: relative;
+  bottom: 4px;
+}
+
+::ng-deep input.mat-input-element {
+  position: relative;
+  bottom: 4px;
+}
+
+.mat-form-field-appearance-outline ::ng-deep .mat-form-field-subscript-wrapper {
+  padding: 0 5px;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #084982!important;
+}

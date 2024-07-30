@@ -1,0 +1,141 @@
+
+
+.lists {
+  margin-top: -20px;
+}
+
+
+/* ng-deep */
+
+
+/* common mat-button */
+::ng-deep .mat-flat-button.mat-primary {
+  background-color: #084982;
+}
+
+/* common mat-dialog */
+::ng-deep .mat-dialog-content {
+  margin: 0 !important;
+  padding: 0 20px !important;
+  max-height: 450px !important;
+}
+
+::ng-deep .mat-dialog-container {
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+/* mat disable color */
+::ng-deep .mat-input-element:disabled, .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+  color: #000;
+}
+
+::ng-deep .mat-select-disabled .mat-select-value {
+  color: #000000;
+}
+
+/* common mat-form */
+.mat-form-field-appearance-outline ::ng-deep .mat-form-field-outline {
+  top: 5px;
+  bottom: 5px;
+  background: #F8F8F8;
+}
+
+.mat-form-field-appearance-outline ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0.5em;
+}
+
+::ng-deep .mat-select-value {
+  position: relative;
+  bottom: 4px;
+}
+
+::ng-deep input.mat-input-element {
+  position: relative;
+  bottom: 4px;
+}
+
+.mat-form-field-appearance-outline ::ng-deep .mat-form-field-subscript-wrapper {
+  padding: 0 5px;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #084982!important;
+}
+
+
+/** Toggle Switch **/
+.on-off-toggle {
+  width: 56px;
+  height: 24px;
+  position: relative;
+  /* display: inline-block; */
+}
+
+.on-off-toggle__slider {
+  width: 95px;
+  height: 23px;
+  display: block;
+  border-radius: 34px;
+  /* background-color: #fff; */
+  border: 1px solid #00573c;
+  transition: background-color 0.4s;
+  cursor: pointer;
+}
+
+.on-off-toggle__slider:before {
+  content: '';
+  display: block;
+  background-color: #D34124;
+  /* box-shadow: 0 0 0 1px #949494; */
+  bottom: 5px;
+  height: 15px;
+  left: 3px;
+  position: absolute;
+  transition: .4s;
+  width: 16px;
+  z-index: 5;
+  border-radius: 100%;
+}
+
+.on-off-toggle__slider:after {
+  display: block;
+  line-height: 24px;
+  text-transform: lowercase;
+  font-size: 12px;
+  font-weight: bold;
+  content: 'igst' ;
+  color: #D34124;
+  padding-left: 26px;
+  transition: all 0.4s;
+}
+
+
+.on-off-toggle__input {
+  position: absolute;
+  opacity: 0;
+}
+
+.on-off-toggle__input:checked +
+.on-off-toggle__slider {
+  background-color: #fff;
+  border: 1px solid #00573c;
+}
+
+.on-off-toggle__input +
+.on-off-toggle__slider {
+  background-color: #F8F8F8;
+  border: 1px solid #D34124;
+}
+
+.on-off-toggle__input:checked + :before {
+  transform: translateX(65px);
+    background-color: #00573c;
+}
+
+.on-off-toggle__input:checked + :after {
+  content: 'cgst&sgst';
+  color: #00573c;
+  padding-left: 8px;
+}
+ 

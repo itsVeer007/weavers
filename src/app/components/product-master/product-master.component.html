@@ -1,0 +1,509 @@
+<div class="container-fluid" id="top">
+  <!-- header -->
+  <div class="d-flex justify-content-between">
+    <div class="users-header">
+      <p>Total Products - <span>{{ newProductMaster?.length }}</span></p>
+    </div>
+    <div *ngIf="notFr">
+      <!-- <a class="pointer" (click)="show('inventory')"><img src="assets/icons/add_circle.svg" alt="" width="40"></a> -->
+      <button class="create-btn" (click)="show('product')">Create Product</button>
+    </div>
+  </div>
+  <!-- /header -->
+
+  <!-- count -->
+  <div class="row mb-2">
+    <!-- <div class="col-lg-1 col-md-1 d-flex justify-content-start">
+      <div class="vl-green"></div>
+      <div class="mx-2">
+        <div class="status">Active</div>
+        <div class="count">{{ newProductMaster?.length }}</div>
+      </div>
+    </div>
+    <div class="col-lg-1 col-md-1 d-flex justify-content-start">
+      <div class="vl-yellow"></div>
+      <div class="mx-2">
+        <div class="status">Inactive</div>
+        <div class="count">0</div>
+      </div>
+    </div> -->
+    <!-- <div class="col-lg-2 d-flex justify-content-start">
+      <div class="vl-red"></div>
+      <div class="mx-2">
+        <div class="status">Removed</div>
+        <div class="count">{{ scrap.length }}</div>
+      </div>
+    </div> -->
+  </div>
+  <!-- /count -->
+
+  <!-- form -->
+  <div class="row search-form">
+    <!-- <div class="col-lg-2 col-md-2 col-sm-12">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Category</mat-label>
+        <mat-select (focus)="removeDuplicates()" [(ngModel)]="filterBody.categoryId">
+          <mat-option value="">All</mat-option>
+          <mat-option *ngFor="let item of brandNames" [value]="item.categoryId">{{ item.categoryId }} - {{ item.category }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-2 col-md-2 col-sm-12">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Product Type</mat-label>
+        <mat-select (focus)="removeDuplicates()" [(ngModel)]="filterBody.typeId">
+          <mat-option value="">All</mat-option>
+          <mat-option *ngFor="let item of productTypes" [value]="item.typeId">{{ item.typeId }} - {{ item.type }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-2 col-md-2 col-sm-12">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Vendor</mat-label>
+        <mat-select [(ngModel)]="filterBody.vendorId">
+          <mat-option value="">All</mat-option>
+          <mat-option *ngFor="let item of vendorDetail" [value]="item.id">{{ item.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-1 col-md-1 col-sm-12">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Status</mat-label>
+        <mat-select (focus)="removeDuplicates()" [(ngModel)]="filterBody.statusId">
+          <mat-option value="">All</mat-option>
+          <mat-option *ngFor="let item of productStatus" [value]="item.keyId">{{ item.value }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-2 col-md-2 col-sm-12">
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput [matDatepicker]="picker1" placeholder="Created from" [(ngModel)]="filterBody.startDate">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-2 col-md-2 col-sm-12">
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput [matDatepicker]="picker2" placeholder="Created to" [(ngModel)]="filterBody.endDate">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div> -->
+
+    <div class="col-lg-3 col-sm-12">
+      <mat-form-field class="example-form-field" appearance="outline" class="w-100">
+        <mat-label>Search</mat-label>
+        <input matInput type="text"  [(ngModel)]="searchText">
+        <button matSuffix mat-icon-button>
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div class="col-lg-2 d-flex mb-3">
+      <div class="mx-3">
+        <!-- <button type="button" class="btn btn-outline-success" (click)="filterProducts(1)">Consumable</button> -->
+      </div>
+      <div>
+        <!-- <button type="button" class="btn btn-outline-success"  (click)="filterProducts(2)">NonConsumable</button> -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- /form -->
+
+  <!-- table starts -->
+  <div class="table-resp">
+    <table class="table table-hover" id="mytable">
+      <thead>
+        <tr class="form1">
+          <th>
+            <p>
+              <span>Id</span>
+              <img (click)="sort('id')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+          <th>
+            <p>
+              <span>Item Name</span>
+              <img (click)="sort('itemName')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+          <th>
+            <p>
+              <span>Item Type</span>
+              <img (click)="sort('itemType')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+          <th>
+            <p>
+              <span>Item UOM</span>
+              <img (click)="sort('itemUom')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+          <th>
+            <p>
+              <span>Description</span>
+              <img (click)="sort('description')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+          <th>
+            <p>
+              <span>Remarks</span>
+              <img (click)="sort('remarks')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
+            </p>
+          </th>
+          <th>
+            <p>Actions</p>
+          </th>
+        </tr>
+      </thead>
+      <tbody *ngIf="!showLoader">
+        <tr *ngFor="let cust of newProductMaster | search : searchText; let i = index">
+          <td>
+            <p>{{ cust.id }}</p>
+          </td>
+          <td>
+            <p>{{ cust.itemName }}</p>
+          </td>
+          <td>
+            <p>{{ cust.itemType == 1 ? 'Raw material' : cust.itemType == 2 ? 'Finished Product' : cust.itemType == 3 ? 'component' : cust.itemType == 4 ? 'Sub component' : '' }} </p>
+          </td>
+          <td>
+            <p>{{ cust.itemUom == 1 ? 'Laddi' : cust.itemUom == 2 ? 'numbers' : cust.itemUom == 3 ?  'Mark' : cust.itemUom == 4 ? 'Kgs' : cust.itemUom == 5 ?  'Grams': '' }} </p>
+          </td>
+          <td>
+            <p>{{ cust.description}}</p>
+          </td>
+          <td>
+            <p>{{ cust.remarks}}</p>
+          </td>
+          <td>
+            <p *ngIf="cust.itemType === 1  " class="pointer" style="color: darkgreen;"  (click)="open(cust)" matTooltip="view"><img src="assets\icons\view.svg" alt=""></p>
+            <p *ngIf="cust.itemType !== 1 " (click)="openSecond(cust)"><img src="assets\icons\edit.svg" alt="" matTooltip="edit"></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-flex align-items-center justify-content-center" style="height: 50vh;" *ngIf="newProductMaster.length == 0 && !showLoader">
+    <h1 class="text-secondary">No Data</h1>
+  </div>
+
+  <!-- Loader -->
+  <div *ngIf="showLoader">
+    <app-loader class="d-flex justify-content-center align-items-center" style="height: 50vh;"></app-loader>
+  </div>
+  <!-- /Loader -->
+</div>
+
+
+<ng-template #viewProductDialog>
+  <div style="background-color: #084982;">
+    <p class="dialog-title">VIEW PRODUCT</p>
+  </div>
+
+  <mat-dialog-content>
+    <div class="row" *ngIf="currentItem">
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Id</mat-label>
+          <input matInput [(ngModel)]="currentItem.id" disabled>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Name</mat-label>
+          <input matInput [(ngModel)]="currentItem.name" disabled>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Cost</mat-label>
+          <input matInput [(ngModel)]="currentItem.cost" disabled>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Model</mat-label>
+          <input matInput [(ngModel)]="currentItem.model" disabled>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Description</mat-label>
+          <input matInput [(ngModel)]="currentItem.description" disabled>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Product Type</mat-label>
+          <input matInput [(ngModel)]="currentItem.type" disabled>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Product Category</mat-label>
+          <input matInput [(ngModel)]="currentItem.category" disabled>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Status</mat-label>
+          <input matInput [(ngModel)]="currentItem.status" disabled>
+        </mat-form-field>
+      </div>
+
+      <!-- <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>productStatusId</mat-label>
+          <mat-select [(ngModel)]="currentItem.productStatusId" disabled>
+            <mat-option *ngFor="let item of productStatus" [value]="item.keyId">{{ item.value }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+    </div>
+  </mat-dialog-content>
+
+  <div class="d-flex justify-content-end"  >
+    <button class="dialog-close-btn" mat-dialog-close>Close</button>
+  </div>
+</ng-template>
+
+<ng-template #editProductDialog>
+  <div style="background-color: #084982;">
+    <p class="dialog-title">MODIFY PRODUCT</p>
+  </div>
+
+  <mat-dialog-content>
+    <div class="row" *ngIf="currentItem">
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Id</mat-label>
+          <input matInput [(ngModel)]="currentItem.id" disabled>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Name</mat-label>
+          <input name="name" matInput [(ngModel)]="currentItem.name" (change)="onInputChange($event)">
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Description</mat-label>
+          <input name="description" matInput [(ngModel)]="currentItem.description" (change)="onInputChange($event)">
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Model</mat-label>
+          <input name="model" matInput [(ngModel)]="currentItem.model" (change)="onInputChange($event)">
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Quantity</mat-label>
+          <input name="quantity" matInput [(ngModel)]="currentItem.quantity" (change)="onInputChange($event)">
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Uom Id</mat-label>
+          <mat-select name="uomId" [(ngModel)]="currentItem.uomId" (selectionChange)="onSelectChange($event)">
+            <mat-option *ngFor="let item of uomItem" [value]="item.keyId">{{ item.value }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Cost</mat-label>
+          <input name="cost" matInput [(ngModel)]="currentItem.cost" (change)="onInputChange($event)">
+        </mat-form-field>
+      </div>
+
+      <!-- <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Category Id</mat-label>
+          <mat-select [(ngModel)]="currentItem.productCategoryId">
+            <mat-option [value]="55">55</mat-option>
+            <mat-option [value]="33">33</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+
+      <!-- <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Type Id</mat-label>
+          <mat-select [(ngModel)]="currentItem.productTypeId">
+            <mat-option [value]="2">2</mat-option>
+            <mat-option [value]="13">13</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Purchase Link</mat-label>
+          <input name="purchaseLink" matInput [(ngModel)]="currentItem.purchaseLink" (change)="onInputChange($event)">
+        </mat-form-field>
+      </div>
+
+      <!-- <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Status</mat-label>
+          <mat-select name="statusId" [(ngModel)]="currentItem.statusId" (change)="onInputChange($event)">
+            <mat-option *ngFor="let item of productStatus" [value]="item.keyId">{{item.value}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+
+      <div>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Remarks</mat-label>
+          <input name="remarks" matInput [(ngModel)]="currentItem.remarks" (change)="onInputChange($event)">
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-6 col-md-6 mt-2" style="font-size: 10px; font-weight: 700;">
+        <mat-radio-group name="returnable" class="w-50" [(ngModel)]="currentItem.returnable" (change)="onRadioChange($event)">
+          <mat-label>Returnable</mat-label>
+          <mat-radio-button class="ms-3" name="return" value="Y">Yes</mat-radio-button>
+          <mat-radio-button class="ms-3" name="return" value="N" checked>No</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div class="col-lg-6 col-md-6 mt-2" style="font-size: 10px; font-weight: 700;">
+        <mat-radio-group name="maintenanceRequired" class="w-50" [(ngModel)]="currentItem.maintenanceRequired" (change)="onRadioChange($event)">
+          <mat-label>Maintenance Required</mat-label>
+          <mat-radio-button class="ms-3" name="maintenance" value='Y'>Yes</mat-radio-button>
+          <mat-radio-button class="ms-3" name="maintenance" value='N' checked>No</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <div class="d-flex align-items-center justify-content-end">
+<div>
+      <button class="dialog-close-btn" mat-dialog-close>Close</button>
+    </div>
+    <div  >
+      <button class="dialog-update-btn" mat-dialog-close (click)="updateProductMaster()">Update</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #deleteProductDialog>
+  <div style="background-color: #064e15;">
+    <p class="dialog-title">DELETE PRODUCT</p>
+  </div>
+
+  <mat-dialog-content>
+    <div class="text-center">Do you want to delete this item?</div>
+  </mat-dialog-content>
+
+  <div class="d-flex align-items-center justify-content-end">
+<div>
+      <button class="dialog-close-btn" mat-dialog-close>Close</button>
+    </div>
+    <div  >
+      <button class="dialog-update-btn" mat-dialog-close (click)="deleteProduct()">OK</button>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #usedItemsDialog>
+  <div style="background-color: #053d1c;">
+  <p class="dialog-title">Vendors</p>
+  </div>
+  <div class="dialog-content">
+  <div class="table-res mx-3">
+      <table class="table" id="mytable">
+      <thead>
+          <tr class="task-table">
+          <th>SINo</th>
+          <th>Vendor Name</th>
+          <th>Mobile Number</th>
+      
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let task of Detail | removeDuplicates:'vendorName'; let i = index">
+          <td>
+              <p>{{ i+1 }}</p>
+          </td>
+          <td>
+              <p>{{ task.vendorName }}</p>
+          </td>
+          <td>
+              <p>{{ task.mobileNumber1 }}</p>
+          </td>
+     
+          </tr>
+      </tbody>
+      </table>
+  </div>
+  </div>
+  <div class="d-flex justify-content-end">
+  <button class="dialog-close-btn" mat-dialog-close>Close</button>
+  </div>
+</ng-template>
+
+<ng-template #ItemsDialog>
+  <div style="background-color: #225c27;">
+    <p class="dialog-title">MODIFY PRODUCT</p>
+  </div>
+  <mat-dialog-content *ngIf="openSecondData ">
+    <div class="row dialog-content">
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>productionPrice</mat-label>
+          <input matInput type="number" [(ngModel)]="openSecondData[0].productionPrice">
+        </mat-form-field>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>sellingPrice</mat-label>
+          <input matInput type="number" [(ngModel)]="openSecondData[0].sellingPrice">
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  
+  <div class="d-flex align-items-center justify-content-end">
+    <div>
+          <button class="dialog-close-btn" mat-dialog-close>Close</button>
+        </div>
+        <div  >
+          <button class="dialog-update-btn" mat-dialog-close (click)="UpdateProduct()">update</button>
+        </div>
+        </div>
+      </ng-template>
+
+
+
+
+<div  *ngIf="showProduct">
+  <app-add-product-master (newItemEvent)="closenow('product'); listProduct()" ></app-add-product-master>
+</div>
+
+

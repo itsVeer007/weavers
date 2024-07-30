@@ -1,0 +1,87 @@
+<div class="row formModal">
+  <div class="col-lg-6 col-md-6"></div>
+  <div class="col-lg-6 col-md-6 add-form" id="camera" @inOutPaneAnimation>
+
+    <div class="d-flex flex-row justify-content-between">
+      <div class="d-flex flex-row justify-content-start">
+        <a class="close-main pointer" (click)="closeAddCamera()"><img src="assets/icons/close_form.svg" /></a>
+        <span class="form-heading">create analytic</span>
+      </div>
+
+      <div class="mx-5 my-4 site-icons">
+        <!-- <a (click)="openAnotherForm('showAddBusinessVertical')"><img src="assets/icons/ver-icon-form.svg" class="mx-2 my-4" /></a>
+              <a (click)="openAnotherForm('showAddCustomer')"><img src="assets/icons/cust-icon-form.svg" class="mx-2 my-4" /></a>
+              <a (click)="openAnotherForm('showAddSite')"><img src="assets/icons/site-icon-form.svg" class="mx-2 my-4" /></a>
+              <a (click)="openAnotherForm('showAddCamera')" class="boxshadow"><img src="assets/icons/cam-icon-form.svg" class="mx-2 my-4 changesvgcolor" /></a>
+              <a (click)="openAnotherForm('analytics')"><img src="assets/icons/analy-icon-form.svg" class="mx-2 my-4" /></a>
+              <a (click)="openAnotherForm('showAddUser')"><img src="assets/icons/user-icon-form.svg" class="mx-2 my-4" /></a> -->
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div>
+      <form autocomplete="off" [formGroup]="addAssetForm">
+        <div class="row">
+
+          <div class="col-lg-6 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Analytic Name</mat-label>
+              <input matInput required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-lg-6 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Category</mat-label>
+              <mat-select required>
+                <mat-option value="Site-1">Site-1</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-lg-6 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Category</mat-label>
+              <mat-select required>
+                <mat-option value="Site-1">Site-1</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-lg-6 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Category</mat-label>
+              <mat-select required>
+                <mat-option value="Site-1">Site-1</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-lg-6 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Category</mat-label>
+              <mat-select required>
+                <mat-option value="Site-1">Site-1</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-lg-6 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Device Id</mat-label>
+              <mat-select required>
+                <mat-option value="Device-1">Device-1</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="text-center my-5">
+            <button class="btn add-btn" (click)="addNewAsset()">ADD</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- Form -->
+
+  </div>
+</div>

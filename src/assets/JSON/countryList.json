@@ -1,0 +1,1020 @@
+[
+  {
+    "countryName": "Australia",
+    "states": [
+      {
+        "stateName": "Australian Capital Territory",
+        "cities": ["Canberra", "Uriarra Village", "Tharwa"]
+      },
+
+      {
+        "stateName": "Northern Territory",
+        "cities": ["Alice Springs", "Darwin", "Katherine"]
+      },
+      {
+        "stateName": "Melbourne",
+        "cities": ["Kensington", "Parkville", "Southbank"]
+      },
+      {
+        "stateName": "Sydney",
+        "cities": ["Circular Quay", "Darling Harbour", "Sydney Harbour"]
+      },
+      {
+        "stateName": "Tasmania",
+        "cities": ["Burnie", "Devonport", "Hobart"]
+      }
+    ]
+  },
+
+  {
+    "countryName": "Belgium",
+    "states": [
+      {
+        "stateName": "New South Wales",
+        "cities": ["Armidale", "Ballina", "Balranald"]
+      },
+
+      {
+        "stateName": "Northern Territory",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Queensland",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "South Australia",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Tasmania",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      }
+    ]
+  },
+
+  {
+    "countryName": "Brazil",
+    "states": [
+      {
+        "stateName": "New South Wales",
+        "cities": ["Armidale", "Ballina", "Balranald"]
+      },
+
+      {
+        "stateName": "Northern Territory",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Queensland",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "South Australia",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Tasmania",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      }
+    ]
+  },
+
+  {
+    "countryName": "Canada",
+    "states": [
+      {
+        "stateName": "New South Wales",
+        "cities": ["Armidale", "Ballina", "Balranald"]
+      },
+
+      {
+        "stateName": "Northern Territory",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Queensland",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "South Australia",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Tasmania",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      }
+    ]
+  },
+
+  {
+    "countryName": "China",
+    "states": [
+      {
+        "stateName": "New South Wales",
+        "cities": ["Armidale", "Ballina", "Balranald"]
+      },
+
+      {
+        "stateName": "Northern Territory",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Queensland",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "South Australia",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Tasmania",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      }
+    ]
+  },
+
+  {
+    "countryName": "France",
+    "states": [
+      {
+        "stateName": "New South Wales",
+        "cities": ["Armidale", "Ballina", "Balranald"]
+      },
+
+      {
+        "stateName": "Northern Territory",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Queensland",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "South Australia",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Tasmania",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      }
+    ]
+  },
+
+  {
+    "countryName": "Germany",
+    "states": [
+      {
+        "stateName": "New South Wales",
+        "cities": ["Armidale", "Ballina", "Balranald"]
+      },
+
+      {
+        "stateName": "Northern Territory",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Queensland",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "South Australia",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Tasmania",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      }
+    ]
+  },
+
+
+  {
+    "countryName": "India",
+    "states": [
+      {
+        "stateName": "Andhra Pradesh",
+        "cities": [
+          "Anantapur",
+          "Chittoor",
+          "East Godavari",
+          "Eluru",
+          "Guntur",
+          "Kadapa",
+          "Krishna",
+          "Kurnool",
+          "Machilipatnam",
+          "Nellore",
+          "Ongole",
+          "Prakasam",
+          "Rajahmundry",
+          "Srikakulam",
+          "Tirupati",
+          "Vijayawada",
+          "Visakhapatnam",
+          "Vizianagaram",
+          "West Godavari"
+        ]
+      },
+
+      {
+        "stateName": "Bihar",
+        "cities": [
+          "Araria",
+          "Aurangabad",
+          "Banka",
+          "Begusarai",
+          "Bhagalpur",
+          "Bhojpur",
+          "Buxar",
+          "Darbhanga",
+          "Gaya",
+          "Gopalganj",
+          "Jamui",
+          "Jehanabad",
+          "Katihar",
+          "Khagaria",
+          "Kishanganj",
+          "Lakhisarai",
+          "Madhepura",
+          "Madhubani",
+          "Munger",
+          "Muzaffarpur",
+          "Nalanda",
+          "Nawada",
+          "Patna",
+          "Purnia",
+          "Rohtas",
+          "Saharsa",
+          "Samastipur",
+          "Saran",
+          "Sheikhpura",
+          "Sheohar",
+          "Sitamarhi",
+          "Siwan",
+          "Supaul",
+          "Vaishali",
+          "West Champaran"
+        ]
+      },
+      {
+        "stateName": "Gujarat",
+        "cities": [
+          "Ahmedabad",
+          "Amreli",
+          "Anand",
+          "Aravalli",
+          "Banaskantha",
+          "Bharuch",
+          "Bhavnagar",
+          "Botad",
+          "Chhota Udaipur",
+          "Dahod",
+          "Dang",
+          "Devbhoomi Dwarka",
+          "Gandhinagar",
+          "Gir Somnath",
+          "Jamnagar",
+          "Junagadh",
+          "Kheda",
+          "Kutch",
+          "Mahisagar",
+          "Mehsana",
+          "Morbi",
+          "Narmada",
+          "Navsari",
+          "Panchmahal",
+          "Patan",
+          "Porbandar",
+          "Rajkot",
+          "Sabarkantha",
+          "Surat",
+          "Surendranagar",
+          "Tapi",
+          "Vadodara",
+          "Valsad"
+        ]
+      },
+      {
+        "stateName": "Karnataka",
+        "cities": [
+          "Bagalkot",
+          "Ballari",
+          "Belagavi",
+          "Bengaluru Urban",
+          "Bengaluru Rural",
+          "Bidar",
+          "Chamarajanagar",
+          "Chikkaballapur",
+          "Chikkamagaluru",
+          "Chitradurga",
+          "Dakshina Kannada",
+          "Davanagere",
+          "Dharwad",
+          "Gadag",
+          "Hassan",
+          "Haveri",
+          "Kalaburagi",
+          "Kodagu",
+          "Kolar",
+          "Koppal",
+          "Mandya",
+          "Mysuru",
+          "Raichur",
+          "Ramanagara",
+          "Shivamogga",
+          "Tumakuru",
+          "Udupi",
+          "Uttara Kannada",
+          "Vijayapura",
+          "Yadgir"
+        ]
+      },
+      {
+        "stateName": "Kerala",
+        "cities": [
+          "Alappuzha",
+          "Ernakulam",
+          "Idukki",
+          "Kannur",
+          "Kasaragod",
+          "Kollam",
+          "Kottayam",
+          "Kozhikode",
+          "Malappuram",
+          "Palakkad",
+          "Pathanamthitta",
+          "Thiruvananthapuram",
+          "Thrissur",
+          "Wayanad"
+        ]
+      },
+      {
+        "stateName": "Madhya Pradesh",
+        "cities": [
+          "Ashoknagar",
+          "Balaghat",
+          "Betul",
+          "Bhind",
+          "Bhopal",
+          "Chhatarpur",
+          "Chhindwara",
+          "Damoh",
+          "Datia",
+          "Dewas",
+          "Dhar",
+          "Dindori",
+          "Guna",
+          "Gwalior",
+          "Harda",
+          "Hoshangabad",
+          "Indore",
+          "Jabalpur",
+          "Jhabua",
+          "Katni",
+          "Khandwa",
+          "Khargone",
+          "Mandsaur",
+          "Morena",
+          "Narsinghpur",
+          "Neemuch",
+          "Panna",
+          "Raisen",
+          "Rajgarh",
+          "Ratlam",
+          "Rewa",
+          "Sagar",
+          "Satna",
+          "Sehore",
+          "Seoni",
+          "Shahdol",
+          "Shajapur",
+          "Sheopur",
+          "Shivpuri",
+          "Sidhi",
+          "Singrauli",
+          "Tikamgarh",
+          "Ujjain",
+          "Umaria",
+          "Vidisha"
+        ]
+      },
+      {
+        "stateName": "Maharashtra",
+        "cities": [
+          "Ahmednagar",
+          "Akola",
+          "Amravati",
+          "Aurangabad",
+          "Beed",
+          "Bhandara",
+          "Buldhana",
+          "Chandrapur",
+          "Dhule",
+          "Gadchiroli",
+          "Gondia",
+          "Hingoli",
+          "Jalgaon",
+          "Jalna",
+          "Kolhapur",
+          "Latur",
+          "Mumbai City",
+          "Mumbai Suburban",
+          "Nagpur",
+          "Nanded",
+          "Nandurbar",
+          "Nashik",
+          "Osmanabad",
+          "Palghar",
+          "Parbhani",
+          "Pune",
+          "Raigad",
+          "Ratnagiri",
+          "Sangli",
+          "Satara",
+          "Sindhudurg",
+          "Solapur",
+          "Thane",
+          "Wardha",
+          "Washim",
+          "Yavatmal"
+        ]
+      },
+      {
+        "stateName": "Rajasthan",
+        "cities": [
+          "Ajmer",
+          "Alwar",
+          "Banswara",
+          "Baran",
+          "Barmer",
+          "Bharatpur",
+          "Bhilwara",
+          "Bikaner",
+          "Bundi",
+          "Chittorgarh",
+          "Churu",
+          "Dausa",
+          "Dholpur",
+          "Dungarpur",
+          "Hanumangarh",
+          "Jaipur",
+          "Jaisalmer",
+          "Jalore",
+          "Jhalawar",
+          "Jhunjhunu",
+          "Jodhpur",
+          "Karauli",
+          "Kota",
+          "Nagaur",
+          "Pali",
+          "Pratapgarh",
+          "Rajsamand",
+          "Sawai Madhopur",
+          "Sikar",
+          "Sirohi",
+          "Sri Ganganagar",
+          "Tonk",
+          "Udaipur"
+        ]
+      },
+      {
+        "stateName": "Tamil Nadu",
+        "cities": [
+          "Ariyalur",
+          "Chennai",
+          "Coimbatore",
+          "Cuddalore",
+          "Dharmapuri",
+          "Dindigul",
+          "Erode",
+          "Kancheepuram",
+          "Kanyakumari",
+          "Karur",
+          "Krishnagiri",
+          "Madurai",
+          "Nagapattinam",
+          "Namakkal",
+          "Nilgiris",
+          "Perambalur",
+          "Pudukkottai",
+          "Ramanathapuram",
+          "Salem",
+          "Sivaganga",
+          "Thanjavur",
+          "Theni",
+          "Thoothukudi",
+          "Tiruchirappalli",
+          "Tirunelveli",
+          "Tiruppur",
+          "Tiruvallur",
+          "Tiruvannamalai",
+          "Tiruvarur",
+          "Vellore",
+          "Viluppuram",
+          "Virudhunagar"
+        ]
+      },
+      {
+        "stateName": "Uttar Pradesh",
+        "cities": [
+          "Agra",
+          "Aligarh",
+          "Allahabad",
+          "Ambedkar Nagar",
+          "Amethi",
+          "Amroha",
+          "Auraiya",
+          "Azamgarh",
+          "Baghpat",
+          "Bahraich",
+          "Ballia",
+          "Balrampur",
+          "Banda",
+          "Barabanki",
+          "Bareilly",
+          "Basti",
+          "Bijnor",
+          "Bulandshahr",
+          "Chandauli",
+          "Chitrakoot",
+          "Deoria",
+          "Etah",
+          "Etawah",
+          "Faizabad",
+          "Farrukhabad",
+          "Fatehpur",
+          "Firozabad",
+          "Gautam Buddha Nagar",
+          "Ghaziabad",
+          "Ghazipur",
+          "Gonda",
+          "Gorakhpur",
+          "Hamirpur",
+          "Hapur",
+          "Hardoi",
+          "Hathras",
+          "Jalaun",
+          "Jaunpur",
+          "Jhansi",
+          "Kannauj",
+          "Kanpur Dehat",
+          "Kanpur Nagar",
+          "Kasganj",
+          "Kaushambi",
+          "Kheri",
+          "Kushinagar",
+          "Lalitpur",
+          "Lucknow",
+          "Maharajganj",
+          "Mahoba",
+          "Mainpuri",
+          "Mathura",
+          "Mau",
+          "Meerut",
+          "Mirzapur",
+          "Moradabad",
+          "Muzaffarnagar",
+          "Pilibhit",
+          "Pratapgarh",
+          "Raebareli",
+          "Rampur",
+          "Saharanpur",
+          "Sambhal",
+          "Sant Kabir Nagar",
+          "Shahjahanpur",
+          "Shamli",
+          "Shravasti",
+          "Siddharthnagar",
+          "Sitapur",
+          "Sonbhadra",
+          "Sultanpur",
+          "Unnao",
+          "Varanasi"
+        ]
+      },
+      {
+        "stateName": "West Bengal",
+        "cities": [
+          "Alipurduar",
+          "Bankura",
+          "Birbhum",
+          "Cooch Behar",
+          "Dakshin Dinajpur",
+          "Darjeeling",
+          "Hooghly",
+          "Howrah",
+          "Jalpaiguri",
+          "Jhargram",
+          "Kalimpong",
+          "Kolkata",
+          "Malda",
+          "Murshidabad",
+          "Nadia",
+          "North 24 Parganas",
+          "Paschim Bardhaman",
+          "Paschim Medinipur",
+          "Purba Bardhaman",
+          "Purba Medinipur",
+          "Purulia",
+          "South 24 Parganas",
+          "Uttar Dinajpur"
+        ]
+      }
+    ]
+  },
+
+  {
+    "countryName": "Italy",
+    "states": [
+      {
+        "stateName": "New South Wales",
+        "cities": ["Armidale", "Ballina", "Balranald"]
+      },
+
+      {
+        "stateName": "Northern Territory",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Queensland",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "South Australia",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Tasmania",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      }
+    ]
+  },
+
+  {
+    "countryName": "Japan",
+    "states": [
+      {
+        "stateName": "New South Wales",
+        "cities": ["Armidale", "Ballina", "Balranald"]
+      },
+
+      {
+        "stateName": "Northern Territory",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Queensland",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "South Australia",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Tasmania",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      }
+    ]
+  },
+
+  {
+    "countryName": "Malaysia",
+    "states": [
+      {
+        "stateName": "New South Wales",
+        "cities": ["Armidale", "Ballina", "Balranald"]
+      },
+
+      {
+        "stateName": "Northern Territory",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Queensland",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "South Australia",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Tasmania",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      }
+    ]
+  },
+
+  {
+    "countryName": "Singapore",
+    "states": [
+      {
+        "stateName": "New South Wales",
+        "cities": ["Armidale", "Ballina", "Balranald"]
+      },
+
+      {
+        "stateName": "Northern Territory",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Queensland",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "South Australia",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Tasmania",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      }
+    ]
+  },
+
+  {
+    "countryName": "United Kingdom",
+    "states": [
+      {
+        "stateName": "New South Wales",
+        "cities": ["Armidale", "Ballina", "Balranald"]
+      },
+
+      {
+        "stateName": "Northern Territory",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Queensland",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "South Australia",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Tasmania",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      }
+    ]
+  },
+
+  {
+    "countryName": "United States",
+    "states": [
+      {
+        "stateName": "Alabama",
+        "cities": [
+          "Downtown Birmingham",
+          "Five Points South (Birmingham)",
+          "The Wharf (Orange Beach)",
+          "Downtown Mobile",
+          "The Entertainment District (Huntsville)",
+          "Downtown Montgomery",
+          "Uptown (Birmingham)",
+          "Historic District (Fairhope)",
+          "Downtown Decatur",
+          "LoDa (Lower Dauphin Street) Historic District (Mobile)",
+          "Downtown Tuscaloosa",
+          "Downtown Florence",
+          "Downtown Gadsden",
+          "Downtown Anniston",
+          "Downtown Auburn",
+          "The Village of Providence (Huntsville)",
+          "Downtown Prattville",
+          "Old Cloverdale (Montgomery)",
+          "Downtown Opelika",
+          "Downtown Dothan"
+        ]
+      },
+
+      {
+        "stateName": "Alaska",
+        "cities": [
+          "Downtown Anchorage",
+          "Spenard (Anchorage)",
+          "South Addition (Anchorage)",
+          "Downtown Juneau",
+          "Old Town (Fairbanks)",
+          "Mountain View (Anchorage)",
+          "Downtown Sitka",
+          "Midtown (Anchorage)",
+          "Downtown Ketchikan",
+          "Airport Heights (Anchorage)",
+          "Russian Jack (Anchorage)",
+          "Downtown Palmer",
+          "College (Fairbanks)",
+          "Mountain View (Juneau)",
+          "Downtown Homer",
+          "Downtown Soldotna",
+          "Sourdough (Fairbanks)",
+          "Downtown Kodiak",
+          "Downtown Valdez",
+          "Downtown Wasilla"
+        ]
+      },
+      {
+        "stateName": "California",
+        "cities": [
+          "Downtown Los Angeles",
+          "Hollywood (Los Angeles)",
+          "Beverly Hills",
+          "Downtown San Francisco",
+          "Union Square (San Francisco)",
+          "Fisherman's Wharf (San Francisco)",
+          "Chinatown (San Francisco)",
+          "The Castro (San Francisco)",
+          "Downtown San Diego",
+          "Gaslamp Quarter (San Diego)",
+          "Little Italy (San Diego)",
+          "La Jolla (San Diego)",
+          "Downtown Sacramento",
+          "Midtown (Sacramento)",
+          "Old Town Pasadena",
+          "Santa Monica",
+          "Venice Beach (Los Angeles)",
+          "The Mission (San Francisco)",
+          "Downtown Oakland",
+          "Napa Valley"
+        ]
+      },
+      {
+        "stateName": "Colorado",
+        "cities": [
+          "Downtown Denver",
+          "LoDo (Lower Downtown Denver)",
+          "RiNo (River North Art District)",
+          "Cherry Creek (Denver)",
+          "Highland (Denver)",
+          "Old Colorado City (Colorado Springs)",
+          "Downtown Boulder",
+          "Pearl Street Mall (Boulder)",
+          "Fort Collins Old Town",
+          "Uptown (Denver)",
+          "South Broadway (Denver)",
+          "The Highlands (Boulder)",
+          "Old Town Arvada",
+          "Downtown Colorado Springs",
+          "Sloans Lake (Denver)",
+          "Old Town Fort Collins",
+          "RiNo (River North) (Colorado Springs)",
+          "Downtown Aspen",
+          "Downtown Durango",
+          "Old Town Pueblo"
+        ]
+      },
+      {
+        "stateName": "Florida",
+        "cities": [
+          "South Beach (Miami Beach)",
+          "Downtown Miami",
+          "Wynwood (Miami)",
+          "Art Deco Historic District (Miami Beach)",
+          "Downtown Orlando",
+          "Thornton Park (Orlando)",
+          "Ybor City (Tampa)",
+          "Downtown Tampa",
+          "Downtown St. Petersburg",
+          "Historic District (St. Augustine)",
+          "Downtown Sarasota",
+          "Downtown Fort Myers",
+          "Key West Historic District",
+          "Walt Disney World Resort (Lake Buena Vista)",
+          "Coral Gables (Miami)",
+          "Coconut Grove (Miami)",
+          "Downtown West Palm Beach",
+          "Rosemary District (Sarasota)",
+          "Downtown Jacksonville",
+          "St. Armands Circle (Sarasota)"
+        ]
+      },
+      {
+        "stateName": "New Jersey",
+        "cities": [
+          "Downtown Jersey City",
+          "Hoboken Waterfront",
+          "Red Bank Downtown",
+          "Princeton Downtown",
+          "Asbury Park Boardwalk",
+          "Morristown Green",
+          "Montclair Center",
+          "Newark Ironbound",
+          "Cape May Historic District",
+          "Haddonfield Historic District",
+          "Downtown New Brunswick",
+          "Hoboken Washington Street",
+          "Collingswood Downtown",
+          "Englewood Downtown",
+          "Ridgewood Downtown",
+          "Downtown Rahway",
+          "Summit Downtown",
+          "Downtown Westfield",
+          "Downtown Somerville",
+          "Metuchen Downtown"
+        ]
+      },
+      {
+        "stateName": "Texas",
+        "cities": [
+          "Downtown Austin",
+          "Riverwalk (San Antonio)",
+          "Uptown (Dallas)",
+          "The Heights (Houston)",
+          "South Congress (Austin)",
+          "West 7th (Fort Worth)",
+          "The Strand Historic District (Galveston)",
+          "Deep Ellum (Dallas)",
+          "Pearl District (San Antonio)",
+          "Bishop Arts District (Dallas)",
+          "Montrose (Houston)",
+          "Southtown (San Antonio)",
+          "South Lamar (Austin)",
+          "Historic Market Square (San Antonio)",
+          "Sundance Square (Fort Worth)",
+          "Downtown Historic District (Grapevine)",
+          "Downtown Plano",
+          "Midtown (Houston)",
+          "Southtown Arts District (San Antonio)",
+          "Downtown Arlington"
+        ]
+      },
+      {
+        "stateName": "Virginia",
+        "cities": [
+          "Downtown Richmond",
+          "The Fan (Richmond)",
+          "Carytown (Richmond)",
+          "Shockoe Bottom (Richmond)",
+          "Old Town Alexandria",
+          "Georgetown (Washington, D.C.)",
+          "Downtown Norfolk",
+          "Ghent (Norfolk)",
+          "Virginia Beach Oceanfront",
+          "Downtown Roanoke",
+          "Downtown Charlottesville",
+          "Clarendon (Arlington)",
+          "Ballston (Arlington)",
+          "Old Town Winchester",
+          "Fredericksburg Historic District",
+          "Reston Town Center",
+          "Town Center (Virginia Beach)",
+          "Downtown Suffolk",
+          "Downtown Fredericksburg",
+          "Short Pump (Glen Allen)"
+        ]
+      },
+      {
+        "stateName": "Washington",
+        "cities": [
+          "Downtown Seattle",
+          "Pike Place Market (Seattle)",
+          "Capitol Hill (Seattle)",
+          "Fremont (Seattle)",
+          "Belltown (Seattle)",
+          "Downtown Bellevue",
+          "Pioneer Square (Seattle)",
+          "University District (Seattle)",
+          "Queen Anne (Seattle)",
+          "Georgetown (Seattle)",
+          "Downtown Tacoma",
+          "Stadium District (Tacoma)",
+          "Downtown Spokane",
+          "South Lake Union (Seattle)",
+          "Ballard (Seattle)",
+          "International District/Chinatown (Seattle)",
+          "Columbia City (Seattle)",
+          "Downtown Olympia",
+          "Wallingford (Seattle)",
+          "Greenwood (Seattle)"
+        ]
+      }
+    ]
+  },
+
+  {
+    "countryName": "Zimbabwe",
+    "states": [
+      {
+        "stateName": "New South Wales",
+        "cities": ["Armidale", "Ballina", "Balranald"]
+      },
+
+      {
+        "stateName": "Northern Territory",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Queensland",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "South Australia",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      },
+      {
+        "stateName": "Tasmania",
+        "cities": ["Duesseldorf", "Leinfelden-Echterdingen", "Eschborn"]
+      }
+    ]
+  }
+]

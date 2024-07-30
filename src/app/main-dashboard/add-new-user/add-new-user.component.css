@@ -1,0 +1,98 @@
+.main {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+input[type=checkbox] {
+  visibility: hidden;
+}
+
+.geekmark {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  height: 15px;
+  width: 15px;
+  background-color: #fff !important;
+  border: 1px solid #000;
+}
+
+.main input:checked~.geekmark {
+  background-color: #fff;
+  border: 1px solid #000;
+  color: #000;
+}
+
+.geekmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.main input:checked~.geekmark:after {
+  display: block;
+}
+
+.main .geekmark:after {
+  left: 4px;
+  bottom: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid #000;
+  border-width: 0 1px 1px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.add-form .main {
+  color: #000;
+  font-size: 13px;
+}
+
+.help-block {
+  color: red;
+  margin-left: 10px;
+}
+
+/* common ng-deep */
+.mat-form-field-appearance-outline ::ng-deep .mat-form-field-outline {
+  top: 5px;
+  bottom: 5px;
+}
+
+.mat-form-field-appearance-outline ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0.5em;
+}
+
+::ng-deep .mat-select-value {
+  position: relative;
+  bottom: 4px;
+}
+
+::ng-deep input.mat-input-element {
+  position: relative;
+  bottom: 4px;
+}
+
+.mat-form-field-appearance-outline ::ng-deep .mat-form-field-subscript-wrapper {
+  padding: 0 5px;
+}
+
+
+
+/* ::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+  color: rgb(199, 196, 196);
+}
+
+.mat-form-field-invalid ::ng-deep .mat-input-element {
+  color: rgb(199, 196, 196);
+}
+
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: rgb(199, 196, 196);
+} */

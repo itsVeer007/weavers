@@ -1,0 +1,35 @@
+<div class="container-fluid ">
+  <h1 class="text-center mt-3">WELCOME TO WEAVERS DIRECTORY</h1>
+
+  <div class="row mt-5 text-center d-flex justify-content-center">
+    <div class="col-md-4">
+      <mat-card class="">
+        <div>
+          <button type="button" class="btn btn-success btn-lg" (click)="open('inventory')">Inventory</button>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-4">
+      <mat-card class="">
+        <button type="button" class="btn btn-success btn-lg" (click)="open('sales')">Sales</button>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- <div class="d-grid gap-2 col-4 mx-auto">
+  <button class="btn btn-primary" type="button">Button</button>
+  <button class="btn btn-primary" type="button">Button</button>
+</div> -->
+
+
+  <!-- camera means Inventory -->
+  <div *ngIf="showInventory">
+    <app-add-new-inventory (newItemEvent)="closenow('inventory')"></app-add-new-inventory>
+  </div>
+
+
+  <!-- customer means Sales -->
+  <div *ngIf="showSales">
+    <app-add-new-customer (newItemEvent)="closenow('sales')"></app-add-new-customer>
+  </div>
+</div>

@@ -1,0 +1,201 @@
+<div class="row formModal">
+  <div class="col-lg-6 col-md-6"></div>
+  <div class="col-lg-6 col-md-6 add-form" id="camera" @inOutPaneAnimation>
+    <div>
+      <a class="close-main pointer" (click)="closeAddUser()"><img src="assets/icons/close_form.svg" /></a>
+      <span class="form-heading">Create Raw Materials</span>
+    </div>
+    <!-- Form -->
+    <div>
+      <mat-card class="mx-5 mb-3">
+        <!-- <div class="d-flex justify-content-center align-content-center">
+          <h1>ADD RAW MATERIALS</h1>
+        </div> -->
+        <form autocomplete="off" [formGroup]="UserForm1" #addUserForm="ngForm">
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Item Name</mat-label>
+                <mat-select formControlName="itemCode">
+                  <mat-option *ngFor="let item of productData" [value]="item.suggestedItemCode" [hidden]="item.itemType != 1">{{ item.itemName}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1">Item Name is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Color</mat-label>
+                <input matInput formControlName="color">
+                <mat-error class="mt-1">color is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Color Code</mat-label>
+                <input matInput formControlName="colorCode">
+                <mat-error class="mt-1">colorCode is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-3 col-md-3">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Quantity in</mat-label>
+                <mat-select formControlName="quantityIn">
+                  <mat-option *ngFor="let item of Weavers_Item_Uom"
+                  [value]="item.keyId">{{ item.value}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1">Quantity in is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-3 col-md-3">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Quantity</mat-label>
+                <input matInput type="number" formControlName="quantity">
+                <mat-error class="mt-1">Quantity is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Cost</mat-label>
+                <input matInput formControlName="cost">
+                <mat-error class="mt-1">cost is required</mat-error>
+              </mat-form-field>
+            </div>
+            
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Quality</mat-label>
+                <mat-select formControlName="quality">
+                  <mat-option *ngFor="let item of Weavers_Quality" [value]="item.value">{{ item.value}}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1">quality is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Invoice Number</mat-label>
+                <input matInput formControlName="invoiceNumber">
+                <mat-error class="mt-1">Invoice Number is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <input matInput [matDatepicker]="picker1" placeholder="InvoiceDate" formControlName="invoiceDate">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+                <mat-error class="mt-1">invoiceDate is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Vendor Name</mat-label>
+                <mat-select formControlName="vendorId">
+                  <mat-option *ngFor="let item of vendorDetail" [value]="item.id">{{ item.vendorName }}</mat-option>
+                </mat-select>
+                <mat-error class="mt-1">vendor Name is required</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </form>
+      
+        <div class="d-flex justify-content-end">
+          <a class="add-task-btn" (click)="add1(UserForm1.value)">Add</a>
+        </div>
+      </mat-card>
+      <div class="col-lg-6 col-md-6 d-flex justify-content-start align-items-center mb-2">
+        <!-- <p class="m-0">Proprietor 2</p> -->
+        <div class="on-off-toggle mx-5">
+          <input class="on-off-toggle__input" type="checkbox" id="proparatorTwo" (change)="activeTwo()">
+          <label for="proparatorTwo" class="on-off-toggle__slider"></label>
+        </div>
+      </div>
+      <mat-card class="mx-5" *ngIf="!proparatorTwo">
+        <form autocomplete="off" [formGroup]="UserForm2">
+          <div class="row">
+              <div class="col-lg-3 col-md-3">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>sgst</mat-label>
+                  <input matInput formControlName="sgst">
+                  <mat-error class="mt-1">sgst is required</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-lg-3 col-md-3">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>cgst</mat-label>
+                  <input matInput formControlName="cgst">
+                  <mat-error class="mt-1">cgst is required</mat-error>
+                </mat-form-field>
+              </div>
+              <!-- <div class="col-lg-3 col-md-3">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>igst</mat-label>
+                  <input matInput formControlName="igst">
+                  <mat-error class="mt-1">Invoice Number is required</mat-error>
+                </mat-form-field>
+              </div> -->
+          </div>
+        </form>
+       </mat-card>
+
+       <mat-card class="mx-5" *ngIf="proparatorTwo">
+        <form autocomplete="off" [formGroup]="UserForm2">
+          <div class="row">
+              <div class="col-lg-3 col-md-3">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>igst</mat-label>
+                  <input matInput formControlName="igst">
+                  <mat-error class="mt-1">Invoice Number is required</mat-error>
+                </mat-form-field>
+              </div>
+          </div>
+        </form>
+       </mat-card>
+
+    <div class="table-task mt-2 mx-5" *ngIf="tasks1.length > 0">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ItemName</th>
+            <th>ItemCode</th>
+            <th>Color</th>
+            <th>Quality</th>
+            <th>Cost</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks1; let j=index">
+            <th>{{ task.itemname }}</th>
+            <td>{{ task.itemCode }}</td>
+            <td>{{ task.color }}</td>
+            <td>{{ task.quality }}</td>
+            <td>{{task.cost}}</td>
+            <td>{{ task.quantity }}</td>
+            <td>{{task?.cost * task?.quantity}}</td>
+           <td><img src="assets/icons/delete_black.svg" alt="" (click)="deleteTableItem(j)"></td>
+            
+          </tr>
+          
+        
+        </tbody>
+        <tfoot>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Grand Total</td>
+          <td>{{totalCost}}</td>
+        </tfoot>
+      </table>
+    </div>
+    <div class="text-center my-3">
+      <button type="submit" class="add-task-btn" (click)="submit1()">Submit</button>
+    </div>
+
+    </div>
+    <!-- /Form -->
+
+  </div>
+</div>
