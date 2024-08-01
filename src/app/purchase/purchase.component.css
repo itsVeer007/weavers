@@ -1,11 +1,3 @@
-.address-container {
-  border-radius: 1px;
-  border-width: 1px;
-  border-style: solid;
-  padding: 2px;
-  width: 100%;
-}
-
 tbody, td, tfoot, th, thead, tr {
     border-width: 0 1px;
   }
@@ -52,12 +44,6 @@ tbody, td, tfoot, th, thead, tr {
     font-size: 10px;
   }
 
-  @media print {
-    .hidden-for-pdf {
-        display: none !important;
-    }
-}
-
 .heading {
   font-weight: bold;
   font-size: 26px;
@@ -65,8 +51,8 @@ tbody, td, tfoot, th, thead, tr {
 }
 
 .sub-heading{
-  font-weight: 500;
-  font-size:14px;
+  font-weight: 600;
+  font-size: 16px;
 }
 
   .paargraph-head {
@@ -104,20 +90,14 @@ h3::after {
 
 }
 
-@media print { 
-  .header { 
-      position: fixed; 
-      top: 0; 
-      left: 0; 
-      right: 0; 
-      height: 50px; 
-  } 
-
-  footer { 
-      position: fixed; 
-      bottom: 0; 
-      left: 0; 
-      right: 0; 
-      height: 50px; 
-  } 
+/* .cost-details {
+  display: flex;
+  align-items: end;
+  flex-direction: column;
 }
+
+.cost-details div {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+} */

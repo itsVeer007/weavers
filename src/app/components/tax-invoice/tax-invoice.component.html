@@ -1,19 +1,19 @@
-<div style="height: 100vh; overflow-y: auto; position: relative; width: 50vw;">
-    <!-- <div> -->
-        <div style="position: absolute; top: 10%; left: 50%; transform: translate(-50%, 0); z-index: 1; opacity: 0.2;">
+<div style="height: 100vh; overflow-y: auto; position: relative;">
+        <!-- <div style="position: absolute; top: 10%; left: 50%; transform: translate(-50%, 0); z-index: 1; opacity: 0.2;">
             <img src="assets/icons/Mangalagiri Weavers Development Logo_2.jpg" alt="">
-        </div>
+        </div> -->
 
-    <div class="mx-3" style="border: 1px solid; position: absolute; z-index: 99;" *ngIf="newNote" #table>
+    <div class="mx-3" *ngIf="newNote" #table #tableRef ngxPrintElement>
 
-        <div class="d-flex justify-content-between align-items-center" style="border-bottom: 1px solid;">
+        <!-- <div class="d-flex justify-content-between align-items-center" style="border-bottom: 1px solid;">
                 <img src="assets\icons\Mangalagiri Weavers Development Logo_2.jpg" alt="" width="80px">
                 <span class="heading">TAX INVOICE</span>
             <div style="border-left: 1px solid; height: 80px;" class="p-3">
                 <p class="secondHeading">Inv No:&nbsp;{{newNote[0]?.invoiceNo }}</p>
                 <p class="secondHeading">Inv Date:&nbsp; {{newNote[0]?.invoiceDate | date: 'dd/MM/yyyy'}}</p>
             </div>
-        </div>
+        </div> -->
+
         <div class="d-flex justify-content-between align-items-center">
             <div class="">
                 <div class="d-flex justify-content-start align-items-center">
@@ -36,6 +36,7 @@
                 </div>
             </div>
         </div>
+        
         <div>
             <div class="row m-0" style="border: 1px solid;">
                 <div class="col-lg-4" style="border-right: 1px solid;">
@@ -61,42 +62,43 @@
                 </div>
             </div>
         </div>
+
             <div class="table-wrap">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="text-center">
-                                <p class="secondHeading">Item<br>No.</p>
+                            <th>
+                                <p class="secondHeading text-center">Item<br>No.</p>
                             </th>
-                            <th class="text-center">
-                                <p class="secondHeading">Material Code</p>
+                            <th>
+                                <p class="secondHeading text-center">Material Code</p>
                             </th>
-                            <th class="text-center">
-                                <p class="secondHeading">Description</p>
+                            <th>
+                                <p class="secondHeading text-center">Description</p>
                             </th>
-                            <th class="text-center">
-                                <p class="secondHeading">HSN/SAC</p>
+                            <th>
+                                <p class="secondHeading text-center">HSN/SAC</p>
                             </th>
-                            <th class="text-center">
-                                <p class="secondHeading text-end">Qty.</p>
+                            <th>
+                                <p class="secondHeading text-center text-end">Qty.</p>
                             </th>
-                            <th class="text-center">
-                                <p class="secondHeading">Rate</p>
+                            <th>
+                                <p class="secondHeading text-center">Rate</p>
                             </th>
-                            <th class="text-center">
-                                <p class="secondHeading">Amount(INR)</p>
+                            <th>
+                                <p class="secondHeading text-center">Amount(INR)</p>
                             </th>
                         </tr>
                     </thead>
                     <tbody >
                         <tr *ngFor="let item of newNote; let i = index">
-                            <td class="taxContentSize" class="text-center">{{i+1}}</td>
-                            <td class="taxContentSize text-center">{{item.itemCode}}</td>
-                            <td class="taxContentSize">{{item.itemName}}</td>
-                            <td class=" taxContentSize text-center">{{'68798'}}</td>
-                            <td class=" taxContentSize text-center">{{item.quantity}}</td>
-                            <td class=" taxContentSize text-center">{{item.cost}}</td>
-                            <td class="taxContentSize text-end">{{item.cost * item.quantity}} </td>
+                            <td class="text-center">{{i+1}}</td>
+                            <td class="text-center">{{item.itemCode}}</td>
+                            <td class="text-center">{{item.itemName}}</td>
+                            <td class="text-center">{{'68798'}}</td>
+                            <td class="text-center">{{item.quantity}}</td>
+                            <td class="text-center">{{item.cost}}</td>
+                            <td class="text-end">{{item.cost * item.quantity}} </td>
                         </tr>
                     </tbody>
                     <!-- <tfoot>
@@ -152,7 +154,7 @@
                 </table>
             </div>
 
-        <div class="">
+        <div>
             <div class="d-flex justify-content-start" style="border: 1px solid #000;">
                 <div style="border-right: 1px solid #000; width: 580px;">
                     <div style="border-bottom: 1px solid #000;">
@@ -182,7 +184,8 @@
                 </div>
             </div>
         </div>
-        <div class="">
+
+        <!-- <div>
             <div class="d-flex justify-content-between" style="border: 1px solid #000;">
                 <div style="border-right: 1px solid #000;">
                     <div style="border-bottom: 1px solid #000; width: 550px;">
@@ -200,13 +203,12 @@
                     <p class="secondHeading mt-5">Authorised Signatory</p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
-    <div class="d-flex justify-content-end align-items-center mt-1" id="buttons" style="position: absolute; z-index:99;">
-        <button class="btn btn-secondary btn-sm" mat-dialog-close
-            [ngClass]="{'hidden-for-pdf' : !showSaveButton}">Close</button>
-        <button class="btn btn-secondary btn-sm mx-2" (click)="generatePDF()"
-            [ngClass]="{'hidden-for-pdf' : !showSaveButton}">Save Invoice</button>
+
+
+    <div class="d-flex justify-content-end align-items-center mt-1" id="buttons">
+        <button class="btn btn-secondary btn-sm" mat-dialog-close>Close</button>
+        <button class="btn btn-secondary btn-sm mx-2" (click)="onPrint1(tableElement)">Save Invoice</button>
     </div>
-    <!-- </div> -->
 </div>

@@ -13,6 +13,7 @@ export class InventoryService {
 
 invoiceNoSub: BehaviorSubject<any> = new BehaviorSubject(null)
 purchaseSub: BehaviorSubject<any> = new BehaviorSubject(null)
+goodRecieptSub: BehaviorSubject<any> = new BehaviorSubject(null)
 
   // baseUrl = `${environment.baseUrl}/weavers`;
   baseUrl = 'http://192.168.0.129:8080';

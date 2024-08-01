@@ -91,13 +91,15 @@ export class RawMaterialsComponent implements OnInit {
     this.dialog.open(this.ItemsDialog)
   }
 
-  newNote: any;
-  @ViewChild('taxInvoiceDialog') taxInvoiceDialog = {} as TemplateRef<any>;
+  // newNote: any;
+  // @ViewChild('taxInvoiceDialog') taxInvoiceDialog = {} as TemplateRef<any>;
+  // @ViewChild(GoodReceiptComponent) goodRecieptComp: any
   taxData(item:any) {
-    this.inventorySer.listGoodReceiptNote(item).subscribe((res:any)=> {
-      this.newNote = res;
-    })
-    this.dialog.open(this.taxInvoiceDialog)
+    // this.inventorySer.listGoodReceiptNote(item).subscribe((res:any)=> {
+    //   this.newNote = res;
+    // });
+    this.inventorySer.goodRecieptSub.next(item);
+    this.dialog.open(GoodReceiptComponent);
   }
 
   

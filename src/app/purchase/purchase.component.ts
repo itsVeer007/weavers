@@ -16,21 +16,21 @@ export class PurchaseComponent implements OnInit {
 
   dialog: any;
   Math: any;
-  constructor(private http:HttpClient,
+  constructor(private http: HttpClient,
     private inventorySer: InventoryService,
-    private storageSer :StorageService,
-    public datepipe:DatePipe,
+    private storageSer: StorageService,
+    public datepipe: DatePipe,
     public print: NgxPrintElementService
   ) { }
 
   dcItems: any;
-  purchaseNumber:any 
+  purchaseNumber: any
   ngOnInit(): void {
     this.dcItems = this.storageSer.get('dcItems');
-    this.inventorySer.purchaseSub.subscribe((res:any)=> {
+    this.inventorySer.purchaseSub.subscribe((res: any) => {
       this.purchaseNumber = res;
     })
-    this.listInvoicesForReceipt()
+    this.listInvoicesForReceipt();
   }
 
   @ViewChild('table', { static: false }) table!: ElementRef;
@@ -38,7 +38,7 @@ export class PurchaseComponent implements OnInit {
   newNote: any = [];
   generatePDF() {
     let pdfHeight: number;
-    if(this.newNote.length < 50) {
+    if (this.newNote.length < 50) {
       pdfHeight = 150
     } else {
       pdfHeight = 70
@@ -55,15 +55,16 @@ export class PurchaseComponent implements OnInit {
 
 
 
-  data:any = [];
+  data: any = [];
   listInvoicesForReceipt() {
-    this.inventorySer.listPOForm({purchaseRef: this.purchaseNumber}).subscribe((res:any)=> {
+    this.inventorySer.listPOForm({ purchaseRef: this.purchaseNumber }).subscribe((res: any) => {
       this.newNote = res;
+      // this.onPrint1(this.tableElement);
     })
   }
 
   getTotalAmount(): number {
-    return this.data.reduce((total:any, item:any) => total + (item.quantity  * item.cost) , 0);
+    return this.data.reduce((total: any, item: any) => total + (item.quantity * item.cost), 0);
   }
 
   getCeiledGrandTotal() {
@@ -79,8 +80,8 @@ export class PurchaseComponent implements OnInit {
 
 
   downloadPDF() {
-    const htmlWidth =500;
-    const htmlHeight =  500;
+    const htmlWidth = 500;
+    const htmlHeight = 500;
 
     const topLeftMargin = 15;
 
@@ -98,7 +99,7 @@ export class PurchaseComponent implements OnInit {
       const imgData = canvas.toDataURL("image/jpeg", 1.0);
       let pdf = new jsPDF('p', 'pt', [pdfWidth, pdfHeight]);
       pdf.addImage(imgData, 'png', topLeftMargin, topLeftMargin, canvasImageWidth, canvasImageHeight);
-      
+
       for (let i = 1; i <= totalPDFPages; i++) {
         pdf.addPage([pdfWidth, pdfHeight], 'p');
         pdf.addImage(imgData, 'png', topLeftMargin, - (pdfHeight * i) + (topLeftMargin * 4), canvasImageWidth, canvasImageHeight);
@@ -120,7 +121,7 @@ export class PurchaseComponent implements OnInit {
       var canvas_image_height = HTML_Height;
 
       var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
-      
+
       var imgData = canvas.toDataURL('image/jpeg', 1.0);
       const backgroundImg = 'assets/icons/Mangalagiri Weavers.jpg';
       var pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
@@ -148,13 +149,46 @@ export class PurchaseComponent implements OnInit {
     pageTitle: 'Hello World',
     // htmlType: 'text',
 
-    templateString: `<header>I\'m part of the template header</header>{{printBody}}<footer>I\'m part of the template footer</footer>`,
-    
+    templateString: `
+    <header>
+      <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.2;">
+          <img src="assets/icons/Mangalagiri Weavers.jpg" width="100%" alt="">
+      </div>
+
+      <div class="d-flex align-items-center justify-content-center my-5">
+        <div>
+            <img src="assets/icons/Mangalagiri Weavers.jpg" alt="" width="150px">
+        </div>
+        <div>
+            <h1>Purchase Order</h1>
+        </div>
+      </div>
+    </header>
+    {{printBody}}
+    <footer>
+      <div>
+        <div class="text-center border-top mt-3">
+            <p style="font-weight: bold;">MHDC International Pvt. Ltd.</p>
+            <p class="">Regd. Off.: Flat No.508, Kosanam Roy Heights, APNRT Tech Park,</p>
+            <p class="">Mangalagiri, Guntur District - 522503, Andhra Pradesh</p>
+            <p class="">Mfg. Address:S.No.49, P.No.133, Autonagar, Mangalagiri</p>
+            <p class="">Guntur District - 522503, Andhra Pradesh</p>
+        </div>
+      </div>
+    </footer>`,
+
     stylesheets: [{ rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' }],
     styles: [
-      'header, footer{ text-align: center; }',
-      'body .bg-success{ background-color: #4dcf83 !important; }',
-      'body .bg-danger{ background-color: #f96868 !important; }',
+      `
+      header, footer{
+        text-align: center;
+      }
+        
+      .sub-heading{
+        font-weight: 600;
+        font-size: 16px;
+      }
+      `
     ]
   }
 

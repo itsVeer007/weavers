@@ -1,57 +1,59 @@
 <div style="height: 100vh; overflow-y: auto;">
     <div style="position: relative">
-        
-        <div class="mx-3" #table #tableRef ngxPrintElement>
-            <div style="position: absolute; top: 10%; left: 50%; transform: translate(-50%, 0); z-index: 1; opacity: 0.2;">
-                <img src="assets\icons\Mangalagiri Weavers.jpg" style="width: 50vw;" alt="">
-            </div>
 
-            <div class="d-flex align-items-center justify-content-center my-5 header">
-                <div style="position: absolute; left: 0;">
+        <div class="mx-3" #table #tableRef ngxPrintElement>
+            <!-- <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.2;">
+                <img src="assets\icons\Mangalagiri Weavers.jpg" width="100%" alt="">
+            </div> -->
+
+            <!-- <div class="d-flex align-items-center justify-content-center my-5">
+                <div>
                     <img src="assets\icons\Mangalagiri Weavers Development Logo_2.jpg" alt="" width="150px">
                 </div>
                 <div>
                     <h1>Purchase Order</h1>
                 </div>
-            </div>
-    
-            <div class="d-flex justify-content-between align-items-center">
+            </div> -->
+
+            <div class="d-flex justify-content-between align-items-center mb-2">
                 <div>
                     <p class="sub-heading">Ref : {{newNote[0]?.purchaseRef}}</p>
                     <!-- <p>CIN No : U74900AP2014PTC095541</p> -->
                 </div>
                 <div>
-                    <p class="sub-heading">Document Date:&nbsp; <span class="sub-heading">{{newNote[0]?.documentDate}}</span></p>
+                    <p class="sub-heading">Document Date:&nbsp; <span
+                            class="sub-heading">{{newNote[0]?.documentDate}}</span></p>
                     <p class="sub-heading"> PO No:&nbsp; {{newNote[0]?.purchaseNo}}</p>
                     <p class="sub-heading">GST No: &nbsp; <span class="sub-heading">37ABXFM8268Q1ZR</span></p>
                 </div>
             </div>
-    
-            <div class="d-flex justify-content-between align-items-center mb-1">
-                <div class="address-container" style="height: 15vh;">
-                    <p class="sub-heading p-0"
-                        style="border-bottom: 1px solid ; background-color: darkgrey; width: 100;">Bill from :</p>
-                    <p class="sub-heading" style="border-bottom: 1px solid;">{{newNote[0]?.vendorName}}</p>
-                    <p class="sub-heading">{{newNote[0]?.addressLine1}}</p>
-                    <p class="sub-heading">{{newNote[0]?.mobileNumber1}}</p>
-                    <p class="sub-heading"> {{newNote[0]?.vendorGstin}}</p>
+
+            <div class="d-flex justify-content-between align-items-center mb-2" style="height: 15vh;">
+                <div class="w-100 h-100" style="border: 1px solid #000;">
+                    <p class="sub-heading w-100 p-0" style="background-color: darkgrey; width: 100;">Bill from :</p>
+
+                    <p style="border-bottom: 1px solid;">{{newNote[0]?.vendorName}}</p>
+                    <p>{{newNote[0]?.addressLine1}}</p>
+                    <p>{{newNote[0]?.mobileNumber1}}</p>
+                    <p> {{newNote[0]?.vendorGstin}}</p>
                 </div>
-                <div class="address-container" style="height: 15vh;">
-                    <p class="sub-heading" style="border-bottom: 1px solid ; background-color: darkgray;">Ship To :
-                    </p>
-                    <p class="sub-heading" style="border-bottom: 1px solid">MHDC International Pvt Ltd.</p>
-                    <p class="sub-heading">S.No.49, P.No.133</p>
-                    <p class="sub-heading">Autonagar, Mangalagiri,</p>
-                    <p class="sub-heading">Guntur District</p>
-                    <p class="sub-heading">Pincode- 522503, Andhra Pradesh</p>
+
+                <div class="w-100 h-100" style="border: 1px solid #000;">
+                    <p class="sub-heading w-100 p-0" style="background-color: darkgray;">Ship To :</p>
+
+                    <p style="border-bottom: 1px solid">MHDC International Pvt Ltd.</p>
+                    <p>S.No.49, P.No.133</p>
+                    <p>Autonagar, Mangalagiri,</p>
+                    <p>Guntur District</p>
+                    <p>Pincode- 522503, Andhra Pradesh</p>
                 </div>
             </div>
-    
-    
-            <div class="bottom-table">
+
+
+            <div>
                 <table class="table">
                     <thead>
-                        <tr style=" background-color: darkgray;">
+                        <tr>
                             <th>Items</th>
                             <th>Description</th>
                             <th>UOM</th>
@@ -64,7 +66,8 @@
                         <tr *ngFor="let item of newNote; let i = index">
                             <td>{{item.itemCode}}</td>
                             <td>{{item.itemName}}</td>
-                            <td>{{item.itemUom == 1 ? 'Laddi':  item.itemUom == 2 ?  'Numbers' : item.itemUom == 3 ?  'Mark' : item.itemUom == 4  ? 'Kgs': item.itemUom == 5 ? 'Gms' : ''}}</td>
+                            <td>{{item.itemUom == 1 ? 'Laddi': item.itemUom == 2 ? 'Numbers' : item.itemUom == 3 ?
+                                'Mark' : item.itemUom == 4 ? 'Kgs': item.itemUom == 5 ? 'Gms' : ''}}</td>
                             <td>{{item.orderQuantity}}</td>
                             <td>{{item.cost}}</td>
                             <!-- <td class="text-end">{{item.cost * item.quantity}}</td> -->
@@ -111,101 +114,107 @@
                 </tfoot> -->
                 </table>
             </div>
-    
+
+            <div class="d-flex flex-column align-items-end">
+                <div class="d-flex justify-content-between w-25">
+                    <p class="sub-heading">SUB TOTAL</p>
+                    <p>{{newNote[0]?.subTotal}}</p>
+                </div>
+                <div class="d-flex justify-content-between w-25">
+                    <p class="sub-heading">SGST@{{newNote[0]?.sgstPercent}}</p>
+                    <p>{{newNote[0]?.sgst}}</p>
+                </div>
+                <div class="d-flex justify-content-between w-25">
+                    <p class="sub-heading">CGST@{{newNote[0]?.cgstPercent}}</p>
+                    <p>{{newNote[0]?.cgst}}</p>
+                </div>
+                <div class="d-flex justify-content-between w-25">
+                    <p class="sub-heading">IGST@{{newNote[0]?.igstPercent}}</p>
+                    <p>{{newNote[0]?.igst}}</p>
+                </div>
+
+                <div class="d-flex flex-row-reverse justify-content-between mt-2 w-100">
+                    <div class="d-flex justify-content-around">
+                        <p class="sub-heading">TOTAL</p>
+                        <p class="w-25">{{newNote[0]?.grandTotal}}</p>
+                    </div>
+                    <p class="my-3" class="sub-heading mb-3">{{newNote[0]?.grandTotal| numberToWords}}</p>
+                </div>
+            </div>
+
+
             <div>
-                <div class="d-flex justify-content-end align-items-center">
-                    <p class="mx-5 secondHeading" style="width: 60px;">Sub Total</p>
-                    <p class="mx-5 secondHeading" style="width: 10px;">{{newNote[0]?.subTotal}}</p>
+                <p class="sub-heading">Terms and Conditions:</p>
+
+                <div class="d-flex justify-content-start align-items-center">
+                    <p class="paargraph-head">Taxes</p>
+                    <p class="paargraph">:CGST @{{newNote[0]?.cgstPercent}} + SGST @{{newNote[0]?.sgstPercent}}</p>
                 </div>
-                <div class="d-flex justify-content-end align-items-center">
-                    <p class="mx-5 sub-heading" style="width: 40px;">SGST@{{newNote[0]?.sgstPercent}}</p>
-                    <p class="mx-5 sub-heading" style="width: 10px;">{{newNote[0]?.sgst}}</p>
+                <div class="d-flex justify-content-start align-items-center">
+                    <p class="paargraph-head">Dispatch schedule </p>
+                    <p class="paargraph">:Immediately</p>
                 </div>
-                <div class="d-flex justify-content-end align-items-center">
-                    <p class="mx-5 sub-heading" style="width: 40px;">CGST@{{newNote[0]?.cgstPercent}}</p>
-                    <p class="mx-5 sub-heading" style="width: 10px;">{{newNote[0]?.cgst}}</p>
+                <div class="d-flex justify-content-start align-items-center">
+                    <p class="paargraph-head">payment Terms </p>
+                    <p class="paargraph">:FOR 30 days.</p>
                 </div>
-                <div class="d-flex justify-content-end align-items-center">
-                    <p class="mx-5 sub-heading" style="width: 40px;">IGST@{{newNote[0]?.igstPercent}}</p>
-                    <p class="mx-5 sub-heading" style="width: 10px;">{{newNote[0]?.igst}}</p>
-                </div>
-                <div class="d-flex justify-content-end align-items-center">
-                    <hr style="width: 20%;">
-                </div>
-                <div class="d-flex justify-content-end align-items-center">
-                    <p class="mx-5 secondHeading" style="width: 40px;">Total</p>
-                    <p class="mx-5 secondHeading" style="width: 10px; ">{{newNote[0]?.grandTotal}}</p>
-                </div>
-            </div>
-    
-            <p class="my-3" class="sub-heading mb-3">{{newNote[0]?.grandTotal| numberToWords}}</p>
-    
-            <h1 style="font-weight: bold;">Terms and Conditions:</h1>
-            <div class="d-flex justify-content-start align-items-center">
-                <p class="paargraph-head">Taxes</p>
-                <p class="paargraph">:CGST @{{newNote[0]?.cgstPercent}} + SGST @{{newNote[0]?.sgstPercent}}</p>
-            </div>
-            <div class="d-flex justify-content-start align-items-center">
-                <p class="paargraph-head">Dispatch schedule </p>
-                <p class="paargraph">:Immediately</p>
-            </div>
-            <div class="d-flex justify-content-start align-items-center">
-                <p class="paargraph-head">payment Terms </p>
-                <p class="paargraph">:FOR 30 days.</p>
-            </div>
                 <!-- <div  class="d-flex justify-content-start align-items-center">
-            <p  class="paargraph-head">Warranty</p><p class="paargraph">:1 year & Any damages need to be replaced.</p>
-        </div> -->
-            <div class="d-flex justify-content-start align-items-center">
-                <p class="paargraph-head">Qualityterms</p>
-                <p class="paargraph">: Material acceptance is subjected to testing by IVIS qualitity control team. The
-                    material will be rejected and the PO can be</p>
-            </div>
-            <div class="d-flex justify-content-start align-items-center">
-                <p class="paargraph-head">. </p>
-                <p class="paargraph">:cancelled if it does not meet the requirements.</p>
-            </div>
+                <p  class="paargraph-head">Warranty</p><p class="paargraph">:1 year & Any damages need to be replaced.</p>
+            </div> -->
+                <div class="d-flex justify-content-start align-items-center">
+                    <p class="paargraph-head">Qualityterms</p>
+                    <p class="paargraph">: Material acceptance is subjected to testing by IVIS qualitity control team. The
+                        material will be rejected and the PO can be</p>
+                </div>
+                <div class="d-flex justify-content-start align-items-center">
+                    <p class="paargraph-head">. </p>
+                    <p class="paargraph">:cancelled if it does not meet the requirements.</p>
+                </div>
     
-            <div class="d-flex justify-content-start align-items-center">
-                <p class="paargraph-head">Cancellation policy</p>
-                <p class="paargraph">:IVIS reserves the right to cancel the PO at any time even after the receipt of the
-                    material without specifying any reason.</p>
+                <div class="d-flex justify-content-start align-items-center">
+                    <p class="paargraph-head">Cancellation policy</p>
+                    <p class="paargraph">:IVIS reserves the right to cancel the PO at any time even after the receipt of the
+                        material without specifying any reason.</p>
+                </div>
+                <div class="d-flex justify-content-start align-items-center">
+                    <p class="paargraph-head">Email </p>
+                    <p class="paargraph">:Send invoices and delivery confirmations to the following email addresses after
+                        dispatch.</p>
+                </div>
+                <div class="d-flex justify-content-start align-items-center">
+                    <p class="paargraph-head">. </p>
+                    <p class="paargraph">:procurement@MHDC.net,</p>
+                </div>
+                <div class="d-flex justify-content-start align-items-center">
+                    <p class="paargraph-head">. </p>
+                    <p class="paargraph">:inventory1@MHDC.net</p>
+                </div>
+                <div class="d-flex justify-content-start align-items-center">
+                    <p class="paargraph-head">Billing Address </p>
+                    <p class="paargraph">:Regd. Office : Balaji Residency, 3rd floor, NH - 5, Service Road Mangalagiri -
+                        522503., A.P., India.</p>
+                </div>
+                <div class="d-flex justify-content-start align-items-center">
+                    <p class="paargraph-head">. </p>
+                    <p class="paargraph">:Service Road Mangalagiri - 522503., A.P., India.</p>
+                </div>
             </div>
-            <div class="d-flex justify-content-start align-items-center">
-                <p class="paargraph-head">Email </p>
-                <p class="paargraph">:Send invoices and delivery confirmations to the following email addresses after
-                    dispatch.</p>
-            </div>
-            <div class="d-flex justify-content-start align-items-center">
-                <p class="paargraph-head">. </p>
-                <p class="paargraph">:procurement@MHDC.net,</p>
-            </div>
-            <div class="d-flex justify-content-start align-items-center">
-                <p class="paargraph-head">. </p>
-                <p class="paargraph">:inventory1@MHDC.net</p>
-            </div>
-            <div class="d-flex justify-content-start align-items-center">
-                <p class="paargraph-head">Billing Address </p>
-                <p class="paargraph">:Regd. Office : Balaji Residency, 3rd floor, NH - 5, Service Road Mangalagiri -
-                    522503., A.P., India.</p>
-            </div>
-            <div class="d-flex justify-content-start align-items-center">
-                <p class="paargraph-head">. </p>
-                <p class="paargraph">:Service Road Mangalagiri - 522503., A.P., India.</p>
-            </div>
+
             <div class="footer mx-2">
                 <div class="footer d-flex justify-content-between align-items-center">
                     <div>
-                        <h3 class="">Signature1</h3>
-                        <h3 class="">Signature2</h3>
+                        <p class="sub-heading">Signature1</p>
+                        <p class="sub-heading">Signature2</p>
                     </div>
                     <div>
-                        <h3 class="">Date1</h3>
-                        <h3 class="">Date2</h3>
+                        <p class="sub-heading">Date1</p>
+                        <p class="sub-heading">Date2</p>
                     </div>
                 </div>
             </div>
-            <div style="margin-top: 200px;">
+
+
+            <!-- <div>
                 <h2></h2>
                 <div class="text-center">
                     <p style="font-weight: bold;">MHDC International Pvt. Ltd.</p>
@@ -214,13 +223,14 @@
                     <p class="">Mfg. Address:S.No.49, P.No.133, Autonagar, Mangalagiri</p>
                     <p class="">Guntur District - 522503, Andhra Pradesh</p>
                 </div>
-            </div>
+            </div> -->
         </div>
-    
-        <div class="d-flex justify-content-end align-items-center my-2" id="buttons" style="position: absolute; z-index: 99; right: 0;">
+
+        <div class="d-flex justify-content-end align-items-center my-2" id="buttons"
+            style="position: absolute; z-index: 99; right: 0;">
             <button class="btn btn-secondary btn-sm" mat-dialog-close
                 [ngClass]="{'hidden-for-pdf' : !showSaveButton}">Close</button>
-    
+
             <button class="btn btn-secondary btn-sm mx-2" (click)="onPrint1(tableElement)"
                 [ngClass]="{'hidden-for-pdf' : !showSaveButton}">Save Invoice</button>
         </div>

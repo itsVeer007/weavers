@@ -1,76 +1,67 @@
-<div style="height: 100vh; width: 40vw; position: relative;">
+<div style="height: 100vh;">
 
-    <div style="position: absolute; top: 10%; left: 50%; transform: translate(-50%, 0); z-index: 1; opacity: 0.2;">
+    <!-- <div style="position: absolute; top: 10%; left: 50%; transform: translate(-50%, 0); z-index: 1; opacity: 0.2;">
         <img src="assets/icons/Mangalagiri Weavers Development Logo_2.jpg" alt="">
-    </div>
+    </div> -->
 
-    <div style="position: absolute; z-index: 99;" #table>
-        <!-- <div class="col-md-12"> -->
-            <div class=" mt-2 address-container d-flex justify-content-between align-items-center">
-                <!-- <div class="d-flex justify-content-start align-items-center"> -->
+    <div #table #tableRef ngxPrintElement>
+            <!-- <div class=" mt-2 address-container d-flex justify-content-between align-items-center">
                     <img src="assets\icons\Mangalagiri Weavers Development Logo_2.jpg" alt="" width="124px" class="text-start">
-                <!-- </div> -->
                 <div class="text-center" style="margin-right: 180px;">
                 <p class="secondHeading">Goods Receipt Note</p>
                 <p class="secondHeading">Mangalagiri Handlooms Development Center Pvt Ltd</p>
                 <p class="secondHeading">Mangalagiri</p>
                 </div>
-            </div>
-            <div class="mt-2">
-                <div class="d-flex justify-content-between align-self-start" style="border-top: 1px solid #000;">
-                    <div style="border: 1px solid #000;">
-                        <p class="p-2 heading">Location: {{note[0]?.state}}</p>
+            </div> -->
+
+            <div class="d-flex justify-content-between">
+                <div>
+                    <p style="border: 1px solid #000; height: 3vh; width: 15vw;">Location&nbsp; {{note[0]?.state}}</p>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <p style="border: 1px solid #000; height: 3vh; width: 5vw;">GRN NO&nbsp;</p>
+                        <p style="border: 1px solid #000; height: 3vh; width: 5vw;">GRN Date&nbsp;</p>
                     </div>
-                    <!-- <div>
-                        <p style="border: 1px solid #000;">GRN NO:{{note[0]?.grnNo}}</p>
-                        <p style="border: 1px solid #000;">GRN Date: {{note[0]?.grnDate}}</p>
-                    </div> -->
-                    <div class="w-25">
-                        <div class="d-flex justify-content-between border border-secondary">
-                            <div class="w-100" style="border-right: 1px solid #000;">
-                                <p class="mt-2 heading" style="border-bottom: 1px solid #000;">GRN NO</p>
-                                <p class="mt-2 heading">GRN Date</p>
-                            </div>
-                            <div class="w-100">
-                                <p class="mt-2 heading" style="border-bottom: 1px solid #000; font-size: 12px;">{{note[0]?.grnNo}}</p>
-                                <p class="mt-2 heading">{{note[0]?.grnDate}}</p>
-                            </div>
-                        </div>
+
+                    <div>
+                        <p style="border: 1px solid #000; height: 3vh; width: 15vw;">kjhsdk</p>
+                        <p style="border: 1px solid #000; height: 3vh; width: 15vw;">sankbdjb</p>
                     </div>
                 </div>
             </div>
-            <div class="my-3" style="height: 120px;">
-                <div class="d-flex justify-content-between border w-50 border-secondary">
+
+            <div class="my-3">
+                <div class="d-flex justify-content-between border border-secondary" style="width: 20vw;">
                     <div class="w-100" style="border-right: 1px solid #000;">
-                        <p  class="heading text-start">MHDC Po No & Date</p>
-                        <p  style="border-top: 1px solid #000;" class="heading text-start">Supplier Invoice No</p>
-                        <p  style="border-top: 1px solid #000;" class="heading text-start">Project Name</p>
-                        <p  style="border-top: 1px solid #000;" class="heading text-start">Name of the Supplier</p>
+                        <p >MHDC Po No & Date</p>
+                        <p style="border-top: 1px solid #000;">Supplier Invoice No</p>
+                        <p style="border-top: 1px solid #000;">Project Name</p>
+                        <p style="border-top: 1px solid #000;">Name of the Supplier</p>
+                        <p style="border-top: 1px solid #000;">Date</p>
                     </div>
+
                     <div class="w-100">
-                        <p  style="font-size: 12px; font-size: 12px;height: 20px; " class="heading">{{note[0]?.purchaseRef}}<span>{{note[0]?.documentDate}}</span></p>
-                        <p  style="border-top: 1px solid #000;" class="heading"> {{note[0]?.invoiceNumber}} <span style="border-left: 1px solid #000;"><span style="border-right: 1px solid #000;"> Date:&nbsp;</span> {{note[0]?.grnDate}}</span></p>
-                        <p  style="border-top: 1px solid #000;" class="heading">{{'Null'}}</p>
-                        <p  style="border-top: 1px solid #000;" class="heading">{{note[0]?.vendorName}}</p>
+                        <p>{{note[0]?.purchaseRef}}<span>{{note[0]?.documentDate}}</span></p>
+                        <p style="border-top: 1px solid #000;">{{'Null'}}</p>
+                        <p style="border-top: 1px solid #000;">{{'Null'}}</p>
+                        <p style="border-top: 1px solid #000;">{{note[0]?.vendorName}}</p>
+                        <p style="border-top: 1px solid #000;">2024-03-15</p>
                     </div>
                 </div>
-                <div class="d-flex border-secondary border">
-                    <p class="my-3" class="heading">Address:&nbsp;</p>
-                    <p class="my-3" class="heading">{{note[0]?.country}}, {{note[0]?.state}}, {{note[0]?.city}},{{note[0]?.postCode}}</p>
+
+                <div class="d-flex border border-secondary" style="width: 50vw; height: 10vh;">
+                    <p style="border-right: 1px solid #000; padding: 0 10px;">Address&nbsp;</p>
+                    <p>{{note[0]?.country}}, {{note[0]?.state}}, {{note[0]?.city}},{{note[0]?.postCode}}</p>
                 </div>
             </div>
-            <div class="bottom-table mt-2">
+
+            <div class="mt-2">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col" class="secondHeading">
-                                <p> ItemCode.</p>
-                            </th>
-                            <th scope="col" class="secondHeading">Description</th>
-                            <th scope="col" class="secondHeading"> Qty.</th>
-                            <th scope="col" class="secondHeading"> Unit price</th>
-                            <th scope="col" class="secondHeading">Uom</th>
-                            <th scope="col" class="secondHeading text-end"> Amount(INR)</th>
+                            <th *ngFor="let header of tableItems">{{header}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -121,7 +112,7 @@
                 </table>
             </div>
 
-            <div class="address-container mt-3">
+            <!-- <div class="address-container mt-3">
                <div class="d-flex justify-content-between align-items-center">
                 <div class="p-0 " style="width: 550px; border-right: 1px solid black;">
                     <p style="border-bottom: 1px solid black;" class="text-end heading">IGST</p>
@@ -153,20 +144,38 @@
                         <h3 class="mt-2 heading"> Date</h3>
                     </div>
                 </div>
+            </div> -->
+
+            
+            <div class="d-flex flex-column align-items-end">
+                <div class="d-flex justify-content-between w-25">
+                    <p class="sub-heading">FREIGHT`</p>
+                    <p>{{note[0]?.subTotal}}</p>
+                </div>
+                <div class="d-flex justify-content-between w-25">
+                    <p class="sub-heading">SGST + CGST{{note[0]?.sgstPercent}}</p>
+                    <p>{{note[0]?.sgst}}</p>
+                </div>
+
+                <div class="d-flex flex-row-reverse justify-content-between mt-2 w-100">
+                    <div class="d-flex justify-content-around">
+                        <p class="sub-heading">TOTAL</p>
+                        <p class="w-25">{{note[0]?.grandTotal}}</p>
+                    </div>
+                    <p class="my-3" class="sub-heading mb-3">{{note[0]?.grandTotal| numberToWords}}</p>
+                </div>
             </div>
 
-            <div class="footer-one">
+            <!-- <div class="footer-one">
                 <hr class="line">
                 <p class=" secondHeading text-center">Mangalagiri Handlooms Development Center</p>
                 <p class="text-center my-2 heading">Regd.Off:Flat No.508,Kosanam,Roy Heights,APNRT Tech Park,Mangalagiri,Guntur District-522503,Andhra Pradesh</p>
                 <p class="text-center heading"><span>Mfg. Address:</span>S.No.49,p.No.133,Autonagar,Mangalagiri,Guntur District-522503,Andhra Pradesh</p>
-            </div>
-        <!-- </div> -->
+            </div> -->
+
         <div class="d-flex justify-content-end align-items-center mt-1" id="buttons">
-            <button class="btn btn-secondary btn-sm mx-2" (click)="generatePDF()"
-                [ngClass]="{'hidden-for-pdf': !showSaveButton}">Save Invoice</button>
-            <button class="btn btn-secondary btn-sm" mat-dialog-close
-                [ngClass]="{'hidden-for-pdf': !showSaveButton}">Close</button>
+            <button class="btn btn-secondary btn-sm mx-2" (click)="onPrint1(tableElement)">Save Invoice</button>
+            <button class="btn btn-secondary btn-sm" mat-dialog-close>Close</button>
         </div>
     </div>
 </div>

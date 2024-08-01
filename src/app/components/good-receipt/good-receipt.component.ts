@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { Config, NgxPrintElementService } from 'ngx-print-element';
 import { InventoryService } from 'src/services/inventory.service';
 
 @Component({
@@ -10,14 +11,23 @@ import { InventoryService } from 'src/services/inventory.service';
 })
 export class GoodReceiptComponent implements OnInit {
 
-  @Input() note: any;
+  // @Input() goodRecieptData: any;
 
   constructor(
-    private inventorySer: InventoryService
+    private inventorySer: InventoryService,
+    public print: NgxPrintElementService
   ) { }
 
+  tableItems: any[] =['ItemCode', 'Description', 'Qty', 'Unit price', 'Uom', 'Amount(INR)']
+
+  invoiceNumber: any;
   ngOnInit(): void {
-    // this.listGoodReceiptNote()
+    this.inventorySer.goodRecieptSub.subscribe({
+      next: (res) => {
+        this.invoiceNumber = res;
+      }
+    })
+    this.listGoodReceiptNote()
   }
 
   @ViewChild('table', { static: false }) table!: ElementRef;
@@ -44,11 +54,11 @@ export class GoodReceiptComponent implements OnInit {
     });
   }
 
-  // note:any = [];
+  note:any = [];
   listGoodReceiptNote() {
-    this.inventorySer.listGoodReceiptNote().subscribe((res:any)=> {
+    this.inventorySer.listGoodReceiptNote(this.invoiceNumber).subscribe((res:any)=> {
       // console.log(res)
-      this.note = res;
+      this.note = res.items;
     })
   }
 
@@ -69,6 +79,65 @@ export class GoodReceiptComponent implements OnInit {
       return total + itemTotal + sgst + cgst + igst;
     }, 0);
   }
+
+  public config: Config = {
+    printMode: 'template',
+    popupProperties: 'toolbar=yes, scrollbars=yes, resizable=yes, top=0, left=0, fullscreen=yes',
+    pageTitle: 'Hello World',
+    // htmlType: 'text',
+
+    templateString: `
+    <header>
+      <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.2;">
+          <img src="assets/icons/Mangalagiri Weavers.jpg" width="100%" alt="">
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center">
+      <div>
+          <p class="secondHeading">Goods Receipt Note</p>
+          <p class="secondHeading">Mangalagiri Handlooms Development Center Pvt Ltd</p>
+          <p class="secondHeading">Mangalagiri</p>
+          </div>
+      </div>
+    </header>
+    {{printBody}}
+    <footer>
+      <div class="footer-one">
+          <hr class="line">
+          <p class=" secondHeading text-center">Mangalagiri Handlooms Development Center</p>
+          <p class="text-center my-2 heading">Regd.Off:Flat No.508,Kosanam,Roy Heights,APNRT Tech Park,Mangalagiri,Guntur District-522503,Andhra Pradesh</p>
+          <p class="text-center heading"><span>Mfg. Address:</span>S.No.49,p.No.133,Autonagar,Mangalagiri,Guntur District-522503,Andhra Pradesh</p>
+      </div>
+    </footer>`,
+
+    stylesheets: [{ rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' }],
+    styles: [
+      `
+      header, footer{
+        text-align: center;
+      }
+        
+      .sub-heading{
+        font-weight: 600;
+        font-size: 16px;
+      }
+
+      .address-container{
+        border-radius: 1px;
+        border-width: 1px;
+        color: rgb(19, 20, 20);
+        border-style: solid;
+        padding: 2px;
+      }
+      `
+    ]
+  }
+
+  @ViewChild('tableRef') tableElement!: ElementRef<HTMLTableElement>;
+  onPrint1(el: ElementRef<HTMLTableElement | HTMLElement>) {
+    this.print.print(el, this.config).subscribe(console.log);
+  }
+
 }
 
 
