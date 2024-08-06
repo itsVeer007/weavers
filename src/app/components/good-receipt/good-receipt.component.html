@@ -1,41 +1,37 @@
-<div style="height: 100vh;">
-
-    <!-- <div style="position: absolute; top: 10%; left: 50%; transform: translate(-50%, 0); z-index: 1; opacity: 0.2;">
-        <img src="assets/icons/Mangalagiri Weavers Development Logo_2.jpg" alt="">
-    </div> -->
+<div style="height: 100vh; width: 40VW; padding: 10px;">
 
     <div #table #tableRef ngxPrintElement>
-            <!-- <div class=" mt-2 address-container d-flex justify-content-between align-items-center">
-                    <img src="assets\icons\Mangalagiri Weavers Development Logo_2.jpg" alt="" width="124px" class="text-start">
-                <div class="text-center" style="margin-right: 180px;">
+            <div class="d-flex justify-content-center border border-secondary p-2 mb-2">
+                <!-- <img src="assets\icons\Mangalagiri Weavers Development Logo_2.jpg" alt="" width="124px" class="text-start"> -->
+                <div class="text-center">
                 <p class="secondHeading">Goods Receipt Note</p>
                 <p class="secondHeading">Mangalagiri Handlooms Development Center Pvt Ltd</p>
                 <p class="secondHeading">Mangalagiri</p>
                 </div>
-            </div> -->
+            </div>
 
             <div class="d-flex justify-content-between">
                 <div>
-                    <p style="border: 1px solid #000; height: 3vh; width: 15vw;">Location&nbsp; {{note[0]?.state}}</p>
+                    <p style="border: 1px solid #000; padding: 8px; width: 300px;">Location&nbsp; {{note?.state}}</p>
                 </div>
 
                 <div class="d-flex justify-content-between">
                     <div>
-                        <p style="border: 1px solid #000; height: 3vh; width: 5vw;">GRN NO&nbsp;</p>
-                        <p style="border: 1px solid #000; height: 3vh; width: 5vw;">GRN Date&nbsp;</p>
+                        <p style="border: 1px solid #000; padding: 8px; width: 100px;">GRN NO&nbsp;</p>
+                        <p style="border: 1px solid #000; padding: 8px; width: 100px;">GRN Date&nbsp;</p>
                     </div>
 
                     <div>
-                        <p style="border: 1px solid #000; height: 3vh; width: 15vw;">kjhsdk</p>
-                        <p style="border: 1px solid #000; height: 3vh; width: 15vw;">sankbdjb</p>
+                        <p style="border: 1px solid #000; padding: 8px; width: 300px;">{{note?.grnNo}}</p>
+                        <p style="border: 1px solid #000; padding: 8px; width: 300px;">{{note?.grnDate}}</p>
                     </div>
                 </div>
             </div>
 
             <div class="my-3">
-                <div class="d-flex justify-content-between border border-secondary" style="width: 20vw;">
+                <div class="d-flex justify-content-between border border-secondary" style="width: 100%">
                     <div class="w-100" style="border-right: 1px solid #000;">
-                        <p >MHDC Po No & Date</p>
+                        <p>MHDC Po No & Date</p>
                         <p style="border-top: 1px solid #000;">Supplier Invoice No</p>
                         <p style="border-top: 1px solid #000;">Project Name</p>
                         <p style="border-top: 1px solid #000;">Name of the Supplier</p>
@@ -43,17 +39,21 @@
                     </div>
 
                     <div class="w-100">
-                        <p>{{note[0]?.purchaseRef}}<span>{{note[0]?.documentDate}}</span></p>
-                        <p style="border-top: 1px solid #000;">{{'Null'}}</p>
-                        <p style="border-top: 1px solid #000;">{{'Null'}}</p>
-                        <p style="border-top: 1px solid #000;">{{note[0]?.vendorName}}</p>
-                        <p style="border-top: 1px solid #000;">2024-03-15</p>
+                        <p>{{note?.purchaseRef}}</p>
+                        <p style="border-top: 1px solid #000;">{{note?.invoiceNumber}}</p>
+                        <p style="border-top: 1px solid #000;">{{note.projectName ??'Mangalagiri'}}</p>
+                        <p style="border-top: 1px solid #000;">{{note?.vendorName}}</p>
+                        <p style="border-top: 1px solid #000;">{{note?.invoiceDate}}</p>
                     </div>
                 </div>
 
-                <div class="d-flex border border-secondary" style="width: 50vw; height: 10vh;">
-                    <p style="border-right: 1px solid #000; padding: 0 10px;">Address&nbsp;</p>
-                    <p>{{note[0]?.country}}, {{note[0]?.state}}, {{note[0]?.city}},{{note[0]?.postCode}}</p>
+                <div class="d-flex border border-secondary" style="width: 100%">
+                    <div style="border-right: 1px solid #000;">
+                        <p>Address&nbsp;</p>
+                    </div>
+                    <div *ngIf="note?.country">
+                        <p>{{note?.country}}, {{note?.state}}, {{note?.city}}, {{note?.postCode}}</p>
+                    </div>
                 </div>
             </div>
 
@@ -65,7 +65,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of note; let i = index">
+                        <tr *ngFor="let item of newnote?.items; let i = index">
                             <td class="heading">{{item.itemCode}}</td>
                             <td class="heading">{{item.itemName}}</td>
                             <td class="heading">{{item.quantity}}</td>
@@ -74,108 +74,55 @@
                             <td class="text-end heading">{{item.cost * item.quantity}}</td>
                         </tr>
                     </tbody>
-                    <!-- <tfoot class="mt-2">
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>IGST</td>
-                            <td class="text-end">{{note[0]?.igst}}</td>
-                        </tr>
-                        <tr class="mt-2">
-                            <td></td>
-                            <td></td>
-                            <td>
-                            </td>
-                            <td></td>
-                            <td >SGST</td>
-                            <td class="text-end">{{note[0]?.sgst}}</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>CGST</td>
-                            <td class="text-end">{{note[0]?.cgst}}</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="secondHeading">Total</td>
-                            <td class="text-end ">INR {{ getTotalAmount()}}</td>
-                        </tr>
-                    </tfoot> -->
                 </table>
             </div>
 
-            <!-- <div class="address-container mt-3">
-               <div class="d-flex justify-content-between align-items-center">
-                <div class="p-0 " style="width: 550px; border-right: 1px solid black;">
-                    <p style="border-bottom: 1px solid black;" class="text-end heading">IGST</p>
-                    <p style="border-bottom: 1px solid black;" class="text-end heading">SGST</p>
-                    <p style="border-bottom: 1px solid black;" class="text-end heading">CGST</p>
-                    <p class="text-end heading">Total</p>
-                    </div>
-
-                    <div  class="p-0 " style="width: 210px; ">
-                        <p style="border-bottom: 1px solid black; height: 20px;" class="text-end heading">{{note[0]?.igst}}</p>
-                        <p style="border-bottom: 1px solid black; height: 20px;" class="text-end heading">{{note[0]?.sgst}}</p>
-                        <p style="border-bottom: 1px solid black; height: 20px;" class="text-end heading">{{note[0]?.cgst}}</p>
-                        <p class="text-end heading">{{ note[0]?.grandTotal}}fg</p>
-                    </div>
-               </div>
-            </div>
-
-            <div class="mt-2">
-                <p><span class="secondHeading">Amount in Words:&nbsp;</span>{{ note[0]?.grandTotal | numberToWords}}</p>
-            </div>
-            <div class="footer">
-                <div class=" footer d-flex justify-content-between align-items-center ">
-                  <div>
-                    <h3 class="mt-2 heading"> Signature 1</h3>
-                    <h3 class="mt-2 heading"> Signature 2</h3>
-                  </div>
-                    <div>
-                        <h3 class="mt-2 heading">Date</h3>
-                        <h3 class="mt-2 heading"> Date</h3>
-                    </div>
-                </div>
-            </div> -->
-
             
+
             <div class="d-flex flex-column align-items-end">
                 <div class="d-flex justify-content-between w-25">
-                    <p class="sub-heading">FREIGHT`</p>
-                    <p>{{note[0]?.subTotal}}</p>
+                    <p class="sub-heading">SUB TOTAL</p>
+                    <p>{{note?.subTotal}}</p>
                 </div>
                 <div class="d-flex justify-content-between w-25">
-                    <p class="sub-heading">SGST + CGST{{note[0]?.sgstPercent}}</p>
-                    <p>{{note[0]?.sgst}}</p>
+                    <p class="sub-heading">SGST@{{note?.sgstPercent}}</p>
+                    <p>{{note?.sgst}}</p>
+                </div>
+                <div class="d-flex justify-content-between w-25">
+                    <p class="sub-heading">CGST@{{note?.cgstPercent}}</p>
+                    <p>{{note?.cgst}}</p>
+                </div>
+                <div class="d-flex justify-content-between w-25">
+                    <p class="sub-heading">IGST@{{note?.igstPercent}}</p>
+                    <p>{{note?.igst}}</p>
                 </div>
 
                 <div class="d-flex flex-row-reverse justify-content-between mt-2 w-100">
+
                     <div class="d-flex justify-content-around">
-                        <p class="sub-heading">TOTAL</p>
-                        <p class="w-25">{{note[0]?.grandTotal}}</p>
+                        <p class="sub-heading">TOTAL&nbsp;</p>
+                        <p>{{note?.grandTotal ?? '________________'}}</p>
                     </div>
-                    <p class="my-3" class="sub-heading mb-3">{{note[0]?.grandTotal| numberToWords}}</p>
+                    <p class="my-3" class="sub-heading mb-3">{{note?.grandTotal| numberToWords}}</p>
                 </div>
             </div>
 
-            <!-- <div class="footer-one">
-                <hr class="line">
-                <p class=" secondHeading text-center">Mangalagiri Handlooms Development Center</p>
-                <p class="text-center my-2 heading">Regd.Off:Flat No.508,Kosanam,Roy Heights,APNRT Tech Park,Mangalagiri,Guntur District-522503,Andhra Pradesh</p>
-                <p class="text-center heading"><span>Mfg. Address:</span>S.No.49,p.No.133,Autonagar,Mangalagiri,Guntur District-522503,Andhra Pradesh</p>
-            </div> -->
+            <div class="my-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="sub-heading p-2">Signature 1&nbsp; __________________________</p>
+                        <p class="sub-heading p-2">Signature 2&nbsp; __________________________</p>
+                    </div>
+                    <div>
+                        <p class="sub-heading p-2">Date 1&nbsp; ________________</p>
+                        <p class="sub-heading p-2">Date 2&nbsp; ________________</p>
+                    </div>
+                </div>
+            </div>
+    </div>
 
-        <div class="d-flex justify-content-end align-items-center mt-1" id="buttons">
-            <button class="btn btn-secondary btn-sm mx-2" (click)="onPrint1(tableElement)">Save Invoice</button>
-            <button class="btn btn-secondary btn-sm" mat-dialog-close>Close</button>
-        </div>
+    <div class="d-flex justify-content-end align-items-center mt-1" id="buttons">
+        <button class="btn btn-secondary btn-sm mx-2" (click)="onPrint1(tableElement)">Save Invoice</button>
+        <button class="btn btn-secondary btn-sm" mat-dialog-close>Close</button>
     </div>
 </div>

@@ -173,7 +173,7 @@ this.local = true;
       if(cgst != null || sgst != null) {
         this.userForm1.get('igstPercent').disable();
       } else {
-        this.userForm1.get('igstPercent').enable();
+        this.userForm1.get('cgstPercent').enable();
         this.userForm1.get('sgstPercent').enable();
       }
 
@@ -256,7 +256,6 @@ this.local = true;
   grandTotalWithCGSTSGST:any
   grandTotalWithIGST:any
   invoiceNumber:any;
-
   calculate() {
     let cgstPercent = this.userForm1.value.cgstPercent;
     let sgstPercent = this.userForm1.value.sgstPercent;
@@ -273,30 +272,35 @@ this.local = true;
     let userFormThree = this.userForm3.value;
 
     if(this.saleType == 1) {
-      if(this.clientRequestsDataSecond.country == 'India' && this.clientRequestsDataSecond.state == 'Andhra Pradesh') {
+      if(this.userForm1.value.cgstPercent && this.userForm1.value.sgstPercent) {
         userFormOne.grandTotal = this.grandTotalWithCGSTSGST;
+      } else {        
+        userFormOne.grandTotal = this.grandTotalWithIGST;
+      }
+      console.log(this.grandTotalWithIGST, this.grandTotalWithCGSTSGST)
+
         userFormOne.subTotal = this.totalCost;
         userFormOne.sgst = sgstFor;
         userFormOne.cgst = cgstFor;
         userFormOne.cgstPercent = cgstPercent
         userFormOne.sgstPercent = sgstPercent
         userFormOne.igstPercent = igstPercent
-        } else {
-          userFormOne.subTotal = this.totalCost
-          userFormOne.grandTotal = this.grandTotalWithIGST
-          userFormOne.igst = igstFor
-      }
-    } else {
-      if(this.userForm3.value.country == 'India' && this.userForm3.value.state == 'Andhra Pradesh') {
+        userFormOne.subTotal = this.totalCost
+        userFormOne.igst = igstFor
+    
+    } else if(this.saleType == 2) {
+      if(this.userForm1.value.cgstPercent && this.userForm1.value.sgstPercent) {
         userFormOne.grandTotal = this.grandTotalWithCGSTSGST;
+      } else {        
+        userFormOne.grandTotal = this.grandTotalWithIGST
+      }
+
         userFormOne.subTotal = this.totalCost;
         userFormOne.sgst = sgstFor;
         userFormOne.cgst = cgstFor;
-        } else {
-          userFormOne.subTotal = this.totalCost
-          userFormOne.grandTotal = this.grandTotalWithIGST
-          userFormOne.igst = igstFor
-      }
+        userFormOne.subTotal = this.totalCost
+        userFormOne.igst = igstFor
+      
     }
 
     if(this.saleType == 2) {
@@ -308,12 +312,64 @@ this.local = true;
     }
   }
 
+  // calculate() {
+  //   let cgstPercent = this.userForm1.value.cgstPercent;
+  //   let sgstPercent = this.userForm1.value.sgstPercent;
+  //   let igstPercent = this.userForm1.value.igstPercent;
+
+  //   let cgstFor = (cgstPercent)/100 * this.totalCost;
+  //   let sgstFor = (sgstPercent/100) * this.totalCost;
+  //   let igstFor = (igstPercent/100) * this.totalCost;
+  
+  //   this.grandTotalWithCGSTSGST  = this.totalCost + cgstFor + sgstFor;
+  //   this.grandTotalWithIGST  = this.totalCost + igstFor;
+
+  //   let userFormOne = this.userForm1.value;
+  //   let userFormThree = this.userForm3.value;
+
+  //   if(this.saleType == 1) {
+  //     if(this.clientRequestsDataSecond.country == 'India' && this.clientRequestsDataSecond.state == 'Andhra Pradesh') {
+  //       userFormOne.grandTotal = this.grandTotalWithCGSTSGST;
+  //       userFormOne.subTotal = this.totalCost;
+  //       userFormOne.sgst = sgstFor;
+  //       userFormOne.cgst = cgstFor;
+  //       userFormOne.cgstPercent = cgstPercent
+  //       userFormOne.sgstPercent = sgstPercent
+  //       userFormOne.igstPercent = igstPercent
+  //       } else {
+  //         userFormOne.subTotal = this.totalCost
+  //         userFormOne.grandTotal = this.grandTotalWithIGST
+  //         userFormOne.igst = igstFor
+  //         userFormOne.igstPercent = igstPercent
+  //     }
+  //   } else {
+  //     if(this.userForm3.value.country !== 'India' && this.userForm3.value.state !== 'Andhra Pradesh') {
+  //       userFormOne.grandTotal = this.grandTotalWithCGSTSGST;
+  //       userFormOne.subTotal = this.totalCost;
+  //       userFormOne.sgst = sgstFor;
+  //       userFormOne.cgst = cgstFor;
+  //       } else {
+  //         userFormOne.subTotal = this.totalCost
+  //         userFormOne.grandTotal = this.grandTotalWithIGST
+  //         userFormOne.igst = igstFor
+  //     }
+  //   }
+
+  //   if(this.saleType == 2) {
+  //     delete userFormOne.clientRequestId;
+  //     userFormThree.customerName = userFormThree.customerName;
+  //     userFormThree.mobileNumber = userFormThree.mobileNumber;
+  //     userFormThree.emailId = userFormThree.emailId;
+  //     userFormThree.state = userFormThree.state;
+  //   }
+  // }
+
   submit() {
-    // this.calculate();
-    this.userForm1.value.grandTotal = this.grandTotalWithCGSTSGST
+
+    console.log(this.userForm1.value)
+   
     this.inventorySer.CreateInvoice(this.userForm1.value, this.tasks, this.saleType == 2 ? this.userForm3.value : null).subscribe((res: any) => {
       this.invoiceNumber= res.invoiceNo;
-      // this.storageSer.set('invoice', res.invoiceNo)
       this.inventorySer.invoiceNoSub.next(res.invoiceNo);
       this.newItemEvent.emit();
       if(this.tasks.length != 0 )  {

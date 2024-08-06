@@ -56,12 +56,12 @@ tbody, td, tfoot, th, thead, tr {
 }
 
   .paargraph-head {
-    width: 150px;
+    width: 300px;
     font-size:14px;
     font-weight: 500;
   }
   .paargraph{
-    width: 770px;
+    width: 950px;
     font-size:14px;
     font-weight: 500;
   }

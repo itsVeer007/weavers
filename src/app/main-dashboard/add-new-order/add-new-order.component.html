@@ -60,7 +60,7 @@
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Item Name</mat-label>
                 <mat-select formControlName="itemCode">
-                  <mat-option *ngFor="let item of productMaster" [value]="item.suggestedItemCode" [hidden]="item.itemType != 1">{{ item.itemName}}</mat-option>
+                  <mat-option *ngFor="let item of productMaster" [value]="item.suggestedItemCode" [hidden]="item.itemType != 1"(click)="listInventoryForSending1(item)" >{{ item.itemName}}</mat-option>
                 </mat-select>
                 <mat-error class="mt-1">Item Name is required</mat-error>
               </mat-form-field>
@@ -136,7 +136,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let task of purchaseOrders; let j=index">
-            <th>{{ task.itemname }}</th>
+            <th>{{ task.itemCode }}</th>
             <!-- <td>{{ getItemNameByCode(task) }}</td> -->
             <td>{{ task.color }}</td>
             <td>{{ task.quality }}</td>

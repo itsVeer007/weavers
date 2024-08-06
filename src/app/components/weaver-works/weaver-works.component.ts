@@ -140,11 +140,11 @@ removeDuplicates() {
   inventoryItems: any;
   currentItem1: any
   openviewDetailsDialog(data: any) {
-    // console.log(data)
+    console.log(data)
     this.currentItem1 = data;
     this.inventorySer.listMachineAssignment(data).subscribe((res: any) => {
       this.inventoryItems = res;
-      // console.log(this.inventoryItems)
+      console.log(this.inventoryItems)
     })
     this.dialog.open(this.viewDetailsDialog);
   }
@@ -176,10 +176,10 @@ removeDuplicates() {
   @ViewChild('usedItemsDialog') usedItemsDialog = {} as TemplateRef<any>;
   ViewOutSareeInInvData:any
   ViewOutSareeInInv(item:any) {
-    // console.log(item)
+    console.log(item)
     this.currentItem = item
     this.inventorySer.ViewOutSareeInInv(this.currentItem).subscribe((res:any)=> {
-      // console.log(res)
+      console.log(res)
       this.ViewOutSareeInInvData = res;
       this.listMachineAssignment();
     })

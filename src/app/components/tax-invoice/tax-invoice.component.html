@@ -1,213 +1,140 @@
-<div style="height: 100vh; overflow-y: auto; position: relative;">
-        <!-- <div style="position: absolute; top: 10%; left: 50%; transform: translate(-50%, 0); z-index: 1; opacity: 0.2;">
-            <img src="assets/icons/Mangalagiri Weavers Development Logo_2.jpg" alt="">
-        </div> -->
+<div style="height: 100vh; overflow-y: auto;">
+    <div class="mx-3" style="position: relative;" *ngIf="Note" #table #tableRef ngxPrintElement>
 
-    <div class="mx-3" *ngIf="newNote" #table #tableRef ngxPrintElement>
-
-        <!-- <div class="d-flex justify-content-between align-items-center" style="border-bottom: 1px solid;">
-                <img src="assets\icons\Mangalagiri Weavers Development Logo_2.jpg" alt="" width="80px">
-                <span class="heading">TAX INVOICE</span>
-            <div style="border-left: 1px solid; height: 80px;" class="p-3">
-                <p class="secondHeading">Inv No:&nbsp;{{newNote[0]?.invoiceNo }}</p>
-                <p class="secondHeading">Inv Date:&nbsp; {{newNote[0]?.invoiceDate | date: 'dd/MM/yyyy'}}</p>
-            </div>
-        </div> -->
-
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="">
-                <div class="d-flex justify-content-start align-items-center">
-                    <p class="paargraph-head">Name</p><p class="headingForMangalagiri">: MANGALAGIRI HANDLOOM DEVELOPMENT CENTER</p>
-                </div>
-                <div class="d-flex justify-content-start align-items-center">
-                    <p class="paargraph-head">Address</p><p class="paargraph">: Flat No.508, Kosanam Roy Heights,APNRT Tech Park,Mangalagiri, Guntur District</p>
-                </div>
-                <div class="d-flex justify-content-start align-items-center">
-                    <p class="paargraph-head"></p><p class="paargraph">Andhra Pradesh - 522 503</p>
-                </div>
-                <div class="d-flex justify-content-start align-items-center">
-                    <p class="paargraph-head">Email ID</p><p class="paargraph">: mhdcweavers@gmail.com</p>
-                </div>
-                <div class="d-flex justify-content-start align-items-center">
-                    <p class="paargraph-head">MSME URN</p><p class="paargraph">: UDYAM-AP-04-0045278</p>
-                </div>
-                <div class="d-flex justify-content-start align-items-center">
-                    <p class="paargraph-head">GSTIN</p><p class="paargraph">: 37ABXFM8268Q1ZR</p>
-                </div>
-            </div>
+        <div style="position: absolute; top: -10%; right: 0;">
+            <p class="secondHeading">Inv No:&nbsp; {{this.Note?.invoiceNo }}</p>
+            <p class="secondHeading">Inv Date:&nbsp; {{this.Note?.invoiceDate}}</p>
         </div>
-        
-        <div>
-            <div class="row m-0" style="border: 1px solid;">
-                <div class="col-lg-4" style="border-right: 1px solid;">
-                    <p class="secondHeading">Bill To</p>
-                    <p class="secondHeading">Name:&nbsp;{{newNote[0]?.clientName}} </p>
-                    <p class="taxContentSize" *ngIf="newNote[0]?.address">Address:&nbsp;{{newNote[0]?.address}}</p>
-                    <!-- <p class="taxContentSize">Address:&nbsp;{{newNote[0]?.state}}</p> -->
-                    <p class="taxContentSize"> Phone No:&nbsp;{{newNote[0]?.mobileNumber}}</p>
-                    <p class="taxContent">Email:{{newNote[0]?.emailId}}</p>
-                </div>
-                <div class="col-lg-4" style="border-right: 1px solid;">
-                    <p class="secondHeading">Ship To</p>
-                    <p class="secondHeading">Name:&nbsp;{{newNote[0]?.clientName}} </p>
-                    <p class="taxContentSize" *ngIf="newNote[0]?.address">Address:&nbsp;{{newNote[0]?.address}}</p>
-                    <p class="taxContentSize">Phone No:&nbsp;{{newNote[0]?.mobileNumber}}</p>
-                    <p class="taxContent">Email:{{newNote[0]?.emailId}}</p>
-                </div>
-                <div class="col-lg-3" *ngIf="newNote[0]?.panNo || newNote[0]?.poNo || newNote[0]?.poDate">
-                    <!-- <p class="secondHeading">Details</p> -->
-                    <p class="secondHeading mt-3">PAN No :&nbsp;{{newNote[0]?.panNo}}</p>
-                    <p class="secondHeading">PO No :&nbsp;{{newNote[0]?.poNo}} </p>
-                    <p class="secondHeading">PO Date :{{newNote[0]?.poDate | date: 'dd/MM/yyyy'}}</p>
-                </div>
+
+       
+     
+        <div class="w-100 mb-2">
+            <div class="d-flex justify-content-start align-items-center">
+                <p class="paargraph-head">NAME&nbsp;</p>
+                <p class="headingForMangalagiri">MANGALAGIRI HANDLOOM DEVELOPMENT CENTER</p>
+            </div>
+            <div class="d-flex justify-content-start align-items-center">
+                <p class="paargraph-head">ADDRESS&nbsp;</p>
+                <p class="paargraph">Flat No.508, Kosanam Roy Heights, APNRT Tech Park, Mangalagiri, Guntur District
+                </p>
+            </div>
+            <div class="d-flex justify-content-start align-items-center">
+                <p class="paargraph-head">STATE&nbsp;</p>
+                <p class="paargraph">Andhra Pradesh
+                </p>
+            </div>
+            <div class="d-flex justify-content-start align-items-center">
+                <p class="paargraph-head">EMAIL&nbsp;</p>
+                <p class="paargraph">mhdcweavers@gmail.com</p>
+            </div>
+            <div class="d-flex justify-content-start align-items-center">
+                <p class="paargraph-head">MSME URN&nbsp;</p>
+                <p class="paargraph">UDYAM-AP-04-0045278</p>
+            </div>
+            <div class="d-flex justify-content-start align-items-center">
+                <p class="paargraph-head">GSTIN&nbsp;</p>
+                <p class="paargraph">37ABXFM8268Q1ZR</p>
             </div>
         </div>
 
-            <div class="table-wrap">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                <p class="secondHeading text-center">Item<br>No.</p>
-                            </th>
-                            <th>
-                                <p class="secondHeading text-center">Material Code</p>
-                            </th>
-                            <th>
-                                <p class="secondHeading text-center">Description</p>
-                            </th>
-                            <th>
-                                <p class="secondHeading text-center">HSN/SAC</p>
-                            </th>
-                            <th>
-                                <p class="secondHeading text-center text-end">Qty.</p>
-                            </th>
-                            <th>
-                                <p class="secondHeading text-center">Rate</p>
-                            </th>
-                            <th>
-                                <p class="secondHeading text-center">Amount(INR)</p>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody >
-                        <tr *ngFor="let item of newNote; let i = index">
-                            <td class="text-center">{{i+1}}</td>
-                            <td class="text-center">{{item.itemCode}}</td>
-                            <td class="text-center">{{item.itemName}}</td>
-                            <td class="text-center">{{'68798'}}</td>
-                            <td class="text-center">{{item.quantity}}</td>
-                            <td class="text-center">{{item.cost}}</td>
-                            <td class="text-end">{{item.cost * item.quantity}} </td>
-                        </tr>
-                    </tbody>
-                    <!-- <tfoot>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <p class="secondHeading">Transport Name:</p>
-                                <p class="secondHeading">Way Bill No:</p>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td class="secondHeading ">SubTotal</td>
-                            <td class="text-end">{{newNote[0]?.subTotal}}</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <p class="secondHeading">Terms & conditions</p>
-                                <p class="taxContentSize">1.All disputes subject to Mangalagiri Jurisdiction</p>
-                                <p class="taxContentSize">2.Payment should be made with in 30 days from the date of
-                                    Invoice</p>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td class="">IGST @5.0%</td>
-                            <td class="text-end">{{newNote[0]?.igst}}</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="">SGST @2.5%</td>
-                            <td class="text-end">{{getCeiledGrand()}}</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="">CGST @2.5%</td>
-                            <td class="text-end">{{getCeiledGrandTotall()}}</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="secondHeading">Total</td>
-                            <td class="text-end"> {{getCeiledGrandTotal()}} </td>
-                        </tr>
-                    </tfoot> -->
-                </table>
+        <div class="d-flex mb-2" style="border: 1px solid;">
+            <div style="border-right: 1px solid;" class="p-2">
+                <p class="secondHeading">Bill To</p>
+                <p class="secondHeading">Name:&nbsp;{{Note?.clientName}} </p>
+                <p class="taxContentSize" *ngIf="Note?.address">Address:&nbsp;{{Note?.address}}</p>
+                <!-- <p class="taxContentSize">Address:&nbsp;{{Note?.state}}</p> -->
+                <p class="taxContentSize"> Phone No:&nbsp;{{Note?.mobileNumber}}</p>
+                <p class="taxContent">Email:{{Note?.emailId}}</p>
             </div>
-
-        <div>
-            <div class="d-flex justify-content-start" style="border: 1px solid #000;">
-                <div style="border-right: 1px solid #000; width: 580px;">
-                    <div style="border-bottom: 1px solid #000;">
-                        <p class="secondHeading">Transport Name: Gati-Kintetsu Express Private Limited</p>
-                        <p class="secondHeading">Way Bill No :</p>
-                    </div>
-                    <div>
-                        <p class="secondHeading">Terms & conditions:</p>
-                            <p class="paargraph">1. All disputes subject to Mangalagiri Jurisdiction</p>
-                            <p class="paargraph">2..Payment should be made with in 30 days from the date of Invoice</p>
-                    </div>
-                </div>
-                <div style="border-right: 1px solid; width: 100px;">
-                    <p style="border-bottom: 1px solid;">SubTotal</p>
-                    <p class="taxContentSize" style="border-bottom: 1px solid;"> CGST @ {{newNote[0]?.cgstPercent}}</p>
-                    <p class="taxContentSize " style="border-bottom: 1px solid;"> SGST @ {{newNote[0]?.sgstPercent}}</p>
-                    <p class="taxContentSize" style="border-bottom: 1px solid;"> IGST @ {{newNote[0]?.igstPercent}}</p>
-                    <p class="taxContentSize">Total</p>
-                </div>
-                <div style="width: 300px;">
-                    <p style="border-bottom: 1px solid;" class="text-end">{{newNote[0]?.subTotal}}</p>
-                    <p style="border-bottom: 1px solid;" class="text-end">{{newNote[0]?.cgst}}</p>
-                    <p style="border-bottom: 1px solid;" class="text-end">{{newNote[0]?.sgst}}</p>
-                    <p style="border-bottom: 1px solid;" class="text-end">{{newNote[0]?.igst ? newNote[0]?.igst : 0}}</p>
-                    <p style="border-bottom: 1px solid;" class="text-end"> {{newNote[0]?.grandTotal}} </p>
-                    
-                </div>
+            <div style="border-right: 1px solid;" class="p-2">
+                <p class="secondHeading">Ship To</p>
+                <p class="secondHeading">Name:&nbsp;{{Note?.clientName}} </p>
+                <p class="taxContentSize" *ngIf="Note?.address">Address:&nbsp;{{Note?.address}}</p>
+                <p class="taxContentSize">Phone No:&nbsp;{{Note?.mobileNumber}}</p>
+                <p class="taxContent">Email:{{Note?.emailId}}</p>
+            </div>
+            <div class="p-2">
+                <!-- <p class="secondHeading">Details</p> -->
+                <p class="secondHeading">PAN No :&nbsp;{{Note?.panNo}}</p>
+                <p class="secondHeading">PO No :&nbsp;{{Note?.poNo}} </p>
+                <p class="secondHeading">PO Date :{{Note?.poDate | date: 'dd/MM/yyyy'}}</p>
             </div>
         </div>
 
-        <!-- <div>
-            <div class="d-flex justify-content-between" style="border: 1px solid #000;">
-                <div style="border-right: 1px solid #000;">
-                    <div style="border-bottom: 1px solid #000; width: 550px;">
-                        <p class="secondHeading">Total Amount in Word:{{getCeiledGrandTotal()| numberToWords}}</p>
-                        <p style="font-size: 12px;"> </p>
-                    </div>
-                    <div>
-                        <p class="secondHeading">Bank Details : ICICI Bank</p>
-                        <p class="secondHeading"> Account No: 384605500353</p>
-                        <p class="secondHeading"> IFSC Code : ICIC0003846</p>
-                    </div>
+        <div class="mb-2">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th *ngFor="let header of tableItems">{{header}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of newNote; let i = index">
+                        <td class="text-center">{{i+1}}</td>
+                        <td class="text-center">{{item.itemCode}}</td>
+                        <td class="text-center">{{item.itemName}}</td>
+                        <td class="text-center">{{'68798'}}</td>
+                        <td class="text-center">{{item.quantity}}</td>
+                        <td class="text-center">{{item.cost}}</td>
+                        <td class="text-end">{{item.cost * item.quantity}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="d-flex justify-content-between mb-2" style="border: 1px solid #000;">
+            <div style="border-right: 1px solid #000; width: 580px;">
+                <div style="border-bottom: 1px solid #000;">
+                    <p class="secondHeading">Transport Name:</p>
+                    <p class="secondHeading">Way Bill No :</p>
                 </div>
-                <div class="d-flex flex-column align-items-end" style="padding-left: 10px;">
-                    <p class="text-center" style="font-size: 11px; font-weight: bold;">For Mangalagiri Handloom Development Center</p>
-                    <p class="secondHeading mt-5">Authorised Signatory</p>
+                <div>
+                    <p class="secondHeading">Terms & conditions:</p>
+                    <p class="paargraph">1. All disputes subject to Mangalagiri Jurisdiction</p>
+                    <p class="paargraph">2..Payment should be made with in 30 days from the date of Invoice</p>
                 </div>
             </div>
-        </div> -->
+
+            <div style="border-right: 1px solid; width: 100px;">
+                <p style="border-bottom: 1px solid;">SubTotal</p>
+                <p class="taxContentSize" style="border-bottom: 1px solid;"> CGST@&nbsp;{{Note?.cgstPercent ?? '-'}}</p>
+                <p class="taxContentSize " style="border-bottom: 1px solid;"> SGST@&nbsp;{{Note?.sgstPercent ?? '-'}}</p>
+                <p class="taxContentSize" style="border-bottom: 1px solid;"> IGST@&nbsp;{{Note?.igstPercent ?? '-'}}</p>
+                <p class="taxContentSize">Total</p>
+            </div>
+
+            <div style="width: 300px;">
+                <p style="border-bottom: 1px solid;" class="text-end">{{Note?.subTotal ?? '-'}}</p>
+                <p style="border-bottom: 1px solid;" class="text-end">{{Note?.cgst ?? '-'}}</p>
+                <p style="border-bottom: 1px solid;" class="text-end">{{Note?.sgst ?? '-'}}</p>
+                <p style="border-bottom: 1px solid;" class="text-end">{{Note?.igst ? Note?.igst : 0}}</p>
+                <p class="text-end"> {{Note?.grandTotal ?? '-'}} </p>
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-end">
+            <p class="secondHeading">Amount in Words &nbsp;-&nbsp; {{ Note?.grandTotal | numberToWords }}</p>
+        </div>
+
+        <div class="d-flex justify-content-between w-100 mb-2" style="border: 1px solid #000;">
+            <div style="border-right: 1px solid #000;">
+                <div>
+                    <p class="secondHeading">Bank Details&nbsp;ICICI Bank</p>
+                    <p class="secondHeading">Account No&nbsp;384605500353</p>
+                    <p class="secondHeading">IFSC Code&nbsp;ICIC0003846</p>
+                </div>
+            </div>
+            <div class="d-flex flex-column align-items-end" style="padding-left: 10px;">
+                <p class="text-center" style="font-size: 11px; font-weight: bold;">For Mangalagiri Handloom Development Center</p>
+                <p class="secondHeading mt-5">Authorised Signatory</p>
+            </div>
+        </div>
     </div>
 
 
-    <div class="d-flex justify-content-end align-items-center mt-1" id="buttons">
+
+    <div class="d-flex justify-content-end align-items-end mt-1" id="buttons">
         <button class="btn btn-secondary btn-sm" mat-dialog-close>Close</button>
         <button class="btn btn-secondary btn-sm mx-2" (click)="onPrint1(tableElement)">Save Invoice</button>
     </div>

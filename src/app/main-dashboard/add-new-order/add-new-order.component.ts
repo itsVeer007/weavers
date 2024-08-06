@@ -110,9 +110,15 @@ export class AddNewOrderComponent implements OnInit {
   productMaster:any;
   listProduct() {
   this.inventorySer.listProduct().subscribe((res: any) => {
-      // console.log(res);
+      console.log(res);
       this.productMaster = res;
     });
+  }
+
+  listInventoryForSending1(item:any) {
+  this.inventorySer.listInventoryForSending1(item).subscribe((res:any)=> {
+  console.log(res)
+  })
   }
   
 
@@ -130,13 +136,13 @@ export class AddNewOrderComponent implements OnInit {
     }
   }
 
-  getItemNameByCode(item: any) {
-    this.productMaster.filter((el: any) => {
-      if(el.suggestedItemCode == item.itemCode) {
-        return el.itemName
-      }
-    })
-  }
+  // getItemNameByCode(item: any) {
+  //   this.productMaster.filter((el: any) => {
+  //     if(el.suggestedItemCode == item.itemCode) {
+  //       return el.itemName
+  //     }
+  //   })
+  // }
 
   isShown: boolean = false;
   toggleShowOnOff() {

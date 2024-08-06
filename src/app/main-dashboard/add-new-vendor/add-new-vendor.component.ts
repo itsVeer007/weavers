@@ -108,26 +108,26 @@ export class AddNewVendorComponent implements OnInit {
       'emailId1': new UntypedFormControl('', Validators.required),
       'emailId2': new UntypedFormControl(''),
       'emailId3': new UntypedFormControl(''),
-      // 'mobileNumber1': new FormControl(''),
-      // 'mobileNumber2': new FormControl(''),
-      // 'mobileNumber3': new FormControl(''),
-      mobileNumber1: [
-        '',
-        [
-          Validators.required,
-          Validators.maxLength(10),
-          Validators.pattern(/^\d*$/) // Only numbers are allowed
-        ]
-      ],
-      mobileNumber2: [
-        '',
-        [
-          Validators.required,
-          Validators.maxLength(10),
-          Validators.pattern(/^\d*$/) // Only numbers are allowed
-        ]
-      ],
-      mobileNumber3: ['',[ Validators.required,Validators.maxLength(10),Validators.pattern(/^\d*$/) ]],
+      'mobileNumber1': new UntypedFormControl(''),
+      'mobileNumber2': new UntypedFormControl(''),
+      'mobileNumber3': new UntypedFormControl(''),
+      // mobileNumber1: [
+      //   '',
+      //   [
+      //     Validators.required,
+      //     Validators.maxLength(10),
+      //     Validators.pattern(/^\d*$/) // Only numbers are allowed
+      //   ]
+      // ],
+      // mobileNumber2: [
+      //   '',
+      //   [
+      //     Validators.required,
+      //     Validators.maxLength(10),
+      //     Validators.pattern(/^\d*$/) // Only numbers are allowed
+      //   ]
+      // ],
+      // mobileNumber3: ['',[ Validators.required,Validators.maxLength(10),Validators.pattern(/^\d*$/) ]],
       'vendorGstin': new UntypedFormControl(''),
 
       'status': new UntypedFormControl(''),

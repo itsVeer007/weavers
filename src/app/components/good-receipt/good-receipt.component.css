@@ -83,24 +83,11 @@ body, html {
   flex-grow: 1;
 }
 
-.footer {
-  margin-top: auto;
-  padding-top: 70px;
-}
-
-.footer-one {
-  margin-top: auto;
-  padding-top: 80px;
-}
 .line {
   width: 100%;
 }
 
-
-
-
-
- tbody, td, tfoot, th, thead, tr {
+tbody, td, tfoot, th, thead, tr {
   border-width: 0 1px;
 }
 

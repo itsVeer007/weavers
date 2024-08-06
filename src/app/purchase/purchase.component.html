@@ -2,28 +2,15 @@
     <div style="position: relative">
 
         <div class="mx-3" #table #tableRef ngxPrintElement>
-            <!-- <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.2;">
-                <img src="assets\icons\Mangalagiri Weavers.jpg" width="100%" alt="">
-            </div> -->
-
-            <!-- <div class="d-flex align-items-center justify-content-center my-5">
-                <div>
-                    <img src="assets\icons\Mangalagiri Weavers Development Logo_2.jpg" alt="" width="150px">
-                </div>
-                <div>
-                    <h1>Purchase Order</h1>
-                </div>
-            </div> -->
-
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <div>
-                    <p class="sub-heading">Ref : {{newNote[0]?.purchaseRef}}</p>
+                    <p class="sub-heading">Ref : {{newNote?.purchaseRef}}</p>
                     <!-- <p>CIN No : U74900AP2014PTC095541</p> -->
                 </div>
                 <div>
                     <p class="sub-heading">Document Date:&nbsp; <span
-                            class="sub-heading">{{newNote[0]?.documentDate}}</span></p>
-                    <p class="sub-heading"> PO No:&nbsp; {{newNote[0]?.purchaseNo}}</p>
+                            class="sub-heading">{{newNote?.documentDate}}</span></p>
+                    <p class="sub-heading"> PO No:&nbsp; {{newNote?.purchaseNo}}</p>
                     <p class="sub-heading">GST No: &nbsp; <span class="sub-heading">37ABXFM8268Q1ZR</span></p>
                 </div>
             </div>
@@ -32,10 +19,10 @@
                 <div class="w-100 h-100" style="border: 1px solid #000;">
                     <p class="sub-heading w-100 p-0" style="background-color: darkgrey; width: 100;">Bill from :</p>
 
-                    <p style="border-bottom: 1px solid;">{{newNote[0]?.vendorName}}</p>
-                    <p>{{newNote[0]?.addressLine1}}</p>
-                    <p>{{newNote[0]?.mobileNumber1}}</p>
-                    <p> {{newNote[0]?.vendorGstin}}</p>
+                    <p style="border-bottom: 1px solid;">{{newNote?.vendorName}}</p>
+                    <p>{{newNote?.addressLine1}}</p>
+                    <p>{{newNote?.mobileNumber1}}</p>
+                    <p> {{newNote?.vendorGstin}}</p>
                 </div>
 
                 <div class="w-100 h-100" style="border: 1px solid #000;">
@@ -63,82 +50,44 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of newNote; let i = index">
+                        <tr *ngFor="let item of mainData; let i = index">
                             <td>{{item.itemCode}}</td>
                             <td>{{item.itemName}}</td>
                             <td>{{item.itemUom == 1 ? 'Laddi': item.itemUom == 2 ? 'Numbers' : item.itemUom == 3 ?
                                 'Mark' : item.itemUom == 4 ? 'Kgs': item.itemUom == 5 ? 'Gms' : ''}}</td>
                             <td>{{item.orderQuantity}}</td>
                             <td>{{item.cost}}</td>
-                            <!-- <td class="text-end">{{item.cost * item.quantity}}</td> -->
-                            <td>{{item.amount}}</td>
+                            <td class="text-end">{{item.cost * item.orderQuantity}}</td>
+                            <!-- <td>{{item.amount}}</td> -->
                         </tr>
                     </tbody>
-                    <!-- <tfoot >
-                    <tr class="mt-2">
-                        <td></td>
-                        <td>
-                        </td>
-                        <td></td>
-                        <td  class="sub-heading">IGST</td>
-                        <td class="text-end"  class="sub-heading">{{newNote[0]?.igst}}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td  class="sub-heading">SGST</td>
-                        <td class="text-end"  class="sub-heading">{{newNote[0]?.sgst}}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td  class="sub-heading">CGST</td>
-                        <td class="text-end"  class="sub-heading">{{newNote[0]?.cgst}}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="secondHeading">SubTotal</td>
-                        <td class="text-end "  class="sub-heading">{{newNote[0]?.subTotal}}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="secondHeading">grandTotal</td>
-                        <td class="text-end "  class="sub-heading">{{newNote[0]?.grandTotal}}</td>
-                    </tr>
-                </tfoot> -->
                 </table>
             </div>
 
             <div class="d-flex flex-column align-items-end">
                 <div class="d-flex justify-content-between w-25">
                     <p class="sub-heading">SUB TOTAL</p>
-                    <p>{{newNote[0]?.subTotal}}</p>
+                    <p>{{newNote?.subTotal}}</p>
                 </div>
                 <div class="d-flex justify-content-between w-25">
-                    <p class="sub-heading">SGST@{{newNote[0]?.sgstPercent}}</p>
-                    <p>{{newNote[0]?.sgst}}</p>
+                    <p class="sub-heading">SGST@{{newNote?.sgstPercent}}</p>
+                    <p>{{newNote?.sgst}}</p>
                 </div>
                 <div class="d-flex justify-content-between w-25">
-                    <p class="sub-heading">CGST@{{newNote[0]?.cgstPercent}}</p>
-                    <p>{{newNote[0]?.cgst}}</p>
+                    <p class="sub-heading">CGST@{{newNote?.cgstPercent}}</p>
+                    <p>{{newNote?.cgst}}</p>
                 </div>
                 <div class="d-flex justify-content-between w-25">
-                    <p class="sub-heading">IGST@{{newNote[0]?.igstPercent}}</p>
-                    <p>{{newNote[0]?.igst}}</p>
+                    <p class="sub-heading">IGST@{{newNote?.igstPercent}}</p>
+                    <p>{{newNote?.igst}}</p>
                 </div>
 
                 <div class="d-flex flex-row-reverse justify-content-between mt-2 w-100">
                     <div class="d-flex justify-content-around">
                         <p class="sub-heading">TOTAL</p>
-                        <p class="w-25">{{newNote[0]?.grandTotal}}</p>
+                        <p class="w-25">{{newNote?.grandTotal}}</p>
                     </div>
-                    <p class="my-3" class="sub-heading mb-3">{{newNote[0]?.grandTotal| numberToWords}}</p>
+                    <p class="my-3" class="sub-heading mb-3">Total amount In Words:{{newNote?.grandTotal| numberToWords}}</p>
                 </div>
             </div>
 
@@ -148,7 +97,7 @@
 
                 <div class="d-flex justify-content-start align-items-center">
                     <p class="paargraph-head">Taxes</p>
-                    <p class="paargraph">:CGST @{{newNote[0]?.cgstPercent}} + SGST @{{newNote[0]?.sgstPercent}}</p>
+                    <p class="paargraph">:CGST @{{newNote?.cgstPercent}} + SGST @{{newNote?.sgstPercent}}</p>
                 </div>
                 <div class="d-flex justify-content-start align-items-center">
                     <p class="paargraph-head">Dispatch schedule </p>
@@ -167,7 +116,7 @@
                         material will be rejected and the PO can be</p>
                 </div>
                 <div class="d-flex justify-content-start align-items-center">
-                    <p class="paargraph-head">. </p>
+                    <p class="paargraph-head">.</p>
                     <p class="paargraph">:cancelled if it does not meet the requirements.</p>
                 </div>
     
@@ -200,7 +149,7 @@
                 </div>
             </div>
 
-            <div class="footer mx-2">
+            <div class="footer mx-2 mb-3">
                 <div class="footer d-flex justify-content-between align-items-center">
                     <div>
                         <p class="sub-heading">Signature1</p>
@@ -212,19 +161,8 @@
                     </div>
                 </div>
             </div>
-
-
-            <!-- <div>
-                <h2></h2>
-                <div class="text-center">
-                    <p style="font-weight: bold;">MHDC International Pvt. Ltd.</p>
-                    <p class="">Regd. Off.: Flat No.508, Kosanam Roy Heights, APNRT Tech Park,</p>
-                    <p class="">Mangalagiri, Guntur District - 522503, Andhra Pradesh</p>
-                    <p class="">Mfg. Address:S.No.49, P.No.133, Autonagar, Mangalagiri</p>
-                    <p class="">Guntur District - 522503, Andhra Pradesh</p>
-                </div>
-            </div> -->
         </div>
+        
 
         <div class="d-flex justify-content-end align-items-center my-2" id="buttons"
             style="position: absolute; z-index: 99; right: 0;">

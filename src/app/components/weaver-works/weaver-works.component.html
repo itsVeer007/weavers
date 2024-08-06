@@ -404,6 +404,7 @@
                                 <span>Quantity</span>
                                 <img (click)="sort1('quantity')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
                             </th>
+                               <th><p>Cloth Details</p></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -422,6 +423,7 @@
                         <td>
                             <p>{{cust.quantity}}</p>
                         </td>
+                        <td style="color: #125a2e;" class="pointer" (click)="ViewOutSareeInInv(cust)" matTooltip="view">View</td>
                        </ng-container>
                         </tr>
                     </tbody>
@@ -454,7 +456,7 @@
                 <!-- <th>
                     <p>irMachineAssignmentId</p>
                 </th> -->
-                <th><p>Cloth Details</p></th>
+             
                 </tr>
             </thead>
             <!-- *ngIf="cust.irMachineAssignmentId == currentItem?.machineAssignmentId;" -->
@@ -477,7 +479,7 @@
                         <!-- <td>
                             <p>{{cust.irMachineAssignmentId}}</p>
                         </td> -->
-                        <td style="color: #125a2e;" class="pointer" (click)="ViewOutSareeInInv(cust)" matTooltip="view">View</td>
+                       
                     </ng-container>
                         </tr>
             </tbody>

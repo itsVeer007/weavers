@@ -18,7 +18,7 @@ export class GoodReceiptComponent implements OnInit {
     public print: NgxPrintElementService
   ) { }
 
-  tableItems: any[] =['ItemCode', 'Description', 'Qty', 'Unit price', 'Uom', 'Amount(INR)']
+  tableItems: any[] =['Item Code', 'Description', 'Qty', 'Unit price', 'Uom', 'Amount(INR)']
 
   invoiceNumber: any;
   ngOnInit(): void {
@@ -54,11 +54,13 @@ export class GoodReceiptComponent implements OnInit {
     });
   }
 
+  newnote:any = [];
   note:any = [];
   listGoodReceiptNote() {
     this.inventorySer.listGoodReceiptNote(this.invoiceNumber).subscribe((res:any)=> {
       // console.log(res)
-      this.note = res.items;
+      this.note = res;
+      this.newnote = res;
     })
   }
 
@@ -91,18 +93,12 @@ export class GoodReceiptComponent implements OnInit {
       <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.2;">
           <img src="assets/icons/Mangalagiri Weavers.jpg" width="100%" alt="">
       </div>
-
-      <div class="d-flex justify-content-between align-items-center">
-      <div>
-          <p class="secondHeading">Goods Receipt Note</p>
-          <p class="secondHeading">Mangalagiri Handlooms Development Center Pvt Ltd</p>
-          <p class="secondHeading">Mangalagiri</p>
-          </div>
-      </div>
     </header>
-    {{printBody}}
+      <div style="border: 1px solid #000;">
+        {{printBody}}
+      </div>
     <footer>
-      <div class="footer-one">
+      <div>
           <hr class="line">
           <p class=" secondHeading text-center">Mangalagiri Handlooms Development Center</p>
           <p class="text-center my-2 heading">Regd.Off:Flat No.508,Kosanam,Roy Heights,APNRT Tech Park,Mangalagiri,Guntur District-522503,Andhra Pradesh</p>
@@ -111,12 +107,7 @@ export class GoodReceiptComponent implements OnInit {
     </footer>`,
 
     stylesheets: [{ rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' }],
-    styles: [
-      `
-      header, footer{
-        text-align: center;
-      }
-        
+    styles: [`
       .sub-heading{
         font-weight: 600;
         font-size: 16px;
@@ -128,6 +119,12 @@ export class GoodReceiptComponent implements OnInit {
         color: rgb(19, 20, 20);
         border-style: solid;
         padding: 2px;
+      }
+
+      .secondHeading {
+        font-weight: bold;
+        font-size:16px;
+        color: black;
       }
       `
     ]

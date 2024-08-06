@@ -87,10 +87,6 @@ tfoot tr {
   font-size: 14px;
   /* text-align: center; */
 }
-.table-wrap {
-  height: 500px;
-  /* overflow-y: auto; */
-}
 
 .taxContentSize {
   font-size: 14px;
@@ -102,7 +98,7 @@ tfoot tr {
 }
 
 .paargraph-head {
-  width: 65px;
+  width: 100px;
   font-size: 12px;
   font-weight: bold;
 }

@@ -35,7 +35,7 @@ export class PurchaseComponent implements OnInit {
 
   @ViewChild('table', { static: false }) table!: ElementRef;
   showSaveButton: boolean = true;
-  newNote: any = [];
+  newNote: any;
   generatePDF() {
     let pdfHeight: number;
     if (this.newNote.length < 50) {
@@ -55,28 +55,31 @@ export class PurchaseComponent implements OnInit {
 
 
 
-  data: any = [];
+  mainData: any = [];
+
   listInvoicesForReceipt() {
     this.inventorySer.listPOForm({ purchaseRef: this.purchaseNumber }).subscribe((res: any) => {
+      console.log(res)
       this.newNote = res;
+      this.mainData = res.items
       // this.onPrint1(this.tableElement);
     })
   }
 
-  getTotalAmount(): number {
-    return this.data.reduce((total: any, item: any) => total + (item.quantity * item.cost), 0);
-  }
+  // getTotalAmount(): number {
+  //   return this.data.reduce((total: any, item: any) => total + (item.quantity * item.cost), 0);
+  // }
 
-  getCeiledGrandTotal() {
-    return Math.ceil(this.newNote[0]?.grandTotal || 0);
-  }
+  // getCeiledGrandTotal() {
+  //   return Math.ceil(this.newNote[0]?.grandTotal || 0);
+  // }
 
-  getCeiledGrand() {
-    return Math.ceil(this.newNote[0]?.sgst || 0);
-  }
-  getCeiledGrandTotall() {
-    return Math.ceil(this.newNote[0]?.cgst || 0);
-  }
+  // getCeiledGrand() {
+  //   return Math.ceil(this.newNote[0]?.sgst || 0);
+  // }
+  // getCeiledGrandTotall() {
+  //   return Math.ceil(this.newNote[0]?.cgst || 0);
+  // }
 
 
   downloadPDF() {
@@ -150,6 +153,7 @@ export class PurchaseComponent implements OnInit {
     // htmlType: 'text',
 
     templateString: `
+    <div style="border: 1px solid #000;">
     <header>
       <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.2;">
           <img src="assets/icons/Mangalagiri Weavers.jpg" width="100%" alt="">
@@ -164,18 +168,23 @@ export class PurchaseComponent implements OnInit {
         </div>
       </div>
     </header>
-    {{printBody}}
-    <footer>
-      <div>
-        <div class="text-center border-top mt-3">
-            <p style="font-weight: bold;">MHDC International Pvt. Ltd.</p>
-            <p class="">Regd. Off.: Flat No.508, Kosanam Roy Heights, APNRT Tech Park,</p>
-            <p class="">Mangalagiri, Guntur District - 522503, Andhra Pradesh</p>
-            <p class="">Mfg. Address:S.No.49, P.No.133, Autonagar, Mangalagiri</p>
-            <p class="">Guntur District - 522503, Andhra Pradesh</p>
+      <div >
+        {{printBody}}
+      </div>
+      
+      <footer>
+      <div class="d-flex align-items-end justify-content-center" style="position: absolute; bottom: -100%; left: 50%; transform: translate(-50%, 0);">
+        <div>
+          <p style="font-weight: bold;">MHDC International Pvt. Ltd.</p>
+          <p class="">Regd. Off.: Flat No.508, Kosanam Roy Heights, APNRT Tech Park,</p>
+          <p class="">Mangalagiri, Guntur District - 522503, Andhra Pradesh</p>
+          <p class="">Mfg. Address:S.No.49, P.No.133, Autonagar, Mangalagiri</p>
+          <p class="">Guntur District - 522503, Andhra Pradesh</p>
         </div>
       </div>
-    </footer>`,
+    </footer>
+    </div>
+    `,
 
     stylesheets: [{ rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' }],
     styles: [
@@ -194,7 +203,9 @@ export class PurchaseComponent implements OnInit {
 
   @ViewChild('tableRef') tableElement!: ElementRef<HTMLTableElement>;
   onPrint1(el: ElementRef<HTMLTableElement | HTMLElement>) {
-    this.print.print(el, this.config).subscribe(console.log);
+    this.print.print(el, this.config).subscribe((res: any) => {
+      console.log(res)
+    });
   }
 
 }

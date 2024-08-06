@@ -135,7 +135,7 @@
               <mat-error class="mt-1">Email1 is required</mat-error>
             </mat-form-field>
           </div>
-          <!-- <div class="col-lg-6 col-md-6">
+          <div class="col-lg-6 col-md-6">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Mobile Number</mat-label>
               <input matInput type="number" formControlName="mobileNumber1" [(ngModel)]="vendorBody.mobileNumber1" >
@@ -143,8 +143,8 @@
               <mat-error *ngIf="mobileNumber1Control.hasError('maxlength')">Mobile number cannot exceed 6 digits</mat-error>
               <mat-error *ngIf="mobileNumber1Control.hasError('pattern')">Only numbers are allowed</mat-error>
             </mat-form-field>
-          </div> -->
-          <div class="col-lg-6 col-md-6">
+          </div>
+          <!-- <div class="col-lg-6 col-md-6">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Mobile Number</mat-label>
               <input
@@ -155,10 +155,8 @@
                 (input)="onNumberInput('mobileNumber1', $event)"
               />
               <mat-error class="mt-1">Mobile Number is required</mat-error>
-              <!-- <mat-error *ngIf="mobileNumber1Control.hasError('required')">Mobile number is required</mat-error>
-              <mat-error *ngIf="mobileNumber1Control.hasError('maxlength')">Mobile number cannot exceed 10 digits</mat-error> -->
             </mat-form-field>
-          </div>
+          </div> -->
           <!-- <div class="col-lg-6"></div> -->
           <div class="col-lg-6 col-md-6 d-flex justify-content-start align-items-center my-2">
             <p class="m-0">Proprietor 2</p>
@@ -190,19 +188,15 @@
               </mat-form-field>
             </div>
             <div class="col-lg-6 col-md-6">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Mobile Number</mat-label>
-                <input
-                  matInput
-                  type="number"
-                  formControlName="mobileNumber2"
-                  appOnlyNumbers 
-                  (input)="onNumberInput('mobileNumber2' ,$event)"
-                />
-                <mat-error class="mt-1">Mobile Number is required</mat-error>
-                <!-- <mat-error *ngIf="mobileNumber1Control.hasError('required')">Mobile number is required</mat-error>
-                <mat-error *ngIf="mobileNumber1Control.hasError('maxlength')">Mobile number cannot exceed 10 digits</mat-error> -->
-              </mat-form-field>
+              <div class="col-lg-6 col-md-6">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Mobile Number</mat-label>
+                  <input matInput type="number" formControlName="mobileNumber2" [(ngModel)]="vendorBody.mobileNumber1" >
+                  <mat-error *ngIf="mobileNumber1Control.hasError('required')">Mobile number is required</mat-error>
+                  <mat-error *ngIf="mobileNumber1Control.hasError('maxlength')">Mobile number cannot exceed 6 digits</mat-error>
+                  <mat-error *ngIf="mobileNumber1Control.hasError('pattern')">Only numbers are allowed</mat-error>
+                </mat-form-field>
+              </div>
             </div>
           </div>
           <div class="row col-lg-12" *ngIf="proparatorThree">
@@ -214,27 +208,14 @@
               </mat-form-field>
             </div>
             <div class="col-lg-4 col-md-4">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Email3</mat-label>
-                <input matInput formControlName="emailId3" [(ngModel)]="vendorBody.emailId3">
-                <mat-error class="mt-1">Email3 is required</mat-error>
-              </mat-form-field>
-            </div>
-            <div class="col-lg-6 col-md-6">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Mobile Number</mat-label>
-                <input
-                  matInput
-                  type="number"
-                  formControlName="mobileNumber3"
-                
-                  appOnlyNumbers 
-                  (input)="onNumberInput('mobileNumber3', $event)"
-                />
-                <mat-error class="mt-1">Mobile Number3 is required</mat-error>
-                <!-- <mat-error *ngIf="mobileNumber1Control.hasError('required')">Mobile number is required</mat-error>
-                <mat-error *ngIf="mobileNumber1Control.hasError('maxlength')">Mobile number cannot exceed 10 digits</mat-error> -->
-              </mat-form-field>
+              <div class="col-lg-6 col-md-6">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Mobile Number</mat-label>
+                  <input matInput type="number" formControlName="mobileNumber3" [(ngModel)]="vendorBody.mobileNumber1" >
+                  <mat-error *ngIf="mobileNumber1Control.hasError('required')">Mobile number is required</mat-error>
+               
+                </mat-form-field>
+              </div>
             </div>
           </div>
           <!-- <div class="col-lg-6 col-md-6">

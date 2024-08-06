@@ -1010,6 +1010,14 @@ goodRecieptSub: BehaviorSubject<any> = new BehaviorSubject(null)
     // }
     return this.http.get(url, { params: params });
   }
+  listInventoryForSending1(payload:any) {
+    let url = this.baseUrl + '/listInventoryForSending_1_0';
+    let params = new HttpParams();
+    if (payload.suggestedItemCode) {
+      params = params.set('itemCode', payload.suggestedItemCode);
+    }
+    return this.http.get(url, { params: params });
+  }
 
   ViewInvRawMaterials(payload: any) {
     let url = this.baseUrl + '/ViewInvRawMaterials';
@@ -1210,7 +1218,11 @@ goodRecieptSub: BehaviorSubject<any> = new BehaviorSubject(null)
   }
   ViewOutSareeInInv(payload?:any) {
     let url = this.baseUrl + '/ViewOutSareeInInv_1_0';
-    let params = new HttpParams().set('in_ir_machine_assignment_id',payload?.irMachineAssignmentId);
+    let params = new HttpParams()
+    if(payload?.id) {
+      params = params.set('in_ir_machine_assignment_id',payload.id)
+    }
+    // let params = new HttpParams().set('in_ir_machine_assignment_id',payload?.irMachineAssignmentId);
     return this.http.get(url, { params: params });
   }
 
