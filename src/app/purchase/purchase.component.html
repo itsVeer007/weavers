@@ -1,7 +1,16 @@
 <div style="height: 100vh; overflow-y: auto;">
     <div style="position: relative">
 
-        <div class="mx-3" #table #tableRef ngxPrintElement>
+        <div class="m-2" #table #tableRef ngxPrintElement>
+            <div class="d-flex align-items-center justify-content-center">
+                <div>
+                    <img src="assets/icons/Mangalagiri Weavers.jpg" alt="" width="100px">
+                </div>
+                <div>
+                    <h1 style="font-size: 36px; font-weight: bold;">Purchase Order</h1>
+                </div>
+              </div>
+
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <div>
                     <p class="sub-heading">Ref : {{newNote?.purchaseRef}}</p>
@@ -15,9 +24,9 @@
                 </div>
             </div>
 
-            <div class="d-flex justify-content-between align-items-center mb-2" style="height: 15vh;">
-                <div class="w-100 h-100" style="border: 1px solid #000;">
-                    <p class="sub-heading w-100 p-0" style="background-color: darkgrey; width: 100;">Bill from :</p>
+            <div class="d-flex justify-content-between align-items-center" style="height: 15vh; border: 1px solid;">
+                <div class="w-100 h-100" style="border-right: 1px solid;">
+                    <p class="sub-heading w-100 p-0" style="border-bottom: 1px solid;">Bill from :</p>
 
                     <p style="border-bottom: 1px solid;">{{newNote?.vendorName}}</p>
                     <p>{{newNote?.addressLine1}}</p>
@@ -25,8 +34,8 @@
                     <p> {{newNote?.vendorGstin}}</p>
                 </div>
 
-                <div class="w-100 h-100" style="border: 1px solid #000;">
-                    <p class="sub-heading w-100 p-0" style="background-color: darkgray;">Ship To :</p>
+                <div class="w-100 h-100">
+                    <p class="sub-heading w-100 p-0" style="border-bottom: 1px solid">Ship To :</p>
 
                     <p style="border-bottom: 1px solid">MHDC International Pvt Ltd.</p>
                     <p>S.No.49, P.No.133</p>
@@ -67,25 +76,30 @@
             <div class="d-flex flex-column align-items-end">
                 <div class="d-flex justify-content-between w-25">
                     <p class="sub-heading">SUB TOTAL</p>
-                    <p>{{newNote?.subTotal}}</p>
+                    <p class="sub-heading">{{newNote?.subTotal}}</p>
                 </div>
                 <div class="d-flex justify-content-between w-25">
                     <p class="sub-heading">SGST@{{newNote?.sgstPercent}}</p>
-                    <p>{{newNote?.sgst}}</p>
+                    <p class="sub-heading">{{newNote?.sgst}}</p>
                 </div>
                 <div class="d-flex justify-content-between w-25">
                     <p class="sub-heading">CGST@{{newNote?.cgstPercent}}</p>
-                    <p>{{newNote?.cgst}}</p>
+                    <p class="sub-heading">{{newNote?.cgst}}</p>
                 </div>
                 <div class="d-flex justify-content-between w-25">
                     <p class="sub-heading">IGST@{{newNote?.igstPercent}}</p>
-                    <p>{{newNote?.igst}}</p>
+                    <p class="sub-heading">{{newNote?.igst ?? '-'}}</p>
+                </div>
+                <div class="d-flex justify-content-between w-25">
+                    <p class="sub-heading">TOTAL</p>
+                    <p class="sub-heading">{{newNote?.grandTotal}}</p>
                 </div>
 
                 <div class="d-flex flex-row-reverse justify-content-between mt-2 w-100">
                     <div class="d-flex justify-content-around">
-                        <p class="sub-heading">TOTAL</p>
-                        <p class="w-25">{{newNote?.grandTotal}}</p>
+                        .
+                        <!-- <p class="sub-heading">TOTAL</p>
+                        <p class="w-25">{{newNote?.grandTotal}}</p> -->
                     </div>
                     <p class="my-3" class="sub-heading mb-3">Total amount In Words:{{newNote?.grandTotal| numberToWords}}</p>
                 </div>
@@ -97,7 +111,7 @@
 
                 <div class="d-flex justify-content-start align-items-center">
                     <p class="paargraph-head">Taxes</p>
-                    <p class="paargraph">:CGST @{{newNote?.cgstPercent}} + SGST @{{newNote?.sgstPercent}}</p>
+                    <p class="paargraph">:CGST @{{newNote?.cgstPercent}} + SGST @{{newNote?.sgstPercent}} + IGST @ {{newNote?.igstPercent}}</p>
                 </div>
                 <div class="d-flex justify-content-start align-items-center">
                     <p class="paargraph-head">Dispatch schedule </p>
@@ -105,72 +119,76 @@
                 </div>
                 <div class="d-flex justify-content-start align-items-center">
                     <p class="paargraph-head">payment Terms </p>
-                    <p class="paargraph">:FOR 30 days.</p>
+                    <p class="paargraph">:NET 30 days.</p>
                 </div>
-                <!-- <div  class="d-flex justify-content-start align-items-center">
-                <p  class="paargraph-head">Warranty</p><p class="paargraph">:1 year & Any damages need to be replaced.</p>
-            </div> -->
-                <div class="d-flex justify-content-start align-items-center">
+                <!-- <div class="d-flex justify-content-start align-items-center">
                     <p class="paargraph-head">Qualityterms</p>
                     <p class="paargraph">: Material acceptance is subjected to testing by IVIS qualitity control team. The
                         material will be rejected and the PO can be</p>
-                </div>
-                <div class="d-flex justify-content-start align-items-center">
+                </div> -->
+                <!-- <div class="d-flex justify-content-start align-items-center">
                     <p class="paargraph-head">.</p>
                     <p class="paargraph">:cancelled if it does not meet the requirements.</p>
-                </div>
+                </div> -->
     
-                <div class="d-flex justify-content-start align-items-center">
+                <!-- <div class="d-flex justify-content-start align-items-center">
                     <p class="paargraph-head">Cancellation policy</p>
                     <p class="paargraph">:IVIS reserves the right to cancel the PO at any time even after the receipt of the
                         material without specifying any reason.</p>
-                </div>
-                <div class="d-flex justify-content-start align-items-center">
+                </div> -->
+                <!-- <div class="d-flex justify-content-start align-items-center">
                     <p class="paargraph-head">Email </p>
                     <p class="paargraph">:Send invoices and delivery confirmations to the following email addresses after
                         dispatch.</p>
-                </div>
-                <div class="d-flex justify-content-start align-items-center">
+                </div> -->
+                <!-- <div class="d-flex justify-content-start align-items-center">
                     <p class="paargraph-head">. </p>
                     <p class="paargraph">:procurement@MHDC.net,</p>
                 </div>
                 <div class="d-flex justify-content-start align-items-center">
                     <p class="paargraph-head">. </p>
                     <p class="paargraph">:inventory1@MHDC.net</p>
+                </div> -->
+                <div class="d-flex justify-content-start align-items-center">
+                    <p class="paargraph-head">Billing Address&nbsp;</p>
+                    <p class="paargraph">:MHDC International Pvt. Ltd.Regd. Off.: Flat No.508, Kosanam Roy Heights, APNRT Tech Park, Mangalagiri, </p>
                 </div>
                 <div class="d-flex justify-content-start align-items-center">
-                    <p class="paargraph-head">Billing Address </p>
-                    <p class="paargraph">:Regd. Office : Balaji Residency, 3rd floor, NH - 5, Service Road Mangalagiri -
-                        522503., A.P., India.</p>
-                </div>
-                <div class="d-flex justify-content-start align-items-center">
-                    <p class="paargraph-head">. </p>
-                    <p class="paargraph">:Service Road Mangalagiri - 522503., A.P., India.</p>
+                    <p class="paargraph-head">.</p>
+                    <p class="paargraph">Guntur District - 522503, AP Mfg. Address:S.No.49, P.No.133, Autonagar, Mangalagiri Guntur District - 522503, Andhra Pradesh</p>
+                </div> 
+                
+                
+            </div>
+
+            <div class="footer my-4">
+                <div class="footer d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="sub-heading">Signature1&nbsp; ______________</p>
+                        <p class="sub-heading">Signature2&nbsp; ______________</p>
+                    </div>
+                    <div>
+                        <p class="sub-heading">Date1&nbsp; ______________</p>
+                        <p class="sub-heading">Date2&nbsp; ______________</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="footer mx-2 mb-3">
-                <div class="footer d-flex justify-content-between align-items-center">
-                    <div>
-                        <p class="sub-heading">Signature1</p>
-                        <p class="sub-heading">Signature2</p>
-                    </div>
-                    <div>
-                        <p class="sub-heading">Date1</p>
-                        <p class="sub-heading">Date2</p>
-                    </div>
+            <div class="d-flex align-items-center justify-content-center p-2" style="border-top: 1px solid;">
+                <div class="mt-3">
+                  <p class="sub-heading text-center">MHDC International Pvt. Ltd.</p>
+                  <p class="text-center">Regd. Off.: Flat No.508, Kosanam Roy Heights, APNRT Tech Park,</p>
+                  <p class="text-center">Mangalagiri, Guntur District - 522503, Andhra Pradesh</p>
+                  <p class="text-center">Mfg. Address:S.No.49, P.No.133, Autonagar, Mangalagiri</p>
+                  <p class="text-center">Guntur District - 522503, Andhra Pradesh</p>
                 </div>
             </div>
         </div>
         
 
-        <div class="d-flex justify-content-end align-items-center my-2" id="buttons"
-            style="position: absolute; z-index: 99; right: 0;">
-            <button class="btn btn-secondary btn-sm" mat-dialog-close
-                [ngClass]="{'hidden-for-pdf' : !showSaveButton}">Close</button>
-
-            <button class="btn btn-secondary btn-sm mx-2" (click)="onPrint1(tableElement)"
-                [ngClass]="{'hidden-for-pdf' : !showSaveButton}">Save Invoice</button>
+        <div class="d-flex justify-content-end align-items-center my-2" id="buttons" style="position: absolute; z-index: 99; right: 0;">
+            <button class="btn btn-secondary btn-sm" mat-dialog-close>Close</button>
+            <button class="btn btn-secondary btn-sm mx-2" (click)="onPrint1(tableElement)">Save Invoice</button>
         </div>
     </div>
 </div>

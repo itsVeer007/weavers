@@ -1,14 +1,19 @@
 <div style="height: 100vh; overflow-y: auto;">
-    <div class="mx-3" style="position: relative;" *ngIf="Note" #table #tableRef ngxPrintElement>
 
-        <div style="position: absolute; top: -10%; right: 0;">
-            <p class="secondHeading">Inv No:&nbsp; {{this.Note?.invoiceNo }}</p>
-            <p class="secondHeading">Inv Date:&nbsp; {{this.Note?.invoiceDate}}</p>
+    <div class="m-2" style="position: relative;" *ngIf="Note" #table #tableRef ngxPrintElement>
+        <div class="d-flex justify-content-between align-items-center p-2" style="border: 1px solid;">
+            <div></div>
+            <div>
+                <img src="assets/icons/Mangalagiri Weavers Development Logo_2.jpg" alt="" width="80px">
+                <span class="heading">TAX INVOICE</span>
+            </div>
+            <div>
+                <p class="sub-heading">Inv No:&nbsp; {{this.Note?.invoiceNo }}</p>
+                <p class="sub-heading">Inv Date:&nbsp; {{this.Note?.invoiceDate}}</p>
+            </div>
         </div>
-
-       
      
-        <div class="w-100 mb-2">
+        <div class="w-100" style="border: 1px solid;">
             <div class="d-flex justify-content-start align-items-center">
                 <p class="paargraph-head">NAME&nbsp;</p>
                 <p class="headingForMangalagiri">MANGALAGIRI HANDLOOM DEVELOPMENT CENTER</p>
@@ -37,35 +42,35 @@
             </div>
         </div>
 
-        <div class="d-flex mb-2" style="border: 1px solid;">
-            <div style="border-right: 1px solid;" class="p-2">
-                <p class="secondHeading">Bill To</p>
-                <p class="secondHeading">Name:&nbsp;{{Note?.clientName}} </p>
+        <div class="d-flex" style="border: 1px solid;">
+            <div style="border-right: 1px solid;">
+                <p class="sub-heading">Bill To</p>
+                <p class="sub-heading">Name:&nbsp;{{Note?.clientName}} </p>
                 <p class="taxContentSize" *ngIf="Note?.address">Address:&nbsp;{{Note?.address}}</p>
                 <!-- <p class="taxContentSize">Address:&nbsp;{{Note?.state}}</p> -->
                 <p class="taxContentSize"> Phone No:&nbsp;{{Note?.mobileNumber}}</p>
                 <p class="taxContent">Email:{{Note?.emailId}}</p>
             </div>
-            <div style="border-right: 1px solid;" class="p-2">
-                <p class="secondHeading">Ship To</p>
-                <p class="secondHeading">Name:&nbsp;{{Note?.clientName}} </p>
+            <div style="border-right: 1px solid;">
+                <p class="sub-heading">Ship To</p>
+                <p class="sub-heading">Name:&nbsp;{{Note?.clientName}} </p>
                 <p class="taxContentSize" *ngIf="Note?.address">Address:&nbsp;{{Note?.address}}</p>
                 <p class="taxContentSize">Phone No:&nbsp;{{Note?.mobileNumber}}</p>
                 <p class="taxContent">Email:{{Note?.emailId}}</p>
             </div>
-            <div class="p-2">
-                <!-- <p class="secondHeading">Details</p> -->
-                <p class="secondHeading">PAN No :&nbsp;{{Note?.panNo}}</p>
-                <p class="secondHeading">PO No :&nbsp;{{Note?.poNo}} </p>
-                <p class="secondHeading">PO Date :{{Note?.poDate | date: 'dd/MM/yyyy'}}</p>
+            <div>
+                <!-- <p class="sub-heading">Details</p> -->
+                <p class="sub-heading">PAN No :&nbsp;{{Note?.panNo}}</p>
+                <p class="sub-heading">PO No :&nbsp;{{Note?.poNo}} </p>
+                <p class="sub-heading">PO Date :{{Note?.poDate | date: 'dd/MM/yyyy'}}</p>
             </div>
         </div>
 
-        <div class="mb-2">
-            <table class="table">
+        <div>
+            <table class="table m-0">
                 <thead>
                     <tr>
-                        <th *ngFor="let header of tableItems">{{header}}</th>
+                        <th class="text-center" *ngFor="let header of tableItems">{{header}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -82,14 +87,14 @@
             </table>
         </div>
 
-        <div class="d-flex justify-content-between mb-2" style="border: 1px solid #000;">
-            <div style="border-right: 1px solid #000; width: 580px;">
+        <div class="d-flex justify-content-between" style="border: 1px solid #000;">
+            <div style="border-right: 1px solid #000; width: 100%;">
                 <div style="border-bottom: 1px solid #000;">
-                    <p class="secondHeading">Transport Name:</p>
-                    <p class="secondHeading">Way Bill No :</p>
+                    <p class="sub-heading">Transport Name:</p>
+                    <p class="sub-heading">Way Bill No :</p>
                 </div>
                 <div>
-                    <p class="secondHeading">Terms & conditions:</p>
+                    <p class="sub-heading">Terms & conditions:</p>
                     <p class="paargraph">1. All disputes subject to Mangalagiri Jurisdiction</p>
                     <p class="paargraph">2..Payment should be made with in 30 days from the date of Invoice</p>
                 </div>
@@ -113,26 +118,31 @@
         </div>
 
 
-        <div class="d-flex justify-content-end">
-            <p class="secondHeading">Amount in Words &nbsp;-&nbsp; {{ Note?.grandTotal | numberToWords }}</p>
-        </div>
+        <div style="border: 1px solid;">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex flex-column" style="border-right: 1px solid;">
+                    <div class="d-flex justify-content-start" style="border-bottom: 1px solid;">
+                        <p class="sub-heading">Amount in Words &nbsp;-&nbsp; {{ Note?.grandTotal | numberToWords }}</p>
+                    </div>
 
-        <div class="d-flex justify-content-between w-100 mb-2" style="border: 1px solid #000;">
-            <div style="border-right: 1px solid #000;">
-                <div>
-                    <p class="secondHeading">Bank Details&nbsp;ICICI Bank</p>
-                    <p class="secondHeading">Account No&nbsp;384605500353</p>
-                    <p class="secondHeading">IFSC Code&nbsp;ICIC0003846</p>
+                    <div>
+                        <div>
+                            <p class="sub-heading">Bank Details&nbsp;ICICI Bank</p>
+                            <p class="sub-heading">Account No&nbsp;384605500353</p>
+                            <p class="sub-heading">IFSC Code&nbsp;ICIC0003846</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="d-flex flex-column align-items-end" style="padding-left: 10px;">
-                <p class="text-center" style="font-size: 11px; font-weight: bold;">For Mangalagiri Handloom Development Center</p>
-                <p class="secondHeading mt-5">Authorised Signatory</p>
+
+                <div>
+                    <div class="d-flex flex-column align-items-end justify-content-between">
+                        <p class="text-center">For Mangalagiri Handloom Development Center</p>
+                        <p class="sub-heading mt-4">Authorised Signatory</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-
 
     <div class="d-flex justify-content-end align-items-end mt-1" id="buttons">
         <button class="btn btn-secondary btn-sm" mat-dialog-close>Close</button>

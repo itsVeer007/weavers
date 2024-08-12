@@ -100,11 +100,7 @@ Math: any;
               <img src="assets/icons/Mangalagiri Weavers.jpg" width="100%" alt="">
           </div>
 
-          <div class="d-flex justify-content-center align-items-center mb-2 p-2" style="border-bottom: 1px solid;">
-              <img src="assets/icons/Mangalagiri Weavers Development Logo_2.jpg" alt="" width="80px">
-                  <span class="heading">TAX INVOICE</span>
-              </div>
-          </div>
+
         </header>
         
         {{printBody}}
@@ -123,6 +119,31 @@ Math: any;
       .sub-heading{
         font-weight: 600;
         font-size: 16px;
+      }
+
+      tbody, td, tfoot, th, thead, tr {
+        border-width: 0 1px;
+        
+      }
+
+      .table>:not(caption)>*>* {
+        padding: 0;
+      }
+
+      .table {
+        border: 1px solid #000;
+      }
+
+      .table tbody tr td {
+        padding: 0;
+      }
+
+      thead tr th {
+        color: #000;
+      }
+
+      tfoot tr {
+        border: 1px solid #000;
       }
       `
     ]

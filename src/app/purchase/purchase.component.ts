@@ -153,37 +153,17 @@ export class PurchaseComponent implements OnInit {
     // htmlType: 'text',
 
     templateString: `
-    <div style="border: 1px solid #000;">
     <header>
       <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.2;">
           <img src="assets/icons/Mangalagiri Weavers.jpg" width="100%" alt="">
       </div>
-
-      <div class="d-flex align-items-center justify-content-center my-5">
-        <div>
-            <img src="assets/icons/Mangalagiri Weavers.jpg" alt="" width="150px">
-        </div>
-        <div>
-            <h1>Purchase Order</h1>
-        </div>
-      </div>
     </header>
-      <div >
-        {{printBody}}
-      </div>
+
+      {{printBody}}
       
-      <footer>
-      <div class="d-flex align-items-end justify-content-center" style="position: absolute; bottom: -100%; left: 50%; transform: translate(-50%, 0);">
-        <div>
-          <p style="font-weight: bold;">MHDC International Pvt. Ltd.</p>
-          <p class="">Regd. Off.: Flat No.508, Kosanam Roy Heights, APNRT Tech Park,</p>
-          <p class="">Mangalagiri, Guntur District - 522503, Andhra Pradesh</p>
-          <p class="">Mfg. Address:S.No.49, P.No.133, Autonagar, Mangalagiri</p>
-          <p class="">Guntur District - 522503, Andhra Pradesh</p>
-        </div>
-      </div>
+    <footer>
+
     </footer>
-    </div>
     `,
 
     stylesheets: [{ rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' }],
@@ -196,6 +176,31 @@ export class PurchaseComponent implements OnInit {
       .sub-heading{
         font-weight: 600;
         font-size: 16px;
+      }
+      
+      tbody, td, tfoot, th, thead, tr {
+        border-width: 0 1px;
+        
+      }
+
+      .table>:not(caption)>*>* {
+        padding: 0;
+      }
+
+      .table {
+        border: 1px solid #000 !important;
+      }
+
+      .table tbody tr td {
+        padding: 0;
+      }
+
+      thead tr th {
+        color: #000;
+      }
+
+      tfoot tr {
+        border: 1px solid #000;
       }
       `
     ]
