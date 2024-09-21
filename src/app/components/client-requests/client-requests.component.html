@@ -191,6 +191,7 @@
                                 cust.assignedQuantity === cust.quantity ? 'Assigned' : 
                                 (cust.assignedQuantity > 0 ? 'Partially Assigned' :  'Assign') 
                             }}
+                            
                             </button>
                         </ng-container>
                         
@@ -293,9 +294,14 @@
         </table>
     </div>
     </div>
+    <div class="d-flex justify-content-center align-items-center"  *ngIf="dc.length === 0">
+        <p>Not assigned to weavers</p>
+    </div>
     <div class="d-flex justify-content-end">
     <button class="dialog-close-btn" mat-dialog-close>Close</button>
     </div>
+
+    
 </ng-template>
 
 <!-- <ng-template #usedItemsDialog>

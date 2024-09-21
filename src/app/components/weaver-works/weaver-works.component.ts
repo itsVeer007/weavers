@@ -140,11 +140,11 @@ removeDuplicates() {
   inventoryItems: any;
   currentItem1: any
   openviewDetailsDialog(data: any) {
-    console.log(data)
+    // console.log(data)
     this.currentItem1 = data;
     this.inventorySer.listMachineAssignment(data).subscribe((res: any) => {
       this.inventoryItems = res;
-      console.log(this.inventoryItems)
+      // console.log(this.inventoryItems)
     })
     this.dialog.open(this.viewDetailsDialog);
   }
@@ -152,6 +152,11 @@ removeDuplicates() {
   sareeSelection: any;
   date:any = new Date();
   updateSarees() {
+    if (!this.sareeSelection) {
+      this.alertSer.error('Please select a saree before updating.');
+      return;
+    }
+
     let myObj = {
       [this.sareeSelection]: formatDate(this.date, 'yyyy-MM-dd', 'en-us'),
       'p_ir_machine_assignment_id': this.currentItem1?.machineAssignmentId
@@ -169,7 +174,7 @@ removeDuplicates() {
     }
   )
     // this.date = null;
-    // this.sareeSelection = null
+    this.sareeSelection = null
   }
 
 
@@ -206,7 +211,7 @@ removeDuplicates() {
 
   @ViewChild('deleteInventoryDialog') deleteInventoryDialog = {} as TemplateRef<any>;
   openMachine(data:any) {
-    console.log(data)
+    // console.log(data)
     this.dialog.open(this.deleteInventoryDialog);
     this.currentItem = data;
     this.inventorySer.listMachineAssignment(data).subscribe((res:any)=> {
@@ -301,11 +306,11 @@ removeDuplicates() {
   @ViewChild('editInventoryDialog') editInventoryDialog = {} as TemplateRef<any>;
   inventorySerial: any;
   openEditPopup(item: any) {
-      console.log(item);
+      // console.log(item);
     this.currentItem = item;
     this.dialog.open(this.editInventoryDialog);
     this.inventorySer.listInventoryByProductId(item.productId).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       for(let item of this.inventoryDetail) {
         if(item.inventoryStatusId == 1) {
           this.inventorySerial = res;

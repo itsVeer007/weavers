@@ -208,7 +208,7 @@
                 <mat-error class="mt-1"> Quality is required</mat-error>
               </mat-form-field>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Price</mat-label>
                 <mat-select formControlName="cost" [disabled]="userForm2.value.quality == ''">
@@ -218,7 +218,14 @@
                 <mat-error class="mt-1"> Price is required</mat-error>
               </mat-form-field>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>SoldPrice</mat-label>
+                <input matInput formControlName="soldCost">
+                <mat-error class="mt-1">sellingPrice is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Quantity</mat-label>
                 <input matInput type="number" formControlName="quantity" [(ngModel)]="sendingQuantity">
@@ -227,13 +234,6 @@
                   *ngIf="statusItems.length !== 0 && userForm2.value.cost">Stock:{{currentItem?.instock}}</mat-hint>
               </mat-form-field>
             </div>
-            <!-- <div class="col-md-6">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>sellingPrice</mat-label>
-                <input matInput formControlName="sellingPrice">
-                <mat-error class="mt-1">sellingPrice is required</mat-error>
-              </mat-form-field>
-            </div> -->
 
 
           </div>
@@ -268,8 +268,8 @@
             <td>{{ task.color }}</td>
             <td>{{ task.colorCode }}</td>
             <td>{{ task.quantity }}</td>
-            <td>{{ task.cost }}</td>
-            <td>{{ task?.cost * task?.quantity }}</td>
+            <td>{{ task.soldCost }}</td>
+            <td>{{ task?.soldCost * task?.quantity }}</td>
             <td (click)="delete(j)"><img src="assets/icons/delete.svg" alt=""></td>
           </tr>
         </tbody>
@@ -285,13 +285,13 @@
             <p class="fw-bold mt-4">GrandTotal</p>
           </td>
           <td>
-            <p>SGST&CGST</p>
-            <input type="number" [(ngModel)]="grandTotalWithCGSTSGST" style="width: 100px;" class="mt-1">
+            <!-- <p>SGST&CGST</p> -->
+            <input type="number" [(ngModel)]="this.userForm1.value.grandTotal" style="width: 100px;" class="mt-1" disabled>
           </td>
-          <td>
+          <!-- <td>
             <p>IGST</p>
-            <input type="number" [(ngModel)]="grandTotalWithIGST" style="width: 100px;" class="mt-1">
-          </td>
+            <input type="number" [(ngModel)]="this.userForm1.value.grandTotal" style="width: 100px;" class="mt-1">
+          </td> -->
         </tfoot>
         <tfoot>
           <td></td>

@@ -120,9 +120,9 @@
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Item Name</mat-label>
               <input matInput type="text" formControlName="itemName" [(ngModel)]="prductMasterObj.itemName">
-              <mat-error *ngIf="UserForm.controls['itemName'].hasError('required')">Item Name is required</mat-error>
-              <mat-error *ngIf="UserForm.controls['itemName'].hasError('itemNameExists')">Item Name already exists</mat-error>
-              <!-- <mat-error class="mt-1">itemName is required</mat-error> -->
+              <!-- <mat-error *ngIf="UserForm.controls['itemName'].hasError('required')">Item Name is required</mat-error>
+              <mat-error *ngIf="UserForm.controls['itemName'].hasError('itemNameExists')">Item Name already exists</mat-error> -->
+              <mat-error class="mt-1">ItemName is required</mat-error>
             </mat-form-field>
           </div>
           <div class="col-lg-6">
@@ -131,7 +131,7 @@
               <mat-select formControlName="itemType" [(ngModel)]="prductMasterObj.itemType">
                 <mat-option *ngFor="let item of itemType" [value]="item.keyId">{{item.value}}</mat-option>
               </mat-select>
-              <mat-error class="mt-1">itemType is required</mat-error>
+              <mat-error class="mt-1">ItemType is required</mat-error>
             </mat-form-field>
           </div>
           <div class="col-lg-6">
@@ -140,14 +140,14 @@
               <mat-select formControlName="itemUom" [(ngModel)]="prductMasterObj.itemUom">
                 <mat-option *ngFor="let item of uomItem" [value]="item.keyId">{{item.value}}</mat-option>
               </mat-select>
-              <mat-error class="mt-1">itemUom is required</mat-error>
+              <mat-error class="mt-1">ItemUom is required</mat-error>
             </mat-form-field>
           </div>
           <div class="col-lg-6 col-md-6">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Description</mat-label>
               <input matInput type="text" formControlName="description" [(ngModel)]="prductMasterObj.description">
-              <mat-error class="mt-1">description is required</mat-error>
+              <mat-error class="mt-1">Description is required</mat-error>
             </mat-form-field>
           </div>
           <div class="col-lg-6 col-md-6">
@@ -162,12 +162,14 @@
               <mat-label>productionPrice</mat-label>
               <input matInput type="number" formControlName="productionPrice"
                 [(ngModel)]="prductMasterObj.productionPrice">
+                <mat-error class="mt-1">productionPrice is required</mat-error>
             </mat-form-field>
           </div>
           <div class="col-lg-6 col-md-6" *ngIf="prductMasterObj.itemType == 2">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>sellingPrice</mat-label>
               <input matInput type="number" formControlName="sellingPrice" [(ngModel)]="prductMasterObj.sellingPrice">
+              <mat-error class="mt-1">sellingPrice is required</mat-error>
             </mat-form-field>
           </div>
           <div class="text-center my-3">

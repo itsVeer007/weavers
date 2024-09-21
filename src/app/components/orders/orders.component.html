@@ -111,7 +111,7 @@
               <p>{{ cust.documentDate }}</p>
             </td>
             <td>
-              <p>{{ cust.addressLine1 }}</p>
+              <p class="text-center">{{ cust.addressLine1 }}</p>
             </td>
             <td class="pointer" (click)="open(cust)" matTooltip="View">View</td>
             <td (click)="openForm(cust)"><button style="background-color: #0c3f15; color: white;">Open</button></td>
@@ -168,9 +168,9 @@
               <th>
                 <p>Cost</p>
               </th>
-              <th>Invoice</th>
+              <th>Invoice Number</th>
               <th>Qty</th>
-              <th>Date</th>
+              <th>Invoice Date</th>
               <th></th>
             </tr>
           </thead>

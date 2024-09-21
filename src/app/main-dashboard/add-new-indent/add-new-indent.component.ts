@@ -52,6 +52,7 @@ export class AddNewIndentComponent implements OnInit {
 
   user: any;
   ngOnInit() {
+    console.log(this.show)
     this.form1();
     this.form2();
     
@@ -211,9 +212,9 @@ export class AddNewIndentComponent implements OnInit {
       if (this.sendingQuantity > (this.total_quantity_after_issue)) {
         this.alertSer.error('Enter Valid Quantity');
         } else {
-        if(this.statusItemsForRaw[0].itemUom === 4) {
-          item.quantity = item.quantity * 1000
-        }
+        // if(this.statusItemsForRaw[0].itemUom === 4) {
+        //   item.quantity = item.quantity * 1000
+        // } 
         this.tasks.push(item);
         this.UserForm2.reset();
       }
@@ -279,7 +280,7 @@ export class AddNewIndentComponent implements OnInit {
     invenData:any = []
     listMachineAssignmentFirst() {
       this.inventorySer.listMachineAssignment().subscribe((res:any)=> {
-        console.log(res);
+        // console.log(res);
         this.invenData = res
       })
     }
@@ -316,7 +317,6 @@ export class AddNewIndentComponent implements OnInit {
       // }
 
       this.UserForm1.value.expectedDate = formatDate(this.UserForm1.value.expectedDate, 'yyyy-MM-dd', 'en-us');
-
       this.UserForm1.value.crdId = this.data.id;
         this.inventorySer.assignMachineAndItems(this.UserForm1.value, this.tasks).subscribe((res: any) => {
           // if(this.UserForm2.value.quality > this.currentItem?.quantity) {
@@ -380,6 +380,7 @@ export class AddNewIndentComponent implements OnInit {
     this.checkbox = !this.checkbox;
   }
   deleteTableItem(index: any) {
+    console.log(index)
     this.tasks.splice(index, 1)
   }
 }

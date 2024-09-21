@@ -5,7 +5,7 @@
                 <!-- <img src="assets\icons\Mangalagiri Weavers Development Logo_2.jpg" alt="" width="124px" class="text-start"> -->
                 <div class="text-center">
                 <p class="secondHeading">Goods Receipt Note</p>
-                <p class="secondHeading">Mangalagiri Handlooms Development Center Pvt Ltd</p>
+                <p class="secondHeading">Mangalagiri Handlooms Development Center</p>
                 <p class="secondHeading">Mangalagiri</p>
                 </div>
             </div>
@@ -23,7 +23,7 @@
 
                     <div>
                         <p style="border: 1px solid #000; padding: 8px; width: 300px;">{{note?.grnNo}}</p>
-                        <p style="border: 1px solid #000; padding: 8px; width: 300px;">{{note?.grnDate}}</p>
+                        <p style="border: 1px solid #000; padding: 8px; width: 300px;">{{note?.grnDate  | date: 'dd/MM/yyyy'}}</p>
                     </div>
                 </div>
             </div>
@@ -31,28 +31,28 @@
             <div class="my-3">
                 <div class="d-flex justify-content-between border border-secondary" style="width: 100%">
                     <div class="w-100" style="border-right: 1px solid #000;">
-                        <p>MHDC Po No & Date</p>
-                        <p style="border-top: 1px solid #000;">Supplier Invoice No</p>
-                        <p style="border-top: 1px solid #000;">Project Name</p>
-                        <p style="border-top: 1px solid #000;">Name of the Supplier</p>
-                        <p style="border-top: 1px solid #000;">Date</p>
+                        <p class="p-1">MHDC Po No & Date</p>
+                        <p class="p-1" style="border-top: 1px solid #000;">Supplier Invoice No</p>
+                        <p class="p-1" style="border-top: 1px solid #000;">Project Name</p>
+                        <p  class="p-1" style="border-top: 1px solid #000;">Name of the Supplier</p>
+                        <!-- <p style="border-top: 1px solid #000;">Date</p> -->
                     </div>
 
                     <div class="w-100">
-                        <p>{{note?.purchaseRef}}</p>
-                        <p style="border-top: 1px solid #000;">{{note?.invoiceNumber}}</p>
-                        <p style="border-top: 1px solid #000;">{{note.projectName ??'Mangalagiri'}}</p>
-                        <p style="border-top: 1px solid #000;">{{note?.vendorName}}</p>
-                        <p style="border-top: 1px solid #000;">{{note?.invoiceDate}}</p>
+                        <p class="p-1" >{{note?.purchaseRef ?? '-'}}</p>
+                        <p class="p-1" style="border-top: 1px solid #000;">{{ note?.invoiceNumber?? '-'}}<span  class="verticalLine">&nbsp;Date:&nbsp;</span>&nbsp;{{note?.invoiceDate ??'-'}}</p>
+                        <p class="p-1" style="border-top: 1px solid #000;">{{note.projectName ??'-'}}</p>
+                        <p class="p-1" style="border-top: 1px solid #000;">{{note?.vendorName ??'-'}}</p>
+                        <!-- <p style="border-top: 1px solid #000;">{{note?.invoiceDate ??'-'}}</p> -->
                     </div>
                 </div>
 
                 <div class="d-flex border border-secondary" style="width: 100%">
                     <div style="border-right: 1px solid #000;">
-                        <p>Address&nbsp;</p>
+                        <p class="p-1">Address&nbsp;</p>
                     </div>
                     <div *ngIf="note?.country">
-                        <p>{{note?.country}}, {{note?.state}}, {{note?.city}}, {{note?.postCode}}</p>
+                        <p class="p-1">{{note?.country}}, {{note?.state}}, {{note?.city}}, {{note?.postCode}}</p>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                             <td class="heading">{{item.itemName}}</td>
                             <td class="heading">{{item.quantity}}</td>
                             <td class="heading">{{item.cost}}</td>
-                            <td class="heading">{{item.itemUom}}</td>
+                            <td class="heading">{{ item.itemUom == 1 ? 'Laddi' : item.itemUom == 2 ? 'numbers' : item.itemUom == 3 ?  'Mark' : item.itemUom == 4 ? 'Kgs' : item.itemUom == 5 ?  'Grams': ''}}</td>
                             <td class="text-end heading">{{item.cost * item.quantity}}</td>
                         </tr>
                     </tbody>
@@ -79,31 +79,35 @@
 
             
 
-            <div class="d-flex flex-column align-items-end">
+            <div class="d-flex flex-column align-items-end p-2">
                 <div class="d-flex justify-content-between w-25">
                     <p class="sub-heading">SUB TOTAL</p>
                     <p>{{note?.subTotal}}</p>
                 </div>
                 <div class="d-flex justify-content-between w-25">
-                    <p class="sub-heading">SGST@{{note?.sgstPercent}}</p>
+                    <p class="sub-heading">SGST&#64;{{note?.sgstPercent}}%</p>
                     <p>{{note?.sgst}}</p>
                 </div>
                 <div class="d-flex justify-content-between w-25">
-                    <p class="sub-heading">CGST@{{note?.cgstPercent}}</p>
+                    <p class="sub-heading">CGST&#64; {{note?.cgstPercent}}%</p>
                     <p>{{note?.cgst}}</p>
                 </div>
                 <div class="d-flex justify-content-between w-25">
-                    <p class="sub-heading">IGST@{{note?.igstPercent}}</p>
+                    <p class="sub-heading">IGST&#64;{{note?.igstPercent }}%</p>
                     <p>{{note?.igst}}</p>
                 </div>
-
+                <div class="d-flex justify-content-between w-25">
+                    <p class="sub-heading">TOTAL</p>
+                    <p class="sub-heading">{{getCeiledGrandTotal()}}</p>
+                </div>
+                
                 <div class="d-flex flex-row-reverse justify-content-between mt-2 w-100">
-
                     <div class="d-flex justify-content-around">
-                        <p class="sub-heading">TOTAL&nbsp;</p>
-                        <p>{{note?.grandTotal ?? '________________'}}</p>
+                        .
+                        <!-- <p class="sub-heading">TOTAL</p>
+                        <p class="w-25">{{newNote?.grandTotal}}</p> -->
                     </div>
-                    <p class="my-3" class="sub-heading mb-3">{{note?.grandTotal| numberToWords}}</p>
+                    <p class="heading my-3  mb-3" style="font-size: small;"><span style="font-weight: bold;">Total Amount In Words:</span> {{getCeiledGrandTotal()| numberToWords}}</p>
                 </div>
             </div>
 

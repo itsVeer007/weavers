@@ -104,7 +104,7 @@ export class AddProductMasterComponent implements OnInit {
   submit() {
     if(this.UserForm.valid) {
       this.alertSer.wait();
-      this.inventorySer.createProduct(this.prductMasterObj).subscribe((res: any) => {
+      this.inventorySer.createProduct(this.UserForm.value).subscribe((res: any) => {
         this.newItemEvent.emit();
         this.alertSer.success(res?.message);
       }, (err: any) => {

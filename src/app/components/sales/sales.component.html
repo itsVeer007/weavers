@@ -22,7 +22,7 @@
         </button>
         </mat-form-field>
     </div>
-    <div class="col-lg-3 from-date">
+    <!-- <div class="col-lg-3 from-date">
         <mat-form-field appearance="outline" class="w-100">
         <mat-label>Enter a date range</mat-label>
         <mat-date-range-input [rangePicker]="rangePicker">
@@ -34,11 +34,11 @@
             <mat-date-range-picker-actions>
             <button mat-button matDateRangePickerCancel>Cancel</button>
             <button mat-raised-button color="primary" matDateRangePickerApply (click)="filter()">Apply</button>
-            <!-- <button mat-raised-button color="primary" matDateRangePickerApply (click)="filterForRaw()">RawMaterial</button> -->
+            <button mat-raised-button color="primary" matDateRangePickerApply (click)="filterForRaw()">RawMaterial</button>
             </mat-date-range-picker-actions>
         </mat-date-range-picker>
         </mat-form-field>
-    </div>
+    </div> -->
     </div>
     
     <div class="table-resp">
@@ -197,11 +197,11 @@
                 Quantity
                 <img (click)="sort('grandTotal')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
             </th>
-            <th>
+            <th *ngIf="!checked">
                Return Quantity
                 <img (click)="sort('grandTotal')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
             </th>
-            <th>Return</th>
+            <th *ngIf="checked">Return</th>
             </tr>
         </thead>
         <tbody>
@@ -223,10 +223,11 @@
             <td>
                 <p>{{ task.quantity}}</p>
             </td>
-            <td>
+            <td *ngIf="!checked">
                 <p>{{ task.returnQuantity}}</p>
             </td>
-            <td><input type="number" placeholder="Quantity" [(ngModel)]="task.qty"></td>
+            
+            <td *ngIf="checked"><input type="number" placeholder="Quantity" [(ngModel)]="task.returnQuantity"></td>
             </tr>
         </tbody>
         </table>
@@ -265,7 +266,7 @@
                 Quantity
             </th> -->
             <th>
-                Cash Return
+                Cash Return(INCL GST)
             </th>
             </tr>
         </thead>

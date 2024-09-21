@@ -84,7 +84,7 @@
                 <mat-label>Quantity in</mat-label>
                 <mat-select formControlName="quantityIn">
                   <mat-option *ngFor="let item of Weavers_Item_Uom"
-                  [value]="item.keyId">{{ item.value}}</mat-option>
+                  [value]="item.keyId" [hidden]="item.keyId == 5">{{ item.value}}</mat-option>
                 </mat-select>
                 <mat-error class="mt-1">Quantity in is required</mat-error>
               </mat-form-field>

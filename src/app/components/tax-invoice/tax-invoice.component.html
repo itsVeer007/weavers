@@ -9,60 +9,60 @@
             </div>
             <div>
                 <p class="sub-heading">Inv No:&nbsp; {{this.Note?.invoiceNo }}</p>
-                <p class="sub-heading">Inv Date:&nbsp; {{this.Note?.invoiceDate}}</p>
+                <p class="sub-heading">Inv Date:&nbsp; {{this.Note?.invoiceDate  | date: 'dd/MM/yyyy'}}</p>
             </div>
         </div>
      
         <div class="w-100" style="border: 1px solid;">
             <div class="d-flex justify-content-start align-items-center">
                 <p class="paargraph-head">NAME&nbsp;</p>
-                <p class="headingForMangalagiri">MANGALAGIRI HANDLOOM DEVELOPMENT CENTER</p>
+                <p class="headingForMangalagiri">:MANGALAGIRI HANDLOOM DEVELOPMENT CENTER</p>
             </div>
             <div class="d-flex justify-content-start align-items-center">
                 <p class="paargraph-head">ADDRESS&nbsp;</p>
-                <p class="paargraph">Flat No.508, Kosanam Roy Heights, APNRT Tech Park, Mangalagiri, Guntur District
+                <p class="paargraph">:Flat No.508, Kosanam Roy Heights, APNRT Tech Park, Mangalagiri, Guntur District
                 </p>
             </div>
             <div class="d-flex justify-content-start align-items-center">
                 <p class="paargraph-head">STATE&nbsp;</p>
-                <p class="paargraph">Andhra Pradesh
+                <p class="paargraph">:Andhra Pradesh
                 </p>
             </div>
             <div class="d-flex justify-content-start align-items-center">
                 <p class="paargraph-head">EMAIL&nbsp;</p>
-                <p class="paargraph">mhdcweavers@gmail.com</p>
+                <p class="paargraph">:mhdcweavers&#64;gmail.com</p>
             </div>
             <div class="d-flex justify-content-start align-items-center">
                 <p class="paargraph-head">MSME URN&nbsp;</p>
-                <p class="paargraph">UDYAM-AP-04-0045278</p>
+                <p class="paargraph">:UDYAM-AP-04-0045278</p>
             </div>
             <div class="d-flex justify-content-start align-items-center">
                 <p class="paargraph-head">GSTIN&nbsp;</p>
-                <p class="paargraph">37ABXFM8268Q1ZR</p>
+                <p class="paargraph">:37ABXFM8268Q1ZR</p>
             </div>
         </div>
 
         <div class="d-flex" style="border: 1px solid;">
-            <div style="border-right: 1px solid;">
-                <p class="sub-heading">Bill To</p>
-                <p class="sub-heading">Name:&nbsp;{{Note?.clientName}} </p>
-                <p class="taxContentSize" *ngIf="Note?.address">Address:&nbsp;{{Note?.address}}</p>
+            <div style="border-right: 1px solid;"  class="w-25">
+                <p class="sub-heading p-2">Bill To</p>
+                <p class="sub-heading p-2">Name:&nbsp;{{Note?.clientName}} </p>
+                <p class="taxContentSize p-2" *ngIf="Note?.address">Address:&nbsp;{{Note?.address}}</p>
                 <!-- <p class="taxContentSize">Address:&nbsp;{{Note?.state}}</p> -->
-                <p class="taxContentSize"> Phone No:&nbsp;{{Note?.mobileNumber}}</p>
-                <p class="taxContent">Email:{{Note?.emailId}}</p>
+                <p class="taxContentSize p-2"> Phone No:&nbsp;{{Note?.mobileNumber}}</p>
+                <p class="taxContent p-2">Email:{{Note?.emailId}}</p>
             </div>
-            <div style="border-right: 1px solid;">
-                <p class="sub-heading">Ship To</p>
-                <p class="sub-heading">Name:&nbsp;{{Note?.clientName}} </p>
-                <p class="taxContentSize" *ngIf="Note?.address">Address:&nbsp;{{Note?.address}}</p>
-                <p class="taxContentSize">Phone No:&nbsp;{{Note?.mobileNumber}}</p>
-                <p class="taxContent">Email:{{Note?.emailId}}</p>
+            <div style="border-right: 1px solid;" class="w-25">
+                <p class="sub-heading p-2">Ship To</p>
+                <p class="sub-heading p-2">Name:&nbsp;{{Note?.clientName}} </p>
+                <p class="taxContentSize p-2" *ngIf="Note?.address">Address:&nbsp;{{Note?.address}}</p>
+                <p class="taxContentSize p-2">Phone No:&nbsp;{{Note?.mobileNumber}}</p>
+                <p class="taxContent p-2">Email:{{Note?.emailId}}</p>
             </div>
-            <div>
+            <div class="w-50">
                 <!-- <p class="sub-heading">Details</p> -->
-                <p class="sub-heading">PAN No :&nbsp;{{Note?.panNo}}</p>
-                <p class="sub-heading">PO No :&nbsp;{{Note?.poNo}} </p>
-                <p class="sub-heading">PO Date :{{Note?.poDate | date: 'dd/MM/yyyy'}}</p>
+                <p class="sub-heading p-2">PAN No :&nbsp;{{Note?.panNo}}</p>
+                <p class="sub-heading p-2">PO No :&nbsp;{{Note?.poNo}} </p>
+                <p class="sub-heading p-2">PO Date :{{Note?.poDate | date: 'dd/MM/yyyy'}}</p>
             </div>
         </div>
 
@@ -75,13 +75,13 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of newNote; let i = index">
-                        <td class="text-center">{{i+1}}</td>
-                        <td class="text-center">{{item.itemCode}}</td>
-                        <td class="text-center">{{item.itemName}}</td>
-                        <td class="text-center">{{'68798'}}</td>
-                        <td class="text-center">{{item.quantity}}</td>
-                        <td class="text-center">{{item.cost}}</td>
-                        <td class="text-end">{{item.cost * item.quantity}} </td>
+                        <td style="text-align: center;">{{i+1}}</td>
+                        <td style="text-align: center;">{{item.itemCode}}</td>
+                        <td style="text-align: center;">{{item.itemName}}</td>
+                        <!-- <td>{{'68798'}}</td> -->
+                        <td style="text-align: center;">{{item.quantity}}</td>
+                        <td style="text-align: center;">{{item.soldCost}}</td>
+                        <td style="text-align: center;">{{item.soldCost * item.quantity}} </td>
                     </tr>
                 </tbody>
             </table>
@@ -100,20 +100,20 @@
                 </div>
             </div>
 
-            <div style="border-right: 1px solid; width: 100px;">
+            <div style="border-right: 1px solid; width: 150px;">
                 <p style="border-bottom: 1px solid;">SubTotal</p>
-                <p class="taxContentSize" style="border-bottom: 1px solid;"> CGST@&nbsp;{{Note?.cgstPercent ?? '-'}}</p>
-                <p class="taxContentSize " style="border-bottom: 1px solid;"> SGST@&nbsp;{{Note?.sgstPercent ?? '-'}}</p>
-                <p class="taxContentSize" style="border-bottom: 1px solid;"> IGST@&nbsp;{{Note?.igstPercent ?? '-'}}</p>
+                <p class="taxContentSize" style="border-bottom: 1px solid;">CGST&#64;{{Note?.cgstPercent ?? '-'}}%</p>
+                <p class="taxContentSize " style="border-bottom: 1px solid;">SGST&#64;{{Note?.sgstPercent ?? '-'}}%</p>
+                <p class="taxContentSize" style="border-bottom: 1px solid;">IGST&#64;{{Note?.igstPercent ?? '-'}}%</p>
                 <p class="taxContentSize">Total</p>
             </div>
 
             <div style="width: 300px;">
-                <p style="border-bottom: 1px solid;" class="text-end">{{Note?.subTotal ?? '-'}}</p>
-                <p style="border-bottom: 1px solid;" class="text-end">{{Note?.cgst ?? '-'}}</p>
-                <p style="border-bottom: 1px solid;" class="text-end">{{Note?.sgst ?? '-'}}</p>
-                <p style="border-bottom: 1px solid;" class="text-end">{{Note?.igst ? Note?.igst : 0}}</p>
-                <p class="text-end"> {{Note?.grandTotal ?? '-'}} </p>
+                <p style="border-bottom: 1px solid; text-align: end;">{{Note?.subTotal ?? '-'}}</p>
+                <p style="border-bottom: 1px solid; text-align: end;">{{Note?.cgst ?? '-'}}</p>
+                <p style="border-bottom: 1px solid; text-align: end;">{{Note?.sgst ?? '-'}}</p>
+                <p style="border-bottom: 1px solid; text-align: end;">{{Note?.igst ? Note?.igst : '-'}}</p>
+                <p style="text-align: end;"> {{Note?.grandTotal ?? '-'}} </p>
             </div>
         </div>
 

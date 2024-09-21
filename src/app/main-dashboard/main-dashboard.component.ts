@@ -69,14 +69,15 @@ export class MainDashboardComponent implements OnInit {
   showAddBusinessVertical = false;
 
   ngOnInit(): void {
-    // this.getMainDashboardCardReport();
-    // this.getMainDashboardReport();
+    this.getMainDashboardCardReport();
+    this.getMainDashboardReport();
     // this.mychart();
     // this.mychart1();
     // this.mychart2();
     // this.mychart3();
     // this.mychart4();
     this.dashboard();
+    this.listDashboard()
   }
 
   Weavers_Item_Uom: any;
@@ -133,14 +134,22 @@ export class MainDashboardComponent implements OnInit {
     });
   }
 
+  listdashdata:any
+  listDashboard(item?:any) {
+    this.inventorySer.listDashboard(item).subscribe((res: any) => {
+      // console.log(res);
+      this.listdashdata = res[0];
+    });
+  }
+
   filterBody = {
     startDate: null,
     endDate: null,
   };
   filterDash() {
-    this.inventorySer.Filterdashboard(this.filterBody).subscribe((res: any) => {
+    this.inventorySer.listDashboard(this.filterBody).subscribe((res: any) => {
       // console.log(res);
-      this.newDashdata = res;
+      this.newDashdata = this.listdashdata;
       // this.filterBody.startDate = null;
       // this.filterBody.endDate = null
     });
@@ -228,14 +237,21 @@ export class MainDashboardComponent implements OnInit {
   cardReport: any;
   getMainDashboardCardReport() {
     this.getNoOfElements();
-    this.http.get('assets/JSON/verticalCard.json').subscribe((res) => {
+    // this.http.get('assets/JSON/verticalCard.json').subscribe((res) => {
+    //   this.cardReport = res;
+    //   // console.log(res)
+    //   var a = JSON.parse(JSON.stringify(res));
+    //   // console.log(this.noOfCards);
+    //   this.showcardReport = a.splice(0, this.noOfCards);
+    // });
+    this.inventorySer.dashboard().subscribe((res:any)=> {
       this.cardReport = res;
-      // console.log(res)
       var a = JSON.parse(JSON.stringify(res));
-      // console.log(this.noOfCards);
       this.showcardReport = a.splice(0, this.noOfCards);
-    });
+    })
   }
+
+
 
   noOfCards = 4;
   getNoOfElements() {
@@ -298,7 +314,7 @@ export class MainDashboardComponent implements OnInit {
   mychart() {
     var charttype = 'line';
     var threeD = false;
-    var title = 'TOTAL CUSTOMERS REPORT - 5';
+    var title = 'TOTAL WEAVERS REPORT - 5';
     // var subtitle = 'The following charts represent the average amount of time your employees spend at their bays each day.';
     //var antype = 'Minutes';
     var elementid = 'chart';
@@ -330,7 +346,7 @@ export class MainDashboardComponent implements OnInit {
   mychart1() {
     var charttype = 'line';
     var threeD = false;
-    var title = 'TOTAL SITES REPORT - 7';
+    var title = 'TOTAL RAW MATERIAL REPORT - 7';
     // var subtitle = 'The following charts represent the average amount of time your employees spend at their bays each day.';
     // var antype = 'Minutes';
     var elementid = 'chart1';
@@ -361,7 +377,7 @@ export class MainDashboardComponent implements OnInit {
   mychart2() {
     var charttype = 'line';
     var threeD = false;
-    var title = 'TOTAL CAMERAS REPORT - 49';
+    var title = 'TOTAL SALES REPORT - 49';
     // var subtitle = 'The following charts represent the average amount of time your employees spend at their bays each day.';
     // var antype = 'Minutes';
     var elementid = 'chart2';
@@ -392,7 +408,7 @@ export class MainDashboardComponent implements OnInit {
   mychart3() {
     var charttype = 'line';
     var threeD = false;
-    var title = 'TOTAL ANALYTICS REPORT - 42';
+    var title = 'TOTAL FINISHED GOODS REPORT - 42';
     // var subtitle = 'The following charts represent the average amount of time your employees spend at their bays each day.';
     // var antype = 'Minutes';
     var elementid = 'chart3';
@@ -423,7 +439,7 @@ export class MainDashboardComponent implements OnInit {
   mychart4() {
     var charttype = 'line';
     var threeD = false;
-    var title = 'TOTAL USERS REPORT - 5';
+    var title = 'TOTAL ANALYTICS REPORT - 5';
     // var subtitle = 'The following charts represent the average amount of time your employees spend at their bays each day.';
     // var antype = 'Minutes';
     var elementid = 'chart4';
@@ -498,9 +514,9 @@ export class MainDashboardComponent implements OnInit {
   prevvert() {
     var indexOfFirstElem = this.cardReport
       .map((item: any) => {
-        return item.id;
+        return item.itemCode;
       })
-      .indexOf(this.showcardReport[0].id);
+      .indexOf(this.showcardReport[0].itemCode);
 
     // console.log(indexOfFirstElem, (this.cardReport.length - 1))
     if (indexOfFirstElem != 0) {
@@ -513,9 +529,10 @@ export class MainDashboardComponent implements OnInit {
   nextvert() {
     var indexOfFirstElem = this.cardReport
       .map((item: any) => {
-        return item.id;
+        console.log(item)
+        return item.itemCode;
       })
-      .indexOf(this.showcardReport[0].id);
+      .indexOf(this.showcardReport[0].itemCode);
 
     // console.log(indexOfFirstElem, (this.cardReport.length - 1))
     if (indexOfFirstElem + this.noOfCards < this.cardReport.length) {
@@ -524,4 +541,5 @@ export class MainDashboardComponent implements OnInit {
       this.showcardReport = a.splice(indexOfFirstElem, this.noOfCards);
     }
   }
+  
 }

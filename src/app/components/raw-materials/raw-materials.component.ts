@@ -49,7 +49,13 @@ export class RawMaterialsComponent implements OnInit {
     })
     
     this.listInventoryForRaw()
+ 
   }
+
+
+
+ 
+
   @ViewChild('usedItemsDialog') usedItemsDialog = {} as TemplateRef<any>;
   openInvoice() {
     this.inventorySer.listGoodReceiptNote().subscribe((res:any)=> {
@@ -86,7 +92,9 @@ export class RawMaterialsComponent implements OnInit {
   @ViewChild('ItemsDialog') ItemsDialog = {} as TemplateRef<any>;
   open(item:any) {
     this.inventorySer.listGoodReceiptNote(item).subscribe((res:any)=> {
-      this.noteSecond = res;
+      // console.log(res)
+      this.noteSecond = res.items;
+      // console.log(this.noteSecond)
     })
     this.dialog.open(this.ItemsDialog)
   }

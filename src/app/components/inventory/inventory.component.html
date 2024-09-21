@@ -70,7 +70,7 @@
   <!-- header -->
   <div class="d-flex align-items-center justify-content-between">
     <div class="users-header" *ngIf="!main">
-      <p class="mt-2">List of Finished Goods - <span>{{ inventoryTable?.length }}</span></p>
+      <p class="mt-2 mb-2">List of Finished Goods - <span>{{ inventoryTable?.length }}</span></p>
     </div>
     <!-- <div class="users-header" *ngIf="main">
       <p class="mt-2">List of Items - <span>{{ FinalData?.length }}</span></p>
@@ -201,7 +201,7 @@
       </mat-form-field>
     </div> -->
 
-    <div class="col-lg-3 from-date">
+    <!-- <div class="col-lg-3 from-date">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Enter a date range</mat-label>
         <mat-date-range-input [rangePicker]="rangePicker">
@@ -214,11 +214,11 @@
           <mat-date-range-picker-actions>
             <button mat-button matDateRangePickerCancel>Cancel</button>
             <button mat-raised-button color="primary" matDateRangePickerApply (click)="applyFilter()">Apply</button>
-            <!-- <button mat-raised-button color="primary" matDateRangePickerApply (click)="filterForRaw()">RawMaterial</button> -->
+            <button mat-raised-button color="primary" matDateRangePickerApply (click)="filterForRaw()">RawMaterial</button>
           </mat-date-range-picker-actions>
         </mat-date-range-picker>
       </mat-form-field>
-    </div>
+    </div> -->
     
     <!-- <div class="col-lg-3 from-date" *ngIf="main">
       <mat-form-field appearance="outline" class="w-100">

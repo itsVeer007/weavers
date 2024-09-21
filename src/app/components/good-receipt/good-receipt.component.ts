@@ -86,7 +86,7 @@ export class GoodReceiptComponent implements OnInit {
     printMode: 'template',
     popupProperties: 'toolbar=yes, scrollbars=yes, resizable=yes, top=0, left=0, fullscreen=yes',
     pageTitle: 'Hello World',
-    // htmlType: 'text',
+    htmlType: 'text',
 
     templateString: `
     <header>
@@ -133,6 +133,11 @@ export class GoodReceiptComponent implements OnInit {
   @ViewChild('tableRef') tableElement!: ElementRef<HTMLTableElement>;
   onPrint1(el: ElementRef<HTMLTableElement | HTMLElement>) {
     this.print.print(el, this.config).subscribe(console.log);
+  }
+
+  
+  getCeiledGrandTotal() {
+    return Math.round(this.note.grandTotal || 0);
   }
 
 }

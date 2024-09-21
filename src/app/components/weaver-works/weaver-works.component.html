@@ -175,9 +175,7 @@
                         <p>{{cust.sareesSubmittedCount}}</p>
                     </td>
                     <td>
-                        <button  style="background-color: #95cfad;"
-                        [disabled]="cust.sareeCount === cust.sareesSubmittedCount" 
-                        (click)="open(cust)"   
+                        <button  style="background-color: #95cfad;" [disabled]="cust.sareeCount === cust.sareesSubmittedCount" (click)="open(cust)"   
                         [matTooltip]="cust.sareeCount === cust.sareesSubmittedCount ? 'Cannot edit, counts match' : ''">Edit</button>
                     </td>
                     <td class="pointer">
@@ -404,7 +402,7 @@
                                 <span>Quantity</span>
                                 <img (click)="sort1('quantity')" class="pointer ms-1" src="assets/icons/sorticon.svg" width="15px">
                             </th>
-                               <th><p>Cloth Details</p></th>
+                               <!-- <th><p>Cloth Details</p></th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -423,7 +421,7 @@
                         <td>
                             <p>{{cust.quantity}}</p>
                         </td>
-                        <td style="color: #125a2e;" class="pointer" (click)="ViewOutSareeInInv(cust)" matTooltip="view">View</td>
+                        <!-- <td style="color: #125a2e;" class="pointer" (click)="ViewOutSareeInInv(cust)" matTooltip="view">View</td> -->
                        </ng-container>
                         </tr>
                     </tbody>
@@ -453,9 +451,9 @@
                 <th>
                     <p>Saree5</p>
                 </th>
-                <!-- <th>
-                    <p>irMachineAssignmentId</p>
-                </th> -->
+                <th>
+                    <p>Cloth Details</p>
+                </th>
              
                 </tr>
             </thead>
@@ -476,9 +474,7 @@
                         <td>
                             <p>{{cust.saree5}}</p>
                         </td>
-                        <!-- <td>
-                            <p>{{cust.irMachineAssignmentId}}</p>
-                        </td> -->
+                        <td style="color: #125a2e;" class="pointer" (click)="ViewOutSareeInInv(cust)" matTooltip="view">View</td>
                        
                     </ng-container>
                         </tr>

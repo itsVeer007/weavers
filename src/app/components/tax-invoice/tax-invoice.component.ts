@@ -27,7 +27,7 @@ Math: any;
     public print: NgxPrintElementService
   ) { }
 
-  tableItems: any[] =['Item No', 'Material Code', 'Description', 'HSN/SAC', 'Qty', 'Rate', 'Amount(INR)']
+  tableItems: any[] =['Item No', 'Material Code', 'Description', 'Qty', 'Rate', 'Amount(INR)']
   dcItems: any;
   invoiceNumber:any 
   ngOnInit(): void {
@@ -91,7 +91,7 @@ Math: any;
     printMode: 'template',
     popupProperties: 'toolbar=yes, scrollbars=yes, resizable=yes, top=0, left=0, fullscreen=yes',
     pageTitle: 'Hello World',
-    // htmlType: 'text',
+    htmlType: 'text',
 
     templateString: `
     <div>
@@ -99,12 +99,8 @@ Math: any;
           <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.2;">
               <img src="assets/icons/Mangalagiri Weavers.jpg" width="100%" alt="">
           </div>
-
-
         </header>
-        
         {{printBody}}
-        
         <footer></footer>
     </div>
     `,

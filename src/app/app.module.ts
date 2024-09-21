@@ -106,6 +106,7 @@ import { ItemNameValidatorPipe } from './item-name-validator.pipe';
 import { ItemNameValidatorComponent } from './item-name-validator/item-name-validator.component';
 import { OnlyNumbersDirectiveDirective } from './only-numbers-directive.directive';
 import { NgxPrintElementModule } from 'ngx-print-element';
+import { RemoveDuplicatesForTwoPipe } from './remove-duplicates-for-two.pipe';
 
 
 
@@ -182,6 +183,7 @@ import { NgxPrintElementModule } from 'ngx-print-element';
     ItemNameValidatorPipe,
     ItemNameValidatorComponent,
     OnlyNumbersDirectiveDirective,
+    RemoveDuplicatesForTwoPipe,
 
 
 
@@ -216,7 +218,9 @@ import { NgxPrintElementModule } from 'ngx-print-element';
     MatBadgeModule,
     MatSlideToggleModule,
     MatTooltipModule,
-    NgxPrintElementModule
+    NgxPrintElementModule,
+    
+    
   ],
   providers: [
     DatePipe,

@@ -194,17 +194,18 @@ export class VendorsComponent implements OnInit {
   currentItem: any;
   originalObject: any;
   changedKeys: any = [];
+  vendorData:any
 
   /* view inventory */
 
   @ViewChild('viewInventoryDialog') viewInventoryDialog = {} as TemplateRef<any>;
   openlistVendorDetails(item: any) {
-    this.currentItem = item;
+    // this.currentItem = item;
     this.dialog.open(this.viewInventoryDialog);
     this.inventorySer.listVendorDetails(item).subscribe((res:any)=> {
       // console.log(this.currentItem);
-      this.currentItem = res;
-      console.log(this.currentItem)
+      this.vendorData = res;
+      // console.log(this.currentItem)
     })
   }
 

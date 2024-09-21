@@ -16,7 +16,7 @@ purchaseSub: BehaviorSubject<any> = new BehaviorSubject(null)
 goodRecieptSub: BehaviorSubject<any> = new BehaviorSubject(null)
 
   // baseUrl = `${environment.baseUrl}/weavers`;
-  baseUrl = 'http://192.168.0.129:8080';
+  baseUrl = 'http://192.168.0.237:8080';
 
   constructor(
     private http: HttpClient,
@@ -1101,13 +1101,13 @@ goodRecieptSub: BehaviorSubject<any> = new BehaviorSubject(null)
           sgst:payload1.sgst,
           igst:payload1.igst,
           grandTotal:payload1.grandTotal,
-          address:payload1.address,
-          mobileNumber:payload1.mobileNumber,
-          emailId:payload1.emailId,
-          city: payload1?.city,
-          country: payload1?.country,
-          pinCode: payload1?.pinCode,
-          state: payload1?.state
+          // address:payload1.address,
+          // mobileNumber:payload1.mobileNumber,
+          // emailId:payload1.emailId,
+          // city: payload1?.city,
+          // country: payload1?.country,
+          // pinCode: payload1?.pinCode,
+          // state: payload1?.state
           // createdBy:user.UserId,
         },
         sales: payload2
@@ -1119,15 +1119,12 @@ goodRecieptSub: BehaviorSubject<any> = new BehaviorSubject(null)
   listInvoices(payload?: any) {
     let url = this.baseUrl + '/listInvoices_1_0';
     let params = new HttpParams();
-
     if(payload?.startDate) {
       params = params.set('startDate', formatDate(payload?.startDate, 'yyyy-MM-dd', 'en-us'));
     } 
-
     if(payload?.endDate) {
       params = params.set('endDate', formatDate(payload?.endDate, 'yyyy-MM-dd', 'en-us'));
     } 
-
     if(payload?.invoiceNo) {
       params = params.set('invoiceNo', payload?.invoiceNo);
     }
@@ -1137,8 +1134,8 @@ goodRecieptSub: BehaviorSubject<any> = new BehaviorSubject(null)
   listReturnItems(payload:any) {
     let params = new HttpParams();
     let url = this.baseUrl + '/listReturnItems_1_0';
-    if(payload?.id) {
-      params = params.set('taxInvoiceId', payload?.id);
+    if(payload?.taxInvoiceId) {
+      params = params.set('taxInvoiceId', payload?.taxInvoiceId);
     } 
     return this.http.get(url, {params: params});
   }
@@ -1174,6 +1171,9 @@ goodRecieptSub: BehaviorSubject<any> = new BehaviorSubject(null)
     let params = new HttpParams()
     if(payload?.invoiceNumber) {
       params = params.set('invoiceNumber',payload?.invoiceNumber);
+    }
+    if(payload?.vendorName) {
+      params = params.set('vendorName',payload?.vendorName);
     }
   
     return this.http.get(url, { params: params });
@@ -1218,17 +1218,24 @@ goodRecieptSub: BehaviorSubject<any> = new BehaviorSubject(null)
   }
   ViewOutSareeInInv(payload?:any) {
     let url = this.baseUrl + '/ViewOutSareeInInv_1_0';
-    let params = new HttpParams()
-    if(payload?.id) {
-      params = params.set('in_ir_machine_assignment_id',payload.id)
-    }
-    // let params = new HttpParams().set('in_ir_machine_assignment_id',payload?.irMachineAssignmentId);
+    // let params = new HttpParams()
+    // if(payload?.id) {
+    //   params = params.set('in_ir_machine_assignment_id',payload.id)
+    // }
+    let params = new HttpParams().set('in_ir_machine_assignment_id',payload?.irMachineAssignmentId);
     return this.http.get(url, { params: params });
   }
 
   dashboard() {
     let url = this.baseUrl + '/dashboard_1_0';
     let params = new HttpParams().set('startDate' , '2024-02-01').set('endDate' ,formatDate(new Date(), 'yyyy-MM-dd', 'en-us'))
+    return this.http.get(url,{params:params});
+  }
+
+  listDashboard(payload:any) {
+    let url = this.baseUrl + '/listDashboard_1_0'
+    let params = new HttpParams().set('startDate' , '2024-02-06').set('endDate' ,formatDate(new Date(), 'yyyy-MM-dd', 'en-us'))
+
     return this.http.get(url,{params:params});
   }
 
@@ -1290,5 +1297,14 @@ goodRecieptSub: BehaviorSubject<any> = new BehaviorSubject(null)
 
     return this.http.post(url, myObj);
   }
+
+
+
+
+
+
+
+
+  
 }
 

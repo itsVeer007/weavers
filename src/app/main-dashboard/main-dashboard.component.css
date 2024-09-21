@@ -61,7 +61,7 @@
 }*/
 
 .verticals {
-    color: #084982;
+    color: #084638;
     text-transform: uppercase;
     font-weight: 500 !important;
     align-items: center;
@@ -87,12 +87,12 @@
     /* height: 135px; */
     /* width: 24%; */
     /* margin: 0.5%;  */
-    padding-bottom: 10px;
-    box-shadow: 5px 5px 10px #0000000D;
+    /* padding-bottom: 10px;
+    box-shadow: 5px 5px 10px #0000000D; */
 }
 .card1{
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 5px;
+    /* border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 5px; */
     min-width: 100%;
     box-shadow: 5px 5px 10px #0000000D;
 }
@@ -109,9 +109,9 @@
     margin: 0;
 }
 
-.card-body {
+/* .card-body {
     height: 70px;
-}
+} */
 
 .table-resp {
     font-size: 13px;
@@ -128,7 +128,7 @@
 .form-select {
     width: 200px;
     height: 40px;
-    color: #084982;
+    color: #074933;
     background-color: #fff;
 }
 
@@ -142,7 +142,7 @@
 .form-control {
     width: 125px;
     height: 40px;
-    color: #084982;
+    color: #0d4924;
     background-color: #EFEFEF;
 }
 
@@ -159,9 +159,8 @@ tbody tr th {
 
 
 
-.first-card {
-    /* width: 50vw;
-    height: 40vh; */
+/* .first-card {
+
     border-radius:12px;
     border-width: 5px;
     border-color: #00573c;
@@ -175,17 +174,18 @@ tbody tr th {
     border-width: 5px;
     border-color: #174235;
     background-color: #d3254a;
-}
+} */
 
 .card {
-    background-image:linear-gradient(to right, transparent 50%, #a3c993 50%, #00573c), url('https://advaitacollections.com/wp-content/uploads/2021/12/IMG-20211225-WA0008.jpg');
+    /* background-image:linear-gradient(to right, transparent 50%, #a3c993 50%, #00573c), url('https://advaitacollections.com/wp-content/uploads/2021/12/IMG-20211225-WA0008.jpg'); */
     background-size: cover;
     /* background-image: linear-gradient(to right , #42745a ,#d49ca8); */
-    background-color: #afdfe6;
-    border-radius: 12px;
+    background-color: #ecf3e7;
+    /* border-radius: 12px; */
     border-color: #3a7b7e;
     border-width: 2px;
-    height: 160px;
+    height: 120px;
+    /* width: 280px; */
 
 
 }
@@ -196,7 +196,8 @@ tbody tr th {
     height: 113px;
 }
 .title-card {
-    background-color: #e3ece6;
+    background-color: #ccddd2;
+    border-radius: 12px;
 }
 .top-heading {
     color: #00573c;
@@ -287,7 +288,7 @@ tbody tr th {
 }
 
 .card-menu .card .card-body .d-flex :first-child span {
-    color: #084982;
+    color: #0c4239;
 }
 
 .card-menu .card .card-header h6 {
@@ -376,7 +377,7 @@ table tbody tr th .badge {
     .form-select {
         width: 200px;
         height: 40px;
-        color: #084982;
+        color: #105837;
         background-color: #fff;
     }
 
@@ -390,7 +391,7 @@ table tbody tr th .badge {
     .form-control {
         width: 125px;
         height: 40px;
-        color: #084982;
+        color: #0d3b30;
         background-color: #EFEFEF;
     }
 
@@ -433,7 +434,7 @@ table tbody tr th .badge {
     .form-select {
         width: 200px;
         height: 35px;
-        color: #084982;
+        color: #06442c;
         background-color: #fff;
     }
 
@@ -557,7 +558,7 @@ table tbody tr th .badge {
   ::ng-deep .mat-dialog-content {
     margin: 0 !important;
     padding: 0 20px !important;
-    max-height: 450px !important;
+    max-height: 40px !important;
   }
   
   ::ng-deep .mat-dialog-container {
@@ -567,6 +568,7 @@ table tbody tr th .badge {
   
   /* mat disable color */
   ::ng-deep .mat-input-element:disabled, .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+    /* padding: 0 !important; */
     color: #000;
   }
   
@@ -602,4 +604,13 @@ table tbody tr th .badge {
   ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
     color: #084982!important;
   }
+/* 
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    height: 40px  !important;
+    width:100% !important;
+  }
   
+
+   ::ng-deep .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+    padding: 0 !important;
+   } */

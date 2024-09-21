@@ -209,7 +209,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let task of note | removeDuplicates:'invoiceNumber'; let i = index">
+            <tr *ngFor="let task of note | removeDuplicatesForTwo:'invoiceNumber':'vendorName': 'invoiceDate'; let i = index">
+                <!-- <tr *ngFor="let task of note | removeDuplicates:'grnNo'; let i = index"> -->
+                <!-- {{ task.vendorName }} - {{ task.invoiceNumber }} -->
             <td>
                 <p>{{ task.grnNo }}</p>
             </td>

@@ -111,3 +111,7 @@ tbody, td, tfoot, th, thead, tr {
   border: 1px solid #000;
 }
 
+.verticalLine {
+  border-right: thin solid #251e1e;
+  border-left: thin solid #251e1e;
+}

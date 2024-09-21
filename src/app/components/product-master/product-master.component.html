@@ -171,10 +171,10 @@
             <p>{{ cust.itemName }}</p>
           </td>
           <td>
-            <p>{{ cust.itemType == 1 ? 'Raw material' : cust.itemType == 2 ? 'Finished Product' : cust.itemType == 3 ? 'component' : cust.itemType == 4 ? 'Sub component' : '' }} </p>
+            <p [style.color]="cust.itemType == 1 ? 'green' : cust.itemType == 2 ?  'grey' : '' ">{{ cust.itemType == 1 ? 'Raw material' : cust.itemType == 2 ? 'Finished Product' : cust.itemType == 3 ? 'component' : cust.itemType == 4 ? 'Sub component' : '' }} </p>
           </td>
           <td>
-            <p>{{ cust.itemUom == 1 ? 'Laddi' : cust.itemUom == 2 ? 'numbers' : cust.itemUom == 3 ?  'Mark' : cust.itemUom == 4 ? 'Kgs' : cust.itemUom == 5 ?  'Grams': '' }} </p>
+            <p  [style.color]="cust.itemUom == 1 ? 'green' : cust.itemUom == 2 ?  'grey' : '' ">{{ cust.itemUom == 1 ? 'Laddi' : cust.itemUom == 2 ? 'numbers' : cust.itemUom == 3 ?  'Mark' : cust.itemUom == 4 ? 'Kgs' : cust.itemUom == 5 ?  'Grams': '' }} </p>
           </td>
           <td>
             <p>{{ cust.description}}</p>
@@ -440,24 +440,18 @@
       <table class="table" id="mytable">
       <thead>
           <tr class="task-table">
-          <th>SINo</th>
           <th>Vendor Name</th>
           <th>Mobile Number</th>
-      
           </tr>
       </thead>
       <tbody>
           <tr *ngFor="let task of Detail | removeDuplicates:'vendorName'; let i = index">
           <td>
-              <p>{{ i+1 }}</p>
+              <p class="text-center">{{ task.vendorName ?? '-' }}</p>
           </td>
           <td>
-              <p>{{ task.vendorName }}</p>
+              <p class="text-center">{{ task.mobileNumber1 ?? '-' }}</p>
           </td>
-          <td>
-              <p>{{ task.mobileNumber1 }}</p>
-          </td>
-     
           </tr>
       </tbody>
       </table>
@@ -477,13 +471,13 @@
       <div class="col-lg-6 col-md-6">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>productionPrice</mat-label>
-          <input matInput type="number" [(ngModel)]="openSecondData[0].productionPrice">
+          <input matInput type="number" [(ngModel)]="openSecondData.productionPrice">
         </mat-form-field>
       </div>
       <div class="col-lg-6 col-md-6">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>sellingPrice</mat-label>
-          <input matInput type="number" [(ngModel)]="openSecondData[0].sellingPrice">
+          <input matInput type="number" [(ngModel)]="openSecondData.sellingPrice">
         </mat-form-field>
       </div>
     </div>
@@ -497,7 +491,7 @@
           <button class="dialog-update-btn" mat-dialog-close (click)="UpdateProduct()">update</button>
         </div>
         </div>
-      </ng-template>
+</ng-template>
 
 
 

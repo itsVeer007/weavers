@@ -10,6 +10,7 @@ import { MetadataService } from 'src/services/metadata.service';
 import { StorageService } from 'src/services/storage.service';
 import { TaxInvoiceComponent } from 'src/app/components/tax-invoice/tax-invoice.component';
 import { HttpClient } from '@angular/common/http';
+import { color } from 'highcharts';
 
 @Component({
   selector: 'app-add-new-customer',
@@ -146,6 +147,7 @@ this.local = true;
         'cgstPercent': new UntypedFormControl(null),
         'sgstPercent': new UntypedFormControl(null),
         'igstPercent' : new UntypedFormControl(null),
+       
       });
 
       // this.userForm1.get('igstPercent').valueChanges.subscribe((val: any) => {
@@ -198,15 +200,26 @@ this.local = true;
   form2() {
     this.userForm2=  this.fb.group({
         'itemCode': new UntypedFormControl('', Validators.required),
-        'color': new UntypedFormControl('', Validators.required),
-        'colorCode': new UntypedFormControl('', Validators.required),
-        'quality': new UntypedFormControl('', Validators.required),
-        // 'sellingPrice': new FormControl(''),
-        'cost': new UntypedFormControl('', Validators.required),
+        'color': new UntypedFormControl({ value: '', disabled: true }, Validators.required),
+        'colorCode': new UntypedFormControl({ value: '', disabled: true }, Validators.required),
+        'quality': new UntypedFormControl({ value: '', disabled: true }, Validators.required),
+        'soldCost': new UntypedFormControl(''),
+        'cost': new UntypedFormControl({ value: '', disabled: true }, Validators.required),
         'quantity':new UntypedFormControl('', Validators.required),
         'amount' : new UntypedFormControl(null),
+        
+      });
+
+      this.userForm2.get('itemCode').valueChanges.subscribe((itemCode:any) => {
+        if (itemCode) {
+          this.resetAndEnableControls();
+          this.updateDependentOptions(itemCode);
+        } else {
+          this.disableControls();
+        }
       });
     }
+
     form3() {
       this.userForm3 =  this.fb.group({
           'customerName':new UntypedFormControl(''),
@@ -214,9 +227,34 @@ this.local = true;
           'mobileNumber':new UntypedFormControl(''),
           'country':new UntypedFormControl(''),
           'state':new UntypedFormControl(''),
-          // 'sellingPrice': new FormControl(''),
+          'soldCost': new UntypedFormControl(''),
         });
       }
+
+
+      resetAndEnableControls() {
+        ['quality', 'color', 'colorCode', 'quantity', 'cost'].forEach(control => {
+          this.userForm2.get(control).reset();
+          this.userForm2.get(control).enable();
+        });
+      }
+    
+      disableControls() {
+        ['quality', 'color', 'colorCode', 'quantity', 'cost'].forEach(control => {
+          this.userForm2.get(control).disable();
+        });
+      }
+    
+      updateDependentOptions(itemCode: any) {
+        this.statusItems = this.getStatusItemsForRaw(itemCode);
+      }
+    
+      getStatusItemsForRaw(itemCode: any) {
+        // Fetch or filter the items based on the itemCode
+        // This is a placeholder function. Implement the actual logic to get the items.
+        return []; // Return the filtered items based on itemCode
+      }
+    
 
   saleType: any = 1;
   sendingQuantity:any;
@@ -262,8 +300,8 @@ this.local = true;
     let igstPercent = this.userForm1.value.igstPercent;
 
     let cgstFor = (cgstPercent)/100 * this.totalCost;
-    let sgstFor = (sgstPercent/100) * this.totalCost;
-    let igstFor = (igstPercent/100) * this.totalCost;
+    let sgstFor = (sgstPercent)/100 * this.totalCost;
+    let igstFor = (igstPercent)/100 * this.totalCost;
   
     this.grandTotalWithCGSTSGST  = this.totalCost + cgstFor + sgstFor;
     this.grandTotalWithIGST  = this.totalCost + igstFor;
@@ -273,26 +311,24 @@ this.local = true;
 
     if(this.saleType == 1) {
       if(this.userForm1.value.cgstPercent && this.userForm1.value.sgstPercent) {
-        userFormOne.grandTotal = this.grandTotalWithCGSTSGST;
+        userFormOne.grandTotal = Math.round(this.grandTotalWithCGSTSGST);
       } else {        
-        userFormOne.grandTotal = this.grandTotalWithIGST;
+        userFormOne.grandTotal = Math.round(this.grandTotalWithIGST);
       }
-      console.log(this.grandTotalWithIGST, this.grandTotalWithCGSTSGST)
-
         userFormOne.subTotal = this.totalCost;
         userFormOne.sgst = sgstFor;
         userFormOne.cgst = cgstFor;
+        userFormOne.igst = igstFor
         userFormOne.cgstPercent = cgstPercent
         userFormOne.sgstPercent = sgstPercent
         userFormOne.igstPercent = igstPercent
-        userFormOne.subTotal = this.totalCost
-        userFormOne.igst = igstFor
-    
+        // userFormOne.subTotal = this.totalCost
+
     } else if(this.saleType == 2) {
       if(this.userForm1.value.cgstPercent && this.userForm1.value.sgstPercent) {
-        userFormOne.grandTotal = this.grandTotalWithCGSTSGST;
+        userFormOne.grandTotal = Math.round(this.grandTotalWithCGSTSGST);
       } else {        
-        userFormOne.grandTotal = this.grandTotalWithIGST
+        userFormOne.grandTotal = Math.round(this.grandTotalWithIGST)
       }
 
         userFormOne.subTotal = this.totalCost;
@@ -365,9 +401,6 @@ this.local = true;
   // }
 
   submit() {
-
-    console.log(this.userForm1.value)
-   
     this.inventorySer.CreateInvoice(this.userForm1.value, this.tasks, this.saleType == 2 ? this.userForm3.value : null).subscribe((res: any) => {
       this.invoiceNumber= res.invoiceNo;
       this.inventorySer.invoiceNoSub.next(res.invoiceNo);
@@ -440,11 +473,16 @@ this.local = true;
   currentItem:any
   statusItems:any = [];
   openStatusItems(item:any) {
-    // console.log(item);
+    console.log(item);
     this.currentItem = item
     // console.log(this.userForm.value);
-      this.inventorySer.listInventoryForSending(this.userForm2.value).subscribe((res: any) => {
-        // console.log(res);
+      this.inventorySer.listInventoryForSending({itemCode:this.userForm2.value.itemCode,
+        color:this.userForm2.value.color,
+        colorCode:this.userForm2.value.colorCode,
+        cost:this.userForm2.value.cost,
+        quality:this.userForm2.value.quality
+      }).subscribe((res: any) => {
+        console.log(res);
         this.statusItems = res;
         // console.log(this.statusItems);
       })
@@ -452,7 +490,7 @@ this.local = true;
 
     totalCost: any;
     calculateTotalCost(): void {
-      this.totalCost = this.tasks.reduce((acc: any, curr: any) => acc + (curr.cost * curr.quantity), 0 ) ;
+      this.totalCost = this.tasks.reduce((acc: any, curr: any) => acc + (curr.soldCost * curr.quantity), 0 ) ;
     }
     
   isShown: boolean = false;

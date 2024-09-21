@@ -64,7 +64,7 @@ export class ClientRequestsComponent implements OnInit {
   clientData:any = [];
   listClientRequestDetails() {
     this.InventoryService.listClientRequestDetails().subscribe((res: any)=> {
-      console.log(res);
+      // console.log(res);
       this.clientData = res.sort((a: any, b: any) => (a.assignedQuantity === b.quality) ? -1 : (a.assignedQuantity !== b.quality) ? 1 : 0);
       this.getMetadata();
     })
@@ -74,7 +74,7 @@ export class ClientRequestsComponent implements OnInit {
   final:any;
   @ViewChild('usedItemsDialog') usedItemsDialog = {} as TemplateRef<any>;
   open(item:any) {
-    console.log(item)
+    // console.log(item)
     this.inventorySer.listClientRequestsForId(item).subscribe((res: any) => {
       // console.log(res);
       this.final = res;
@@ -532,7 +532,7 @@ export class ClientRequestsComponent implements OnInit {
     dcNumber: null,
     modifiedBy: null
   }
-dc: any;
+dc: any = [];
   @ViewChild('ItemsDialog') ItemsDialog = {} as TemplateRef<any>
   openClient(item:any){
     this.inventorySer.listMachineAssignmentSecond(item).subscribe((res:any)=>{

@@ -93,12 +93,14 @@ export class SalesComponent implements OnInit {
   note: any
   @ViewChild('ItemsDialog') ItemsDialog = {} as TemplateRef<any>;
   open(item: any) {
-    console.log(item)
+    // console.log(item)
+    this.checked = false;
+    this.viewArray = []
     this.inventorySer.listInvoices(item).subscribe((res: any) => {
-      res.forEach((el: any) => {
-        el.qty = null;
-      })
-      this.note = res;
+      // res.items.forEach((el: any) => {
+      //   el.qty = null;
+      // })
+      this.note = res.items;
     })
     this.dialog.open(this.ItemsDialog)
   }
@@ -155,7 +157,7 @@ export class SalesComponent implements OnInit {
 
 
 
-  /* checkbox control */
+  // /* checkbox control */
   selectedAll: any;
   selectAll() {
     for (var i = 0; i < this.siteData.length; i++) {
@@ -170,23 +172,24 @@ export class SalesComponent implements OnInit {
   }
 
   viewArray: any = [];
+  checked: boolean = false;
   addChecked(item: any, i: any, e: any) {
-    console.log(item);
-    item.returnQuantity = item.qty
-    var checked = (e.target.checked);
-    if (checked == true && this.viewArray.includes(item) == false) {
+    // console.log(item);
+
+    this.checked = (e.target.checked);
+    if (this.checked && !this.viewArray.includes(item)) {
       this.viewArray.push(item);
       //  this.currentPurchaseItem = this.viewArray[(this.viewArray.length - 1)];
     }
-    if (checked == false && this.viewArray.includes(item) == true) {
+    if (!this.checked && this.viewArray.includes(item)) {
       this.viewArray.splice(this.viewArray.indexOf(item), 1)
     }
   }
 
   updateOrder() {
     this.inventorySer.updateReturnItems(this.viewArray).subscribe((res: any) => {
-      // console.log(res);
       if (res.statusCode === 200) {
+        this.alertSer.success(res?.message)
         this.dialog.closeAll();
       } else {
         this.alertSer.error(res.message);

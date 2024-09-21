@@ -110,14 +110,14 @@ export class AddNewOrderComponent implements OnInit {
   productMaster:any;
   listProduct() {
   this.inventorySer.listProduct().subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.productMaster = res;
     });
   }
 
   listInventoryForSending1(item:any) {
   this.inventorySer.listInventoryForSending1(item).subscribe((res:any)=> {
-  console.log(res)
+  // console.log(res)
   })
   }
   
@@ -254,7 +254,7 @@ export class AddNewOrderComponent implements OnInit {
     let userFormOne = this.UserForm1.value;
     
     if( this.UserForm1.value.igstPercent == '') {
-      userFormOne.grandTotal = grandTotalWithCGSTSGST;
+      userFormOne.grandTotal = Math.round(grandTotalWithCGSTSGST);
         userFormOne.subTotal = this.totalCost;
         userFormOne.sgst = sgstFor;
         
@@ -264,12 +264,13 @@ export class AddNewOrderComponent implements OnInit {
 
         } else {
           userFormOne.subTotal = this.totalCost
-          userFormOne.grandTotal = grandTotalWithIGST
+          userFormOne.grandTotal = Math.round(grandTotalWithIGST)
           userFormOne.igst = igstFor
           userFormOne.igstPercent = igstPercent
       }
   
     this.UserForm1.value.subTotal = this.totalCost;
+
     if(this.purchaseOrders.length !== 0) {
       this.purchaseOrders.forEach((el:any)=> {
         el.createdBy =this.user?.UserId;
@@ -288,6 +289,7 @@ export class AddNewOrderComponent implements OnInit {
         }
       );
     }
+    
     }
 
 

@@ -91,6 +91,7 @@ export class AddNewVendorComponent implements OnInit {
   proparatorThree: boolean = false;
 
   activeTwo() {
+    // console.log(this.proparatorTwo )
     this.proparatorTwo = !this.proparatorTwo;
   }
 
@@ -101,7 +102,7 @@ export class AddNewVendorComponent implements OnInit {
   user: any;
   ngOnInit() {
     this.vendorForm = this.fb.group({
-      'name': new UntypedFormControl('', Validators.required),
+      'vendorName': new UntypedFormControl('', Validators.required),
       'proprietorName1': new UntypedFormControl('', Validators.required),
       'proprietorName2': new UntypedFormControl(''),
       'proprietorName3': new UntypedFormControl(''),
@@ -228,8 +229,8 @@ export class AddNewVendorComponent implements OnInit {
     // console.log(this.vendorBody);
     if(this.vendorForm.valid) {
       this.alertSer.wait();
-      this.vendorBody.createdBy = this.user?.UserId;
-      this.inventorySer.createVendors(this.vendorBody).subscribe((res: any) => {
+      this.vendorForm.value.createdBy = this.user?.UserId;
+      this.inventorySer.createVendors(this.vendorForm.value).subscribe((res: any) => {
         // console.log(res);
         this.newItemEvent.emit();
         this.alertSer.success(res?.message);

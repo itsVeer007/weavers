@@ -59,7 +59,7 @@ export class PurchaseComponent implements OnInit {
 
   listInvoicesForReceipt() {
     this.inventorySer.listPOForm({ purchaseRef: this.purchaseNumber }).subscribe((res: any) => {
-      console.log(res)
+      // console.log(res)
       this.newNote = res;
       this.mainData = res.items
       // this.onPrint1(this.tableElement);
@@ -70,9 +70,9 @@ export class PurchaseComponent implements OnInit {
   //   return this.data.reduce((total: any, item: any) => total + (item.quantity * item.cost), 0);
   // }
 
-  // getCeiledGrandTotal() {
-  //   return Math.ceil(this.newNote[0]?.grandTotal || 0);
-  // }
+  getCeiledGrandTotal() {
+    return Math.ceil(this.newNote?.grandTotal || 0);
+  }
 
   // getCeiledGrand() {
   //   return Math.ceil(this.newNote[0]?.sgst || 0);
@@ -150,7 +150,7 @@ export class PurchaseComponent implements OnInit {
     printMode: 'template',
     popupProperties: 'toolbar=yes, scrollbars=yes, resizable=yes, top=0, left=0, fullscreen=yes',
     pageTitle: 'Hello World',
-    // htmlType: 'text',
+    htmlType: 'text',
 
     templateString: `
     <header>
@@ -158,12 +158,8 @@ export class PurchaseComponent implements OnInit {
           <img src="assets/icons/Mangalagiri Weavers.jpg" width="100%" alt="">
       </div>
     </header>
-
       {{printBody}}
-      
-    <footer>
-
-    </footer>
+    <footer></footer>
     `,
 
     stylesheets: [{ rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' }],

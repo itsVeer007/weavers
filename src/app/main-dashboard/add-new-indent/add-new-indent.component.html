@@ -118,9 +118,7 @@
           </mat-form-field>
         </div>
       </div>
-
     </form>
-
     
     <div>
       <form autocomplete="off" [formGroup]="UserForm2">
@@ -131,8 +129,7 @@
                 <mat-label>Item Name</mat-label>
                 <mat-select formControlName="itemCode">
                   <ng-container *ngFor="let item of productMaster">
-                    <mat-option [value]="item.suggestedItemCode" *ngIf="item.itemType == 1"
-                      (click)="ViewInvRawMaterials(item)">{{item.itemName}}</mat-option>
+                    <mat-option [value]="item.suggestedItemCode" *ngIf="item.itemType == 1" (click)="ViewInvRawMaterials(item)">{{item.itemName}}</mat-option>
                   </ng-container>
                 </mat-select>
                 <mat-error class="mt-1">Item Name is required</mat-error>
@@ -142,8 +139,7 @@
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Color</mat-label>
                 <mat-select formControlName="color">
-                  <mat-option *ngFor="let item of statusItemsForRaw | removeDuplicates:'color' " [value]="item.color"
-                    (click)="ViewInvRawMaterials(item)">{{item.color}}</mat-option>
+                  <mat-option *ngFor="let item of statusItemsForRaw | removeDuplicates:'color' " [value]="item.color" (click)="ViewInvRawMaterials(item)">{{item.color}}</mat-option>
                 </mat-select>
                 <mat-error class="mt-1">Color is required</mat-error>
               </mat-form-field>
@@ -152,8 +148,7 @@
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>ColorCode</mat-label>
                 <mat-select formControlName="colorCode">
-                  <mat-option *ngFor="let item of statusItemsForRaw | removeDuplicates:'colorCode' "
-                    [value]="item.colorCode" (click)="ViewInvRawMaterials(item)">{{item.colorCode}}</mat-option>
+                  <mat-option *ngFor="let item of statusItemsForRaw | removeDuplicates:'colorCode' "  [value]="item.colorCode" (click)="ViewInvRawMaterials(item)">{{item.colorCode}}</mat-option>
                 </mat-select>
                 <mat-error class="mt-1">ColorCode is required</mat-error>
               </mat-form-field>
@@ -162,8 +157,7 @@
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Quality</mat-label>
                 <mat-select formControlName="quality" #quality>
-                  <mat-option *ngFor="let item of statusItemsForRaw | removeDuplicates:'quality' "
-                    [value]="item.quality" (click)="ViewInvRawMaterials(item)">{{item.quality}}</mat-option>
+                  <mat-option *ngFor="let item of statusItemsForRaw | removeDuplicates:'quality' "  [value]="item.quality" (click)="ViewInvRawMaterials(item)">{{item.quality}}</mat-option>
                 </mat-select>
                 <mat-error class="mt-1">Quality is required</mat-error>
               </mat-form-field>
@@ -172,8 +166,7 @@
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Cost</mat-label>
                 <mat-select formControlName="cost">
-                  <mat-option *ngFor="let item of statusItemsForRaw | removeDuplicates:'cost' " [value]="item.cost"
-                    (click)="ViewInvRawMaterials(item)">{{item.cost}}</mat-option>
+                  <mat-option *ngFor="let item of statusItemsForRaw | removeDuplicates:'cost' " [value]="item.cost"  (click)="ViewInvRawMaterials(item)">{{item.cost}}</mat-option>
                 </mat-select>
                 <mat-error class="mt-1">Cost is required</mat-error>
               </mat-form-field>
@@ -225,11 +218,17 @@
                 <td>{{ task.itemCode }}</td>
                 <td>{{ task.quality }}</td>
                 <td>{{ task.color }}</td>
+                <td>{{task.quantity}}</td>
                 <!-- <td>{{ task.colorCode }}</td> -->
-                <td>
-                  <p *ngIf="statusItemsForRaw[0]?.itemUom === 4">{{ task.quantity/1000 }}</p>
-                  <p *ngIf="statusItemsForRaw[0]?.itemUom !== 4">{{ task.quantity }}</p>
+                <!-- <td *ngIf="statusItemsForRaw[0]?.itemUom === 4">
+                  <p >{{ task.quantity/1000 }}</p>
+                 
                 </td>
+                <td *ngIf="statusItemsForRaw[0]?.itemUom !== 4">
+                  <p >{{ task.quantity }}</p>
+                </td> -->
+       
+
                 <td><img src="assets/icons/delete_black.svg" alt="" (click)="deleteTableItem(j)"></td>
               </tr>
             </tbody>

@@ -51,11 +51,11 @@ export class ProductMasterComponent implements OnInit {
       this.getMetadata();
       this.productMaster = res;
       this.newProductMaster = this.productMaster;
-      for(let item of this.productMaster) {
-        if(item.statusId == 1) {
-          this.active.push(item);
-        }
-      }
+      // for(let item of this.productMaster) {
+      //   if(item.statusId == 1) {
+      //     this.active.push(item);
+      //   }
+      // }
     });
   }
 
@@ -164,7 +164,7 @@ export class ProductMasterComponent implements OnInit {
   }
 
 
-  Detail:any
+  Detail:any = []
   @ViewChild('usedItemsDialog') usedItemsDialog = {} as TemplateRef<any>;
   open(item:any) {
     // console.log(item)
@@ -175,18 +175,16 @@ export class ProductMasterComponent implements OnInit {
     this.dialog.open(this.usedItemsDialog);
   }
 
-
   currentItem1:any
   @ViewChild('ItemsDialog') ItemsDialog = {} as TemplateRef<any>;
   openSecondData:any =[]
   openSecond(item:any) {
-    // console.log(item)
+    console.log(item)
     this.currentItem1 = item
     this.inventorySer.listSareesPrices(item).subscribe((res:any)=> {
-      // console.log(res);
-      this.openSecondData = res;
+      console.log(res);
+      this.openSecondData = res[0];
       console.log(this.openSecondData);
-      
     })
     this.myobj.productionPrice = null;
     this.myobj.sellingPrice = null;
@@ -202,8 +200,8 @@ export class ProductMasterComponent implements OnInit {
   Data:any
   UpdateProduct() {
     this.myobj.itemCode = this.currentItem1.suggestedItemCode
-    this.myobj.productionPrice = this.openSecondData[0]?.productionPrice
-    this.myobj.sellingPrice = this.openSecondData[0]?.sellingPrice
+    this.myobj.productionPrice = this.openSecondData.productionPrice
+    this.myobj.sellingPrice = this.openSecondData.sellingPrice
       this.inventorySer.updateSareesPrices(this.myobj).subscribe((res:any)=> {
       // console.log(res);
       if(res?.statusCode == 200) {

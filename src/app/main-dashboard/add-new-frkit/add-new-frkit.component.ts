@@ -108,7 +108,7 @@ export class AddNewFrkitComponent implements OnInit {
   listClientRequestsData:any = [];
   listClient() {
     this.inventorySer.listClientRequests().subscribe((res:any)=> {
-      console.log(res);
+      // console.log(res);
       this.listClientRequestsData = res;
     })
   }

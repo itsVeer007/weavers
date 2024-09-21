@@ -423,9 +423,12 @@ export class OrdersComponent implements OnInit {
       this.inventorySer.createRawMaterials(this.addToInventoryForm.value, this.addedOrderList).subscribe((res: any) => {
         // console.log(res);
         if(res.statusCode === 200) {
+          this.alertSer.success(res?.message)
           this.dialog.closeAll();
+          this.addedOrderList = [];
         } else {
           this.alertSer.error(res.message);
+          this.addedOrderList = [];
         }
       });
     }

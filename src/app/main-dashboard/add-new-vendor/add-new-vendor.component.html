@@ -53,7 +53,7 @@
           <div class="col-lg-6 col-md-6">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Vendor Name</mat-label>
-              <input matInput formControlName="name" [(ngModel)]="vendorBody.vendorName">
+              <input matInput formControlName="vendorName" [(ngModel)]="vendorBody.vendorName">
               <mat-error class="mt-1">Name is required</mat-error>
             </mat-form-field>
           </div>
@@ -173,14 +173,14 @@
             </div>
           </div>
           <div class="row col-lg-12" *ngIf="proparatorTwo">
-            <div class="col-lg-4 col-md-4">
+            <div class="col-lg-6 col-md-6">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Proprietor Name2</mat-label>
                 <input matInput formControlName="proprietorName2" [(ngModel)]="vendorBody.proprietorName2">
                 <mat-error class="mt-1">Proprietor Name2 is required</mat-error>
               </mat-form-field>
             </div>
-            <div class="col-lg-4 col-md-4">
+            <div class="col-lg-6 col-md-6">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Email2</mat-label>
                 <input matInput formControlName="emailId2" [(ngModel)]="vendorBody.emailId2">
@@ -191,7 +191,7 @@
               <div class="col-lg-6 col-md-6">
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Mobile Number</mat-label>
-                  <input matInput type="number" formControlName="mobileNumber2" [(ngModel)]="vendorBody.mobileNumber1" >
+                  <input matInput type="number" formControlName="mobileNumber2" [(ngModel)]="vendorBody.mobileNumber2" >
                   <mat-error *ngIf="mobileNumber1Control.hasError('required')">Mobile number is required</mat-error>
                   <mat-error *ngIf="mobileNumber1Control.hasError('maxlength')">Mobile number cannot exceed 6 digits</mat-error>
                   <mat-error *ngIf="mobileNumber1Control.hasError('pattern')">Only numbers are allowed</mat-error>
@@ -207,15 +207,22 @@
                 <mat-error class="mt-1">Proprietor Name3 is required</mat-error>
               </mat-form-field>
             </div>
-            <div class="col-lg-4 col-md-4">
+            <div class="col-lg-6 col-md-6">
               <div class="col-lg-6 col-md-6">
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Mobile Number</mat-label>
-                  <input matInput type="number" formControlName="mobileNumber3" [(ngModel)]="vendorBody.mobileNumber1" >
+                  <input matInput type="number" formControlName="mobileNumber3" [(ngModel)]="vendorBody.mobileNumber3" >
                   <mat-error *ngIf="mobileNumber1Control.hasError('required')">Mobile number is required</mat-error>
                
                 </mat-form-field>
               </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Email3</mat-label>
+                <input matInput formControlName="emailId3" [(ngModel)]="vendorBody.emailId3">
+                <mat-error class="mt-1">Email2 is required</mat-error>
+              </mat-form-field>
             </div>
           </div>
           <!-- <div class="col-lg-6 col-md-6">

@@ -137,48 +137,48 @@
   </div>
 
   <mat-dialog-content>
-    <div *ngIf="currentItem">
+    <div *ngIf="vendorData">
       <mat-list>
         <div class="row">
           <div class="col-lg-6">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>proprietorName2</mat-label>
-              <input matInput [(ngModel)]="currentItem.proprietorName2" disabled>
+              <input matInput [(ngModel)]="vendorData.proprietorName2" disabled>
             </mat-form-field>
           </div>
 
           <div class="col-lg-6">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>EmailId2</mat-label>
-              <input matInput [(ngModel)]="currentItem.emailId2" disabled>
+              <input matInput [(ngModel)]="vendorData.emailId2" disabled>
             </mat-form-field>
           </div>
 
           <div class="col-lg-6">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>MobileNumber2</mat-label>
-              <input matInput [(ngModel)]="currentItem.mobileNumber2" disabled>
+              <input matInput [(ngModel)]="vendorData.mobileNumber2" disabled>
             </mat-form-field>
           </div>
 
           <div class="col-lg-6">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>proprietorName3</mat-label>
-              <input matInput [(ngModel)]="currentItem.proprietorName3" disabled>
+              <input matInput [(ngModel)]="vendorData.proprietorName3" disabled>
             </mat-form-field>
           </div>
 
           <div class="col-lg-6">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>EmailId3</mat-label>
-              <input matInput [(ngModel)]="currentItem.emailId3" disabled>
+              <input matInput [(ngModel)]="vendorData.emailId3" disabled>
             </mat-form-field>
           </div>
 
           <!-- <div class="col-lg-6">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Status</mat-label>
-              <mat-select [(ngModel)]="currentItem.status" disabled>
+              <mat-select [(ngModel)]="vendorData.status" disabled>
                 <mat-option *ngFor="let item of vendorStatus" [value]="item.keyId">{{ item.value }}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -187,27 +187,27 @@
           <div class="col-lg-6">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>MobileNumber3</mat-label>
-              <input matInput [(ngModel)]="currentItem.mobileNumber3" disabled>
+              <input matInput [(ngModel)]="vendorData.mobileNumber3" disabled>
             </mat-form-field>
           </div>
 
           <!-- <div class="col-lg-6">
             <mat-list-item>
-              <span style="width: 130px; color: #ABABAB;">Service StartDate: </span>{{ currentItem.serviceStartDate }}
+              <span style="width: 130px; color: #ABABAB;">Service StartDate: </span>{{ vendorData.serviceStartDate }}
             </mat-list-item>
             <mat-divider></mat-divider>
           </div>
 
           <div class="col-lg-6">
             <mat-list-item>
-              <span style="width: 130px; color: #ABABAB;">Service EndDate: </span>{{ currentItem.serviceEndDate }}
+              <span style="width: 130px; color: #ABABAB;">Service EndDate: </span>{{ vendorData.serviceEndDate }}
             </mat-list-item>
             <mat-divider></mat-divider>
           </div> -->
 
           <!-- <div class="col-lg-6 col-md-6">
             <mat-form-field appearance="outline" class="w-100">
-              <input matInput [matDatepicker]="picker1" placeholder="Service StartDate" [(ngModel)]="currentItem.serviceStartDate" disabled>
+              <input matInput [matDatepicker]="picker1" placeholder="Service StartDate" [(ngModel)]="vendorData.serviceStartDate" disabled>
               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
               <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
@@ -215,7 +215,7 @@
 
           <div class="col-lg-6 col-md-6">
             <mat-form-field appearance="outline" class="w-100">
-              <input matInput [matDatepicker]="picker2" placeholder="Service EndDate" [(ngModel)]="currentItem.serviceEndDate" disabled>
+              <input matInput [matDatepicker]="picker2" placeholder="Service EndDate" [(ngModel)]="vendorData.serviceEndDate" disabled>
               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
               <mat-datepicker #picker2></mat-datepicker>
             </mat-form-field>
@@ -224,35 +224,35 @@
           <!-- <div class="col-lg-6">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Created By</mat-label>
-              <input matInput [(ngModel)]="currentItem.createdBy" disabled>
+              <input matInput [(ngModel)]="vendorData.createdBy" disabled>
             </mat-form-field>
           </div> -->
 
           <div class="col-lg-6">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>PostCode</mat-label>
-              <input matInput [(ngModel)]="currentItem.postCode" disabled>
+              <input matInput [(ngModel)]="vendorData.postCode" disabled>
             </mat-form-field>
           </div>
 
           <div class="col-lg-6">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Remarks</mat-label>
-              <input matInput [(ngModel)]="currentItem.remarks" disabled>
+              <input matInput [(ngModel)]="vendorData.remarks" disabled>
             </mat-form-field>
           </div>
           
           <div class="col-lg-6">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>State</mat-label>
-              <input matInput [(ngModel)]="currentItem.state" disabled>
+              <input matInput [(ngModel)]="vendorData.state" disabled>
             </mat-form-field>
           </div>
           
           <div class="col-lg-6">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>City</mat-label>
-              <input matInput [(ngModel)]="currentItem.city" disabled>
+              <input matInput [(ngModel)]="vendorData.city" disabled>
             </mat-form-field>
           </div>
 
