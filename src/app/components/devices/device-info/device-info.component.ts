@@ -56,7 +56,7 @@ export class DeviceInfoComponent implements OnInit {
       ['80', 80],
       ['100', 100]
     ];
-    this.chartservice.createchart1(charttype, threeD, title, data, elementid, antype, categories)
+    this.chartservice.createchart1(charttype, threeD, title, data, elementid, antype)
   }
 
   closeAddDevice() {

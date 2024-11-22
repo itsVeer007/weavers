@@ -15,8 +15,8 @@ invoiceNoSub: BehaviorSubject<any> = new BehaviorSubject(null)
 purchaseSub: BehaviorSubject<any> = new BehaviorSubject(null)
 goodRecieptSub: BehaviorSubject<any> = new BehaviorSubject(null)
 
-  // baseUrl = `${environment.baseUrl}/weavers`;
-  baseUrl = 'http://192.168.0.237:8080';
+  baseUrl = `${environment.baseUrl}/weavers`;
+  // baseUrl = 'http://192.168.0.237:8080';
 
   constructor(
     private http: HttpClient,
@@ -1226,17 +1226,92 @@ goodRecieptSub: BehaviorSubject<any> = new BehaviorSubject(null)
     return this.http.get(url, { params: params });
   }
 
-  dashboard() {
-    let url = this.baseUrl + '/dashboard_1_0';
-    let params = new HttpParams().set('startDate' , '2024-02-01').set('endDate' ,formatDate(new Date(), 'yyyy-MM-dd', 'en-us'))
+  weaversProduction(payload:any) {
+    let url = this.baseUrl + '/weaversProduction_1_0';
+    let params = new HttpParams()
+    if(payload?.startDate) {
+      params = params.set('startDate', formatDate(payload.startDate, 'yyyy-MM-dd', 'en-us'))
+    } else {        
+      params = params.set('startDate','2024-05-16')
+    }
+    if(payload?.endDate) {
+      params = params.set('endDate', formatDate(payload.endDate, 'yyyy-MM-dd', 'en-us') )
+    } else {
+      params = params.set('endDate','2024-06-16')
+    }
+   
     return this.http.get(url,{params:params});
   }
 
-  listDashboard(payload:any) {
-    let url = this.baseUrl + '/listDashboard_1_0'
-    let params = new HttpParams().set('startDate' , '2024-02-06').set('endDate' ,formatDate(new Date(), 'yyyy-MM-dd', 'en-us'))
+  // baseUrl1 = 'http://192.168.0.237:8080';
+  
+  // productionGraph() {
+  //   let url = `${this.baseUrl}/productionGraph_1_0`;
+  //   return this.http.get(url);
+  // }
 
+
+  // salesGraph() {
+  //   let url = `${this.baseUrl}/salesGraph_1_0`;
+  //   return this.http.get(url);
+  // }
+
+  salesGraph(payload?:any) {
+    let url = this.baseUrl + '/salesGraph_1_0';
+    let params = new HttpParams()
+    if(payload?.startDate) {
+      params = params.set('startDate', formatDate(payload.startDate, 'yyyy-MM-dd', 'en-us'))
+    } else {        
+      let date = new Date()
+      date.setMonth(new Date().getMonth() -1)
+      params = params.set('startDate', formatDate(date ,'yyyy-MM-dd', 'en-us'))
+    }
+    if(payload?.endDate) {
+      params = params.set('endDate', formatDate(payload.endDate, 'yyyy-MM-dd', 'en-us') )
+    } else {
+      params = params.set('endDate',formatDate(new Date() , 'yyyy-MM-dd', 'en-us'))
+    }
     return this.http.get(url,{params:params});
+  }
+  productionGraph(payload?:any) {
+    let url = this.baseUrl + '/productionGraph_1_0';
+    let params = new HttpParams()
+    if(payload?.startDate) {
+      params = params.set('startDate', formatDate(payload.startDate, 'yyyy-MM-dd', 'en-us'))
+    } else {    
+      
+      let date = new Date()
+      date.setMonth(new Date().getMonth() -1)
+      params = params.set('startDate', formatDate(date ,'yyyy-MM-dd', 'en-us'))
+    }
+    if(payload?.endDate) {
+      params = params.set('endDate', formatDate(payload.endDate, 'yyyy-MM-dd', 'en-us') )
+    } else {
+      params = params.set('endDate', formatDate(new Date() , 'yyyy-MM-dd', 'en-us'))
+    }
+    return this.http.get(url,{params:params});
+  }
+
+  listDashboard() {
+    let url = this.baseUrl + '/listDashboard_1_0'
+    // let params = new HttpParams()
+    // if(payload?.startDate) {
+    //   params = params.set('startDate', formatDate(payload.startDate, 'yyyy-MM-dd', 'en-us'))
+    // } else {        
+            
+    //   let date = new Date()
+    //   date.setMonth(new Date().getMonth() -1)
+    //   params = params.set('startDate', formatDate(date ,'yyyy-MM-dd', 'en-us'))
+    // }
+    // if(payload?.endDate) {
+    //   params = params.set('endDate', formatDate(payload.endDate, 'yyyy-MM-dd', 'en-us') )
+    // } else {
+    //   params = params.set('endDate', formatDate(new Date(), 'yyyy-MM-dd', 'en-us'))
+    // }
+
+    // return this.http.get(url,{params:params});
+   
+    return this.http.get(url);
   }
 
   Filterdashboard(payload?:any) {

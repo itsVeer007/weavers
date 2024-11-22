@@ -5,7 +5,7 @@
         </div>
         <div >
         <!-- <a class="pointer" (click)="show('inventory')"><img src="assets/icons/add_circle.svg" alt="" width="40"></a> -->
-        <button class="create-btn" (click)="show('raw')">Create Raw Material</button>
+        <!-- <button class="create-btn" (click)="show('raw')">Create Raw Material</button> -->
         <button class="create-btn" (click)="openInvoice()">Good Receipt Note</button>
         </div>
     </div>
@@ -82,23 +82,23 @@
                 <span>Purchases</span>
                 <img (click)="sort('purchases')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
             </th>
-            <th>
+            <!-- <th>
                 <span>Purchases Value</span>
                 <img (click)="sort('purchasesValue')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
-            </th>
+            </th> -->
             <th>
                 <span>Issued</span>
                 <img (click)="sort('issued')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
             </th>
-            <th>
+            <!-- <th>
                 <span>Issued Value</span>
                 <img (click)="sort('issuedValue')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
-            </th>
+            </th> -->
             <th><p>Total InStock</p>
             <img (click)="sort('totalInstock')" class="pointer" src="assets/icons/sorticon.svg" width="15px"></th>
-          
+<!--           
             <th><p>Total InStock Value</p>
-                <img (click)="sort('totalInstockValue')" class="pointer" src="assets/icons/sorticon.svg" width="15px"></th>
+                <img (click)="sort('totalInstockValue')" class="pointer" src="assets/icons/sorticon.svg" width="15px"></th> -->
                 </tr>
         </thead>
           <tbody *ngIf="!showLoader">
@@ -132,17 +132,17 @@
             <td>
                 <p>{{ cust.purchases }}</p>
             </td>
-            <td>
+            <!-- <td>
                 <p>{{ cust.purchasesValue }}</p>
-            </td>
+            </td> -->
             <td>
                 <p>{{ cust.issued }}</p>
             </td>
-            <td>
+            <!-- <td>
                 <p>{{ cust.issuedValue }}</p>
-            </td>
+            </td> -->
             <td>{{cust.totalInstock}}</td>
-            <td>{{cust.totalInstockValue}}</td>
+            <!-- <td>{{cust.totalInstockValue}}</td> -->
         </table>
     </div>
 

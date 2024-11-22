@@ -33,6 +33,7 @@ export class ProductMasterComponent implements OnInit {
     }
     // this.getMetadata();
     this.listProduct();
+    // this.filteredData = this.data.filter((item:any) => item.vendorName !== null);
   }
 
   showLoader = false;
@@ -364,5 +365,8 @@ export class ProductMasterComponent implements OnInit {
       x.sort((a: string, b: string) => b[label] > a[label] ? 1 : b[label] < a[label] ? -1 : 0);
     }
   }
+
+
+  filteredData = [];
   
 }

@@ -430,7 +430,7 @@
   </div>
 </ng-template>
 
-
+<!-- 
 <ng-template #usedItemsDialog>
   <div style="background-color: #053d1c;">
   <p class="dialog-title">Vendors</p>
@@ -460,6 +460,46 @@
   <div class="d-flex justify-content-end">
   <button class="dialog-close-btn" mat-dialog-close>Close</button>
   </div>
+</ng-template> -->
+
+<ng-template #usedItemsDialog>
+  <div style="background-color: #053d1c;">
+    <p class="dialog-title">Vendors</p>
+  </div>
+  <div class="dialog-content">
+    <div class="table-res mx-3">
+      <table class="table" id="mytable">
+        <thead>
+          <tr class="task-table">
+            <th>Vendor Name</th>
+            <th>Mobile Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Filter out rows where vendorName is null or empty -->
+      
+          <tr *ngFor="let task of Detail | removeDuplicates:'vendorName'; let i = index">
+            <ng-container  *ngIf="task.vendorName">
+              <td>
+                <p class="text-center">{{ task.vendorName ?? '-' }}</p>
+              </td>
+              <td>
+                <p class="text-center">{{ task.mobileNumber1 ?? '-' }}</p>
+              </td>
+              
+               <!-- <div class="d-flex align-items-center justify-content-center" style="height: 10vh;" *ngIf="Detail.length == 0 && !showLoader">
+                 <h1 class="text-secondary">No Data</h1>
+               </div> -->
+            </ng-container>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end">
+    <button class="dialog-close-btn" mat-dialog-close>Close</button>
+  </div>
 </ng-template>
 
 <ng-template #ItemsDialog>
@@ -469,14 +509,16 @@
   <mat-dialog-content *ngIf="openSecondData ">
     <div class="row dialog-content">
       <div class="col-lg-6 col-md-6">
+        <p>Production Price</p>
         <mat-form-field appearance="outline" class="w-100">
-          <mat-label>productionPrice</mat-label>
+          <mat-label></mat-label>
           <input matInput type="number" [(ngModel)]="openSecondData.productionPrice">
         </mat-form-field>
       </div>
       <div class="col-lg-6 col-md-6">
+        <p>Selling Price</p>
         <mat-form-field appearance="outline" class="w-100">
-          <mat-label>sellingPrice</mat-label>
+          <mat-label></mat-label>
           <input matInput type="number" [(ngModel)]="openSecondData.sellingPrice">
         </mat-form-field>
       </div>

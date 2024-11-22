@@ -1,27 +1,27 @@
 <div class="container-fluid main-dashboard">
 <div class="d-flex justify-content-between align-items-center">
   <h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size:26px;" class="top-heading mt-1">Operations Dashboard For Weavers</h1>
-
+    <!-- <div class="col-lg-3 from-date mt-3">
+        <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="rangePicker4">
+            <input matStartDate placeholder="Created from" [(ngModel)]="startDate">
+            <input matEndDate placeholder="Created to" [(ngModel)]="endDate">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="rangePicker4"></mat-datepicker-toggle>
+        <mat-date-range-picker #rangePicker4>
+            <mat-date-range-picker-actions>
+            <button mat-button matDateRangePickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDateRangePickerApply (click)="listDashboard({startDate:startDate,endDate:endDate})">Apply</button>
+         
+            </mat-date-range-picker-actions>
+        </mat-date-range-picker>
+        </mat-form-field>
+    </div> -->
 </div>
 
   <div class="row search-form d-flex">
-    <!-- <div class="col-lg-3 from-date mt-3">
-      <mat-form-field appearance="outline" class="w-100">
-      <mat-label>Enter a date range</mat-label>
-      <mat-date-range-input [rangePicker]="rangePicker">
-          <input matStartDate placeholder="Created from" [(ngModel)]="filterBody.startDate">
-          <input matEndDate placeholder="Created to"  [(ngModel)]="filterBody.endDate">
-      </mat-date-range-input>
-      <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
-      <mat-date-range-picker #rangePicker>
-          <mat-date-range-picker-actions>
-          <button mat-button matDateRangePickerCancel>Cancel</button>
-          <button mat-raised-button color="primary" matDateRangePickerApply (click)="filterDash()">Apply</button>
-       
-          </mat-date-range-picker-actions>
-      </mat-date-range-picker>
-      </mat-form-field>
-  </div> -->
+   
     <!-- <div class="col-lg-3 col-md-3">
         <mat-form-field class="example-form-field" appearance="outline" class="w-100">
         <mat-label>Search</mat-label>
@@ -31,7 +31,6 @@
         </button>
         </mat-form-field>
     </div> -->
-  
 </div>
 <!-- <div class="row">
   <div class="col-md-12">
@@ -109,7 +108,6 @@
 </div> -->
 
 
-<div class="row d-flex justify-content-between align-items-center my-4">
 
   <!-- <img src="assets/icons/next.svg" alt="" class="prevvert" (click)="prevvert()">
 
@@ -143,73 +141,171 @@
   </div> -->
 
   <div class="row">
-    <div class="col-md-12">
-      <mat-card class="title-card p-5">
-        <div class="row">
-          <div class="col-lg-2">
-            <div class="card" style="height: 20vh; ">
+    
+    <div class="col-md-8">
+      <mat-card class="title-card p-2">
+    
+        <div class=" items row" >
+        
+          <!-- <div class="col-lg-4">
+            <p class="text-center" style="color: #17a860; font-size: 28px;">Sales</p>
+            <div class="card mt-2" style="height: 14vh; ">
+
               <div class="card-body text-center">
-                <h1 class="card-title" style="font-size: 18px;  font-weight: bold; color: #17a860;">Production Cost</h1>
-                <p class="card-text  pointer mt-4" style=" font-size: 18px;font-weight: bold;  color: #17a860;"><a>{{'3294706'}}</a></p>
-           
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <p class="card-title" style="font-size: 18px;  font-weight: bold; color: #17a860;">Production Cost</p>
+                  <p class="card-title  my-3" style="font-size: 18px;  font-weight: bold; color: #17a860;">Sales</p>
+                  <p class="card-title" style="font-size: 18px; font-weight: bold; color: #17a860;">
+                    {{ item.profit !== null ? 'Profit' : (item.loss !== null ? 'Loss' : 'Profit/Loss') }}
+                  </p>
+                  
+              </div>
+              <div >
+                <p class="card-text  pointer " style=" font-size: 18px;font-weight: bold;  color: #17a860;"><a>{{item.cost ?? '-'}}</a></p>
+                <p class="card-text  pointer my-3" style=" font-size: 18px;font-weight: bold;  color: #17a860;"><a>{{item.sales ?? '-'}}</a></p>
+                <p class="card-text pointer" style="font-size: 18px; font-weight: bold; color: #17a860;" 
+                [ngStyle]="{ color: item.profit !== null ? '#17a860' : (item.loss !== null ? '#17a860' : '17a860') }">
+               <a>
+                 {{ item.profit !== null ? item.profit : (item.loss !== null ? item.loss : '-') }}
+               </a>
+             </p>
+            
+              </div>
+            </div>
               </div>
             </div>
           </div> 
-        <div class="col-lg-2">
-          <div class="card"  style="height: 20vh; ">
+    
+        <div class="col-lg-4">
+          <p class="text-center" style="color: #17a860; font-size: 28px;">Production</p>
+          <div class="card mt-2"  style="height:14vh; ">
             <div class="card-body text-center">
-              <h1 class="card-title" style="font-size: 18px;  font-weight: bold; color: #17a860;">Sales Revenue</h1>
-              <p class="card-text  pointer " style=" font-size: 18px;font-weight: bold;  color: #17a860;"><a>{{'2781056'}} </a></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <p class="card-title" style="font-size: 18px;  font-weight: bold; color: #17a860;">Remaining Inventory</p>
+                  <p class="card-title my-3" style="font-size: 18px;  font-weight: bold; color: #17a860;">Number Of Sarees</p>
+                  <p class="card-title " style="font-size: 18px;  font-weight: bold; color: #17a860;">Sarees Sold</p>
+              </div>
+              <div>
+                <p class="card-text  pointer" style=" font-size: 18px;font-weight: bold;  color: #17a860;"><a>{{item.remainingInventory ?? '-'}}</a></p>
+                <p class="card-text  pointer  my-3" style=" font-size: 18px;font-weight: bold;  color: #17a860;"><a>{{item.noOfSarees ??'-'}}</a></p>
+                <p class="card-text  pointer" style=" font-size: 18px;font-weight: bold;  color: #17a860;"><a>{{item.sareesSold ?? '-'}}</a></p>
+              </div>
+            </div>
          
             </div>
           </div>
-        </div>  
-        <div class="col-lg-2">
-          <div class="card"  style="height: 20vh; ">
-            <div class="card-body text-center">
-              <h1 class="card-title" style="font-size: 18px;  font-weight: bold; color: #17a860;">Total Returns</h1>
-              <p class="card-text  pointer " style=" font-size: 18px;font-weight: bold; color: #135a1f;"><a>{{ ' 567678'}}</a></p>
-         
-            </div>
-          </div>
-        </div> 
-        <div class="col-lg-2">
-          <div class="card"  style="height: 20vh; ">
-            <div class="card-body text-center">
-              <h1 class="card-title" style="font-size: 18px;  font-weight: bold; color: #17a860;">saree Produced</h1>
-              <p class="card-text  pointer " style=" font-size: 18px;font-weight: bold; color: #28551d;"><a>{{ ' 567678'}}</a></p>
-         
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-2">
-          <div class="card"  style="height: 20vh; ">
-            <div class="card-body text-center">
-              <h1 class="card-title" style="font-size: 18px;  font-weight: bold; color: #17a860;">Profit</h1>
-              <p class="card-text  pointer " style=" font-size: 18px;font-weight: bold; color: #1a701a;"><a>{{ ' 567678'}}</a></p>
-         
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-2">
-          <div class="card"  style="height: 20vh; ">
-            <div class="card-body text-center">
-              <h1 class="card-title" style="font-size: 18px;  font-weight: bold; color: #17a860;">Total Sarees</h1>
-              <p class="card-text  pointer " style=" font-size: 18px;font-weight: bold; color: #245719;"><a>{{ '567678'}}</a></p>
-         
-            </div>
-          </div>
-        </div>
-        <!-- <div class="col-md-3 col-lg-3 p-4">
-          <div class="card">
-            <div class="card-body text-center">
-              <h1 class="card-title" style="font-size: 18px;  font-weight: bold; color: #034926;">Loss</h1>
-              <p class="card-text  pointer " style=" font-size: 18px;font-weight: bold; color: #034926;"><a>{{'513650'}}</a></p>
-         
-            </div>
-          </div>
-        </div>  -->
+        </div>   -->
+
+        <!-- <div class="col-lg-4 from-date mt-5">
+          <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Select a From Date And To Date</mat-label>
+          <mat-date-range-input [rangePicker]="rangePicker1">
+              <input matStartDate placeholder="Created from" [(ngModel)]="filterBody1.startDate">
+              <input matEndDate placeholder="Created to"  [(ngModel)]="filterBody1.endDate">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matIconSuffix [for]="rangePicker1"></mat-datepicker-toggle>
+          <mat-date-range-picker #rangePicker1>
+              <mat-date-range-picker-actions>
+              <button mat-button matDateRangePickerCancel>Cancel</button>
+              <button mat-raised-button color="primary" matDateRangePickerApply (click)="listDashboard({startDate:filterBody1.startDate, endDate:filterBody1.endDate})">Apply</button>
+           
+              </mat-date-range-picker-actions>
+          </mat-date-range-picker>
+          </mat-form-field>
+      </div> -->
+  
+
+        <div class="d-flex justify-content-between align-items-center" *ngFor="let item of newDashdata">
+          <mat-card class="" style="height: 15vh; background-color: rgb(146, 185, 142); width: 20vw;"> <div>
+           <p class="mt-5 text-center">Total Sarees</p>
+           <p class="mt-4 text-center">{{item.totalSarees}}</p>
+         </div>
+       </mat-card >
+          <mat-card  class="mx-2" style="height: 15vh; background-color: rgb(156, 218, 166); width: 20vw;">
+           <div>
+             <p class="mt-5 text-center">Sarees Sold</p>
+             <p class="mt-4 text-center">{{item.sareesSold}}</p>
+           </div>
+          </mat-card>
+       <mat-card class="" style="height: 15vh; background-color: rgb(128, 165, 124); width: 20vw;">
+         <div>
+           <p class="mt-5 text-center">Remaining Sarees</p>
+           <p class="mt-4 text-center">{{item.remaining}}</p>
+   
+         </div>
+       </mat-card>
+         </div>
       </div>
+
+         
+
+      <div class="row charts">
+  <div class="d-flex justify-content-between my-1 verticals">
+    <div>
+      <h6 style="font-size: 20px;"><b>Analytics</b></h6>
+    </div>
+  </div>
+       
+
+      <!-- <div>
+        <input type="date" name="" id="" class="w-25" style="height: 30px;">
+      </div> -->
+     <div class="row">
+      <div class="col-lg-6 from-date">
+        <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="rangePicker1">
+            <input matStartDate placeholder="Created from"  [(ngModel)]="salesStartDate">
+            <input matEndDate placeholder="Created to"  [(ngModel)]="salesEndDate">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="rangePicker1"></mat-datepicker-toggle>
+        <mat-date-range-picker #rangePicker1>
+            <mat-date-range-picker-actions>
+            <button mat-button matDateRangePickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDateRangePickerApply (click)="mychart()">Apply</button>
+         
+            </mat-date-range-picker-actions>
+        </mat-date-range-picker>
+        </mat-form-field>
+    </div>
+    <div class="col-lg-6 from-date">
+      <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="rangePicker2">
+          <input matStartDate placeholder="Created from"  [(ngModel)]="productionStartDate">
+          <input matEndDate placeholder="Created to"   [(ngModel)]="productionEndDate">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matIconSuffix [for]="rangePicker2" ></mat-datepicker-toggle>
+      <mat-date-range-picker #rangePicker2>
+          <mat-date-range-picker-actions>
+          <button mat-button matDateRangePickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDateRangePickerApply (click)="mychart1()">Apply</button>
+       
+          </mat-date-range-picker-actions>
+      </mat-date-range-picker>
+      </mat-form-field>
+  </div>
+     </div>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div id="chart"></div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div id="chart1"></div>
+  </div>
+  <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div id="chart2"></div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div id="chart3"></div>
+  </div>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div id="chart4"></div>
+  </div> -->
+</div>
+
+     
 
    
         <!-- <div class="col-lg-3">
@@ -231,9 +327,26 @@
      </div>
       -->
  
+      <!-- <div class="col-lg-3 from-date mt-3">
+        <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Select a From Date And To Date</mat-label>
+        <mat-date-range-input [rangePicker]="rangePicker2">
+            <input matStartDate placeholder="Created from" [(ngModel)]="filterBody2.startDate">
+            <input matEndDate placeholder="Created to"  [(ngModel)]="filterBody2.endDate">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="rangePicker2"></mat-datepicker-toggle>
+        <mat-date-range-picker #rangePicker2>
+            <mat-date-range-picker-actions>
+            <button mat-button matDateRangePickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDateRangePickerApply (click)="dashboard({startDate:filterBody2.startDate, endDate:filterBody2.endDate})">Apply</button>
+         
+            </mat-date-range-picker-actions>
+        </mat-date-range-picker>
+        </mat-form-field>
+    </div> -->
 
 <div class="row">
-  <div class="col-lg-4">
+  <!-- <div class="col-lg-4">
     
     <div class="mt-3 text-center">
       <mat-card style="height: 50vh; width: 20vw; border-radius: 12px; background-color: #99b49f;  overflow-x: scroll;" class="p-4">
@@ -242,149 +355,143 @@
           <div class=" p-3" style="width: 18vw; height: 8vh;">
             <div class="card-body">
               <h1 class="card-title" style="font-size: 12px;  font-weight: bold; border-bottom: 1px solid black;">{{item.itemName}} - {{item.totalQuantity}}</h1>
-              <!-- <p class="card-text  pointer " style=" font-size: 12px;font-weight: bold;"><a>{{item.totalQuantity}} </a></p> -->
+  
          
             </div>
           </div>
         </div>  
       </mat-card>
      </div>
-  </div>
-  <div class="col-lg-8">
-    <div class="table-resp mt-4" style="max-height: 500px;">
+  </div> -->
+  <div class="col-lg-6 from-date">
+    <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [rangePicker]="rangePicker3">
+        <input matStartDate placeholder="Created from" [(ngModel)]="filterBody1.startDate">
+        <input matEndDate placeholder="Created to"  [(ngModel)]="filterBody1.endDate">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="rangePicker3"></mat-datepicker-toggle>
+    <mat-date-range-picker #rangePicker3>
+        <mat-date-range-picker-actions>
+        <button mat-button matDateRangePickerCancel>Cancel</button>
+        <button mat-raised-button color="primary" matDateRangePickerApply (click)="weaversProduction({startDate:filterBody1.startDate, endDate:filterBody1.endDate})">Apply</button>
+     
+        </mat-date-range-picker-actions>
+    </mat-date-range-picker>
+    </mat-form-field>
+</div>
+  
+  <div class="col-lg-12">
+    <div class="table-resp mt-2" style="height: 15vh; overflow-y: auto;">
       <table class="table table-hover  table-striped" id="mytable">
         <thead>
           <tr class="form1">
             <th>
               <p>
-                <span>Id</span>
+                <span>S.No</span>
                 <img (click)="sort('id')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
               </p>
             </th>
-            <th>
+            <th >
               <p>
-                <span>ItemName</span>
+                <span>Weaver Id</span>
                 <img (click)="sort('itemName')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
               </p>
             </th>
-            <th>
+            <th class="text-center">
               <p>
-                <span>ItemCode</span>
+                <span>Weaver Name </span>
+                <img (click)="sort('itemName')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
+              </p>
+            </th>
+            <th class="text-center">
+              <p>
+                <span >Sarees Produced</span>
                 <img (click)="sort('itemType')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
               </p>
             </th>
-            <th>
-              <p>
-                <span>ItemType</span>
-                <img (click)="sort('itemUom')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
-              </p>
-            </th>
-            <th>
-              <p>
-                <span>Total Quantity</span>
-                <img (click)="sort('description')" class="pointer" src="assets/icons/sorticon.svg" width="15px">
-              </p>
-            </th>
+           
           
           </tr>
         </thead>
         <tbody *ngIf="!showLoader">
-          <tr *ngFor="let cust of newDashdata | search : searchText; let i = index">
+          <tr *ngFor="let cust of newdata | search : searchText; let i = index">
             <td>
-              <p>{{ i+1 }}</p>
+              <p >{{ i+1 }}</p>
             </td>
             <td>
-              <p>{{ cust.itemName }}</p>
+              <p>{{ cust.weaverName }}</p>
             </td>
             <td>
-              <p>{{ cust.itemCode}}</p>
+              <p class="text-center">{{ cust.weaverId}}</p>
             </td>
             <td>
-              <p>{{ cust.itemType == 1 ? 'Raw material' : cust.itemType == 2 ? 'Finished Product' : cust.itemType == 3 ? 'component' : cust.itemType == 4 ? 'Sub component' : '' }} </p>
-            </td>
-          
-            <td>
-              <p>{{ cust.totalQuantity}}</p>
+              <p class="text-center">{{ cust.sareesProduced}}</p>
             </td>
           
           </tr>
         </tbody>
+        
       </table>
+      <div class="d-flex align-items-center justify-content-center" style="height:20%;" *ngIf="newdata.length == 0">
+        <h1 class="text-secondary">No weavers worked on these dates</h1>
+      </div>
     </div>
   </div>
+
+ 
 </div>
-      
-      
-       
-      <!-- <mat-card class="p-2 mt-4" style="background-color: #cde2d1;" >
+</mat-card>
+</div>
 
-        <div class="d-flex justify-content-between align-items-center">
-           <mat-card class="mx-2" style="height: 10vh; background-color: rgb(146, 185, 142); width: 10vw;"> <div>
-            <p class="mt-4 text-center">	2ply SPL Pattu</p>
-            <p class="mt-4 text-center">789</p>
-          </div>
-        </mat-card >
-           <mat-card  class="mx-2" style="height: 10vh; background-color: rgb(156, 218, 166); width: 10vw;">
-            <div>
-              <p class="mt-4 text-center">80x80 Fished Cotton 10 </p>
-              <p class="mt-4 text-center">54e5</p>
-            </div>
-           </mat-card>
-        <mat-card class="mx-2" style="height: 10vh; background-color: rgb(128, 165, 124); width: 10vw;">
-          <div>
-            <p class="mt-4 text-center">80x80 Cotton</p>
-            <p class="mt-4 text-center">678</p>
-    
-          </div>
-        </mat-card>
-           <mat-card class="mx-2" style="height: 10vh; background-color: rgb(128, 165, 124); width: 12vw;">
-            <div>
-              <p  class="mt-4 text-center">12% Silver Touch, Silver Zari,</p>
-              <p class="mt-4 text-center">789</p>
-            </div>
-           </mat-card>
-          <mat-card class="mx-1" style="height: 10vh; background-color: rgb(109, 134, 106); width: 10vw;">
-            <div>
-              <p class="mt-4 text-center">	
-                6% Gold Touch, Gold Zari,</p>
-                <p class="mt-4 text-center">567</p>
-             
-            </div>
-          </mat-card>
-            <mat-card class="mx-2" style="height: 10vh; background-color: rgb(109, 134, 106); width: 10vw;">
-              <div>
-                <p  class="mt-4 text-center">	
-                  Fished Pattu</p>
-                  <p class="mt-4 text-center">67</p>
-              </div>
-            </mat-card>
-    
-          <mat-card class="mx-2" style="height: 10vh; background-color: rgb(109, 134, 106);width: 10vw;">
-            <div>
-              <p  class="mt-4 text-center">	
-                3Ply SPL Pattu</p>
-                <p class="mt-4 text-center">67</p>
-            </div>
-          </mat-card>
-            <mat-card class="mx-2" style="height: 10vh; background-color: rgb(109, 134, 106); width: 10vw;">
-              
-            <div>
-              <p  class="mt-4 text-center">	
-                Damaged Cotton</p>
-                <p class="mt-4 text-center">67</p>
-            </div>
-            </mat-card>
-            
-            
-            
-          </div>
-        </mat-card> -->
-
-
-
+<div class="items  col-lg-4" *ngFor="let item of newDashdata">
+  <mat-card class="title-card p-2">
+      <mat-card  class="mx-2 mb-2 text-center" style="height: 15vh; background-color: rgb(156, 218, 166);">
+       <div>
+         <p class="mt-4 ">Total Sales</p>
+         <p class="mt-4">{{item.totalSales}}</p>
+       </div>
       </mat-card>
-
+    <mat-card class="mx-2 mb-2 text-center" style="height: 15vh; background-color: rgb(146, 185, 142);"> <div>
+      <p class="mt-4 ">Production Cost</p>
+      <p class="mt-4">{{item.productionCost}}</p>
     </div>
+  </mat-card >
+  <mat-card class="mx-2 mb-2 text-center" style="height: 15vh; background-color: rgb(128, 165, 124);">
+    <div>
+      <p class="mt-4">Number of Dealers</p>
+      <p class="mt-4">{{item. numberOfDealers}}</p>
+  
+    </div>
+  </mat-card>
+  <mat-card class="mx-2 mb-2 text-center" style="height: 15vh; background-color: rgb(146, 185, 142);"> <div>
+    <p class="mt-4 ">Number of Customers</p>
+    <p class="mt-4">{{item.numberOfCustomers}}</p>
+  </div>
+</mat-card >
+   <mat-card  class="mx-2 mb-2 text-center" style="height: 15vh; background-color: rgb(156, 218, 166);">
+    <div>
+      <p class="mt-4">Number of Weavers</p>
+      <p class="mt-4">{{item.numberOfWeavers}}</p>
+    </div>
+   </mat-card>
+<mat-card class="mx-2 mb-2 text-center" style="height: 15vh; background-color: rgb(128, 165, 124);">
+  <div>
+    <p class="mt-4">Number of Vendors</p>
+    <p class="mt-4">{{item.numberOfVendors}}</p>
+
+  </div>
+</mat-card>
+<mat-card class="mx-2 mb-2 text-center" style="height: 15vh; background-color: rgb(128, 165, 124);">
+  <div>
+    <p class="mt-4">Profit/Loss</p>
+    <p class="mt-4" class="mt-4" [ngStyle]="{ 'color': item.profitOrLoss < 0 ? '#ff2c2c' : 'green' }">{{item.profitOrLoss}}</p>
+
+  </div>
+</mat-card>
+  
+</mat-card>
+  </div>
    
 
 
@@ -393,6 +500,9 @@
     
  
 
+
+
+     
 
   
 
@@ -521,32 +631,6 @@ Jacquard Sarees</p>
       </div>
     </mat-card> -->
   
-
-
-
-<!-- <div class="row charts">
-  <div class="d-flex justify-content-between my-1 verticals">
-    <div>
-      <h6 style="font-size: 16px;"><b>Analytics</b></h6>
-    </div>
-  </div>
-
-  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-    <div id="chart"></div>
-  </div>
-  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-    <div id="chart1"></div>
-  </div>
-  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-    <div id="chart2"></div>
-  </div>
-  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-    <div id="chart3"></div>
-  </div>
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div id="chart4"></div>
-  </div>
-</div> -->
 
 </div>
 

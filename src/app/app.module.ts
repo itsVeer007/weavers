@@ -112,6 +112,12 @@ import { RemoveDuplicatesForTwoPipe } from './remove-duplicates-for-two.pipe';
 
 
 
+
+
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -219,6 +225,9 @@ import { RemoveDuplicatesForTwoPipe } from './remove-duplicates-for-two.pipe';
     MatSlideToggleModule,
     MatTooltipModule,
     NgxPrintElementModule,
+    
+    
+    
     
     
   ],

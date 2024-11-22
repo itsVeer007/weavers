@@ -12,6 +12,7 @@ import { InventoryService } from 'src/services/inventory.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RawMaterialsComponent } from '../components/raw-materials/raw-materials.component';
 
+
 @Component({
   selector: 'app-main-dashboard',
   templateUrl: './main-dashboard.component.html',
@@ -71,14 +72,17 @@ export class MainDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getMainDashboardCardReport();
     this.getMainDashboardReport();
-    // this.mychart();
-    // this.mychart1();
+    this.mychart();
+    this.mychart1();
     // this.mychart2();
     // this.mychart3();
     // this.mychart4();
-    this.dashboard();
+    // this.dashboard();
     this.listDashboard()
+    this.weaversProduction()
   }
+
+ 
 
   Weavers_Item_Uom: any;
   getMetaData() {
@@ -124,36 +128,47 @@ export class MainDashboardComponent implements OnInit {
     });
   }
 
-  newDashdata = [];
+  newdata:any =[]
   dashdata: any = [];
-  dashboard() {
-    this.inventorySer.dashboard().subscribe((res: any) => {
-      // console.log(res);
+  weaversProduction(item?:any) {
+    this.inventorySer.weaversProduction(item).subscribe((res: any) => {
+      console.log(res);
       this.dashdata = res;
-      this.newDashdata = this.dashdata;
+      this.newdata = this.dashdata;
+      this.filterBody1.startDate = null;
+          this.filterBody1.endDate = null
     });
   }
 
-  listdashdata:any
-  listDashboard(item?:any) {
-    this.inventorySer.listDashboard(item).subscribe((res: any) => {
-      // console.log(res);
-      this.listdashdata = res[0];
+
+  newDashdata:any = [];
+  listdashdata:any =[];
+  listDashboard() {
+    this.inventorySer.listDashboard().subscribe((res: any) => {
+      console.log(res);
+      this.listdashdata = res;
+      this.newDashdata = this.listdashdata;
     });
   }
 
-  filterBody = {
+  filterBody1 = {
     startDate: null,
     endDate: null,
   };
-  filterDash() {
-    this.inventorySer.listDashboard(this.filterBody).subscribe((res: any) => {
-      // console.log(res);
-      this.newDashdata = this.listdashdata;
-      // this.filterBody.startDate = null;
-      // this.filterBody.endDate = null
-    });
-  }
+
+  
+  filterBody2 = {
+    startDate: null,
+    endDate: null,
+  };
+  // filterDash() {
+  //   this.inventorySer.Filterdashboard(this.filterBody).subscribe((res: any) => {
+  //     console.log(res);
+  //     this.newDashdata = this.listdashdata;
+  //     this.filterBody.startDate = null;
+  //     this.filterBody.endDate = null
+  //   });
+  // }
 
   open(item: any) {
     this.inventorySer.itemNameSource.next(item.itemName);
@@ -244,11 +259,11 @@ export class MainDashboardComponent implements OnInit {
     //   // console.log(this.noOfCards);
     //   this.showcardReport = a.splice(0, this.noOfCards);
     // });
-    this.inventorySer.dashboard().subscribe((res:any)=> {
-      this.cardReport = res;
-      var a = JSON.parse(JSON.stringify(res));
-      this.showcardReport = a.splice(0, this.noOfCards);
-    })
+    // this.inventorySer.dashboard().subscribe((res:any)=> {
+    //   this.cardReport = res;
+    //   var a = JSON.parse(JSON.stringify(res));
+    //   this.showcardReport = a.splice(0, this.noOfCards);
+    // })
   }
 
 
@@ -311,162 +326,100 @@ export class MainDashboardComponent implements OnInit {
     // console.log(x.style.opacity);
   }
 
+
+  startDate:any
+  endDate:any
+
+  salesStartDate:any
+  salesEndDate:any
+
+  productionStartDate:any
+  productionEndDate:any
+
   mychart() {
-    var charttype = 'line';
-    var threeD = false;
-    var title = 'TOTAL WEAVERS REPORT - 5';
-    // var subtitle = 'The following charts represent the average amount of time your employees spend at their bays each day.';
-    //var antype = 'Minutes';
-    var elementid = 'chart';
-    var antype = 'year';
-    var data = [
-      ['40', 40],
-      ['66', 66],
-      ['50', 50],
-      ['70', 70],
-      ['10', 10],
-      ['40', 40],
-      ['91', 91],
-      ['40', 40],
-      ['40', 40],
-      ['66', 66],
-      ['80', 80],
-      ['100', 100],
-    ];
-    this.chartservice.createchart(
-      charttype,
-      threeD,
-      title,
-      data,
-      elementid,
-      antype
-    );
+    this.chartservice.salesGraph({startDate:this.salesStartDate, endDate:this.salesEndDate}).subscribe({
+      next: (res: any) => {
+        var charttype = 'column';
+        var threeD = false;
+        var title = 'TOTAL SALES GRAPH';
+        // var subtitle = 'The following charts represent the average amount of time your employees spend at their bays each day.';
+        //var antype = 'Minutes';
+        var elementid = 'chart';
+        var antype = 'year';
+        var data = res;
+
+        
+        this.chartservice.create(
+          charttype,
+          threeD,
+          title,
+          data,
+
+          elementid,
+          antype,
+        );
+      }
+    })
   }
 
   mychart1() {
-    var charttype = 'line';
-    var threeD = false;
-    var title = 'TOTAL RAW MATERIAL REPORT - 7';
-    // var subtitle = 'The following charts represent the average amount of time your employees spend at their bays each day.';
-    // var antype = 'Minutes';
-    var elementid = 'chart1';
-    var antype = 'year';
-    var data = [
-      ['40', 40],
-      ['66', 66],
-      ['50', 50],
-      ['70', 70],
-      ['10', 10],
-      ['40', 40],
-      ['91', 91],
-      ['40', 40],
-      ['40', 40],
-      ['66', 66],
-      ['80', 80],
-      ['100', 100],
-    ];
-    this.chartservice.createchart(
-      charttype,
-      threeD,
-      title,
-      data,
-      elementid,
-      antype
-    );
+    this.chartservice.productionGraph({startDate:this.productionStartDate, endDate:this.productionEndDate}).subscribe({
+      next: (res:any)=> {
+        var charttype = 'column';
+        var threeD = false;
+        var title = 'TOTAL PRODUCTION GRAPH';
+        // var subtitle = 'The following charts represent the average amount of time your employees spend at their bays each day.';
+        // var antype = 'Minutes';
+        var elementid = 'chart1';
+        var antype = 'year';
+        var data = res;
+
+   
+        this.chartservice.create1(
+          charttype,
+          threeD,
+          title,
+          data,
+       
+          elementid,
+          antype,
+        );
+      }
+    })
+  
   }
-  mychart2() {
-    var charttype = 'line';
-    var threeD = false;
-    var title = 'TOTAL SALES REPORT - 49';
-    // var subtitle = 'The following charts represent the average amount of time your employees spend at their bays each day.';
-    // var antype = 'Minutes';
-    var elementid = 'chart2';
-    var antype = 'year';
-    var data = [
-      ['40', 40],
-      ['66', 66],
-      ['50', 50],
-      ['70', 70],
-      ['10', 10],
-      ['40', 40],
-      ['91', 91],
-      ['40', 40],
-      ['40', 40],
-      ['66', 66],
-      ['80', 80],
-      ['100', 100],
-    ];
-    this.chartservice.createchart(
-      charttype,
-      threeD,
-      title,
-      data,
-      elementid,
-      antype
-    );
-  }
-  mychart3() {
-    var charttype = 'line';
-    var threeD = false;
-    var title = 'TOTAL FINISHED GOODS REPORT - 42';
-    // var subtitle = 'The following charts represent the average amount of time your employees spend at their bays each day.';
-    // var antype = 'Minutes';
-    var elementid = 'chart3';
-    var antype = 'year';
-    var data = [
-      ['40', 40],
-      ['66', 66],
-      ['50', 50],
-      ['70', 70],
-      ['10', 10],
-      ['40', 40],
-      ['91', 91],
-      ['40', 40],
-      ['40', 40],
-      ['66', 66],
-      ['80', 80],
-      ['100', 100],
-    ];
-    this.chartservice.createchart(
-      charttype,
-      threeD,
-      title,
-      data,
-      elementid,
-      antype
-    );
-  }
-  mychart4() {
-    var charttype = 'line';
-    var threeD = false;
-    var title = 'TOTAL ANALYTICS REPORT - 5';
-    // var subtitle = 'The following charts represent the average amount of time your employees spend at their bays each day.';
-    // var antype = 'Minutes';
-    var elementid = 'chart4';
-    var antype = 'year';
-    var data = [
-      ['40', 40],
-      ['66', 66],
-      ['50', 50],
-      ['70', 70],
-      ['10', 10],
-      ['40', 40],
-      ['91', 91],
-      ['40', 40],
-      ['40', 40],
-      ['66', 66],
-      ['80', 80],
-      ['100', 100],
-    ];
-    this.chartservice.createchart(
-      charttype,
-      threeD,
-      title,
-      data,
-      elementid,
-      antype
-    );
-  }
+
+  // mychart2() {
+  //   var charttype = 'line';
+  //   var threeD = false;
+  //   var title = 'TOTAL SALES REPORT - 49';
+  //   // var subtitle = 'The following charts represent the average amount of time your employees spend at their bays each day.';
+  //   // var antype = 'Minutes';
+  //   var elementid = 'chart2';
+  //   var antype = 'year';
+  //   var data = [
+  //     ['40', 40],
+  //     ['66', 66],
+  //     ['50', 50],
+  //     ['70', 70],
+  //     ['10', 10],
+  //     ['40', 40],
+  //     ['91', 91],
+  //     ['40', 40],
+  //     ['40', 40],
+  //     ['66', 66],
+  //     ['80', 80],
+  //     ['100', 100],
+  //   ];
+  //   this.chartservice.createchart(
+  //     charttype,
+  //     threeD,
+  //     title,
+  //     data,
+  //     elementid,
+  //     antype
+  //   );
+  // }
 
   // icons111: boolean = false;
   openIcon(type: any) {

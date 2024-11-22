@@ -8,6 +8,12 @@
     color: #ABABAB;
 }
 
+.items {
+    font-size: 20px;
+    font-weight: bold;
+    color: #084638;
+}
+
 .icons {
     /* background-image: linear-gradient(to right, #274874 , #AA4337);
     height: 36px;
@@ -198,6 +204,7 @@ tbody tr th {
 .title-card {
     background-color: #ccddd2;
     border-radius: 12px;
+    height: 85vh;
 }
 .top-heading {
     color: #00573c;
@@ -613,4 +620,9 @@ table tbody tr th .badge {
 
    ::ng-deep .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
     padding: 0 !important;
+   } */
+
+   /* ::ng-deep .mat-mdc-text-field-wrapper {
+    height: 55px !important;
+    width:60% !important;
    } */
